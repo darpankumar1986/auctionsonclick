@@ -1,0 +1,136 @@
+@charset "utf-8";
+/*----- Default css style -------*/
+
+
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+body{font-family: 'arial', sans-serif; font-size:16px; background:#d8d6d8;}
+.clear{width:100%; float:left; height:1px; line-height:0;}
+.container-outer {width: 100%; height: auto; }
+.container-inner { width: 100%; }
+hr { height:1px; display:none;}
+.container_13{width:85%; margin:0 auto; }
+
+/*----- Header -------*/
+header {
+    background: #fff;
+    border-top: solid 2px #bd2000;
+    width: 96%;
+    border-bottom: solid 1px #961a00;
+    padding: 5px 2%;
+}
+header, .lft {
+    float: left;
+}
+.header_wrapper{width:900px; margin:0 auto;}
+.header_top{width:100%; float:left; padding-bottom:15px;}
+.logo{width:192px; float:left; padding:10px 0 0 4px;}
+.header_right{width:auto; float:right; padding:3px 0 0 0;}
+.header_right ul{float:right;}
+.header_right ul li, .header_right ul li a{display:inline; color:#fff; font-weight:bold; font-size:.9em;   text-decoration:none; padding:0 3px 0 3px; }
+.header_right ul li{border-right:solid 1px #fff;}
+.header_right ul li:last-child{border-right:none; padding-right:0;}
+.header_number{font-size:1.1em; color:#fff; text-align:right; line-height:1.2em; float:right; font-weight:normal; padding-top:19px;}
+.banner_left{width:560px; float:left;}
+.banner{width:100%; float:left; padding-top:3px;}
+.marquee{width:100%; float:left;}
+.marquee a{color: #FCB040; font-size: 18px; font-weight: 600; text-decoration:none;}
+.flogout {background-color: #f78d8d; line-height:25px; font-weight:bold;   text-align:center;  font-size: 12px;}
+.error1{color:#000; font-size:14px; font-weight:bold; text-align:center; width:96%; float:left; background:#f78d8d; padding:10px 2%;}
+
+/*----- Logib box -------*/
+.login_box{float: right; width: 298px; background-color: #F6F6F5; height: 320px;}
+.login_heading{background-color: orange; font-size: .9em; font-weight: bold; padding: 8px; color:#fff; text-align:center;}
+.login_box select, input {border: 1px solid #bbb; width:230px; color:#666; box-shadow: none;box-sizing: content-box; -webkit-box-sizing: content-box; border-radius: 3px;  border: 1px solid #ccc;  outline: none;  padding: 3px 1px;}	
+.forgot_password a{float: right; font-size: 12px; color:#551a91; line-height: 40px; padding-right: 30px; text-decoration:none; font-weight:bold;}
+.inpt_heading{padding-left: 30px; line-height: 20px; color: grey; font-size: 12px; margin-top: 5px; font-weight:bold;}
+.login_box .login{color: grey; font-size: 15px; border: 1px solid #ccc; padding: 10px; padding-top: 2px; font-weight:bold; padding-bottom: 2px; text-decoration:none;}	
+.login_link{padding-left: 30px; line-height: 20px; margin-top: 15px;}
+.selct_optn{padding-left: 30px;  font-size: 12px;}
+.box{padding-left:30px;line-height:15px;color:grey;font-size:12px;margin-top:5px;display:none; font-weight:bold;}
+/*----- body main -------*/
+#body_wrapper{width:900px; margin:0 auto; }
+.body_main{width:100%; float:left; background:#fff; padding:0 0 5px 0;}
+.body_main .heading_bg{width:100%; float:left;}
+.live_event{padding-left: 10px; padding-top:15px; float:left; width:120px;}
+.body_main .heading_bg .search{ padding-left:150px; float:left; padding-top:15px;  padding-bottom:15px;}
+.body_main .heading_bg .search label{ font-weight:bold; font-size:.8em;}
+.body_main .heading_bg .search input{ width:300px; padding:3px 5px; font-size:.9em; margin-left:5px;}
+/*----- body main- table -------*/
+.table_bg{width:98%; float:left; padding:10px 1%;}
+.table_bg table{border:2px solid #bbb; border-spacing: 0}
+.table_bg table thead th {font-size:.8em; border-bottom:solid 1px #ccc; border-right:solid 1px #ccc; padding:0 5px;}
+.table_bg table thead th:last-child{border-right:none;}
+.table_bg table tbody td {font-size:.7em; font-weight:bold; border-right:solid 1px #ccc; padding:15px 5px; vertical-align:middle; cursor:pointer;}
+.table_bg table  tbody td:last-child{border-right:none;}
+.table_bg table tr:nth-child(odd) {background: #fff;}
+.table_bg table tr:nth-child(even) {background: #f6f6f6;}
+.table_bg table tr:hover{background:#ddd;}
+/*----- body main- bank icons -------*/
+.participating_bank{width:98%; float:left; color: Gray;   font-size: 12px;   padding-left: 2%;    font-weight: bold;}
+.bank_icon_bg{float:left; border:2px solid #bbb; border-radius:3px; width:99%;}
+.bank_icon_bg li{width:19.8%; float:left; text-align:center; padding:10px 0; border-right:solid 1px #ccc; height: 60px;list-style:none;  border-bottom:solid 1px #ccc;}
+.bank_image{width:120px;}
+.bank_icon_bg li:hover{background:#ddd; cursor:pointer;}
+.bank_icon_bg li:nth-child(5n) {border-right:none;}
+.row p {margin-top: 15px; font-size:.8em!important;text-shadow: 0 1px 0 #fff;  margin-bottom: 20px; text-decoration:none; text-align:justify; }
+.row h2 a{text-decoration:none; color:grey; line-height:35px; font-size:15px;     }
+.row h2{text-align:left;}
+.lft_padding_20{padding-left:20px;}
+
+/*----- event view -------*/
+.wrapper{width:900px; margin:0 auto;}
+.box-head{width:98%; float:left; padding-top: 7px; padding-left:2%; cursor:pointer; margin:15px 0 0 0; border-radius:3px; border: 1px solid #bbb;    color: #ddd;    font-size: .9em;    font-weight: 600;    text-shadow: 0 1px 0 #222; background:url(../images/grad-overlay-s.png) #393939 repeat-x; height:27px;}
+.box-content {background: #fff; border: 1px solid #bbb; border-top: none; border-radius: 0 0 3px 3px; padding: 10px 0; width:100%; float:left;}
+.row{width:98%; float:left; padding:5px 1%; margin:5px 0;}
+.row p{font-size:.8em;}
+.lft_heading{width:35%; float:left; text-align:right; font-size:.8em; font-weight:bold; padding-right:1%;}
+.rgt_detail{width:62%; float:left; text-align:left; font-size:.8em; padding-left:1%;}
+.button_grey { width:auto; background: url(images/grad-overlay-s.png) #dbdbdb; border-radius:0; cursor:pointer;    border: 1px solid #ababab; font-size:.7em; color:#000; font-weight:bold; text-decoration:none; padding:5px 10px;}
+.red{color:#F00;}
+.box-content select, input {border: 1px solid #bbb; font-size:1em; width:230px; color:#666; box-shadow: none;box-sizing: content-box; -webkit-box-sizing: content-box; border-radius: 3px;  border: 1px solid #ccc;  outline: none;  padding: 3px 1px;}
+.regi_radio{width:30px; float:left;}
+.gegi_radio_txt{width: 50px; float:left;}
+.error{font-size:8pt;display: none; color:#F00;}
+.success_msg{width: 96%;float: left;color: #157D0B !important;font-size: 12px; background:url(../images/icon_checkmark_small.png) 5px 9px no-repeat #ccebc9;  border-left: solid 1px #bbb; border-right: solid 1px #bbb;
+font-weight: bold;	padding: 0 1% 0 3%; line-height:22px;}
+
+/*----- contact -------*/
+.contact_bg{width:98%; float:left; padding:5px 1%; margin:5px 0; background:url(../images/contact.png) right no-repeat; }
+.contact_bg p {margin-top:5px; font-size:.8em!important;text-shadow: 0 1px 0 #fff;  margin-bottom: 20px; line-height:20px;}
+.contact_bg p a{text-decoration:none;}
+.no_top_mrgn{margin-top:0; border:none; border-radius:0;}
+/*----- footer -------*/
+
+footer{width:100%; text-align:center; float:left; padding:5px 0;}
+footer p{color: #41ad16; font-size:.8em; font-weight:bold;}
+footer p a{color: #711a8b; text-decoration:none;}
+
+/*----- forgot password -------*/
+.container_12{width:85%; margin:0 auto; }
+.box-content2 {background: #eee; border: 1px solid #bbb; border-top: none; border-radius: 0 0 3px 3px;  width:100%; float:left;     padding-bottom: 10px;}
+.error3{color:#000; font-size:12px; font-weight:normal; width:96%; float:left; background:#f78d8d; padding:0 2%; line-height:25px; }
+.dtime{font-size:14px; font-weight:bold; color:#F00; text-shadow: 1px 1px 1px #fff; line-height:30px;}

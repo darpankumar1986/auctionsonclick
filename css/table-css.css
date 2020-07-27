@@ -1,0 +1,159 @@
+
+.heading1{
+width: 98%;
+float: left;
+padding-top: 7px;
+padding-left: 2%;
+cursor: pointer;
+margin: 15px 0 0 0;
+border-radius: 3px;
+border: 1px solid #bbb;
+color: #fff;
+font-size: .9em;
+font-weight: 600;
+text-shadow: 0 1px 0 #222;
+background: url(../images/grad-overlay-s.png) #393939 repeat-x;
+height: 27px;
+}
+.heading2{font-family: Arial; font-size:25px; line-height:32px; color:#454545;}
+
+.table-section {
+	width:100%;
+	float:left;
+	overflow-x:scroll;
+}
+table.defaultTable {
+	margin:0px auto;
+	clear: both;
+	width: 100%;
+	-webkit-border-top-left-radius:4px;
+	-webkit-border-top-right-radius:4px;
+	-moz-border-radius-topleft:4px;
+	-moz-border-radius-topright:4px;
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+}
+table.defaultTable thead {
+	padding: 3px 18px 3px 10px;
+	border-bottom: 1px solid black;
+	font-weight: bold;
+	cursor: pointer;
+	background:#454545;
+	color:#fff;
+	-webkit-border-top-left-radius:4px;
+	-webkit-border-top-right-radius:4px;
+	-moz-border-radius-topleft:4px;
+	-moz-border-radius-topright:4px;
+	border-top-left-radius:4px;
+	border-top-right-radius:4px;
+}
+table.defaultTable thead th {
+	padding: 7px 18px 7px 10px;
+	border-bottom: 1px solid black;
+	font-weight: bold;
+	cursor: pointer;
+*cursor: hand;
+	color:#fff;
+	font-family: Arial;
+	font-size:16px;
+	vertical-align:top;
+}
+table.defaultTable thead th .col {
+	width:auto;
+	float:left;
+	margin:0 5px;
+}
+table.defaultTable thead th .col input {
+	width: 70px;
+    height: 30px;
+    float: left;
+    padding: 2px;
+    margin-right: 5px;
+    margin-bottom: 0;
+
+}
+
+table.defaultTable thead th .col:last-child{ margin-right:-8px;}
+
+table.defaultTable td {
+	padding:10px;
+	font-family: Arial;
+	font-size:14px;
+	color:#454545;
+	font-weight:normal;
+}
+table.defaultTable td.center, table.defaultTable td.dataTables_empty {
+	text-align: center;
+}
+table.defaultTable tr.odd {
+	background-color: #f3f3f3;
+	border-bottom:1px solid #ddd;
+}
+table.defaultTable tr.even {
+	background-color: white;
+	border-bottom:1px solid #ddd;
+}
+
+table.defaultTable tr.odd:hover td {
+	background-color: #cacaca;
+}
+table.defaultTable tr.even:hover td {
+	background-color: #cacaca;
+}
+
+table.defaultTable label {
+	width:auto;
+	height:45px;
+	line-height:50px;
+	float:left;
+	margin-right:10px;
+	font-size:16px;
+	color:#454545;
+}
+table.defaultTable .input {
+	width:183px;
+	height:32px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	border-radius:6px;
+	color:#454545;
+	font-size:18px;
+	margin-right:15px;
+	margin-bottom:0px;
+}
+table.defaultTable .select {
+	width:183px;
+	height:50px;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	border-radius:6px;
+	color:#454545;
+	font-size:16px;
+	margin-right:15px;
+	margin-bottom:0px;
+}
+table.defaultTable tfoot th {
+	padding:10px 18px 10px 10px;
+	border-top: 1px solid black;
+	font-weight: bold;
+	background-color:#dadada;
+}
+table.defaultTable tfoot th .float-left {
+	width:auto;
+	height:45px;
+	line-height:45px;
+	float:left;
+	margin-right:15px;
+}
+table.defaultTable tfoot th .tfoot-info {
+	width:auto;
+	height:35px;
+	line-height:35px;
+	float:left;
+	margin-right:15px;
+	font-size:14px;
+	font-weight:normal;
+}
+label{
+	float: none !important;
+}

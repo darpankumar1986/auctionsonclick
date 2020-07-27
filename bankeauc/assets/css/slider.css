@@ -1,0 +1,136 @@
+/*!
+ * Slider v0.0.1
+ * https://github.com/fengyuanchen/slider
+ *
+ * Copyright (c) 2014 Fengyuan Chen
+ * Released under the MIT license
+ */
+
+
+.slider {
+  height: 282px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.slider-content {}
+
+.slider-content img {
+  width: 100%;
+}
+
+.slider-nav {
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, .5);
+  bottom: 0;
+  height: 1px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  transition: height linear .2s;
+}
+
+.slider:hover .slider-nav {
+  height: 20px;
+  transition: height linear .2s;
+}
+
+.slider-nav div {
+  background-color: transparent;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  float: left;
+  height: 100%;
+  width: 20%;
+  transition: background-color linear .2s;
+}
+
+.slider-nav .slider-active {
+     background-color: #e63515;
+    background-color: rgba(230, 53, 21, 0.49);
+    border-color: #e63515;
+  cursor: default;
+  transition: background-color linear .2s;
+}
+
+.slider-prev,
+.slider-next {
+  background-color: #e63515;
+  border: 0 solid #e63515;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  height: 60px;
+  line-height: 60px;
+  overflow: hidden;
+  position: absolute;
+  text-align: center;
+  top: 100px;
+  width: 0;
+  transition: width linear .2s;
+}
+
+.slider-prev {
+  border-left-width: 1px;
+  left: 0;
+}
+
+.slider-next {
+  border-right-width: 1px;
+  right: 0;
+}
+
+.slider-disabled {
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, .5);
+  color: #ccc;
+  cursor: default;
+}
+
+.slider:hover .slider-prev,
+.slider:hover .slider-next {
+  width: 30px;
+  transition: width linear .2s;
+}
+
+
+
+
+/* @media (min-width: 1200px) {
+    .slider {
+        height: 540px;
+        width: 960px;
+    }
+
+    .slider-prev,
+    .slider-next {
+        top: 240px;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    .slider {
+        height: 450px;
+        width: 800px;
+    }
+
+    .slider-prev,
+    .slider-next {
+        top: 195px;
+    }
+}
+
+@media (max-width: 768px) {
+    .slider {
+        height: 360px;
+        width: 640px;
+    }
+
+    .slider-prev,
+    .slider-next {
+        top: 150px;
+    }
+} */

@@ -1,0 +1,42 @@
+.jssorb13 {
+	position: absolute;
+	width: auto!important;
+	right: 0!important;
+	left: 90%!important;
+}
+.jssorb13 div, .jssorb13 div:hover, .jssorb13 .av {
+	position: absolute;
+	/* size of bullet elment */
+    width: 16px;
+	height: 16px;
+	background: #fff;
+	cursor: pointer;
+	z-index:9999;
+	border-radius:20px;
+	border: 1px solid #ccc;
+	text-indent:-9999px;
+	margin:0px 5px;
+}
+.jssorb13 .av {
+	background: #9fc572;
+}
+.jssorb13 .dn, .jssorb13 .dn:hover {
+	background: #9fc572;
+}
+.caption {
+	width:405px;
+	position: absolute;
+	right:20px;
+	bottom: 67px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 30px;
+	line-height: 35px;
+	color: #454545;
+}
+.caption a {
+	margin-top:20px;
+	color:#fff;
+}
+.caption a:hover {
+	text-decoration:none;
+}

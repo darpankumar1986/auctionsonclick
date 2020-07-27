@@ -1,0 +1,19 @@
+.invoice-pdf h1 { font-size:22px;	color:#000;	text-transform:uppercase; font-weight:normal; margin:0;}
+.invoice-pdf h2 {font-size:16px;	text-align:center; text-transform:uppercase; color:#000; font-weight:bold; margin:0;}
+.invoice-pdf h3 {font-size:16px; text-transform:uppercase; color:#000; font-weight:bold; margin:0;}
+
+.invoice-pdf .table-bor td {border:1px solid #ddd; border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px; color:#000;}
+.invoice-pdf .table-bor th{ padding:4px 0px; text-align:center;} 
+.invoice-pdf thead {font-size:20px; color:#ffffff; font-weight:normal; background-color:#454545;}
+.invoice-pdf thead th {height:auto;padding:5px 0px; font-size:16px; font-weight:bold; color:#ffffff; background-color:#454545;}
+
+.invoice-pdf table th{ border:0px;}
+.invoice-pdf table td{ padding: 8px 4px; border:0px solid #dfdfdf; border-collapse:collapse; font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:18px; color:#000;}
+.invoice-pdf table tr.odd td {background-color: #f3f3f3;border-bottom: 1px solid #ddd;	padding: 8px 4px;}
+.invoice-pdf table tr.even td {background-color: #ffffff;border-bottom: 1px solid #ddd;padding: 8px 4px;}
+
+.invoice-pdf .grey_bg {background-color:#ccc;}
+.invoice-pdf .grey_bg2 {background-color:#f9f9f9; border:1px solid #ddd;}
+.invoice-pdf .pd-tp{ padding:4px 0px;}
+.invoice-pdf .pd-tp2{ padding:10px 0px;}
+.invoice-pdf .small-txt{ font-size:13px; font-family:Arial, Helvetica, sans-serif;}

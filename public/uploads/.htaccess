@@ -1,0 +1,11 @@
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+#RewriteBase /
+
+#Redirect include http://localhost/public/uploads/index.php?url=%{REQUEST_URI}
+RewriteCond %{REQUEST_URI} /Include
+RewriteRule ^ /public/uploads/index.php?url=%{REQUEST_URI} [L]
+
+</IfModule>
+# END WordPress

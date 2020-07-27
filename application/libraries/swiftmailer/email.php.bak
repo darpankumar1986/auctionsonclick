@@ -1,0 +1,39 @@
+public function sendSuccessMailUser($obj,$emailer_str)
+	{
+		
+		$transport = Swift_SmtpTransport::newInstance($this->constantBMT->mandrill['host'],$this->constantBMT->mandrill['port'],$this->constantBMT->mandrill['smtpsecure'])->setUsername($this->constantBMT->mandrill['username'])->setPassword($this->constantBMT->mandrill['password']);
+		$base_url_main = "http://".$_SERVER['HTTP_HOST'];
+		$base_url = "http://".$_SERVER['HTTP_HOST'].$this->config->application->baseUri;
+
+		if($obj->userId > 0)
+		{
+			$userNameEmail = TblUsers::findFirst("id = '".$obj->userId."'");
+		}
+		else
+		{
+			$userNameEmail = TblTraveller::findFirst("bookingId = '".$obj->uniqueId."'");
+		}
+
+		$userName = $userNameEmail->firstName;
+		$email = $userNameEmail->email;
+
+		$bmtBookingId = $obj->successId;  // BMT Booking Id
+
+		$mailer = Swift_Mailer::newInstance($transport);
+		$message = $emailer_str['message']->setFrom(array('noreply@tripr.com' => 'Tripr'))
+						->setTo(array($email))
+						->setBody($emailer_str['html'], "text/html"); // . $code
+
+		$invoiceObj = new PdfController();
+
+		$voucher = $invoiceObj->voucherAction($obj->uniqueId);
+		$attachment = Swift_Attachment::newInstance($voucher, 'voucher'.$bmtBookingId.'.pdf', 'application/pdf');
+		$message->attach($attachment);
+
+		$pdf_as_invoice = $invoiceObj->invoice123($obj->uniqueId);
+		$attachment1 = Swift_Attachment::newInstance($pdf_as_invoice, 'Invoice_'.$bmtBookingId.'.pdf', 'application/pdf');
+		$message->attach($attachment1);
+
+		return $mailer->send($message);
+		
+	}

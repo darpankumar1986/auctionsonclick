@@ -1,0 +1,140 @@
+
+@media screen and (max-width: 1200px) {
+.slider {height:540px;}
+.slider-prev, .slider-next {top:240px;}
+.container, #body_wrapper{width:98%;}
+header{width:98%; padding:10px 1%;}
+.header-ad {width: 50%; margin: 0 2%;}
+header ul{width:23%;}
+#menu{padding-left:0;}
+.padding15{padding:0;}
+}
+@media screen and (max-width: 1115px) {
+.one_third{width:100%;}
+.btn-align{text-align:center;}
+.property_id_bg {width: 98% !important;  padding: 10px 1% !important; min-height:430px !important;}
+
+}
+@media screen and (max-width: 1045px) {
+header ul{width:27%;}
+.header-ad {width: 45%; margin: 0 0 0 2%;}
+.logo{width:100%;}
+#menu1{padding:0 !important;}
+}
+@media screen and (max-width: 900px) {
+.container-outer { overflow-y: auto; }
+.container-inner { width:900px; }
+.header-ad {width: 43%; margin: 0 0 0 5%;}
+header ul li {font-size: .7em;}
+.style-1{font-size: .7em;}
+.slider{height:228px!Important;}
+.login_box{width:30%;     height: 228px;}
+.banner{width:69%; margin-bottom:5px;    }
+.body_main{margin-top:15px !important;}
+.property_id_bg li{    width: 48.1% !important; margin-right:0; margin-left:.5%;}
+.lft_padding_20{padding:5px .5%;}
+}
+
+@media screen and (max-width: 865px) {
+	nav{background:none; padding-left:1%;     width: 98%;}
+	#menu1 li{    width: 28%;   text-align: center; margin:2px 0%;
+	background-image: -webkit-gradient(linear, left bottom, right top, color-stop(0, #B52000), color-stop(100, #ef5030));
+    background-image: -webkit-linear-gradient(bottom left, #B52000 0%, #ef5030 100%);
+    background-image: linear-gradient(to top right, #B52000 0%, #ef5030 100%);
+	}
+	#menu1 li:last-child {  border-right: none !important;}
+	
+	
+	
+	
+}
+
+
+
+@media screen and (max-width: 768px) {
+.slider{height:268px!Important;}
+.login_box{width:50%;     height: 268px; margin:15px 0 0 25%; float:left;}
+.banner{width:100%; margin-bottom:5px;    }
+.slider-prev, .slider-next {top:195px;}
+.ad-img{width:100%;}
+
+header ul {width: 30%;} 
+h1{font-size:14px;}
+.half-2{width:100%;}
+.error1{width:100%;}
+}
+
+@media screen and (max-width: 700px){
+#menu1 li {width:31.5%; padding:0 !important;}
+
+}
+@media screen and (max-width: 715px) {	
+.header-ad{display:none;}
+header ul {width: 40%;}
+header ul li, .style-1 { font-size: .8em;}
+ }
+  @media screen and (max-width: 661px) {
+#menu1 li {  width: 32.3%; }
+  }
+@media screen and (max-width: 650px) {
+	.note12{width:100%; text-align:center;}
+.reg_manadatory, .box-heading{width:97%; padding-left:3%; text-align: center;}
+.property_id_bg li {  width: 98.5% !important; margin-right:0;}
+}
+	
+	
+@media screen and (max-width: 600px) {
+header ul {width: auto;}
+.slider {height: 187px!Important;}
+.tag-line{font-size:1.7em;}
+.tag-desc {font-size: .8em;}
+.login_box{width:100%;     margin:15px 0 0 0;}
+.lft_heading{text-align:left;}
+.tooltips{display:none;}
+}
+
+@media screen and (max-width: 568px) {
+.half{width:50%; float:left; padding:0;}
+.js #menu {display:none;}
+.js .slicknav_menu {display:block; padding: 7px 0;}
+.slider {height:172px!important;}
+.slider-prev, .slider-next {top:150px;}
+
+.slider {height: 175px!Important;}
+.body_main .heading_bg .search input{width:92%;}
+.search{width:100%;}
+.slicknav_menu{background:#035682;}
+.hide{display:none;}
+header{padding:1% !important; width:98% !important; border:0;}
+.style-1{color:#035682;}
+.phone1{background:url(../img/phone1.png) left center no-repeat;}
+.mobile1{background:url(../img/mobile1.png) left center no-repeat;}
+.mail1{background:url(../img/mail1.png) left center no-repeat;}
+footer ul{width:98%; padding:0 1%;}
+.tag-line {font-size: 1.5em;}
+.half1{width:100%;}
+
+#menu1 li{       width: 48.4%;   text-align: center; margin:3px .4%;}
+}
+@media screen and (max-width: 450px) {
+	.logo{text-align:center; float:none !important;}
+	.logo-img{float:none !important;}
+	.logo-text-small{width:100% !important; padding:0 !important; text-align:center;}
+	.logo-text{font-size:21px; padding:0; text-align:center; float:none;}
+	header { width: 99%!important;    padding: 5px .5%!important;}
+.half{width:100%;}
+.slider {height:128px!important;}
+.box-content-details select, .box-content-details input{width:200px;}
+.body_main{margin-top: 10px!important;}
+#menu1 li{       width: 100%;   text-align: center; margin:0 0 2px 0;}
+.lft_padding_20{padding-left:5px;}
+}
+
+@media screen and (max-width: 320px) {
+}
+@media screen and (max-width: 319px) {
+.lft_heading, .rgt_detail{width:98%; padding:0 1%;}	
+}
+
+
+

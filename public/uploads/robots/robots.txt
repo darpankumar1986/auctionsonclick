@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /bidder/
+Disallow: /bidder/
+Disallow: /owner/
+Disallow: /admin/
+Disallow: /account/
+Disallow: /helpdesk_admin/
+Disallow: /helpdesk_executive/
+Disallow: /sales_coordinator/
+Disallow: /sales_executive/
