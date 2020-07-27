@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '192.168.10.105';
+$db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = 'password123';
-$db['default']['database'] = 'auctions_on_click_dev';//propertyauction_gda
+$db['default']['password'] = 'root';
+$db['default']['database'] = 'auctionsonclick';//propertyauction_gda
 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
