@@ -92,14 +92,14 @@ $other_city=$auctionData->other_city;
 						<input type="hidden" value="<?php echo $userID;?>" name="first_opener"/>
 						<input type="hidden" value="<?php if($utype =='approver') echo $userID;?>" name="second_opener"/> <!--Added by aziz -->
 					  <div class="plain row">
-						  <div class="lft_heading">Institution <span class="red">*</span></div>
+						  <div class="lft_heading">Institution Name<span class="red">*</span></div>
 
 						<div class="rgt_detail">
 							<select name="bank_id" id="bank_id"  class="select">
 								<option value="">---Select---</option>
 								<?php 
 								foreach($banks as $bank_record){ ?>
-									<option value="<?php echo $bank_record->id; ?>" <?php echo ($bank_record->id==$bank_id)?'selected':''; ?>><?php echo $bank_record->name; ?></option>
+									<option value="<?php echo $bank_record->id; ?>" <?php echo ($bank_record->id==$auctionData->bank_id)?'selected':''; ?>><?php echo $bank_record->name; ?></option>
 								<?php }?>
 							</select>
 						<!--	
@@ -122,11 +122,11 @@ $other_city=$auctionData->other_city;
 					  <div class="row">
 								<div class="lft_heading">Branch <span class="red"> *</span></div>
 								<div class="rgt_detail">					
-									<select name="bank_branch_name" id="bank_branch_name"  class="select">
+									<select name="branch_id" id="branch_id"  class="select">
 										<option value="">---Select---</option>
 										<?php //bankbranch
 										foreach($bankbranch as $branch){ ?>
-											<option value="<?php echo $branch->id; ?>" <?php echo ($branch->id== $auctionData->bank_branch_id)?'selected':''; ?>><?php echo $branch->name; ?></option>
+											<option value="<?php echo $branch->id; ?>" <?php echo ($branch->id== $auctionData->branch_id)?'selected':''; ?>><?php echo $branch->name; ?></option>
 										<?php }?>											
 									</select>
 									
@@ -139,7 +139,7 @@ $other_city=$auctionData->other_city;
 							</div>
 					  
 					  <div class="row">
-						<div class="lft_heading">Auction Type <span class="red">*</span></div>
+						<div class="lft_heading">Type <span class="red">*</span></div>
 						<div class="rgt_detail">
 						  <select class="select" name="auction_type" id="auction_type">
 							<option value="">---Select---</option>
@@ -154,7 +154,7 @@ $other_city=$auctionData->other_city;
 						</div>
 					  </div>
 					  
-					  <div class="row">
+					  <div class="row" id="propertyType" <?php if($auctionData->auction_type==1){ echo 'style="display:block;"';} else{echo 'style="display:none;"';}?>>
 							<div class="lft_heading">Property Type <span class="red"> *</span></div>
 							<div class="rgt_detail">
 								<select name="category_id" id="category" class="select">
@@ -170,7 +170,7 @@ $other_city=$auctionData->other_city;
 								</div>
 							</div>
 						</div>
-						<div class="row">
+						<div class="row" id="vehicleType" <?php if($auctionData->auction_type==2){ echo 'style="display:block;"';} else{echo 'style="display:none;"';}?>>
 							<div class="lft_heading">Vehicle Type <span class="red"> *</span></div>
 							<div class="rgt_detail">
 								<select class="select" name="vehicle_type" id="vehicle_type">
@@ -1013,6 +1013,12 @@ $other_city=$auctionData->other_city;
 								} ?>
 							</div>
 						</fieldset>
+						<div class="row">
+							<div class="lft_heading">Sales Person Details</div>
+							<div class="rgt_detail">
+								<div id="sales_person"><?php echo $sales_person_detail; ?></div>	 
+							</div>
+						</div>
 						<!--					
 						<div class="row">
 							<div class="lft_heading">Any Documents Pertinent To The Auction<span class="red">*</span> </div>
@@ -1415,8 +1421,8 @@ jQuery("#auto_extension, #auto_extension_time").on('blur',function(){
 		  $(this).val('');
 	   }
 	});
-
-		jQuery('.nodalbank').click(function(){
+/*
+jQuery('.nodalbank').click(function(){
 		var nodalbank = jQuery(this).val();
 		var drt_event = jQuery("#drtEvent").val();
 		if(nodalbank)
@@ -1441,6 +1447,7 @@ jQuery("#auto_extension, #auto_extension_time").on('blur',function(){
 		}
 		
 	});
+	*/
 	
   //tooltip
   jQuery(function() { 
@@ -1522,6 +1529,7 @@ $(".numericonly_1").keydown(function (e) {
 });
 $("#state").attr("value","<?php echo $auctionData->state; ?>");
 $("#city").attr("value","<?php echo $auctionData->city; ?>");
+$("#bank_id").attr("value","<?php echo $auctionData->bank_id; ?>");
    jQuery('#country').change(function () {
 		var country_id = jQuery(this).val();
 		if (country_id)
@@ -1538,6 +1546,7 @@ $("#city").attr("value","<?php echo $auctionData->city; ?>");
 		{
 			var city_id = jQuery('#city_id').val();
 			jQuery('#city').load('/admin/home/getCityDropDown/' + state_id + '/' + city_id);
+			jQuery('#sales_person').load('/admin/home/getSalesPerson/' + state_id);
 		}
 
 	});
@@ -1546,10 +1555,30 @@ $("#city").attr("value","<?php echo $auctionData->city; ?>");
 		var bank_id = jQuery(this).val();
 		if(bank_id)
 		{
-			jQuery('#bank_branch_name').load('/admin/home/showbranchdata/' + bank_id);
+			jQuery('#branch_id').load('/admin/home/showbranchdata/' + bank_id);
 		}
 	
     });
+
+	jQuery('#auction_type').change(function(){
+		var auctionType = jQuery(this).val();
+		if(auctionType ==1)
+		{
+			jQuery('#propertyType').css('display','block');
+			jQuery('#vehicleType').css('display','none');		
+		}
+		else if(auctionType ==2)
+		{
+			jQuery('#vehicleType').css('display','block');
+			jQuery('#propertyType').css('display','none');
+		}
+		else if(auctionType == 3)
+		{
+			jQuery('#propertyType').css('display','none');
+			jQuery('#vehicleType').css('display','none');
+		}
+
+	});
 	
 <?php if(is_array($upload_document_field) && count($upload_document_field)>0 )
 { 
@@ -1894,7 +1923,7 @@ function removePorpertyPhotoData(auction_document_id) {
 	  cancelButtonText: 'No, cancel!'
 	}).then(function () {
 		$.ajax({
-			url: "/buyer/removePorpertyPhotoData",
+			url: "/admin/home/removePorpertyPhotoData",
 			type: "post",
 			data: "auction_document_id=" + auction_document_id,
 			success: function (results) {
@@ -1929,61 +1958,50 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
     //body = CKEDITOR.instances.contact_person_details_1.getData().trim();
     if (btn == "save")
     {
-        // alert($('#rdoEventOthers').is(':checked'));
-        /*   
-         if ($('#rdoEventDRT').is(':checked') == false && $('#rdoEventSRFAESI').is(':checked') == false && $('#rdoEventOthers').is(':checked') == false) {
-         $('#spMsg').append("<li>Please Select Account. </li>");
-         flag = 1;
-         }*/
-
-        if ($('#account').val() == '') {
-            $('#spMsg').append("<li>Please Select Institution</li>");
+        if ($('#bank_id').val() == '') {
+            $('#spMsg').append("<li>Please Select Institution. </li>");
             flag = 1;
         }
-        /*
-        if ($('#reference_no').val() == '') {
-            $('#spMsg').append("<li>Please Enter Property ID </li>");
-            flag = 1;
-        }*/
-        /*if ($('#dispatch_date').val() == '') {
-         $('#spMsg').append("<li>Please enter Dispatch Date </li>");
-         flag = 1;
-         }*/
-       
-        /*
-        if ($('#area').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter Property Area </li>");
+		if ($('#branch_id').val() == '') {
+            $('#spMsg').append("<li>Please Select Branch. </li>");
             flag = 1;
         }
-       
-        if (isNaN($('#area').val().trim()) == true) {
-            $('#spMsg').append("<li>Please Enter Valid Property Area </li>");
-            flag = 1;
-        }        
-        
-        if ($('#area_unit_id').val() == '') {
-            $('#spMsg').append("<li>Please Select Area Unit </li>");
+        if ($('#auction_type').val() == '') {
+            $('#spMsg').append("<li>Please Select Auction Type. </li>");
             flag = 1;
         }
-        */
-        if ($('#category').val() == '') {
-            $('#spMsg').append("<li>Please Select Property Type </li>");
+		
+        if ($('#description').val().trim() == '') {
+            $('#spMsg').append("<li>Please Enter Description </li>");
             flag = 1;
         }
-	if ($('#bid_inc').val() == '') {
-            $('#spMsg').append("<li>Please Enter Bid Increment value</li>");
+		if ($('#reference_no').val().trim() == '') {
+            $('#spMsg').append("<li>Please Enter Location </li>");
             flag = 1;
         }
+		if ($('#country').val().trim() == '') {
+            $('#spMsg').append("<li>Please Select Country </li>");
+            flag = 1;
+        }
+		if ($('#state').val().trim() == '') {
+            $('#spMsg').append("<li>Please Enter State </li>");
+            flag = 1;
+        }
+		if ($('#city').val().trim() == '') {
+            $('#spMsg').append("<li>Please Enter City </li>");
+            flag = 1;
+        }
+		/*
         if (isNaN($('#bid_inc').val().trim()) == true) {
             $('#spMsg').append("<li>Please Enter Valid Bid Increment value</li>");
             flag = 1;
-        }
-
+        }*/
+		/*
         if (body == '')
         {
             $('#spMsg').append("<li>Please Enter 1st Contact Person Details  </li>");
             flag = 1;
-        }
+        }*/
 
         if ($('#latitude').val().trim() == '') {
             $('#spMsg').append("<li>Please Enter Latitude </li>");
@@ -2032,7 +2050,7 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
 
 
 
-        returnFlag = ValidateDate(btn);
+        //returnFlag = ValidateDate(btn);
         if (flag == 1 || returnFlag == 1) {
 
             //if(returnFlag==1){
@@ -2048,8 +2066,12 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
     } else
     {
         //alert(body);
-        if ($('#account').val() == '') {
+        if ($('#bank_id').val() == '') {
             $('#spMsg').append("<li>Please Select Institution. </li>");
+            flag = 1;
+        }
+		if ($('#branch_id').val() == '') {
+            $('#spMsg').append("<li>Please Select Branch. </li>");
             flag = 1;
         }
         if ($('#auction_type').val() == '') {
@@ -2057,14 +2079,24 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
             flag = 1;
         }
 		
-		/*
-        if ($('#reference_no').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter Property ID </li>");
-            flag = 1;
-        }*/
-
         if ($('#description').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter Address of the property </li>");
+            $('#spMsg').append("<li>Please Enter Description </li>");
+            flag = 1;
+        }
+		if ($('#reference_no').val().trim() == '') {
+            $('#spMsg').append("<li>Please Enter Location </li>");
+            flag = 1;
+        }
+		if ($('#country').val().trim() == '') {
+            $('#spMsg').append("<li>Please Select Country </li>");
+            flag = 1;
+        }
+		if ($('#state').val().trim() == '') {
+            $('#spMsg').append("<li>Please Enter State </li>");
+            flag = 1;
+        }
+		if ($('#city').val().trim() == '') {
+            $('#spMsg').append("<li>Please Enter City </li>");
             flag = 1;
         }
 		 /*
@@ -2084,10 +2116,17 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
         }
         */
 
-        if ($('#category').val() == '') {
+        if ($('#auction_type').val() == 1 && $('#category').val() == '') {
             $('#spMsg').append("<li>Please Select Property Type </li>");
             flag = 1;
         }
+		
+		if ($('#auction_type').val() == 2 && $('#vehicle_type').val() == '') {
+            $('#spMsg').append("<li>Please Select Vehicle Type </li>");
+            flag = 1;
+        }
+
+		
 
         /*
         if ($('#zone_id').val() == '') {
@@ -2101,15 +2140,15 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
          } */
 
         if ($('#reserve_price').val() == '') {
-            $('#spMsg').append("<li>Please Enter Bid Start Price (BSP) </li>");
+            $('#spMsg').append("<li>Please Enter Reserve Price </li>");
             flag = 1;
         }
         if (($('#reserve_price').val() == 0) && ($('#reserve_price').val() != '')) {
-            $('#spMsg').append("<li>Bid Start Price (BSP) can not be zero</li>");
+            $('#spMsg').append("<li>Reserve Price can not be zero</li>");
             flag = 1;
         }
         if (isNaN($('#reserve_price').val().trim()) == true) {
-            $('#spMsg').append("<li>Please Enter Valid Bid Start Price (BSP)</li>");
+            $('#spMsg').append("<li>Please Enter Valid Reserve Price</li>");
             flag = 1;
         }
 
@@ -2149,7 +2188,7 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
         /*
          if( ($('#emd_amt').val() != '') &&  ($('#reserve_price').val() != '')){	
          if (parseFloat($('#reserve_price').val()) <= parseFloat($('#emd_amt').val())) {
-         $('#spMsg').append("<li>Bid Start Price (BSP) should be greater than EMD Amount<li/>");
+         $('#spMsg').append("<li>Reserve Price should be greater than EMD Amount<li/>");
          flag = 1;
          }
          }

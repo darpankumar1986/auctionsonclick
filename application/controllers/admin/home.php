@@ -167,7 +167,8 @@ class Home extends CI_Controller {
         if ($eid != '') {
             $prows = $this->helpdesk_executive_model->GetProductDetailByeventID($eid); // New Add from createEventAuction
         }
-        
+
+		
         $countries = $this->bank_model->GetCountries();
         $data['countries'] = $countries;
         $states = $this->bank_model->GetState();
@@ -178,7 +179,7 @@ class Home extends CI_Controller {
         $data['document_list'] = $document_list;  // New Add  from createEventAuction
         $data['auctionData'] = $auctionData; // New Add  from createEventAuction
         $data['banks'] = $banks; // New Add  from createEventAuction
-        $data['bankbranch'] = $this->helpdesk_executive_model->GetBranchdata($banks_id);
+        $data['bankbranch'] = $this->helpdesk_executive_model->GetBranchdata($auctionData->bank_id);
         $data['category'] = $category; // New Add  from createEventAuction
         $data['prows'] = $prows; // New Add  from createEventAuction
         $data['banksUsersList'] = $banksUsersList;
@@ -195,6 +196,9 @@ class Home extends CI_Controller {
 
 
         $data['banksUsersSecondOpener'] = $this->helpdesk_executive_model->getUserByBranchId($branch_id);
+		$salesPerson = $this->admin_model->getSalesPerson($auctionData->state);
+
+		$data['sales_person_detail'] = $salesPerson[0]->sales_person_name.', '.$salesPerson[0]->mobile_no;
 
         $this->load->view('admin/banker_create_event_step3', $data);
         $this->load->view('admin/footer');
@@ -213,7 +217,8 @@ class Home extends CI_Controller {
           print_r($_FILES);
          */
 
-        $this->form_validation->set_rules('account', 'Institution', 'trim|required|xss_clean');
+        //$this->form_validation->set_rules('account', 'Institution', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('bank_id', 'Bank Name', 'trim|required|xss_clean');
         //$this->form_validation->set_rules('reference_no', 'Auction Reference No', 'trim|required|xss_clean');
         //$this->form_validation->set_rules('area', 'Property Area', 'trim|required|xss_clean');
         //$this->form_validation->set_rules('area_unit_id', 'Area Unit', 'trim|required|xss_clean');
@@ -639,6 +644,11 @@ class Home extends CI_Controller {
         echo $str;
     }
     
+    public function getSalesPerson($state_id) {
+        $salesPerson = $this->admin_model->getSalesPerson($state_id);
+		echo $salesPerson[0]->sales_person_name.', '.$salesPerson[0]->mobile_no;
+    }
+
     function showbranchdata($bank_id) {
         
         if ($bank_id) {

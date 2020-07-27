@@ -1,0 +1,4 @@
+ALTER TABLE `tbl_auction` ADD `sales_person_id` INT NOT NULL DEFAULT '0' AFTER `scheme_id`;
+ALTER TABLE `tbl_log_auction` ADD `sales_person_id` INT NOT NULL DEFAULT '0' AFTER `scheme_id;
+ALTER TABLE `tbl_auction` ADD `vehicle_type` INT NULL AFTER `category_id`;
+ALTER TABLE `tbl_log_auction` ADD `vehicle_type` INT NULL AFTER `category_id`;

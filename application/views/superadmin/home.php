@@ -74,7 +74,9 @@
 					{ ?>
 						<table class="display" id="dt1" >       
 						<tr>
-							<td><a href="<?php echo base_url('/superadmin/bank/addedit')?>">Create Organization</a></td><td><a href="<?php echo base_url('/superadmin/user/bankeraddedit');?>">Create Branch User</a></td> 
+							<td><a href="<?php echo base_url('/superadmin/bank/addedit')?>">Create Institution Name</a></td>
+							<td><a href="<?php echo base_url('/superadmin/bank_branch/branch_addedit');?>">Create Branch</a></td>
+							<!--<td><a href="<?php echo base_url('/superadmin/user/bankeraddedit');?>">Create Branch User</a></td> -->
 							<td><a href="<?php echo base_url('/superadmin/user/banker');?>">Branch User List</a></td> 
 							<td><a href="<?php echo base_url('/superadmin/user/assignDeptlist');?>">Assigned Department List</a></td> 
 							<td><a href="<?php echo base_url()?>superadmin/rolepage/addeditrole">Create Roles</a></td>	

@@ -287,7 +287,7 @@ class Admin_model extends CI_Model {
         print_r($_POST);
         print_r($_FILES);die;*/
 		$bank_id					= 	 $this->input->post('bank_id');
-		$branch_id					= 	 $this->session->post('branch_id');
+		$branch_id					= 	 $this->input->post('branch_id');
 		$created_by					=	 $this->session->userdata['adminid'];
 		$auctionID 					=	 $this->input->post('auctionID');
 		$account 					=	 $this->input->post('account');
@@ -299,6 +299,7 @@ class Admin_model extends CI_Model {
 		$area_unit_id	 			=	 $this->input->post('area_unit_id');
 		$event_title 				=	 $this->input->post('event_title');
 		$category_id 				=	 $this->input->post('category_id');
+		$vehicle_type 				=	 $this->input->post('vehicle_type');
 		$is_corner_property			=	 $this->input->post('is_corner_property');
 		$remark						=	 $this->input->post('remark');
         $scheme_id                  =	 $this->input->post('scheme_id');
@@ -367,6 +368,7 @@ class Admin_model extends CI_Model {
 		$upload_document_field 		= 	 $this->GetUploadDocumentFieldRecords();
 		
 		$depart_id 					=	 $this->session->userdata('depart_id');
+		
 		      
 		/*if($auto_extension_time!='' && $auto_extension=='')
 		{
@@ -413,7 +415,9 @@ class Admin_model extends CI_Model {
 		$country_id =	 $this->input->post('country');
 		$state_id 	=	 $this->input->post('state');
 		$city 		=	 $_POST['city'];
-                
+        
+				
+
 		if($city=='' || $city == 'others')
 		{
 			$other_city = $this->input->post('other_city');
@@ -432,7 +436,9 @@ class Admin_model extends CI_Model {
             $nodal_bank_name = $this->input->post('nodal_bank_name');   
         } 
         	
-        	
+        $salesPerson = $this->getSalesPerson($state_id);
+
+		$sales_person_id = $salesPerson[0]->id;
 		
 		if($publish)
 		{
@@ -483,7 +489,7 @@ class Admin_model extends CI_Model {
 			'reference_no'=>$reference_no,
 			'event_title'=>$event_title,
 			'dispatch_date'=>$dispatch_date,
-			'category_id'=>$category_id,
+			'vehicle_type'=>$vehicle_type,
 			'subcategory_id'=>$subcategory_id,
 			'area_unit_id'=>$area_unit_id,
 			'is_corner_property'=>$is_corner_property,
@@ -550,8 +556,8 @@ class Admin_model extends CI_Model {
 			'contact_person_details_2'=>$contact_person_details_2,
 			'approvalStatus'=>$approvalStatus,
 			'approverComments'=>$approverComments,
-			'PropertyDescription'=>$propertyDescription
-			
+			'PropertyDescription'=>$propertyDescription,
+			'sales_person_id'=>($sales_person_id!='')?$sales_person_id:0			
 		);
 		
 		/*
@@ -1426,6 +1432,25 @@ class Admin_model extends CI_Model {
 		$this->db->where('auction_document_id', $auction_document_id);	
 		$this->db->update('tbl_auction_document',$data); 
 	}
+
+	public function getSalesPerson($state_id) {
+		
+		$this->db->where('status', 1);
+		$this->db->where('state_id', $state_id);
+		$this->db->order_by("sales_person_name", "ASC");
+        $query = $this->db->get("tblmst_sales_person");	
+		//echo $this->db->last_query();
+		
+        $data = array();
+		if ($query->num_rows() > 0) 
+		{
+			foreach ($query->result() as $row) {
+				$data[] = $row;
+            }
+             return $data;
+        }
+        return false;
+    }
 }
 
 ?>

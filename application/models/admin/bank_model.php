@@ -1994,4 +1994,5 @@ class Bank_model extends CI_Model {
         return false;
     }
 
+
 }

@@ -94,7 +94,7 @@
 							<td><?php echo $data->id; ?></td>
 							<td><?php echo $data->name; ?></td>
 							<td><?php echo GetTitleById('tbl_bank',$data->bank_id,'name'); ?></td>
-							<td><?php echo GetTitleById('tbl_zone',$data->zone_id,'name'); ?></td>
+							<td><?php echo GetTitleByField('tbl_zone', 'zone_id="'.$data->zone_id.'"', 'zone_name'); ?></td>
 							<td><?php echo GetTitleById('tbl_region',$data->region_id,'name'); ?></td>
 							<td><?php echo ($data->status == 1)?'Active':'Inactive'; ?></td>
 							<?php /* ?><td><input type="checkbox" class="status12" name="status[]" value="<?php echo $data->id; ?>"></td><?php */ ?>
