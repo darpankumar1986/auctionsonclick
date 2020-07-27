@@ -178,6 +178,7 @@ class Home extends CI_Controller {
         $data['document_list'] = $document_list;  // New Add  from createEventAuction
         $data['auctionData'] = $auctionData; // New Add  from createEventAuction
         $data['banks'] = $banks; // New Add  from createEventAuction
+        $data['bankbranch'] = $this->helpdesk_executive_model->GetBranchdata($banks_id);
         $data['category'] = $category; // New Add  from createEventAuction
         $data['prows'] = $prows; // New Add  from createEventAuction
         $data['banksUsersList'] = $banksUsersList;
@@ -636,6 +637,21 @@ class Home extends CI_Controller {
         }
         //$str.='<option value="others">Others</option>';
         echo $str;
+    }
+    
+    function showbranchdata($bank_id) {
+        
+        if ($bank_id) {
+            $catArr = $this->helpdesk_executive_model->GetBranchdata($bank_id);
+            $str = '<option value="">Select Branch</option>';
+            if (count($catArr) > 0) {
+                foreach ($catArr as $row) {
+                    $selected = ($row->id == $subcate) ? 'selected' : '';
+                    $str .= '<option ' . $selected . ' value="' . $row->id . '">' . $row->name . '</value>';
+                }
+            }
+            echo $str;
+        }
     }
     
 	

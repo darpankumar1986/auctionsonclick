@@ -287,7 +287,7 @@ class Admin_model extends CI_Model {
         print_r($_POST);
         print_r($_FILES);die;*/
 		$bank_id					= 	 $this->input->post('bank_id');
-		$branch_id					= 	 $this->session->userdata('branch_id');
+		$branch_id					= 	 $this->session->post('branch_id');
 		$created_by					=	 $this->session->userdata['adminid'];
 		$auctionID 					=	 $this->input->post('auctionID');
 		$account 					=	 $this->input->post('account');

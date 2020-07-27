@@ -95,13 +95,22 @@ $other_city=$auctionData->other_city;
 						  <div class="lft_heading">Institution <span class="red">*</span></div>
 
 						<div class="rgt_detail">
-						  <select name="account"  id="account"  class="select">
-							<option value="">Select</option>
-							<?php
-								foreach($accountType as $account_record){ ?>
-								<option value="<?php echo $account_record->account_id; ?>" <?php echo ($account_record->account_id==$auctionData->account_type_id)?'selected':''; ?>><?php echo $account_record->account_name; ?></option>
+							<select name="bank_id" id="bank_id"  class="select">
+								<option value="">---Select---</option>
+								<?php 
+								foreach($banks as $bank_record){ ?>
+									<option value="<?php echo $bank_record->id; ?>" <?php echo ($bank_record->id==$bank_id)?'selected':''; ?>><?php echo $bank_record->name; ?></option>
 								<?php }?>
-						  </select>	
+							</select>
+						<!--	
+						  <select name="account"  id="account"  class="select">
+							<option value="">---Select---</option>
+							<?php
+							/*	foreach($accountType as $account_record){ ?>
+								<option value="<?php echo $account_record->account_id; ?>" <?php echo ($account_record->account_id==$auctionData->account_type_id)?'selected':''; ?>><?php echo $account_record->account_name; ?></option>
+								<?php }
+								 */?>
+						  </select>	-->
 						  
 									<div class="tooltips">
 									<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
@@ -111,12 +120,32 @@ $other_city=$auctionData->other_city;
 					  </div>
 					  
 					  <div class="row">
+								<div class="lft_heading">Branch <span class="red"> *</span></div>
+								<div class="rgt_detail">					
+									<select name="bank_branch_name" id="bank_branch_name"  class="select">
+										<option value="">---Select---</option>
+										<?php //bankbranch
+										foreach($bankbranch as $branch){ ?>
+											<option value="<?php echo $branch->id; ?>" <?php echo ($branch->id== $auctionData->bank_branch_id)?'selected':''; ?>><?php echo $branch->name; ?></option>
+										<?php }?>											
+									</select>
+									
+									<div class="tooltips">
+										<img src="<?php base_url();?>/images/help.png" class="tooltip_icon">
+										<span>
+										</span>
+									</div>					
+								</div>
+							</div>
+					  
+					  <div class="row">
 						<div class="lft_heading">Auction Type <span class="red">*</span></div>
 						<div class="rgt_detail">
 						  <select class="select" name="auction_type" id="auction_type">
-							<option value="">Select</option>
+							<option value="">---Select---</option>
 							<option value="1" <?php echo ($auctionData->auction_type==1)?'selected':''; ?>>Property</option>
 							<option value="2" <?php echo ($auctionData->auction_type==2)?'selected':''; ?>>Vehicle</option>
+							<option value="3" <?php echo ($auctionData->auction_type==3)?'selected':''; ?>>Others</option>
 							</select>
 						  <div class="tooltips">
 							<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
@@ -125,16 +154,59 @@ $other_city=$auctionData->other_city;
 						</div>
 					  </div>
 					  
-					 <!-- <div class="row">
-							<div class="lft_heading">Property ID <span class="red">*</span></div>
+					  <div class="row">
+							<div class="lft_heading">Property Type <span class="red"> *</span></div>
+							<div class="rgt_detail">
+								<select name="category_id" id="category" class="select">
+								  <option value="">Select Category</option>
+										<?php
+										foreach($category as $category_record){ ?>
+										<option value="<?php echo $category_record->id; ?>" <?php echo ($category_record->id==$auctionData->category_id)?'selected="selected"':''; ?>><?php echo $category_record->name; ?></option>
+										<?php }?>
+								  </select>
+								<div class="tooltips">
+								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
+										<span>Assets are divided into categories. Please select the category of the asset from the dropdown.</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="lft_heading">Vehicle Type <span class="red"> *</span></div>
+							<div class="rgt_detail">
+								<select class="select" name="vehicle_type" id="vehicle_type">
+									<option value="">---Select---</option>
+									<option value="1" <?php echo ($auctionData->vehicle_type==1)?'selected':''; ?>>Personal</option>
+									<option value="2" <?php echo ($auctionData->vehicle_type==2)?'selected':''; ?>>Commercial</option>
+									
+								</select>
+								<div class="tooltips">
+								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
+										<span>Assets are divided into categories. Please select the category of the asset from the dropdown.</span>
+								</div>
+							</div>
+						</div>	
+						
+					  <div class="row">
+						<div class="lft_heading">Description <span class="red"> *</span></div>
+						<div class="rgt_detail">
+							 <textarea maxlength="100000" name="description" id="description" type="text"  class="input html_found"><?php echo $auctionData->PropertyDescription;?></textarea>
+						  <!-- <input maxlength="8000" name="description" id="description" value="<?php //echo @$prows->product_description; ?>" type="text" class="input">-->
+						   <div class="tooltips">
+								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
+								<span>Give a brief description of the asset on auction. E.g. In case of immovable asset the description can contain the size of the land/apartment, location and other attributes. In case of movable asset - the condition of machinery/vehicle etc.</span>
+							</div>
+						   </div>
+					  </div> 
+					 <div class="row">
+							<div class="lft_heading">Location <span class="red">*</span></div>
 							<div class="rgt_detail">
 								<input name="reference_no" id="reference_no" type="text" maxlength="40" value="<?php echo $auctionData->reference_no; echo isset($_POST['reference_no']) ? $_POST['reference_no'] : ''?>"  class="input alphanumeric html_found">
 								<div class="tooltips">
 									<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-									<span>This is the unique property id by which an event may be identified.</span>
+									<span></span>
 								</div>	
 							</div>
-						</div>-->					  
+						</div>					  
 					  <!--
 					  <div class="row">
 							<div class="lft_heading">Auction Title <span class="red">*</span></div>
@@ -173,17 +245,7 @@ $other_city=$auctionData->other_city;
 							</div>
 						</div>
 					 -->
-					  <div class="row">
-						<div class="lft_heading">Description <span class="red"> *</span></div>
-						<div class="rgt_detail">
-							 <textarea maxlength="100000" name="description" id="description" type="text"  class="input html_found"><?php echo $auctionData->PropertyDescription;?></textarea>
-						  <!-- <input maxlength="8000" name="description" id="description" value="<?php //echo @$prows->product_description; ?>" type="text" class="input">-->
-						   <div class="tooltips">
-								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-								<span>Give a brief description of the asset on auction. E.g. In case of immovable asset the description can contain the size of the land/apartment, location and other attributes. In case of movable asset - the condition of machinery/vehicle etc.</span>
-							</div>
-						   </div>
-					  </div>
+					 
 					  <div class="row">
 							<div class="lft_heading">Country <span class="red"> *</span></div>
 							<div class="rgt_detail">
@@ -300,22 +362,7 @@ $other_city=$auctionData->other_city;
 						</div>
 					  </div>-->
 					  
-					   <div class="row">
-							<div class="lft_heading">Property Type <span class="red"> *</span></div>
-							<div class="rgt_detail">
-								<select name="category_id" id="category" class="select">
-								  <option value="">Select Category</option>
-										<?php
-										foreach($category as $category_record){ ?>
-										<option value="<?php echo $category_record->id; ?>" <?php echo ($category_record->id==$auctionData->category_id)?'selected="selected"':''; ?>><?php echo $category_record->name; ?></option>
-										<?php }?>
-								  </select>
-								<div class="tooltips">
-								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-										<span>Assets are divided into categories. Please select the category of the asset from the dropdown.</span>
-								</div>
-							</div>
-						</div>
+					   
 					  <!--
 					  <div class="row">
 							<div class="lft_heading">Corner </div>
@@ -1495,6 +1542,14 @@ $("#city").attr("value","<?php echo $auctionData->city; ?>");
 
 	});
 	
+	jQuery('#bank_id').change(function () {
+		var bank_id = jQuery(this).val();
+		if(bank_id)
+		{
+			jQuery('#bank_branch_name').load('/admin/home/showbranchdata/' + bank_id);
+		}
+	
+    });
 	
 <?php if(is_array($upload_document_field) && count($upload_document_field)>0 )
 { 
