@@ -11,13 +11,13 @@
 				<div class="centercontent tables">
 					<div class="pageheader notab">
 						<div class="row">						
-							<a href="/superadmin/category/<?php if($type != 'main'){echo 'addedit';}else{echo 'addeditmain';}?>" class=" button_grey">Create Property Type</a>
+							<a href="/superadmin/category/<?php if($type != 'main'){echo 'addedit';}else{echo 'addeditmain';}?>" class=" button_grey">Create Category</a>
 						</div>
 						<?php if( $this->session->flashdata('message')) {?>
 								<span class="success_msg"><img src="<?php echo VIEWBASE; ?>images/icon_checkmark_small.png" class="success_tick">
 								<?php echo $this->session->flashdata('message'); ?></span>		
 						<?php } ?>
-						<div class="box-head">Property Type List</div>
+						<div class="box-head">Category List</div>
 						<?php /* ?>
 						<h1 class="pagetitle">
 								<span style="float:left"><?php echo $heading; ?></span>
@@ -68,7 +68,7 @@
 												<thead>
 													<tr>
 														<th class="head0">ID</th>
-														<th class="head1">Property Type Name</th>
+														<th class="head1">Category Name</th>
 														<?php if($type != 'main'){?>
 														<th class="head1">Parent</th>
 														<?php }?>

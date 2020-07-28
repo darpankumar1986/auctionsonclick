@@ -40,94 +40,20 @@
 				  });
 				},
 				"fnRowCallback": function (nRow, aData, iDisplayIndex) {
-							jQuery('td:eq(8)', nRow).addClass("hidetd");
+							//jQuery('td:eq(8)', nRow).addClass("hidetd");
 							
-							/*if(aData[0]!='null')
-							{ 
-								if(aData[6]=='0')
-								{
-									var imgTag =  aData[0];   
-								}
-								else
-								{
-									var imgTag = '<img src="<?= base_url(); ?>images/dsc.png" class="hoverImage" style="width:35px"/>' + aData[0];
-								}
-							 }
-							 else
-							 {
-								var imgTag ='';
-							 }*/
-                                                         if(aData[9]==6) //check stageid 
-							{
-								var actn = aData[10];
-								//+' <a class="b_action" href="<?php echo base_url(); ?>buyer/add_bidder_live_auction/'+aData[0]+'">Add bidders</a>'
-							}
-							else
-							{
-								var actn = aData[10];
-							}
-							jQuery('td:eq(9)',nRow).html(actn);
-							var imgTag =aData[0];
+					setTimeout(function(){
+						jQuery(".auctiondetail_iframe").colorbox({iframe:true, width:"70%", height:"70%"});	
 						
-                            jQuery('td:eq(0)', nRow).html(imgTag);
-							jQuery(nRow).click(function () {
-							
-							});
-							var spantag = '<span id="fav_'+aData[0]+'"></span>';
-							jQuery('td:eq(4)', nRow).html(spantag);
-							
-							var deadline = aData[5];
-							setTimeout(function(){ initializeClock('fav_'+aData[0], deadline); }, 500);
-							
-							setTimeout(function(){
-								jQuery(".auctiondetail_iframe").colorbox({iframe:true, width:"70%", height:"70%"});	
-								
-								jQuery(".auctiondetail_iframe").addClass("cboxElement");
-							},1000);
-							return nRow;
-						},
+						jQuery(".auctiondetail_iframe").addClass("cboxElement");
+					},1000);
+					return nRow;
+				},
 			});			
 			
 				
 		});
-function initializeClock(id, endtime){	
-	var arr1 = endtime.split(' ');
-	var arr2 = arr1[0].split('-');
-	var endtime = arr2[2]+'-'+arr2[1]+'-'+arr2[0]+' '+arr1[1];
-	//console.log(newDate);
-	
-  var clock = document.getElementById(id);
-  var timeinterval = setInterval(function(){
-    var t = getTimeRemaining(endtime);
-    clock.innerHTML = ('0' + t.days).slice(-3) + ' D : ' +
-                      ('0' + t.hours).slice(-2) + ' H : ' +
-                      ('0' + t.minutes).slice(-2) + ' M : ' +
-                      ('0' + t.seconds).slice(-2) +' S ';
-    if(t.total<=0){
-      //clearInterval(timeinterval);
-      jQuery('#'+id).html('Live');
-    }
-  },1000);
-}
-
-function getTimeRemaining(endtime){
-  var arr = endtime.split(' ');
-  var dateArr = arr[0];
-  var timeArr = arr[1];
- //5H:30M = 5*1000*60*60 + 30*1000*60; as this expression gives UTC time.
-  var t = Date.parse(new Date(dateArr+"T"+timeArr+"Z")) - Date.parse(new Date()) - 5*1000*60*60 - 30*1000*60;
-  var seconds = Math.floor( (t/1000) % 60 );
-  var minutes = Math.floor( (t/1000/60) % 60 );
-  var hours = Math.floor( (t/(1000*60*60)) % 24 );
-  var days = Math.floor( t/(1000*60*60*24) );
-  return {
-    'total': t,
-    'days': days,
-    'hours': hours,
-    'minutes': minutes,
-    'seconds': seconds
-  };
-}  
+  
 </script>
 <style>
 	.hidetd{display:none;}
@@ -166,8 +92,8 @@ function getTimeRemaining(endtime){
 						$tmpl = array ( 'table_open'  => '<table id="big_table" border="1" cellpadding="2" cellspacing="1" class="mytable">' );
 						$this->table->set_template($tmpl); 
 						
-						//$this->table->set_heading('Auction Id','Property ID', 'Institution Name', 'Description', 'Start Date', 'Opening Price', 'Bidders ', 'Action');	
-						 $this->table->set_heading('Auction ID','Property ID', 'Department Name', 'Description','Remaining Time', 'Start Date', 'Reserve Price', 'Bidders', 'Action' );	
+						//$this->table->set_heading('Auction Id','Location', 'Institution Name', 'Description', 'Start Date', 'Opening Price', 'Bidders ', 'Action');	
+						 $this->table->set_heading('Auction ID','Institution Name','Auction Type','Location', 'Description','Emd Submission Last Date','Auction Start Date', 'Sales Person','Reserve Price','Action' );	
 						echo $this->table->generate(); 
 					?>
 					</div></div>

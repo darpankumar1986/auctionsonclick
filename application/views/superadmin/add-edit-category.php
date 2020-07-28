@@ -37,7 +37,7 @@ if($row){
 			<?php 
 				if($type == 'main'){
 				?>
-					<a href="<?php echo base_url().'superadmin/category/main'?>" class="button_grey"> Property Type List</a>
+					<a href="<?php echo base_url().'superadmin/category/main'?>" class="button_grey"> Category List</a>
 			<?php
 				} else {
 			?>
@@ -49,7 +49,7 @@ if($row){
 			<?php 
 				if($type == 'main'){
 				?>
-					Create Property Type
+					Create Category
 			<?php
 				} else {
 			?>
@@ -97,7 +97,7 @@ if($row){
 						</div>
 						<?php }?>
 						<div class="row">
-							<div class="lft_heading">Property Type Name <span class="red"> *</span></div>
+							<div class="lft_heading">Category Name <span class="red"> *</span></div>
 							<div class="rgt_detail">
 								<input maxlength="100" type="text" name="name" id="name" class="longinput html_found" value="<?php echo $name?>" />
 								

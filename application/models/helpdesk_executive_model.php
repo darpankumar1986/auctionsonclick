@@ -936,7 +936,7 @@ class Helpdesk_executive_model extends CI_Model
 	{
 		$this->db->where("status", 1);
 		$this->db->where("parent_id", 0);
-		$this->db->order_by("name", "ASC");
+		$this->db->order_by("id", "ASC");
         $query = $this->db->get("tbl_category");
         $data = array();
 				if ($query->num_rows() > 0) {
