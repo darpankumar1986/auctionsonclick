@@ -1,6 +1,9 @@
+<link rel="stylesheet" href="/css/colorbox.css" />
+<script src="/js/jquery.colorbox.js"></script>
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery.dataTables.css" type="text/css" media="screen"/>	
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
+	jQuery(".auctiondetail_iframe").colorbox({iframe:true, width:"70%", height:"70%"});	
         jQuery(document).ready(function() {
 			var oTable = jQuery('#big_table').dataTable( {
 				"bProcessing": true,
@@ -38,53 +41,12 @@
 				  });
 				},
 				"fnRowCallback": function (nRow, aData, iDisplayIndex) {
-							jQuery('td:eq(6)', nRow).addClass("hidetd");
-							
-							if(aData[0]!='null')
-							{ 
-								if(aData[4]=='1970-01-01 05:30:00')
-								{
-									var dueDate =  '';   
-								}
-								else
-								{
-									var dueDate = aData[4];
-								}
-							 }
-							 else
-							 {
-								var imgTag ='';
-							 }
-                 
-							var imgTag =  aData[0]; 
-							
-							if(aData[7]==0)
-							{
-								var status = 'Saved';
-							}
-							else if(aData[7]==1)
-							{
-								var status = 'Pending For Approval';
-							}
-							else if(aData[7]==2)
-							{
-								var status = 'Approved';
-							}
-							else if(aData[7]==3)
-							{
-								var status = 'Review';
-							}
-							else if(aData[7]==4)
-							{
-								var status = 'Rejected';
-							}
-							
-                            jQuery('td:eq(0)', nRow).html(imgTag);
-                            jQuery('td:eq(4)', nRow).html(dueDate);
-                            jQuery('td:eq(7)', nRow).html(status);
-							jQuery(nRow).click(function () {
-							
-							});
+							//jQuery('td:eq(6)', nRow).addClass("hidetd");
+							setTimeout(function(){
+						jQuery(".auctiondetail_iframe").colorbox({iframe:true, width:"70%", height:"70%"});	
+						
+						jQuery(".auctiondetail_iframe").addClass("cboxElement");
+					},1000);
 							return nRow;
 						},
 			});			
@@ -132,8 +94,8 @@
 						$tmpl = array ( 'table_open'  => '<table id="big_table" border="1" cellpadding="2" cellspacing="1" class="mytable">' );
 						$this->table->set_template($tmpl); 
 						
-						//$this->table->set_heading('Property ID', 'Account', 'Description', 'Due Date', 'Reserve Price', '% Complete ', 'Action');	
-						$this->table->set_heading('Auction ID','Property ID', 'Department Name', 'Description', 'Property description', 'Reserve Price', 'Status','Comments','Action');	
+						//$this->table->set_heading('Location', 'Account', 'Description', 'Due Date', 'Reserve Price', '% Complete ', 'Action');	
+						$this->table->set_heading('Auction ID','Institution Name','Auction Type','Location', 'Description','Emd Submission Last Date','Auction Start Date', 'Sales Person','Reserve Price','Action' );	
 						
                                                 echo $this->table->generate(); 
 					?>

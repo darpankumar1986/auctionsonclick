@@ -120,14 +120,26 @@ class Home extends CI_Controller {
         $this->load->view('admin/footer');
         
     }
+	
 
-    function liveAuctionsdatatable() {
-        echo $this->banker_model->liveAuctionsdatatable();
+	public function viewGoogleMap() {
+        $data['heading'] = 'Auction Event Map';
+        $data['controller'] = 'admin/home';
+        
+
+        $auctionID = $this->uri->segment(4);
+        $this->load->view('admin/header');
+        $data['data'] = $this->admin_model->GetRecordByAuctionId($auctionID);
+        $this->load->view('admin/googlemap', $data);
+        $this->load->view('admin/footer');
     }
+    
     
     function eventDetailPopup($auctionID) {
 		$document_list = $this->helpdesk_executive_model->document_list(); // New Add from createEventAuction
         $data['document_list'] = $document_list;
+		$uploadedDocs = $this->bank_model->GetUploadedDocsByAuctionId($auctionID);
+        $data['uploadedDocs'] = $uploadedDocs;
         $data['auction_detail'] = $this->admin_model->auctionDetailPopupData($auctionID);
         $this->load->view('admin/eventDetailPopup', $data);
     }
@@ -675,5 +687,7 @@ class Home extends CI_Controller {
         }
         echo $str;
     }
+
+	
     
 }

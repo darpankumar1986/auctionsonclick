@@ -690,7 +690,7 @@ $other_city=$auctionData->other_city;
 							</div>
 							
 						</div>
-						<!--
+						
 						<div class="row">
 							<div class="lft_heading">Auction End date<span class="red">*</span></div>
 							<div class="rgt_detail">
@@ -702,7 +702,7 @@ $other_city=$auctionData->other_city;
 							<div class="errDiv"><?php echo $this->session->userdata['flash:old:aedt'];?></div>
 						</div>
 						
-						</div>-->
+						</div>
 						<!--
 						<div class="row">
 							<div class="lft_heading">Mode of Bid<span class="red"> *</span></div>
@@ -2035,7 +2035,7 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
 
 
 
-        //returnFlag = ValidateDate(btn);
+        returnFlag = ValidateDate(btn);
         if (flag == 1 || returnFlag == 1) {
 
             //if(returnFlag==1){
@@ -2220,12 +2220,12 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
             flag = 1;
         }
 
-		/*
+		
         if (jQuery('#auction_end_date').val() == '') {
             jQuery('#spMsg').append("<li>Please Enter Auction End date</li>");
             flag = 1;
         }
-        */
+        
 		/*
         if (jQuery('#bid_inc').val() == '') {
             jQuery('#spMsg').append("<li>Please Enter Bid Increment value</li>");
@@ -2320,7 +2320,7 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
 
 
         if (flag != 1) {
-            //returnFlag = ValidateDate(btn);
+            returnFlag = ValidateDate(btn);
             if (returnFlag == 1) {
                 jQuery("#showerror_msg").show();
                 jQuery(".inline").colorbox({inline: true, width: "50%"});
@@ -2362,15 +2362,16 @@ function ValidateDate(btn) {
     //var currentDate = 
     var currdatetime = new Date(setDateFormate(currdate));
 
-    pressReleasedate    = jQuery('#press_release_date').val();
-    inspecDateFrom      = jQuery('#inspection_date_from').val();
-    inspectionDateTo    = jQuery('#inspection_date_to').val();
-    EMDStartDate        = jQuery("#registration_start_date").val();
-    EMDEndDate          = jQuery('#bid_last_date').val();
+    //pressReleasedate    = jQuery('#press_release_date').val();
+    //inspecDateFrom      = jQuery('#inspection_date_from').val();
+    //inspectionDateTo    = jQuery('#inspection_date_to').val();
+    //EMDStartDate        = jQuery("#registration_start_date").val();
     //ShortListingDate    = jQuery('#bid_opening_date').val();
+	EMDEndDate          = jQuery('#bid_last_date').val();
     auctionStartDate    = jQuery('#auction_start_date').val();
     auctionEndDate      = jQuery('#auction_end_date').val();
 	
+	/*
     pressReleasedate    = new Date(setDateFormate(pressReleasedate.replace(/-/g, '/')));
     if(inspecDateFrom != ''){
         inspecDateFrom      = new Date(setDateFormate(inspecDateFrom.replace(/-/g, '/')));
@@ -2378,18 +2379,20 @@ function ValidateDate(btn) {
     if(inspectionDateTo != ''){
         inspectionDateTo    = new Date(setDateFormate(inspectionDateTo.replace(/-/g, '/')));
     }
-    
+    */
     EMDStartDate        = new Date(setDateFormate(EMDStartDate.replace(/-/g, '/')));
     EMDEndDate          = new Date(setDateFormate(EMDEndDate.replace(/-/g, '/')));
     //ShortListingDate    = new Date(setDateFormate(ShortListingDate.replace(/-/g, '/')));
     auctionStartDate    = new Date(setDateFormate(auctionStartDate.replace(/-/g, '/')));
     auctionEndDate      = new Date(setDateFormate(auctionEndDate.replace(/-/g, '/')));
-
+	
+	/*
     var is_corrigendum_backend = 0;
     if (typeof jQuery('corrigendum_backend') != 'undefined')
     {
         var is_corrigendum_backend = jQuery('#corrigendum_backend').val();
     }
+	*/
 	/*
     if (pressReleasedate != '') {
         if (pressReleasedate >= currdatetime && is_corrigendum_backend != 1) {
@@ -2399,6 +2402,7 @@ function ValidateDate(btn) {
         
     }
 	*/
+	/*
     if (inspecDateFrom != '' && jQuery('#inspection_date_from').val() != '0000-00-00 00:00:00') {
         if (pressReleasedate >= inspecDateFrom) {
             jQuery('#spMsg').append("<li> Site Visit Start Date time should be greater than Press release date !! <li/>");
@@ -2412,19 +2416,16 @@ function ValidateDate(btn) {
             jQuery('#spMsg').append("<li> Site Visit End Date time should be greater than  Site Visit Start Date time !! <li/>");
             flag = 1;
         }
-        /*
-        if (inspectionDateTo >= auctionStartDate) {
-            jQuery('#spMsg').append("<li> Site Visit End Date time should be less than Auction Start date or time !! <li/>");
-            flag = 1;
-        }*/
         
-         if (inspectionDateTo >= auctionEndDate) {
+        
+       if (inspectionDateTo >= auctionEndDate) {
             jQuery('#spMsg').append("<li> Site Visit End Date time should be less than Auction End date or time !! <li/>");
             flag = 1;
         }
         
     }
-    
+    */
+	/*
     if (EMDStartDate != '' && jQuery("#registration_start_date").val() != '0000-00-00 00:00:00') {
        
         if (EMDStartDate <= pressReleasedate) {
@@ -2441,7 +2442,7 @@ function ValidateDate(btn) {
         
         
          
-    }
+    }*/
     /*
     if (ShortListingDate != '' && jQuery("#bid_opening_date").val() != '0000-00-00 00:00:00') {
         if (ShortListingDate <= EMDEndDate) {
@@ -2458,13 +2459,14 @@ function ValidateDate(btn) {
         }
     }
     */
-    
+    /*
     if (auctionStartDate != '' && jQuery("#auction_start_date").val() != '0000-00-00 00:00:00') {
         if (auctionStartDate <= EMDStartDate) {
             jQuery('#spMsg').append("<li> Auction Start Date time should be greater than Apply And EMD Start Date time !! <li/>");
             flag = 1;
         }
     }
+	*/
     
    if (auctionEndDate != '' && jQuery("#auction_end_date").val() != '0000-00-00 00:00:00') {
         if (auctionEndDate <= auctionStartDate) {

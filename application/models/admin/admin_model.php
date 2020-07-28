@@ -984,9 +984,10 @@ class Admin_model extends CI_Model {
 		$user_type_ses= $this->session->userdata('user_type');
 		//$approvalStatus = array(0,2,3);
 		
-		// $this->datatables->select("ea.id,ea.reference_no, IF(ea.event_type = 'sarfaesi','SARFAESI','DRT') as type, ea.PropertyDescription, ea.auction_start_date,ea.reserve_price,  '%complete'",false)
-		$this->datatables->select("ea.id,ea.reference_no,dp.department_name as type, ea.PropertyDescription, cat.name, ea.reserve_price, ea.dsc_enabled, ea.approvalStatus, ea.approverComments",false)
+		
+		//$this->datatables->select("ea.id,ea.reference_no,dp.department_name as type, ea.PropertyDescription, cat.name, ea.reserve_price, ea.dsc_enabled, ea.approvalStatus, ea.approverComments",false)
 		// ->unset_column('ea.id')		   
+		$this->datatables->select("ea.id, tb.name as bank_name,cat.name as cat_name,ea.reference_no, ea.PropertyDescription, ea.bid_last_date, ea.auction_start_date,sp.sales_person_name, ea.reserve_price",false)
 		->add_column('Actions',"<a class='auctiondetail_iframe' href='/admin/home/eventDetailPopup/$1' class=''><img src='/bankeauc/images/view.png' title='View' class='edit1'></a><a href='/admin/home/createEvent/$1' class=''><img src='/bankeauc/images/edit.png' title='Edit Auction' class='edit1'></a>", 'ea.id')
 		->from('tbl_auction as ea')
 		->join('tbl_user as tu','ea.created_by=tu.id','left')
@@ -994,9 +995,11 @@ class Admin_model extends CI_Model {
 		->join('tbl_branch as tbr','ea.branch_id=tbr.id','left')
 		->join('tbl_drt td','ea.drt_id=td.id','left')
 		->join('tbl_product tp','ea.productID=tp.id','left')
-		//->join('tblmst_account_type as act','act.account_id=ea.account_type_id','left')
-                ->join('tblmst_department as dp','dp.department_id=ea.department_id','left')
 		->join('tbl_category as cat','cat.id=ea.category_id','left')
+		->join('tblmst_sales_person as sp','sp.id=ea.sales_person_id','left')
+		//->join('tblmst_account_type as act','act.account_id=ea.account_type_id','left')
+        //->join('tblmst_department as dp','dp.department_id=ea.department_id','left')
+
 		//->where('ea.approvalStatus IN (0,2,3)')
 		->where('ea.approvalStatus !=',4)
 		//->where('ea.department_id',$depart_id)
@@ -1074,11 +1077,9 @@ class Admin_model extends CI_Model {
 		$user_type_ses= $this->session->userdata('user_type');
 		
 		
-		       $this->datatables->select("ea.id,ea.reference_no, dp.department_name as type, ea.PropertyDescription,ea.registration_start_date, DATE_FORMAT(ea.auction_start_date,'%d-%m-%Y %H:%i:%s'),ea.reserve_price,(select count(id) from tbl_auction_participate where tbl_auction_participate.auctionID= ea.id and tbl_auction_participate.final_submit='1' and ( tbl_auction_participate.operner2_accepted = '1' OR (tbl_auction_participate.operner2_accepted IS NULL and tbl_auction_participate.operner1_accepted = '1') ))   as total_bidder,ea.dsc_enabled, ea.stageID",false)
+		/*$this->datatables->select("ea.id,ea.reference_no, dp.department_name as type, ea.PropertyDescription,ea.registration_start_date, DATE_FORMAT(ea.auction_start_date,'%d-%m-%Y %H:%i:%s'),ea.reserve_price,(select count(id) from tbl_auction_participate where tbl_auction_participate.auctionID= ea.id and tbl_auction_participate.final_submit='1' and ( tbl_auction_participate.operner2_accepted = '1' OR (tbl_auction_participate.operner2_accepted IS NULL and tbl_auction_participate.operner1_accepted = '1') ))   as total_bidder,ea.dsc_enabled, ea.stageID",false)*/
 
- /*$this->datatables->select(" ea.* ",false)*/
-	        //->unset_column('ea.id')	   
-		/*->add_column('Actions',"<a href='/admin/home/eventTrack/$1' class=''><img src='/bankeauc/images/track.png' title='Track Auction' class='edit1'></a>  <a href='/admin/home/createCorrigendum/$1' class=''><img src='/bankeauc/images/edit.png' title='Corrigendum' class='edit1'></a> <a href='/admin/home/auction_alert_msg/$1' class=''><img src='/bankeauc/images/alert.png' title='Add Alert' class='edit1'></a>", 'ea.id')*/
+		$this->datatables->select("ea.id, tb.name as bank_name,cat.name as cat_name,ea.reference_no, ea.PropertyDescription, ea.bid_last_date, ea.auction_start_date,sp.sales_person_name, ea.reserve_price",false)
 		->add_column('Actions',"<a class='auctiondetail_iframe' href='/admin/home/eventDetailPopup/$1' class=''><img src='/bankeauc/images/view.png' title='View' class='edit1'></a> <a href='/admin/home/createEvent/$1' class=''><img src='/bankeauc/images/edit.png' title='Edit Auction' class='edit1'></a>", 'ea.id')
 		->from('tbl_auction as ea')
 		 ->join('tbl_user as tu','ea.created_by=tu.id','left ')
@@ -1086,8 +1087,10 @@ class Admin_model extends CI_Model {
 		 ->join('tbl_branch as tbr','ea.branch_id=tbr.id','left ')
 		 ->join('tbl_drt td','ea.drt_id=td.id','left ')
 		 ->join('tbl_product tp','ea.productID=tp.id','left ')
-		//->join('tblmst_account_type as act','act.account_id=ea.account_type_id','left')
-                 ->join('tblmst_department as dp','dp.department_id=ea.department_id','left')
+		 ->join('tbl_category as cat','cat.id=ea.category_id','left')
+         ->join('tblmst_sales_person as sp','sp.id=ea.sales_person_id','left')
+		 //->join('tblmst_account_type as act','act.account_id=ea.account_type_id','left')
+         //->join('tblmst_department as dp','dp.department_id=ea.department_id','left')
 		//->where('((NOW() >= ea.auction_start_date AND NOW()<= ea.auction_end_date) OR  (ea.open_price_bid = 1 AND (NOW() >= ea.auction_start_date)) OR (ea.open_price_bid = 1))')  // Changed as discussed with saurabh
 		//->where('((NOW() >= ea.bid_opening_date AND NOW()<= ea.auction_end_date) OR  (ea.open_price_bid = 1 AND (NOW() >= ea.bid_opening_date)) OR (ea.open_price_bid = 1))') MAIN
 
@@ -1118,11 +1121,13 @@ class Admin_model extends CI_Model {
 		$userid= $this->session->userdata('id');
 		
 		$user_type_ses= $this->session->userdata('user_type');
-		//$this->datatables->select("ea.id,ea.reference_no, IF(ea.event_type = 'sarfaesi','SARFAESI','DRT') as type, ea.PropertyDescription, ea.bid_last_date,ea.reserve_price,(select count(id) from tbl_auction_participate where tbl_auction_participate.auctionID= ea.id ) as total_bidder",false)
-		$this->datatables->select("ea.id,ea.reference_no, dp.department_name as type, ea.PropertyDescription, DATE_FORMAT(ea.bid_last_date,'%d-%m-%Y %H:%i:%s'),ea.reserve_price,(select count(id) from tbl_auction_participate where tbl_auction_participate.auctionID= ea.id  and tbl_auction_participate.final_submit='1'  ) as total_bidder,ea.dsc_enabled, ea.stageID",false)
+		//$this->datatables->select("ea.id,ea.reference_no, dp.department_name as type, ea.PropertyDescription, DATE_FORMAT(ea.bid_last_date,'%d-%m-%Y %H:%i:%s'),ea.reserve_price,(select count(id) from tbl_auction_participate where tbl_auction_participate.auctionID= ea.id  and tbl_auction_participate.final_submit='1'  ) as total_bidder,ea.dsc_enabled, ea.stageID",false)
 		
+		$this->datatables->select("ea.id, tb.name as bank_name,cat.name as cat_name,ea.reference_no, ea.PropertyDescription, ea.bid_last_date, ea.auction_start_date,sp.sales_person_name, ea.reserve_price",false)
+
         //->unset_column('ea.id')		   
 		//->add_column('Action',"<a href='/admin/home/eventTrack/$1' class=''><img src='/bankeauc/images/track.png' title='Track Auction' class='edit1'></a>  <a href='/admin/home/createCorrigendum/$1' class=''><img src='/bankeauc/images/edit.png' title='Corrigendum' class='edit1'></a>", 'ea.id')
+
 		->add_column('Actions',"<a class='auctiondetail_iframe' href='/admin/home/eventDetailPopup/$1' class=''><img src='/bankeauc/images/view.png' title='View' class='edit1'></a> <a href='/admin/home/createEvent/$1' class=''><img src='/bankeauc/images/edit.png' title='Edit Auction' class='edit1'></a>", 'ea.id')
 		->from('tbl_auction as ea')
 		->join('tbl_user as tu','ea.created_by=tu.id','left ')
@@ -1130,8 +1135,10 @@ class Admin_model extends CI_Model {
 		->join('tbl_branch as tbr','ea.branch_id=tbr.id','left ')
 		->join('tbl_drt td','ea.drt_id=td.id','left ')
 		->join('tbl_product tp','ea.productID=tp.id','left ')
-		#->join('tblmst_account_type as act','act.account_id=ea.account_type_id','left')
-                ->join('tblmst_department as dp','dp.department_id=ea.department_id','left')
+		->join('tbl_category as cat','cat.id=ea.category_id','left')
+		->join('tblmst_sales_person as sp','sp.id=ea.sales_person_id','left')
+		//->join('tblmst_account_type as act','act.account_id=ea.account_type_id','left')
+        //->join('tblmst_department as dp','dp.department_id=ea.department_id','left')
 		//->where('(NOW()>= ea.auction_start_date AND NOW()<= ea.auction_end_date)')
 		//->where('bid_last_date')
 		->where('ea.bid_last_date >= NOW()')
@@ -1197,7 +1204,7 @@ class Admin_model extends CI_Model {
 		$user_type_ses= $this->session->userdata('user_type');
 		$depart_id = $this->session->userdata('depart_id');
       //  $this->datatables->select("tb.name as bank_name, ea.id, ea.reference_no, IF(ea.event_type = 'sarfaesi','SARFAESI','DRT') as type, ea.PropertyDescription, ea.reserve_price, ea.opening_price, MAX(b.bid_value) as  last_bid_value ",false)	 
-	    $this->datatables->select("ea.id, ea.reference_no, dp.department_name as type, ea.PropertyDescription, ea.reserve_price, ea.opening_price, MAX(b.bid_value) as  last_bid_value ",false)	 
+	    $this->datatables->select("ea.id, tb.name as bank_name,cat.name as cat_name,ea.reference_no, ea.PropertyDescription, ea.bid_last_date, ea.auction_start_date,sp.sales_person_name, ea.reserve_price",false)	 
 	         //->unset_column('ea.id')	 
 		->add_column('Actions',"<a class='auctiondetail_iframe' href='/admin/home/eventDetailPopup/$1' class=''><img src='/bankeauc/images/view.png' title='View' class='edit1'></a>", 'ea.id')
         ->from('tbl_auction as ea')
@@ -1208,7 +1215,9 @@ class Admin_model extends CI_Model {
 		->join('tbl_product tp','ea.productID=tp.id','left')
 		->join('tbl_live_auction_bid as b','b.auctionID=ea.id','left')
 		//->join('tblmst_account_type as act','act.account_id=ea.account_type_id','left')
-                ->join('tblmst_department as dp','dp.department_id=ea.department_id','left')
+        ->join('tbl_category as cat','cat.id=ea.category_id','left')
+        ->join('tblmst_sales_person as sp','sp.id=ea.sales_person_id','left')
+        //->join('tblmst_department as dp','dp.department_id=ea.department_id','left')
 		->where('ea.auction_end_date < NOW()')
 		->where('ea.status','6');
 		//->where('ea.department_id',$depart_id);
@@ -1450,6 +1459,21 @@ class Admin_model extends CI_Model {
 				$data[] = $row;
             }
              return $data;
+        }
+        return false;
+    }
+
+	public function GetRecordByAuctionId($eid){
+        $this->db->where('id', $eid);
+		
+        
+        $query = $this->db->get("tbl_auction");
+		//echo $this->db->last_query();		
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data = $row;
+            }
+            return $data;
         }
         return false;
     }
