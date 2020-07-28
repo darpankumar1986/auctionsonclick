@@ -2,3 +2,43 @@ ALTER TABLE `tbl_auction` ADD `sales_person_id` INT NOT NULL DEFAULT '0' AFTER `
 ALTER TABLE `tbl_log_auction` ADD `sales_person_id` INT NOT NULL DEFAULT '0' AFTER `scheme_id;
 ALTER TABLE `tbl_auction` ADD `vehicle_type` INT NULL AFTER `category_id`;
 ALTER TABLE `tbl_log_auction` ADD `vehicle_type` INT NULL AFTER `category_id`;
+
+
+
+----------------- Neeraj -------------------------------
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+DROP TABLE IF EXISTS `tbl_category`;
+CREATE TABLE IF NOT EXISTS `tbl_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `type` int(11) NOT NULL COMMENT '1-Residential, 2-Commercial/Mix',
+  `image` varchar(200) DEFAULT NULL,
+  `slug` varchar(80) DEFAULT NULL,
+  `priority` varchar(50) DEFAULT NULL,
+  `menu_item` tinyint(3) UNSIGNED DEFAULT NULL,
+  `show_home` tinyint(3) UNSIGNED DEFAULT NULL,
+  `status` tinyint(1) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `meta_title` varchar(50) DEFAULT NULL,
+  `meta_description` varchar(50) DEFAULT NULL,
+  `meta_keywords` varchar(50) DEFAULT NULL,
+  `date_created` datetime DEFAULT NULL,
+  `date_modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tbl_category` (`id`, `parent_id`, `name`, `type`, `image`, `slug`, `priority`, `menu_item`, `show_home`, `status`, `created_by`, `meta_title`, `meta_description`, `meta_keywords`, `date_created`, `date_modified`) VALUES
+(1, 0, 'Properties', 0, '0', 'Properties', '2', 0, 0, 1, 36, '0', '0', '0', '2017-02-10 10:21:37', NULL),
+(2, 0, 'Vehicles', 0, '0', 'Vehicles', '2', 0, 0, 1, 36, '0', '0', '0', '2017-02-10 10:21:37', NULL),
+(3, 0, 'Others', 0, '0', 'Others', '2', 0, 0, 1, 36, '0', '0', '0', '2017-02-10 10:21:37', NULL),
+(4, 1, 'Land', 0, '0', 'Land', '2', 0, 0, 1, 36, '0', '0', '0', '2017-02-10 10:21:37', NULL),
+(5, 1, 'Residential', 0, '0', 'Residential', '2', 0, 0, 1, 36, '0', '0', '0', '2017-02-10 10:21:37', NULL),
+(6, 1, 'Commercial', 0, '0', 'Commercial', '2', 0, 0, 1, 36, '0', '0', '0', '2017-02-10 10:21:37', NULL),
+(7, 2, 'Personal', 0, '0', 'Personal', '2', 0, 0, 1, 36, '0', '0', '0', '2017-02-10 10:21:37', NULL),
+(8, 2, 'Commercial', 0, '0', 'Commercial', '2', 0, 0, 1, 36, '0', '0', '0', '2017-02-10 10:21:37', NULL);
+COMMIT;
