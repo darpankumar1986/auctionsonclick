@@ -3,8 +3,8 @@
   {
 	    
 		
-		private $host = 'smtp.c1india.com';
-		//private $host = 'smtp.rediffmailpro.com';
+		//private $host = 'smtp.c1india.com';
+		private $host = 'smtp.rediffmailpro.com';
 		private $port = '587';
 		private $smtpsecure = '';
 		
@@ -80,7 +80,7 @@ public function sendMailToUser($emailArr,$sub,$message,$attachment_path = "",$cc
 		);
 
 		//send the message, check for errors
-		/*
+		
 		if (!$mail->send()) {			
 			//echo "Mailer Error: " . $mail->ErrorInfo;
 			$res = 0;
@@ -88,7 +88,7 @@ public function sendMailToUser($emailArr,$sub,$message,$attachment_path = "",$cc
 			//echo "Message sent!";
 			$res = 1;
 		}
-		*/
+		
 		$res =1;
 		return $res;
 }  
@@ -1837,6 +1837,7 @@ function backendCorrigendumSendMail($auctionID,$pModified_date=null)
 
 					$return = curl_exec($ch);
 					curl_close ($ch);
+					return $return;
 				}
 			}
 		}

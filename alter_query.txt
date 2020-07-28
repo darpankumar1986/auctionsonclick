@@ -42,3 +42,6 @@ INSERT INTO `tbl_category` (`id`, `parent_id`, `name`, `type`, `image`, `slug`, 
 (7, 2, 'Personal', 0, '0', 'Personal', '2', 0, 0, 1, 36, '0', '0', '0', '2017-02-10 10:21:37', NULL),
 (8, 2, 'Commercial', 0, '0', 'Commercial', '2', 0, 0, 1, 36, '0', '0', '0', '2017-02-10 10:21:37', NULL);
 COMMIT;
+
+
+ALTER TABLE `tbl_user_registration` CHANGE `city_id` `city_id` VARCHAR(500) NULL DEFAULT NULL;
