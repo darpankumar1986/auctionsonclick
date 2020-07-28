@@ -189,30 +189,31 @@ function send(){
         }  
     
      }
-       if($("#confirmemail").val()==''){
+       /*if($("#confirmemail").val()==''){
         status='1';
       $(".field-signupform-confirmemail").text("Confirm email cannot be blank.");
-      }
-     if($("#confirmemail").val()!=''){
+      }*/
+     /*if($("#confirmemail").val()!=''){
           var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,3})+$/;
         if(!regex.test($("#confirmemail").prop('value'))) {
           status='1';
           $(".field-signupform-confirmemail").text("Please enter valid email");
         }
-    }
-      if($("#email").val()!=''&& $("#confirmemail").val()!=''){   
+    }*/
+	
+     /* if($("#email").val()!=''&& $("#confirmemail").val()!=''){   
       var n = $("#email").val().localeCompare($("#confirmemail").val());
     if(n!='0'){  
       status='1'; 
       $(".field-signupform-confirmemail").text("Confirm email should be equal to email");
      }
-    }
+    }*/
      
       if($("#pass").val()==''){
        status='1';
        $(".field-signupform-password").text("Password cannot be blank");
       }
-      
+       
     if($("#pass").val()!='')
     {
      var password = $("#pass").val();
@@ -239,7 +240,7 @@ function send(){
       $(".field-signupform-cpassword").text("Confirm password Should be equal to Password");
      }
     }
-    if($("#usertype").val()=='owner' || $("#usertype").val()=='')
+  if($("#usertype").val()=='owner' || $("#usertype").val()=='')
     {
     
 			 if($("#first_name").val()==''){
@@ -251,11 +252,12 @@ function send(){
 			  $(".field-signupform-last_name").text("Last Name cannot be blank.");
 			  } 
 			  
-			   if($("#father_name").val()==''){
+			   /*if($("#father_name").val()==''){
 				status='1';
 			  $(".field-signupform-father_name").text("Father's/Husband's Name cannot be blank.");
-			  } 
+			  } */
       }
+	 
       if($("#usertype").val()=='builder')
       {
     
@@ -266,11 +268,12 @@ function send(){
 			if($("#authorised_person").val()==''){
 				status='1';
 			  $(".field-signupform-authorised_person").text("Authorised person cannot be blank.");
-			  } 
+			  }
+			  /*
 			 if($("#designation").val()==''){
 				status='1';
 			  $(".field-signupform-designation").text("Designation cannot be blank.");
-			  } 
+			  } */
 			 if($("#gst_no").val()==''){
 				status='1';
 			  $(".field-signupform-gst_no").text("GST number cannot be blank.");
@@ -309,13 +312,13 @@ function send(){
       }
     }
       
-      if($("#phone_number").val()!=''){
+     /* if($("#phone_number").val()!=''){
      var n = $( "#phone_number").val().length;
     if( n<8 || n>15){ 
       status='1';
       $(".field-signupform-phone_no").text("Enter Phone Number Between 8 to 15 numbers");  
     }
-    }
+    }*/
     if($("#mobile_number").val()==''){
       status='1';
       $(".field-signupform-mobile_number").text("Mobile Number cannot be blank");
@@ -328,7 +331,7 @@ function send(){
      }
   }
   
-  if($("#bank_id").val()==''){
+  /*if($("#bank_id").val()==''){
         status='1';
       $(".field-signupform-bank_name").text("Bank Name cannot be blank.");
     } 
@@ -351,7 +354,7 @@ function send(){
     if($("#ifsc_code").val()==''){
         status='1';
       $(".field-signupform-ifsc_code").text("IFSC Code cannot be blank.");
-    } 
+    } */
       
    /* if($("#fax_number").val()==''){
       status='1';
@@ -359,7 +362,7 @@ function send(){
       }*/
     
       $(".help-block-error").css('display','block');
-    if($("#pan_numberid").is(':checked')){
+    /*if($("#pan_numberid").is(':checked')){
      if($("#pan_number").val()==''){
      status='1'; 
      $(".field-signupform-pan_number").text("Pan No. cannot be blank");
@@ -391,11 +394,11 @@ function send(){
            
        }
     } 
- }
+ }*/
 
    
   
-    if($("#pan_form16").val()=='2'){
+   /* if($("#pan_form16").val()=='2'){
     if($("#signupform-formdoc").val()==''){status='1'; 
      $(".field-signupform-formdoc").text("Please Upload Form-16");
      }else{
@@ -409,11 +412,11 @@ function send(){
 
      $(".field-signupform-document_no").text("");
       }
-    } 
-   if (!$("#signupform-confirmbidder").is(':checked')) {
+    } */
+   /*if (!$("#signupform-confirmbidder").is(':checked')) {
         $("#check_message").text("Please accept User Agreement and Privacy Policy.");
         status='1';
-     } 
+     }*/ 
      /*
      if($("#supply_place").val()==''){
        status='1';
@@ -460,6 +463,19 @@ function send(){
 				});
 		
 	 }
+
+	 if($("#mobile_number").val() != '' && isMobileVerified != true)
+	 {
+		 status='1';
+		$(".field-signupform-mobile_number").text("Please verify mobile no.");
+	 }
+
+	 if($("#email").val() != '' && isEmailVerified != true)
+	 {
+		 status='1';
+		$(".field-signupform-email").text("Please verify email.");
+	 }
+
  
    if(status!='1'){ 
 	   /*

@@ -157,7 +157,7 @@ class Registration extends WS_Controller {
 		}
 		else
 		{
-			$this->load->view('registration-step-first', $data);
+			$this->load->view('front_view/signup', $data);
 		}
 		 $this->load->view('front_view/footer');
 		
@@ -167,15 +167,8 @@ class Registration extends WS_Controller {
 	
     public function checklogintype()
     {
-		
-		if($_POST['login_as']=='owner')
-		{			
-				$this->login(); 		
-        }
-        else
-        { 
-			$this->checkbankerlogin();
-        }
+		$this->login(); 		
+       
     }
     
     
@@ -716,9 +709,7 @@ class Registration extends WS_Controller {
 			{
 				$data['redirectData'] = $_GET['fav'];
 			}       
-            
-            
-            if($this->input->post('submit1')=='LOGIN')
+            if($this->input->post('user_name')!='')
             {	
 				
 				$this->load->library('form_validation');
@@ -726,9 +717,9 @@ class Registration extends WS_Controller {
 				$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
 				if($this->form_validation->run() == FALSE)
 				{					
-                    $data['error_msg']="Enter Required Fields!";
-                    $this->session->set_flashdata('error_msg', $data['error_msg']);	
-                    redirect("registration/login");
+                   // $data['error_msg']="Enter Required Fields!";
+                   // $this->session->set_flashdata('error_msg', $data['error_msg']);	
+                   // redirect("home/login");
                 }
                 else
                 {		
@@ -775,87 +766,20 @@ class Registration extends WS_Controller {
 							}
 						}
 					}
-					/*
-					else if($res==0)
-					{			
-						$this->registration_model->checkuserblocked();
-						if($this->registration_model->checkuserblocked() == '9')
-						{
-							$data['error_msg']="Your account is blocked!<br> Please contact administrator to unblock it.";
-							$this->session->set_flashdata('error_msg', $data['error_msg']);
-						}	
-						else
-						{
-							$data['error_msg']="Invalid username or password..!";
-							$this->session->set_flashdata('error_msg', $data['error_msg']);
-						}
-						
-							// Start : Block Code
-							$block_get_usertype = $this->registration_model->block_get_usertype();  // Block Code
-							if($block_get_usertype == 'owner' || $block_get_usertype == 'builder' || $block_get_usertype == 'broker' )
-							{
-								//$data['error_msg'] = "";
-								$this->registration_model->user_block_attempt();  // Block Code
 								
-								$failattempt_count = $this->registration_model->block_get_user_failattempt_count(); // Block Code 
-								if($failattempt_count > 0 && $failattempt_count < 5)
-								{
-										//$data['error_msg'] = "Failed attempt ".$failattempt_count." for today!.<br> Account will be blocked after 5 failed attempt!";
-										$data['error_msg'] .= "<br/>Account will be blocked after 5 failed attempt!";
-										$this->session->set_flashdata('error_msg', $data['error_msg']);
-								}
-								if($failattempt_count == 5)
-								{
-									$this->registration_model->user_block_id();  // Block Code
-									$data['error_msg'] = "Your account has been blocked!<br> Please contact administrator to unblock it.";
-									$this->session->set_flashdata('error_msg', $data['error_msg']);
-								}
-								
-							}
-							//End : Block Code
-				
-						$this->session->set_flashdata('error_msg', $data['error_msg']);
-						$auctionID = $this->input->post('auctionID');
-                        $track 	= $this->input->post('track');
-						if($track=='bidder' && $auctionID>0)
-						{
-							redirect("/registration/login?track=bidder&status=1&auctionID=".$auctionID);	
-						}
-						else
-						{
-							redirect("registration/login");	
-						}
-				
-					}
-					*/
-					
 				}
             }
+
+			 $data['error_msg']="Invalid username and password";
+             $this->session->set_flashdata('error_msg', $data['error_msg']);	
+
 			$staticData=$this->home_model->getStaticContents(2);
 			$data['staticData']=$staticData;
 			$this->load->view('front_view/header',$data);
 		
-				//****************** facebook*****************************
-				$data['user_profile'] = array();
-				$data['login_url'] = $this->fb->createLoginLink();
-				$data['track']=$track;
-				$data['auctionID']=$auctionID;
-				$user_profile = $this->fb->initialize();		
-					
-				$res=$this->registration_model->facebook_registration($user_profile);
-				if($res!='registered')
-						{
-							$data['password']=$ress;
-							$this->load->view('mail_template',$data);
-						}
-				if($user_profile){
-					//$this->userprofile();
-					$this->load->helper('url');
-					redirect("registration/userprofile");
-				}
-				//******************** End *************************************
+				
 	
-		$this->load->view('front_view/home', $data);	
+		$this->load->view('front_view/login', $data);	
 				
 		/********************** Footer Section  ************************/
 		$this->load->view('front_view/footer',$data);
@@ -1141,13 +1065,6 @@ class Registration extends WS_Controller {
 	public function save()
 	{
 		//$this->website_header();	
-		$bankID=$this->input->get('bi');
-		if(isset($bankID) && $bankID!='')
-		{
-			$getBankDetailsByID = $this->home_model->getBankDetailsByID($bankID);	
-			$data['getBankDetailsByID']=$getBankDetailsByID;
-			$data['bankIdbyshortname']=$bankID;
-		}
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('first_name','email','mobile','password','cpassword','trim|required|xss_clean');
 		//$this->form_validation->set_rules('captcha', "Captcha", 'required');
@@ -1654,8 +1571,8 @@ class Registration extends WS_Controller {
 			'img_path'  => './public/uploads/images/',
 			'img_url'  => base_url().'public/uploads/images/',
 			'word' => $word,
-			'img_width' => 150,
-			'img_height' => '50',
+			'img_width' => 120,
+			'img_height' => '55',
 			'expiration' => 7200
 			);
 		$cap = create_captcha($vals);
@@ -1665,7 +1582,7 @@ class Registration extends WS_Controller {
 	public function getStateDropDown($country_id,$state_id)
 	{
 		$states = $this->bank_model->GetState($country_id);
-		$str='<option value="">Select State</option>';
+		$str='<option value=""></option>';
 		foreach($states as $state_record)
 		{
 		$str.="<option value='$state_record->id'"; if($state_record->id==$state_id)$str.='selected';$str.=" >$state_record->state_name</option>";
@@ -1808,6 +1725,79 @@ class Registration extends WS_Controller {
 		redirect('registration/mobile_lgn');
 		die;		
 	}
+
+	public function sendMobileCode()
+	{
+		$mobileNo = $this->input->post('mobile');		
+		$randNumber=rand(100000,999999);
+		$randNumber = 111111;
+		$this->session->set_userdata('mobileVerificationCode', $randNumber);
+		$this->session->set_userdata('mobileNo', $mobileNo);
+
+		$smsData = array( 
+                            'mobile' => $mobileNo,
+                            'SMSMessage' => "Verification code is ".$randNumber
+                        );
+                        
+                        if($mobileNo !=''){
+							$this->load->library('Email_new','email');
+							$email = new email_new();
+							$datam = $email->sendSMS($smsData);
+							echo $datam;die('--Done--');
+						}
+						echo 'tet';die;
+	}
+
+	public function verMobileCode()
+	{
+		$mobileNo = $this->input->post('mobile');
+		$mobile_verification_code = $this->input->post('mobile_verification_code');
+
+		$mobile_verification_code_session = $this->session->userdata('mobileVerificationCode');
+		$mobileNo_session = $this->session->userdata('mobileNo');
+
+		if($mobile_verification_code_session == $mobile_verification_code  && $mobileNo_session == $mobileNo)
+		{
+			echo 'success';die;
+		}
+		echo 'fail';die;
+	}
+
+	public function sendEmailCode()
+	{
+		$email = $this->input->post('email');		
+		$randNumber=rand(100000,999999);
+		//$randNumber = 111111;
+		$this->session->set_userdata('emailVerificationCode', $randNumber);
+		$this->session->set_userdata('email', $email);
+		$body = "Code: ".$randNumber;
+		$subject = "Verification Code!";
+                        
+                        if($email !=''){
+							$this->load->library('Email_new','email');
+							$email_obj = new email_new();
+							echo $email_obj->sendMailToUser(array($email),$subject,$body);  
+							die('--Done--');
+						}
+						echo 'tet';die;
+	}
+
+	public function verEmailCode()
+	{
+		$email = $this->input->post('email');
+		$email_verification_code = $this->input->post('email_verification_code');
+
+		$email_verification_code_session = $this->session->userdata('emailVerificationCode');
+		$email_session = $this->session->userdata('email');
+
+		if($email_verification_code_session == $email_verification_code  && $email_session == $email)
+		{
+			echo 'success';die;
+		}
+		echo 'fail';die;
+	}
+
+	
 	
 }
 

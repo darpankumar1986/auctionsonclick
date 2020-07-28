@@ -651,6 +651,17 @@ class Home_model extends CI_Model {
 			echo null;die;
 		}
 	}
+
+	function getAllCategory($category_id=0)
+	{
+
+		$this->db->where('parent_id',$category_id);
+		
+		$this->db->where('status',1);
+		$this->db->from("tbl_category");
+		$query = $this->db->get();
+		return $query->result();
+	}
 }
 
 ?>
