@@ -77,39 +77,43 @@
 							<td><a href="<?php echo base_url('/superadmin/bank/addedit')?>">Create Institution Name</a></td>
 							<td><a href="<?php echo base_url('/superadmin/bank_branch/branch_addedit');?>">Create Branch</a></td>
 							<!--<td><a href="<?php echo base_url('/superadmin/user/bankeraddedit');?>">Create Branch User</a></td> -->
-							<td><a href="<?php echo base_url('/superadmin/user/banker');?>">Branch User List</a></td> 
-							<td><a href="<?php echo base_url('/superadmin/user/assignDeptlist');?>">Assigned Department List</a></td> 
-							<td><a href="<?php echo base_url()?>superadmin/rolepage/addeditrole">Create Roles</a></td>	
-							<td><a href="<?php echo base_url('/superadmin/user/assignRolelist');?>">Assigned Role List</a></td> 
-							<?php /*?><td><a href="<?php echo base_url()?>superadmin/bank_account/addedit">Create Bank Account</a></td><?php */?>		
-							<!--<td><a href="<?php echo base_url()?>superadmin/master_bank/addedit">Create Master Bank</a></td>-->
+							<td><a href="<?php echo base_url('/superadmin/category/addeditmain')?>">Create Category</a></td>
+							<td><a href="<?php echo base_url('/superadmin/category/addedit')?>">Create Sub Category</a></td>
+							<td><a href="<?php echo base_url()?>superadmin/country/addedit">Create Country</a></td> 
+							
+
+							
 							
 						</tr>    
-						<tr>													
-							<td><a href="<?php echo base_url()?>superadmin/rolepage/addeditpage">Create Pages</a></td>
-							<td><a href="<?php echo base_url()?>superadmin/user/bidder_list">User List</a></td>
-							<!--<td><a href="<?php echo base_url('/superadmin/category/addedit')?>">Create Sub Category</a></td> -->
-							<td><a href="<?php echo base_url()?>superadmin/upload_document/addedit">Create Upload  Document Fields</a></td>
-							<td><a href="<?php echo base_url()?>superadmin/bidder_document/addedit">Create Bidder Documents</a></td>
-							<td><a href="<?php echo base_url()?>superadmin/participation_emd_cal/addedit">Create Participation EMD Fee</a></td>
-							<td><a href="<?php echo base_url('/superadmin/category/addeditmain')?>">Create Property Type</a></td>
-						</tr>
-						<tr>
-							
-							<td><a href="<?php echo base_url()?>superadmin/account_type/addedit">Create Account Type</a></td>
-							<td><a href="<?php echo base_url()?>superadmin/uom_type/addedit">Create Carpet UOM Type</a></td>
-						    <td><a href="<?php echo base_url()?>superadmin/height_uom_type/addedit">Create Plot Area UOM Type</a></td>
-						    <!--<td><a href="<?php echo base_url('/superadmin/caste_category/addeditmain')?>">Create Category</a></td>-->
-						    <td><a href="<?php echo base_url()?>superadmin/email_template/addedit">Create Email Template</a></td>
-							<td><a href="<?php echo base_url()?>superadmin/sms_template/addedit">Create SMS Template</a></td>
-							<td><a href="<?php echo base_url()?>superadmin/country/addedit">Create Country</a></td>
-						<tr>
-						<tr>						
-							<!--<td ><a href="<?php echo base_url()?>superadmin/news/homesliderlist">Add/Update Homepage Slider Banner's</a></td>-->
-							
+						<tr>	
 							<td><a href="<?php echo base_url()?>superadmin/state/addedit">Create State</a></td>
 							<td><a href="<?php echo base_url()?>superadmin/city/addedit">Create City</a></td>
 							<td><a href="<?php echo base_url()?>superadmin/sales_person/addedit">Create Sales Person</a></td>
+							<td><a href="<?php echo base_url()?>superadmin/upload_document/addedit">Create Upload  Document Fields</a></td>
+							<!--<td><a href="<?php echo base_url()?>superadmin/bank_account/addedit">Create Bank Account</a></td>
+							<td><a href="<?php echo base_url()?>superadmin/master_bank/addedit">Create Master Bank</a></td>-->
+							<td><a href="<?php echo base_url('/superadmin/user/assignDeptlist');?>">Assigned	Department List</a></td>
+							
+						</tr>
+						<tr>
+							<td><a href="<?php echo base_url('/superadmin/user/banker');?>">Branch User List</a></td> 
+							<td><a href="<?php echo base_url('/superadmin/user/assignRolelist');?>">Assigned Role List</a></td> 
+							<td><a href="<?php echo base_url()?>superadmin/rolepage/addeditpage">Create Pages</a></td>
+							<td><a href="<?php echo base_url()?>superadmin/user/bidder_list">User List</a></td>
+							<td><a href="<?php echo base_url()?>superadmin/bidder_document/addedit">Create Bidder Documents</a></td>
+							<!--<td><a href="<?php echo base_url()?>superadmin/participation_emd_cal/addedit">Create Participation EMD Fee</a></td>-->
+							
+						<tr>
+							<td><a href="<?php echo base_url()?>superadmin/account_type/addedit">Create Account Type</a></td>
+							<!--<td><a href="<?php echo base_url()?>superadmin/uom_type/addedit">Create Carpet UOM Type</a></td>
+							<td><a href="<?php echo base_url()?>superadmin/height_uom_type/addedit">Create Plot Area UOM Type</a></td>-->
+						    <!--<td><a href="<?php echo base_url('/superadmin/caste_category/addeditmain')?>">Create Category</a></td>-->
+						    <td><a href="<?php echo base_url()?>superadmin/email_template/addedit">Create Email Template</a></td>
+							<td><a href="<?php echo base_url()?>superadmin/sms_template/addedit">Create SMS Template</a></td>
+							<td><a href="<?php echo base_url()?>superadmin/rolepage/addeditrole">Create Roles</a></td>	
+							<!--<td ><a href="<?php echo base_url()?>superadmin/news/homesliderlist">Add/Update Homepage Slider Banner's</a></td>-->
+							
+							
 							<!--<td><a href="<?php echo base_url('/superadmin/location/addedit')?>">Create Location</a></td>-->							
 							<td></td>
 						</tr>                            							

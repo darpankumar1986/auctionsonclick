@@ -159,7 +159,7 @@ class Home extends CI_Controller {
         $heightUomType = $this->bank_model->GetHeightUOMtypeRecords();
 
         $upload_document_field = $this->bank_model->GetUploadDocumentFieldRecords();
-        $category = $this->helpdesk_executive_model->GetCategorylist(); // New Add from createEventAuction
+        
 
         $uploadedDocs = $this->bank_model->GetUploadedDocsByAuctionId($eid);
         $zoneArr = $this->bank_model->GetZoneData();
@@ -180,7 +180,7 @@ class Home extends CI_Controller {
         $data['auctionData'] = $auctionData; // New Add  from createEventAuction
         $data['banks'] = $banks; // New Add  from createEventAuction
         $data['bankbranch'] = $this->helpdesk_executive_model->GetBranchdata($auctionData->bank_id);
-        $data['category'] = $category; // New Add  from createEventAuction
+        
         $data['prows'] = $prows; // New Add  from createEventAuction
         $data['banksUsersList'] = $banksUsersList;
         $data['auctionID'] = $eid;
@@ -193,7 +193,8 @@ class Home extends CI_Controller {
         $data['uploadedDocs'] = $uploadedDocs;
         $data['zoneArr'] = $zoneArr;
         $data['approverArr'] = $approverArr;
-
+		$data['category'] = $this->helpdesk_executive_model->GetCategorylist();
+		$data['sub_category'] = $this->helpdesk_executive_model->GetSubCategory($auctionData->category_id);
 
         $data['banksUsersSecondOpener'] = $this->helpdesk_executive_model->getUserByBranchId($branch_id);
 		$salesPerson = $this->admin_model->getSalesPerson($auctionData->state);
@@ -665,6 +666,14 @@ class Home extends CI_Controller {
     }
     
 	
-    
+    public function showsubcatdata($catId) {
+        $subCategories = $this->helpdesk_executive_model->GetSubCategory($catId);
+        $str = '<option value="">Select Sub Type</option>';
+        foreach ($subCategories as $sub_cat) {
+            $str .= "<option value='$sub_cat->id'";
+			$str .= " >$sub_cat->name</option>";
+        }
+        echo $str;
+    }
     
 }

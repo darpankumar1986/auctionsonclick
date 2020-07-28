@@ -141,50 +141,37 @@ $other_city=$auctionData->other_city;
 					  <div class="row">
 						<div class="lft_heading">Type <span class="red">*</span></div>
 						<div class="rgt_detail">
-						  <select class="select" name="auction_type" id="auction_type">
+						  <select class="select" name="category_id" id="category_id">
 							<option value="">---Select---</option>
-							<option value="1" <?php echo ($auctionData->auction_type==1)?'selected':''; ?>>Property</option>
-							<option value="2" <?php echo ($auctionData->auction_type==2)?'selected':''; ?>>Vehicle</option>
-							<option value="3" <?php echo ($auctionData->auction_type==3)?'selected':''; ?>>Others</option>
+							<?php
+							foreach($category as $category_record){ ?>
+							<option value="<?php echo $category_record->id; ?>" <?php echo ($category_record->id==$auctionData->category_id)?'selected="selected"':''; ?>><?php echo $category_record->name; ?></option>
+							<?php }?>
 							</select>
+
 						  <div class="tooltips">
 							<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-							<span>You may choose the most suitable auction type.</span>
+							<span>You may choose the most suitable Auction Category.</span>
 							</div>
 						</div>
 					  </div>
 					  
-					  <div class="row" id="propertyType" <?php if($auctionData->auction_type==1){ echo 'style="display:block;"';} else{echo 'style="display:none;"';}?>>
-							<div class="lft_heading">Property Type <span class="red"> *</span></div>
+					  <div class="row" id="subCategoryType" <?php if($auctionData->category_id==1 || $auctionData->category_id==2){ echo 'style="display:block;"';} else{echo 'style="display:none;"';}?>>
+							<div class="lft_heading">Sub Type <span class="red"> *</span></div>
 							<div class="rgt_detail">
-								<select name="category_id" id="category" class="select">
-								  <option value="">Select Category</option>
+								<select name="sub_category_id" id="sub_category_id" class="select">
+								  <option value="">---Select---</option>
 										<?php
-										foreach($category as $category_record){ ?>
-										<option value="<?php echo $category_record->id; ?>" <?php echo ($category_record->id==$auctionData->category_id)?'selected="selected"':''; ?>><?php echo $category_record->name; ?></option>
+										foreach($sub_category as $subcat_record){ ?>
+										<option value="<?php echo $subcat_record->id; ?>" <?php echo ($subcat_record->id==$auctionData->subcategory_id)?'selected="selected"':''; ?>><?php echo $subcat_record->name; ?></option>
 										<?php }?>
 								  </select>
 								<div class="tooltips">
 								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-										<span>Assets are divided into categories. Please select the category of the asset from the dropdown.</span>
+										<span>Assets are divided into categories. Please select the sub category of the asset from the dropdown.</span>
 								</div>
 							</div>
 						</div>
-						<div class="row" id="vehicleType" <?php if($auctionData->auction_type==2){ echo 'style="display:block;"';} else{echo 'style="display:none;"';}?>>
-							<div class="lft_heading">Vehicle Type <span class="red"> *</span></div>
-							<div class="rgt_detail">
-								<select class="select" name="vehicle_type" id="vehicle_type">
-									<option value="">---Select---</option>
-									<option value="1" <?php echo ($auctionData->vehicle_type==1)?'selected':''; ?>>Personal</option>
-									<option value="2" <?php echo ($auctionData->vehicle_type==2)?'selected':''; ?>>Commercial</option>
-									
-								</select>
-								<div class="tooltips">
-								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-										<span>Assets are divided into categories. Please select the category of the asset from the dropdown.</span>
-								</div>
-							</div>
-						</div>	
 						
 					  <div class="row">
 						<div class="lft_heading">Description <span class="red"> *</span></div>
@@ -1530,6 +1517,8 @@ $(".numericonly_1").keydown(function (e) {
 $("#state").attr("value","<?php echo $auctionData->state; ?>");
 $("#city").attr("value","<?php echo $auctionData->city; ?>");
 $("#bank_id").attr("value","<?php echo $auctionData->bank_id; ?>");
+$("#category_id").attr("value","<?php echo $auctionData->category_id; ?>");
+
    jQuery('#country').change(function () {
 		var country_id = jQuery(this).val();
 		if (country_id)
@@ -1560,23 +1549,19 @@ $("#bank_id").attr("value","<?php echo $auctionData->bank_id; ?>");
 	
     });
 
-	jQuery('#auction_type').change(function(){
-		var auctionType = jQuery(this).val();
-		if(auctionType ==1)
+	jQuery('#category_id').change(function(){
+		var category_id = jQuery(this).val();
+		if(category_id == 1 || category_id == 2)
 		{
-			jQuery('#propertyType').css('display','block');
-			jQuery('#vehicleType').css('display','none');		
+			jQuery('#subCategoryType').css('display','block');
+			jQuery('#sub_category_id').load('/admin/home/showsubcatdata/' + category_id);
 		}
-		else if(auctionType ==2)
+
+		if(category_id == 3) //3- Others
 		{
-			jQuery('#vehicleType').css('display','block');
-			jQuery('#propertyType').css('display','none');
+			jQuery('#subCategoryType').css('display','none');
 		}
-		else if(auctionType == 3)
-		{
-			jQuery('#propertyType').css('display','none');
-			jQuery('#vehicleType').css('display','none');
-		}
+
 
 	});
 	
@@ -1966,8 +1951,8 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
             $('#spMsg').append("<li>Please Select Branch. </li>");
             flag = 1;
         }
-        if ($('#auction_type').val() == '') {
-            $('#spMsg').append("<li>Please Select Auction Type. </li>");
+        if ($('#category_id').val() == '') {
+            $('#spMsg').append("<li>Please Select Type. </li>");
             flag = 1;
         }
 		
@@ -2074,8 +2059,8 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
             $('#spMsg').append("<li>Please Select Branch. </li>");
             flag = 1;
         }
-        if ($('#auction_type').val() == '') {
-            $('#spMsg').append("<li>Please Select Auction Type. </li>");
+        if ($('#category_id').val() == '') {
+            $('#spMsg').append("<li>Please Select Type. </li>");
             flag = 1;
         }
 		
@@ -2116,12 +2101,12 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
         }
         */
 
-        if ($('#auction_type').val() == 1 && $('#category').val() == '') {
-            $('#spMsg').append("<li>Please Select Property Type </li>");
+        if ($('#category_id').val() == 1 && $('#category').val() == '') {
+            $('#spMsg').append("<li>Please Select Sub Type </li>");
             flag = 1;
         }
 		
-		if ($('#auction_type').val() == 2 && $('#vehicle_type').val() == '') {
+		if ($('#category_id').val() == 2 && $('#vehicle_type').val() == '') {
             $('#spMsg').append("<li>Please Select Vehicle Type </li>");
             flag = 1;
         }

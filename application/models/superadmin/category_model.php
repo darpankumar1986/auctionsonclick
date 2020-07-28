@@ -353,7 +353,7 @@ class Category_model extends CI_Model {
 		}
 		
 		$query .= " AND u.status != 5 AND u.parent_id = 0 ";
-		$query .= " ORDER BY u.id DESC ";
+		$query .= " ORDER BY u.id ASC ";
 		 $query .= " LIMIT ".$start.", ".$limit."";
 		$query = $this->db->query($query);
 		
@@ -372,7 +372,7 @@ class Category_model extends CI_Model {
 	public function GetParentRecordsControl() {
         $this->db->where('parent_id', 0);
 		$this->db->where('status', 1);
-		$this->db->order_by("name", "asc");
+		$this->db->order_by("id", "asc");
 		$query = $this->db->get("tbl_category");
 		
 		if ($query->num_rows() > 0) {

@@ -299,6 +299,7 @@ class Admin_model extends CI_Model {
 		$area_unit_id	 			=	 $this->input->post('area_unit_id');
 		$event_title 				=	 $this->input->post('event_title');
 		$category_id 				=	 $this->input->post('category_id');
+		$sub_category_id			=	 $this->input->post('sub_category_id');
 		$vehicle_type 				=	 $this->input->post('vehicle_type');
 		$is_corner_property			=	 $this->input->post('is_corner_property');
 		$remark						=	 $this->input->post('remark');
@@ -490,7 +491,8 @@ class Admin_model extends CI_Model {
 			'event_title'=>$event_title,
 			'dispatch_date'=>$dispatch_date,
 			'vehicle_type'=>$vehicle_type,
-			'subcategory_id'=>$subcategory_id,
+			'category_id'=>$category_id,
+			'subcategory_id'=>($category_id==3)?0:$sub_category_id,
 			'area_unit_id'=>$area_unit_id,
 			'is_corner_property'=>$is_corner_property,
 			'remark'=>$remark,
