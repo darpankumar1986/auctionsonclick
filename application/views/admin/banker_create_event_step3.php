@@ -1049,21 +1049,21 @@ $other_city=$auctionData->other_city;
 						</div>						
 						<?php } ?>
 						<script>
-							/*$('#doc_to_be_submitted').change(function(){
-									if($("#doc_to_be_submitted option:selected").val() == 0){
-										('option:selected', $("#doc_to_be_submitted")).removeAttr("multiple");
+							/*jQuery('#doc_to_be_submitted').change(function(){
+									if(jQuery("#doc_to_be_submitted option:selected").val() == 0){
+										('option:selected', jQuery("#doc_to_be_submitted")).removeAttr("multiple");
 									}else {
-										('option:selected',$("#doc_to_be_submitted")).attr("multiple", "multiple");
+										('option:selected',jQuery("#doc_to_be_submitted")).attr("multiple", "multiple");
 									}
 								});*/
                                                                 
-                                                                $('#doc_to_be_submitted').change(function(){
-									if($("#doc_to_be_submitted option:selected").val() == 0){
-										$("#doc_to_be_submitted").prop("multiple", "");
+                                                                jQuery('#doc_to_be_submitted').change(function(){
+									if(jQuery("#doc_to_be_submitted option:selected").val() == 0){
+										jQuery("#doc_to_be_submitted").prop("multiple", "");
                                                                                 
 									}else {
-										$("#doc_to_be_submitted").prop("multiple", "multiple");
-                                                                                //$("#doc_to_be_submitted").multiselect("refresh");
+										jQuery("#doc_to_be_submitted").prop("multiple", "multiple");
+                                                                                //jQuery("#doc_to_be_submitted").multiselect("refresh");
 									}
 								});
                                               </script>  
@@ -1218,10 +1218,10 @@ $other_city=$auctionData->other_city;
  jQuery(".inline_auctiondetail").colorbox({inline:true, width:"65%"});
 /*	
 function checksupportingdoc(){
-        if (!$("#supporting_doc_check").is(':checked')) {
-              $("#supporting_doc").attr('disabled',true); 
+        if (!jQuery("#supporting_doc_check").is(':checked')) {
+              jQuery("#supporting_doc").attr('disabled',true); 
         }else{
-               $("#supporting_doc").attr('disabled',false); 
+               jQuery("#supporting_doc").attr('disabled',false); 
         }
   }
 */
@@ -1239,7 +1239,7 @@ jQuery('#type').trigger("change");
 */
 
 jQuery("#auto_extension, #auto_extension_time").on('blur',function(){
-	if($("#auto_extension").val()== '0')
+	if(jQuery("#auto_extension").val()== '0')
 	{
 		jQuery("#auto_extension_time").val(0);
 	}
@@ -1401,11 +1401,11 @@ jQuery("#auto_extension, #auto_extension_time").on('blur',function(){
 	});	
 	
 	jQuery('.html_found').change(function() {
-	   if ($(this).val().match(/<(\w+)((?:\s+\w+(?:\s*=\s*(?:(?:"[^"]*")|(?:'[^']*')|[^>\s]+))?)*)\s*(\/?)>/)) {
+	   if (jQuery(this).val().match(/<(\w+)((?:\s+\w+(?:\s*=\s*(?:(?:"[^"]*")|(?:'[^']*')|[^>\s]+))?)*)\s*(\/?)>/)) {
 		  sweetAlert('Oops!', 'Invalid html content found', 'error');
 		  //alert('Invalid html content found');
-		  $(this).focus();
-		  $(this).val('');
+		  jQuery(this).focus();
+		  jQuery(this).val('');
 	   }
 	});
 /*
@@ -1438,7 +1438,7 @@ jQuery('.nodalbank').click(function(){
 	
   //tooltip
   jQuery(function() { 
-       $('.alphanumeric1').bind('keypress', function (event) {
+       jQuery('.alphanumeric1').bind('keypress', function (event) {
     
     var regex=new RegExp("^[,-./a-zA-Z0-9\b]+$");
     var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
@@ -1453,7 +1453,7 @@ jQuery('.nodalbank').click(function(){
     
 });
 
-$('.latlong').keypress(function(event){
+jQuery('.latlong').keypress(function(event){
 	
 	var reg = new RegExp("^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}");
 	var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
@@ -1464,26 +1464,26 @@ $('.latlong').keypress(function(event){
 	}
    }
 });
-$('.numericonly').keypress(function(event) {
-  if ((event.which != 46 || $(this).val().indexOf('.') != -1) &&
+jQuery('.numericonly').keypress(function(event) {
+  if ((event.which != 46 || jQuery(this).val().indexOf('.') != -1) &&
     ((event.which < 48 || event.which > 57) &&
       (event.which != 0 && event.which != 8))) {
     event.preventDefault();
   }
 
-  var text = $(this).val();
+  var text = jQuery(this).val();
 
   if ((text.indexOf('.') != -1) &&
     (text.substring(text.indexOf('.')).length > 2) &&
     (event.which != 0 && event.which != 8) &&
-    ($(this)[0].selectionStart >= text.length - 2)) {
+    (jQuery(this)[0].selectionStart >= text.length - 2)) {
     event.preventDefault();
   }
 });
 
 
 
-$(".numericonly_1").keydown(function (e) { 
+jQuery(".numericonly_1").keydown(function (e) { 
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13]) !== -1 ||
              // Allow: Ctrl+A, Command+A
@@ -1500,7 +1500,7 @@ $(".numericonly_1").keydown(function (e) {
     });
     
     
- $('.alphanumeric2').bind('keypress', function (event) {
+ jQuery('.alphanumeric2').bind('keypress', function (event) {
     
     var regex=new RegExp("^[a-zA-Z0-9\b]+$");
     var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
@@ -1514,10 +1514,10 @@ $(".numericonly_1").keydown(function (e) {
    }
     
 });
-$("#state").attr("value","<?php echo $auctionData->state; ?>");
-$("#city").attr("value","<?php echo $auctionData->city; ?>");
-$("#bank_id").attr("value","<?php echo $auctionData->bank_id; ?>");
-$("#category_id").attr("value","<?php echo $auctionData->category_id; ?>");
+jQuery("#state").attr("value","<?php echo $auctionData->state; ?>");
+jQuery("#city").attr("value","<?php echo $auctionData->city; ?>");
+jQuery("#bank_id").attr("value","<?php echo $auctionData->bank_id; ?>");
+jQuery("#category_id").attr("value","<?php echo $auctionData->category_id; ?>");
 
    jQuery('#country').change(function () {
 		var country_id = jQuery(this).val();
@@ -1585,7 +1585,7 @@ $("#category_id").attr("value","<?php echo $auctionData->category_id; ?>");
 						this.value = '';
 					}
 					
-							var file_size = $("#<?php echo $fieldName;?>")[0].files[0].size;
+							var file_size = jQuery("#<?php echo $fieldName;?>")[0].files[0].size;
 						   
 						slimit=(1024*1024)*parseInt(10);
 						if(file_size>slimit){
@@ -1597,7 +1597,7 @@ $("#category_id").attr("value","<?php echo $auctionData->category_id; ?>");
 					//var ext = this.value.match(/\.(.+)$/)[1];
 					switch (ext1[indexValuee]) {
 						case 'webm':case 'mkv':case 'flv':case 'avi':case '3gp':case 'mp4':case 'wmv':
-						$('#<?php echo $fieldName;?>').attr('disabled', false);
+						jQuery('#<?php echo $fieldName;?>').attr('disabled', false);
 						break;
 						default:
 							sweetAlert('Oops!', 'This is not an allowed video file type.', 'error');
@@ -1622,7 +1622,7 @@ $("#category_id").attr("value","<?php echo $auctionData->category_id; ?>");
 						this.value = '';
 					}
 					if(getValue !=''){
-						var file_size = $("#<?php echo $fieldName;?>")[0].files[0].size;
+						var file_size = jQuery("#<?php echo $fieldName;?>")[0].files[0].size;
 					   
 					slimit=(1024*1024)*parseInt(5);
 					if(file_size>slimit){
@@ -1635,7 +1635,7 @@ $("#category_id").attr("value","<?php echo $auctionData->category_id; ?>");
 					switch (ext1[indexValuee]) {
 						//case 'png':case 'jpg':case 'gif':case 'jpeg':case 'pdf':case 'xls':case 'doc':case 'docx':case 'zip':
                                                 case 'jpg':case 'pdf':
-						$('#<?php echo $fieldName;?>').attr('disabled', false);
+						jQuery('#<?php echo $fieldName;?>').attr('disabled', false);
 						break;
 						default:
 							sweetAlert('Oops!', 'This is not an allowed file type. Only jpg and pdf file are allowed.', 'error');
@@ -1664,7 +1664,7 @@ $("#category_id").attr("value","<?php echo $auctionData->category_id; ?>");
 			ext = ext.toLowerCase();
 			switch (ext1[indexValuee]) {
 				case 'png':case 'jpg':case 'gif':case 'jpeg':
-				$('#image').attr('disabled', false);
+				jQuery('#image').attr('disabled', false);
 				break;
 				default:
 					sweetAlert('Oops!', 'This is not an allowed file type. Only jpg, jpeg, png file are allowed.', 'error');
@@ -1687,7 +1687,7 @@ $("#category_id").attr("value","<?php echo $auctionData->category_id; ?>");
 			//var ext = this.value.match(/\.(.+)$/)[1];
 			switch (ext1[indexValuee]) {			
 				case 'png':case 'jpg':case 'gif':case 'jpeg':
-				$('#image').attr('disabled', false);
+				jQuery('#image').attr('disabled', false);
 				break;
 				default:
 					sweetAlert('Oops!', 'This is not an allowed file type.', 'error');
@@ -1756,13 +1756,13 @@ jQuery(document).ready(function($){
 	//initSample();
 	//initSample1();
 	/*
-	$('#area').blur(function(){
-		//$('#emd_amt').val('');
-		//$('#tender_fee').val('');
+	jQuery('#area').blur(function(){
+		//jQuery('#emd_amt').val('');
+		//jQuery('#tender_fee').val('');
 		//var vrand = Math.random() * 10000000000000000;
-		var	areaVal = $(this).val();
+		var	areaVal = jQuery(this).val();
 		areaVal = areaVal.trim();
-		var	bspVal = $('#reserve_price').val();
+		var	bspVal = jQuery('#reserve_price').val();
 		bspVal = bspVal.trim();
 				
 		if(areaVal !='' && bspVal !='')
@@ -1773,18 +1773,18 @@ jQuery(document).ready(function($){
 	});
 	*/
 	/*
-	$('#reserve_price').blur(function(){	
+	jQuery('#reserve_price').blur(function(){	
 		
 		
-		//$('#emd_amt').val('');
-		//$('#tender_fee').val('');
+		//jQuery('#emd_amt').val('');
+		//jQuery('#tender_fee').val('');
 		//var vrand = Math.random() * 10000000000000000;
 							
-		var	bspVal = $(this).val();
+		var	bspVal = jQuery(this).val();
 		bspVal = bspVal.trim();
 		
 		
-		var	areaVal = $('#area').val();
+		var	areaVal = jQuery('#area').val();
 		areaVal = areaVal.trim();
 		//alert(areaVal+' | '+bspVal);
 		if(areaVal !='' && bspVal !='')
@@ -1795,30 +1795,30 @@ jQuery(document).ready(function($){
 	});
 	*/
 	
-	$("#emd_amt").blur(function(){
-		var emdVal = $(this).val().trim();
+	jQuery("#emd_amt").blur(function(){
+		var emdVal = jQuery(this).val().trim();
 		if(emdVal !='' && emdVal>0)
 		{
 			var inwords = numToWords(emdVal);
-			$('#emdWords').html(inwords);   
+			jQuery('#emdWords').html(inwords);   
 		}
 	});
 	
-	$(".addMem").click(function(){		
+	jQuery(".addMem").click(function(){		
 		var addMoreImgRandomKey = Math.floor(Math.random() * 1000000);
 		
-		$(".customFields").append('<div class="cust-field-cont"><div class="row"><div class="lft_heading">Upload Property Photographs </div><div class="rgt_detail"><input type="file" name="upload_property_photo['+addMoreImgRandomKey+']" class="upload_property_photo" value="" /><div class="tooltips"><img src="<?php echo base_url(); ?>images/help.png" class="tooltip_icon"><span>Upload Property Photographs</span></div></div></div><div class="row"><div class="lft_heading">Photographs Caption </div><div class="rgt_detail" style="position: relative;"><textarea name="photo_caption['+addMoreImgRandomKey+']" type="text"  class="input"><?php echo $photo_caption; ?></textarea><div class="tooltips"><img src="<?php echo base_url(); ?>images/help.png" class="tooltip_icon"><span>Photographs Caption</span></div><a href="javascript:void(0);" class="remCF" style="position: absolute;top:-14px;margin-left:20px"><image src="<?php echo base_url()?>bankeauc/images/delete.png" alt="Delete" title="Delete this row" style="display: inline-block !important; width:17px !important;"/></a></div></div></div>');
+		jQuery(".customFields").append('<div class="cust-field-cont"><div class="row"><div class="lft_heading">Upload Property Photographs </div><div class="rgt_detail"><input type="file" name="upload_property_photo['+addMoreImgRandomKey+']" class="upload_property_photo" value="" /><div class="tooltips"><img src="<?php echo base_url(); ?>images/help.png" class="tooltip_icon"><span>Upload Property Photographs</span></div></div></div><div class="row"><div class="lft_heading">Photographs Caption </div><div class="rgt_detail" style="position: relative;"><textarea name="photo_caption['+addMoreImgRandomKey+']" type="text"  class="input"><?php echo $photo_caption; ?></textarea><div class="tooltips"><img src="<?php echo base_url(); ?>images/help.png" class="tooltip_icon"><span>Photographs Caption</span></div><a href="javascript:void(0);" class="remCF" style="position: absolute;top:-14px;margin-left:20px"><image src="<?php echo base_url()?>bankeauc/images/delete.png" alt="Delete" title="Delete this row" style="display: inline-block !important; width:17px !important;"/></a></div></div></div>');
 		addRemoveSrNo();
 	});
 	
-	$(".customFields").on('click','.remCF',function(){
-        $(this).parent().parent().parent('.cust-field-cont').remove();
-        $('.addCF').css('display','');
+	jQuery(".customFields").on('click','.remCF',function(){
+        jQuery(this).parent().parent().parent('.cust-field-cont').remove();
+        jQuery('.addCF').css('display','');
         addRemoveSrNo();
     });
     
-    $(".customFields").on('keypress','input',function(){
-        $(this).parent().find('.error').html('');
+    jQuery(".customFields").on('keypress','input',function(){
+        jQuery(this).parent().find('.error').html('');
         
     });
 	
@@ -1826,10 +1826,10 @@ jQuery(document).ready(function($){
 
 function addRemoveSrNo()
 {
-	$(".customFields tr").each(function(i){
+	jQuery(".customFields tr").each(function(i){
 		if(i>0)
 		{
-			$(this).find('td').eq(0).html(i);
+			jQuery(this).find('td').eq(0).html(i);
 		}
 	});
 }
@@ -1845,10 +1845,10 @@ function cal_pfee_emdfee(areaVal,bspVal)
 			success:function(response)
 			{
 				var obj = $.parseJSON(response);
-				$('#emd_amt').val(obj.emdFee);
-				$('#tender_fee').val(obj.pFee);
+				jQuery('#emd_amt').val(obj.emdFee);
+				jQuery('#tender_fee').val(obj.pFee);
 				var inwords = numToWords(obj.emdFee);
-				$('#emdWords').html(inwords);   
+				jQuery('#emdWords').html(inwords);   
 			}
 		});	
 }
@@ -1856,11 +1856,11 @@ function cal_pfee_emdfee(areaVal,bspVal)
 
 
 <script type="text/javascript">
-$(function () {
+jQuery(function () {
 var map;
-    $("#btnShow").click(function () {
-		var latitude = $("#latitude").val();
-		var longitude = $("#longitude").val();
+    jQuery("#btnShow").click(function () {
+		var latitude = jQuery("#latitude").val();
+		var longitude = jQuery("#longitude").val();
 		
 		if(!(parseFloat(latitude) > 0))
 		{
@@ -1868,14 +1868,14 @@ var map;
 			longitude = 77.026344;
 		}
 		
-        $("#dialog").dialog({
+        jQuery("#dialog").dialog({
             modal: true,
             title: "Google Map",
             width: 600,
             hright: 450,
             buttons: {
                 Close: function () {
-                    $(this).dialog('close');
+                    jQuery(this).dialog('close');
                 }
             },
             open: function () {
@@ -1884,12 +1884,12 @@ var map;
                     zoom: 10,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 }
-                map = new google.maps.Map($("#dvMap")[0], mapOptions);
+                map = new google.maps.Map(jQuery("#dvMap")[0], mapOptions);
                 google.maps.event.addListener(map, 'click', function (e) {
                 //alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
-                $("#latitude").val(e.latLng.lat());
-                 $("#longitude").val(e.latLng.lng());
-                 $(".ui-button").click();
+                jQuery("#latitude").val(e.latLng.lat());
+                 jQuery("#longitude").val(e.latLng.lng());
+                 jQuery(".ui-button").click();
            	 });
             }
         });
@@ -1928,79 +1928,79 @@ function removePorpertyPhotoData(auction_document_id) {
 <script>
 //Function used for: "Area Unit" and "BSP Unit of Price" shouls be same                                                                                                
 function setUnit(){ 
-    //$val = $('#area_unit_id').val();
-    //$text = $('#area_unit_id option:selected').html();
-    //$("#unit_id_of_price").html("<option value="+$val+">"+$text+"</option>");
+    //$val = jQuery('#area_unit_id').val();
+    //$text = jQuery('#area_unit_id option:selected').html();
+    //jQuery("#unit_id_of_price").html("<option value="+$val+">"+$text+"</option>");
 }
 
-$('#area, #bid_inc').bind("cut copy paste",function(e) {
+jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
      e.preventDefault();
  });
  
  function validateSubmitform(btn) {
-    $('#spMsg').html("");
+    jQuery('#spMsg').html("");
     flag = '';
     //body = CKEDITOR.instances.contact_person_details_1.getData().trim();
     if (btn == "save")
     {
-        if ($('#bank_id').val() == '') {
-            $('#spMsg').append("<li>Please Select Institution. </li>");
+        if (jQuery('#bank_id').val() == '') {
+            jQuery('#spMsg').append("<li>Please Select Institution. </li>");
             flag = 1;
         }
-		if ($('#branch_id').val() == '') {
-            $('#spMsg').append("<li>Please Select Branch. </li>");
+		if (jQuery('#branch_id').val() == '') {
+            jQuery('#spMsg').append("<li>Please Select Branch. </li>");
             flag = 1;
         }
-        if ($('#category_id').val() == '') {
-            $('#spMsg').append("<li>Please Select Type. </li>");
+        if (jQuery('#category_id').val() == '') {
+            jQuery('#spMsg').append("<li>Please Select Type. </li>");
             flag = 1;
         }
 		
-        if ($('#description').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter Description </li>");
+        if (jQuery('#description').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Description </li>");
             flag = 1;
         }
-		if ($('#reference_no').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter Location </li>");
+		if (jQuery('#reference_no').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Location </li>");
             flag = 1;
         }
-		if ($('#country').val().trim() == '') {
-            $('#spMsg').append("<li>Please Select Country </li>");
+		if (jQuery('#country').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Select Country </li>");
             flag = 1;
         }
-		if ($('#state').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter State </li>");
+		if (jQuery('#state').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Enter State </li>");
             flag = 1;
         }
-		if ($('#city').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter City </li>");
+		if (jQuery('#city').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Enter City </li>");
             flag = 1;
         }
 		/*
-        if (isNaN($('#bid_inc').val().trim()) == true) {
-            $('#spMsg').append("<li>Please Enter Valid Bid Increment value</li>");
+        if (isNaN(jQuery('#bid_inc').val().trim()) == true) {
+            jQuery('#spMsg').append("<li>Please Enter Valid Bid Increment value</li>");
             flag = 1;
         }*/
 		/*
         if (body == '')
         {
-            $('#spMsg').append("<li>Please Enter 1st Contact Person Details  </li>");
+            jQuery('#spMsg').append("<li>Please Enter 1st Contact Person Details  </li>");
             flag = 1;
         }*/
 
-        if ($('#latitude').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter Latitude </li>");
+        if (jQuery('#latitude').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Latitude </li>");
             flag = 1;
         }
-        if ($('#longitude').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter Longitude </li>");
+        if (jQuery('#longitude').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Longitude </li>");
             flag = 1;
         }
 
         /*
-         if($('#image').val()!='')
+         if(jQuery('#image').val()!='')
          {
-         var ud = $('#image');
+         var ud = jQuery('#image');
          lg = ud[0].files.length;
          var f = ud[0].files;		
          var fTypeErr = false;
@@ -2025,11 +2025,11 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
          }					
          if(fTypeErr)
          {
-         $("#spMsg").append("<li>Please Upload Valid Image( Acceptable format are gif,png,jpg,jpeg)</li>");
+         jQuery("#spMsg").append("<li>Please Upload Valid Image( Acceptable format are gif,png,jpg,jpeg)</li>");
          }
          if(fSizeErr)
          {
-         $("#spMsg").append("<li>Please Upload Image files less than 5MB</li>");
+         jQuery("#spMsg").append("<li>Please Upload Image files less than 5MB</li>");
          }
          }*/
 
@@ -2040,9 +2040,9 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
 
             //if(returnFlag==1){
             //alert("-------"+flag);
-            $("#showerror_msg").show();
-            $(".inline").colorbox({inline: true, width: "50%"});
-            $(".inline").click();
+            jQuery("#showerror_msg").show();
+            jQuery(".inline").colorbox({inline: true, width: "50%"});
+            jQuery(".inline").click();
             return false;
             // }
         } else {
@@ -2051,229 +2051,229 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
     } else
     {
         //alert(body);
-        if ($('#bank_id').val() == '') {
-            $('#spMsg').append("<li>Please Select Institution. </li>");
+        if (jQuery('#bank_id').val() == '') {
+            jQuery('#spMsg').append("<li>Please Select Institution. </li>");
             flag = 1;
         }
-		if ($('#branch_id').val() == '') {
-            $('#spMsg').append("<li>Please Select Branch. </li>");
+		if (jQuery('#branch_id').val() == '') {
+            jQuery('#spMsg').append("<li>Please Select Branch. </li>");
             flag = 1;
         }
-        if ($('#category_id').val() == '') {
-            $('#spMsg').append("<li>Please Select Type. </li>");
+        if (jQuery('#category_id').val() == '') {
+            jQuery('#spMsg').append("<li>Please Select Type. </li>");
             flag = 1;
         }
 		
-        if ($('#description').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter Description </li>");
+        if (jQuery('#description').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Description </li>");
             flag = 1;
         }
-		if ($('#reference_no').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter Location </li>");
+		if (jQuery('#reference_no').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Location </li>");
             flag = 1;
         }
-		if ($('#country').val().trim() == '') {
-            $('#spMsg').append("<li>Please Select Country </li>");
+		if (jQuery('#country').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Select Country </li>");
             flag = 1;
         }
-		if ($('#state').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter State </li>");
+		if (jQuery('#state').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Enter State </li>");
             flag = 1;
         }
-		if ($('#city').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter City </li>");
+		if (jQuery('#city').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Enter City </li>");
             flag = 1;
         }
 		 /*
-        if ($('#area').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter Property Area </li>");
+        if (jQuery('#area').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Property Area </li>");
             flag = 1;
         }
        
-        if (isNaN($('#area').val().trim()) == true) {
-            $('#spMsg').append("<li>Please Enter Valid Property Area </li>");
+        if (isNaN(jQuery('#area').val().trim()) == true) {
+            jQuery('#spMsg').append("<li>Please Enter Valid Property Area </li>");
             flag = 1;
         }
         
-        if ($('#area_unit_id').val() == '') {
-            $('#spMsg').append("<li>Please Select Area Unit </li>");
+        if (jQuery('#area_unit_id').val() == '') {
+            jQuery('#spMsg').append("<li>Please Select Area Unit </li>");
             flag = 1;
         }
         */
 
-        if ($('#category_id').val() == 1 && $('#category').val() == '') {
-            $('#spMsg').append("<li>Please Select Sub Type </li>");
+        if (jQuery('#category_id').val() == 1 && jQuery('#category').val() == '') {
+            jQuery('#spMsg').append("<li>Please Select Sub Type </li>");
             flag = 1;
         }
 		
-		if ($('#category_id').val() == 2 && $('#vehicle_type').val() == '') {
-            $('#spMsg').append("<li>Please Select Vehicle Type </li>");
+		if (jQuery('#category_id').val() == 2 && jQuery('#vehicle_type').val() == '') {
+            jQuery('#spMsg').append("<li>Please Select Vehicle Type </li>");
             flag = 1;
         }
 
 		
 
         /*
-        if ($('#zone_id').val() == '') {
-            $('#spMsg').append("<li>Please Select Concerned Zone</li>");
+        if (jQuery('#zone_id').val() == '') {
+            jQuery('#spMsg').append("<li>Please Select Concerned Zone</li>");
             flag = 1;
         }*/
         /*   
-         if ($('#height_unit_id').val() == '') {
-         $('#spMsg').append("<li>Please Select Height Unit</li>");
+         if (jQuery('#height_unit_id').val() == '') {
+         jQuery('#spMsg').append("<li>Please Select Height Unit</li>");
          flag = 1;
          } */
 
-        if ($('#reserve_price').val() == '') {
-            $('#spMsg').append("<li>Please Enter Reserve Price </li>");
+        if (jQuery('#reserve_price').val() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Reserve Price </li>");
             flag = 1;
         }
-        if (($('#reserve_price').val() == 0) && ($('#reserve_price').val() != '')) {
-            $('#spMsg').append("<li>Reserve Price can not be zero</li>");
+        if ((jQuery('#reserve_price').val() == 0) && (jQuery('#reserve_price').val() != '')) {
+            jQuery('#spMsg').append("<li>Reserve Price can not be zero</li>");
             flag = 1;
         }
-        if (isNaN($('#reserve_price').val().trim()) == true) {
-            $('#spMsg').append("<li>Please Enter Valid Reserve Price</li>");
+        if (isNaN(jQuery('#reserve_price').val().trim()) == true) {
+            jQuery('#spMsg').append("<li>Please Enter Valid Reserve Price</li>");
             flag = 1;
         }
 
-        if ($('#emd_amt').val() == '') {
-            $('#spMsg').append("<li>Please Enter Emd Amount</li>");
+        if (jQuery('#emd_amt').val() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Emd Amount</li>");
             flag = 1;
         }
-        if (($('#emd_amt').val() == 0) && ($('#emd_amt').val() != '')) {
-            $('#spMsg').append("<li>Emd Amount can not be zero</li>");
+        if ((jQuery('#emd_amt').val() == 0) && (jQuery('#emd_amt').val() != '')) {
+            jQuery('#spMsg').append("<li>Emd Amount can not be zero</li>");
             flag = 1;
         }
         
-        if (isNaN($('#emd_amt').val().trim()) == true) {
-            $('#spMsg').append("<li>Please Enter Valid Emd Amount </li>");
+        if (isNaN(jQuery('#emd_amt').val().trim()) == true) {
+            jQuery('#spMsg').append("<li>Please Enter Valid Emd Amount </li>");
             flag = 1;
         }
         
         /*
-        if ($('#tender_fee').val() == '') {
-            $('#spMsg').append("<li>Please Enter Bank Processing Fee</li>");
+        if (jQuery('#tender_fee').val() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Bank Processing Fee</li>");
             flag = 1;
         }
         */
         /*
-        if (isNaN($('#tender_fee').val().trim()) == true) {
-            $('#spMsg').append("<li>Please Enter Valid Participation Fee </li>");
+        if (isNaN(jQuery('#tender_fee').val().trim()) == true) {
+            jQuery('#spMsg').append("<li>Please Enter Valid Participation Fee </li>");
             flag = 1;
         }
         */
         /* 
-         if($('#second_opener').val()==''){
-         $('#spMsg').append("<li>Please Select Auction Approver</li>");
+         if(jQuery('#second_opener').val()==''){
+         jQuery('#spMsg').append("<li>Please Select Auction Approver</li>");
          flag = 1;
          } 
          */
 
         /*
-         if( ($('#emd_amt').val() != '') &&  ($('#reserve_price').val() != '')){	
-         if (parseFloat($('#reserve_price').val()) <= parseFloat($('#emd_amt').val())) {
-         $('#spMsg').append("<li>Reserve Price should be greater than EMD Amount<li/>");
+         if( (jQuery('#emd_amt').val() != '') &&  (jQuery('#reserve_price').val() != '')){	
+         if (parseFloat(jQuery('#reserve_price').val()) <= parseFloat(jQuery('#emd_amt').val())) {
+         jQuery('#spMsg').append("<li>Reserve Price should be greater than EMD Amount<li/>");
          flag = 1;
          }
          }
          */
 		/*
-        if ($('#unit_id_of_price').val() == '') {
-            $('#spMsg').append("<li>Please Select Reserve Price (Unit) </li>");
+        if (jQuery('#unit_id_of_price').val() == '') {
+            jQuery('#spMsg').append("<li>Please Select Reserve Price (Unit) </li>");
             flag = 1;
         }
         */
 
 		/*
-        if ($('#press_release_date').val() == '') {
-            $('#spMsg').append("<li>Please Enter Press Release Date</li>");
+        if (jQuery('#press_release_date').val() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Press Release Date</li>");
             flag = 1;
         }
         */
         /*
-        if ($('#inspection_date_to').val() == '') {
-            $('#spMsg').append("<li>Please Enter Site Visit End Date</li>");
+        if (jQuery('#inspection_date_to').val() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Site Visit End Date</li>");
             flag = 1;
         }
         */
         /*
-         if ($('#registration_start_date').val() == '') {
-         $('#spMsg').append("<li>Please Enter Apply And EMD Start Date</li>");
+         if (jQuery('#registration_start_date').val() == '') {
+         jQuery('#spMsg').append("<li>Please Enter Apply And EMD Start Date</li>");
          flag = 1;
          }
         */
-        if ($('#bid_last_date').val() == '') {
-            $('#spMsg').append("<li>Please Enter EMD Submission Last Date</li>");
+        if (jQuery('#bid_last_date').val() == '') {
+            jQuery('#spMsg').append("<li>Please Enter EMD Submission Last Date</li>");
             flag = 1;
         }
 
 		/*
-        if ($('#bid_opening_date').val() == '') {
-            $('#spMsg').append("<li>Please Enter Shortlisting Start Date</li>");
+        if (jQuery('#bid_opening_date').val() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Shortlisting Start Date</li>");
             flag = 1;
         }
 		*/
 			
-        if ($('#auction_start_date').val() == '') {
-            $('#spMsg').append("<li>Please Enter Auction Start date</li>");
+        if (jQuery('#auction_start_date').val() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Auction Start date</li>");
             flag = 1;
         }
 
 		/*
-        if ($('#auction_end_date').val() == '') {
-            $('#spMsg').append("<li>Please Enter Auction End date</li>");
+        if (jQuery('#auction_end_date').val() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Auction End date</li>");
             flag = 1;
         }
         */
 		/*
-        if ($('#bid_inc').val() == '') {
-            $('#spMsg').append("<li>Please Enter Bid Increment value</li>");
+        if (jQuery('#bid_inc').val() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Bid Increment value</li>");
             flag = 1;
         }
         
-         if (($('#auto_extension').val() > 0 && ($("#auto_extension_time").val() <=0 || $("#auto_extension_time").val()=='')) || $('#auto_extension').val() =='' && ($("#auto_extension_time").val() <=0 || $("#auto_extension_time").val()=='')) {
-            $('#spMsg').append("<li>Please Enter Valid Auto Extension Time</li>");
+         if ((jQuery('#auto_extension').val() > 0 && (jQuery("#auto_extension_time").val() <=0 || jQuery("#auto_extension_time").val()=='')) || jQuery('#auto_extension').val() =='' && (jQuery("#auto_extension_time").val() <=0 || jQuery("#auto_extension_time").val()=='')) {
+            jQuery('#spMsg').append("<li>Please Enter Valid Auto Extension Time</li>");
             flag = 1;
         }       
-        if (isNaN($('#bid_inc').val().trim()) == true) {
-            $('#spMsg').append("<li>Please Enter Valid Bid Increment value</li>");
+        if (isNaN(jQuery('#bid_inc').val().trim()) == true) {
+            jQuery('#spMsg').append("<li>Please Enter Valid Bid Increment value</li>");
             flag = 1;
         }
         
         if (body == '')
         {
-            $('#spMsg').append("<li>Please Enter 1st Contact Person Details  </li>");
+            jQuery('#spMsg').append("<li>Please Enter 1st Contact Person Details  </li>");
             flag = 1;
         }
         */
 
-        if ($('#latitude').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter Latitude </li>");
+        if (jQuery('#latitude').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Latitude </li>");
             flag = 1;
         }
-        if ($('#longitude').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter Longitude </li>");
+        if (jQuery('#longitude').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Longitude </li>");
             flag = 1;
         }
 
-        $('.fileRq').each(function () {
-            var fieldId = $(this).attr('id');
+        jQuery('.fileRq').each(function () {
+            var fieldId = jQuery(this).attr('id');
 
-            if ($('#old_' + fieldId).val() == '')
+            if (jQuery('#old_' + fieldId).val() == '')
             {
-                if ($(this).val() == '')
+                if (jQuery(this).val() == '')
                 {
                     fieldId = fieldId.replace(/\_+/g, ' ');
-                    $('#spMsg').append("<li>Please " + fieldId + "</li>");
+                    jQuery('#spMsg').append("<li>Please " + fieldId + "</li>");
                     flag = 1;
                 }
             }
         });
 
 /*
-        if ($('#approverComments').size() > 0 && $('#approverComments').val().trim() == '') {
-            $('#spMsg').append("<li>Please Enter Approver comments </li>");
+        if (jQuery('#approverComments').size() > 0 && jQuery('#approverComments').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Approver comments </li>");
             flag = 1;
         }
 */
@@ -2293,17 +2293,17 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
          flag = 1;
          }*/
         /*
-         if($('#image').val()!=''){
-         var ext = $('#image').val().split('.').pop().toLowerCase();
+         if(jQuery('#image').val()!=''){
+         var ext = jQuery('#image').val().split('.').pop().toLowerCase();
          if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1){
          flag=1; 
-         $("#spMsg").append("<li>Please Upload Valid Image( Acceptable format are gif,png,jpg,jpeg)</li>");
+         jQuery("#spMsg").append("<li>Please Upload Valid Image( Acceptable format are gif,png,jpg,jpeg)</li>");
          }else{
-         var file_size = $('#image')[0].files[0].size;
+         var file_size = jQuery('#image')[0].files[0].size;
          slimit=(1024*1024)*parseInt(5);
          if(file_size>slimit){
          flag=1; 
-         $("#spMsg").append("<li>Please Upload Image less than 5MB</li>");
+         jQuery("#spMsg").append("<li>Please Upload Image less than 5MB</li>");
          }     
          
          }
@@ -2311,9 +2311,9 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
          */
 
 /*
-        var options = $('#doc_to_be_submitted > option:selected');
+        var options = jQuery('#doc_to_be_submitted > option:selected');
         if (options.length == 0) {
-            $('#spMsg').append("<li>Please Select Documents to be submitted by Bidder </li>");
+            jQuery('#spMsg').append("<li>Please Select Documents to be submitted by Bidder </li>");
             flag = 1;
         }
         */
@@ -2322,9 +2322,9 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
         if (flag != 1) {
             //returnFlag = ValidateDate(btn);
             if (returnFlag == 1) {
-                $("#showerror_msg").show();
-                $(".inline").colorbox({inline: true, width: "50%"});
-                $(".inline").click();
+                jQuery("#showerror_msg").show();
+                jQuery(".inline").colorbox({inline: true, width: "50%"});
+                jQuery(".inline").click();
                 return false;
             } else {
                 //return false;	
@@ -2332,9 +2332,9 @@ $('#area, #bid_inc').bind("cut copy paste",function(e) {
             }
 
         } else {
-            $("#showerror_msg").show();
-            $(".inline").colorbox({inline: true, width: "50%"});
-            $(".inline").click();
+            jQuery("#showerror_msg").show();
+            jQuery(".inline").colorbox({inline: true, width: "50%"});
+            jQuery(".inline").click();
             return false;
         }
     }
@@ -2358,18 +2358,18 @@ function ValidateDate(btn) {
     var auctionStartDate="", auctionEndDate = "";
     var flag = '';
     
-    var currdate = $('#currdate').val();
+    var currdate = jQuery('#currdate').val();
     //var currentDate = 
     var currdatetime = new Date(setDateFormate(currdate));
 
-    pressReleasedate    = $('#press_release_date').val();
-    inspecDateFrom      = $('#inspection_date_from').val();
-    inspectionDateTo    = $('#inspection_date_to').val();
-    EMDStartDate        = $("#registration_start_date").val();
-    EMDEndDate          = $('#bid_last_date').val();
-    //ShortListingDate    = $('#bid_opening_date').val();
-    auctionStartDate    = $('#auction_start_date').val();
-    auctionEndDate      = $('#auction_end_date').val();
+    pressReleasedate    = jQuery('#press_release_date').val();
+    inspecDateFrom      = jQuery('#inspection_date_from').val();
+    inspectionDateTo    = jQuery('#inspection_date_to').val();
+    EMDStartDate        = jQuery("#registration_start_date").val();
+    EMDEndDate          = jQuery('#bid_last_date').val();
+    //ShortListingDate    = jQuery('#bid_opening_date').val();
+    auctionStartDate    = jQuery('#auction_start_date').val();
+    auctionEndDate      = jQuery('#auction_end_date').val();
 	
     pressReleasedate    = new Date(setDateFormate(pressReleasedate.replace(/-/g, '/')));
     if(inspecDateFrom != ''){
@@ -2386,56 +2386,56 @@ function ValidateDate(btn) {
     auctionEndDate      = new Date(setDateFormate(auctionEndDate.replace(/-/g, '/')));
 
     var is_corrigendum_backend = 0;
-    if (typeof $('corrigendum_backend') != 'undefined')
+    if (typeof jQuery('corrigendum_backend') != 'undefined')
     {
-        var is_corrigendum_backend = $('#corrigendum_backend').val();
+        var is_corrigendum_backend = jQuery('#corrigendum_backend').val();
     }
 	/*
     if (pressReleasedate != '') {
         if (pressReleasedate >= currdatetime && is_corrigendum_backend != 1) {
-            $('#spMsg').append("<li>Press Release Date or time should be less than current date or time !! <li/>");
+            jQuery('#spMsg').append("<li>Press Release Date or time should be less than current date or time !! <li/>");
             flag = 1;
         }
         
     }
 	*/
-    if (inspecDateFrom != '' && $('#inspection_date_from').val() != '0000-00-00 00:00:00') {
+    if (inspecDateFrom != '' && jQuery('#inspection_date_from').val() != '0000-00-00 00:00:00') {
         if (pressReleasedate >= inspecDateFrom) {
-            $('#spMsg').append("<li> Site Visit Start Date time should be greater than Press release date !! <li/>");
+            jQuery('#spMsg').append("<li> Site Visit Start Date time should be greater than Press release date !! <li/>");
             flag = 1;
         }
     }
 
-    if (inspectionDateTo != '' && $('#inspection_date_to').val() != '0000-00-00 00:00:00' && inspecDateFrom != '' && $('#inspection_date_from').val() != '0000-00-00 00:00:00') {
+    if (inspectionDateTo != '' && jQuery('#inspection_date_to').val() != '0000-00-00 00:00:00' && inspecDateFrom != '' && jQuery('#inspection_date_from').val() != '0000-00-00 00:00:00') {
         
         if (inspectionDateTo <= inspecDateFrom) {
-            $('#spMsg').append("<li> Site Visit End Date time should be greater than  Site Visit Start Date time !! <li/>");
+            jQuery('#spMsg').append("<li> Site Visit End Date time should be greater than  Site Visit Start Date time !! <li/>");
             flag = 1;
         }
         /*
         if (inspectionDateTo >= auctionStartDate) {
-            $('#spMsg').append("<li> Site Visit End Date time should be less than Auction Start date or time !! <li/>");
+            jQuery('#spMsg').append("<li> Site Visit End Date time should be less than Auction Start date or time !! <li/>");
             flag = 1;
         }*/
         
          if (inspectionDateTo >= auctionEndDate) {
-            $('#spMsg').append("<li> Site Visit End Date time should be less than Auction End date or time !! <li/>");
+            jQuery('#spMsg').append("<li> Site Visit End Date time should be less than Auction End date or time !! <li/>");
             flag = 1;
         }
         
     }
     
-    if (EMDStartDate != '' && $("#registration_start_date").val() != '0000-00-00 00:00:00') {
+    if (EMDStartDate != '' && jQuery("#registration_start_date").val() != '0000-00-00 00:00:00') {
        
         if (EMDStartDate <= pressReleasedate) {
-            $('#spMsg').append("<li> Apply And EMD Start Date time should be greater than Press Release Date time !! <li/>");
+            jQuery('#spMsg').append("<li> Apply And EMD Start Date time should be greater than Press Release Date time !! <li/>");
             flag = 1;
         }
     }
     
-    if (EMDEndDate != '' && $("#bid_last_date").val() != '0000-00-00 00:00:00') {
+    if (EMDEndDate != '' && jQuery("#bid_last_date").val() != '0000-00-00 00:00:00') {
         if (EMDEndDate <= EMDStartDate) {
-            $('#spMsg').append("<li> EMD Submission Last Date time should be greater than Apply And EMD Start Date time !! <li/>");
+            jQuery('#spMsg').append("<li> EMD Submission Last Date time should be greater than Apply And EMD Start Date time !! <li/>");
             flag = 1;
         }
         
@@ -2443,36 +2443,36 @@ function ValidateDate(btn) {
          
     }
     /*
-    if (ShortListingDate != '' && $("#bid_opening_date").val() != '0000-00-00 00:00:00') {
+    if (ShortListingDate != '' && jQuery("#bid_opening_date").val() != '0000-00-00 00:00:00') {
         if (ShortListingDate <= EMDEndDate) {
-            $('#spMsg').append("<li> Shortlisting Start Date time should be greater than EMD Submission Last Date time !! <li/>");
+            jQuery('#spMsg').append("<li> Shortlisting Start Date time should be greater than EMD Submission Last Date time !! <li/>");
             flag = 1;
         }
     }
     */
     /*
-    if (auctionStartDate != '' && $("#auction_start_date").val() != '0000-00-00 00:00:00') {
+    if (auctionStartDate != '' && jQuery("#auction_start_date").val() != '0000-00-00 00:00:00') {
         if (auctionStartDate <= ShortListingDate) {
-            $('#spMsg').append("<li> Auction Start Date time should be greater than Shortlisting Start Date time !! <li/>");
+            jQuery('#spMsg').append("<li> Auction Start Date time should be greater than Shortlisting Start Date time !! <li/>");
             flag = 1;
         }
     }
     */
     
-    if (auctionStartDate != '' && $("#auction_start_date").val() != '0000-00-00 00:00:00') {
+    if (auctionStartDate != '' && jQuery("#auction_start_date").val() != '0000-00-00 00:00:00') {
         if (auctionStartDate <= EMDStartDate) {
-            $('#spMsg').append("<li> Auction Start Date time should be greater than Apply And EMD Start Date time !! <li/>");
+            jQuery('#spMsg').append("<li> Auction Start Date time should be greater than Apply And EMD Start Date time !! <li/>");
             flag = 1;
         }
     }
     
-   if (auctionEndDate != '' && $("#auction_end_date").val() != '0000-00-00 00:00:00') {
+   if (auctionEndDate != '' && jQuery("#auction_end_date").val() != '0000-00-00 00:00:00') {
         if (auctionEndDate <= auctionStartDate) {
-            $('#spMsg').append("<li> Auction End Date time should be greater than Auction Start Date time !! <li/>");
+            jQuery('#spMsg').append("<li> Auction End Date time should be greater than Auction Start Date time !! <li/>");
             flag = 1;
         }
         if (auctionEndDate <= EMDEndDate) {
-            $('#spMsg').append("<li> Auction End Date time should be greater than EMD Submission Last Date time !! <li/>");
+            jQuery('#spMsg').append("<li> Auction End Date time should be greater than EMD Submission Last Date time !! <li/>");
             flag = 1;
         }
     }
