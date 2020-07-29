@@ -52,7 +52,7 @@
 										<th class="head0">ID</th>
 										<th class="head1">Name</th>
 										<th class="head1">Country</th>
-
+										<th class="head1">amount</th>
 										<th class="head0">Status</th>
 										<th class="head1">Actions</th>
 									</tr>
@@ -66,6 +66,7 @@
 											<td><?php echo $data->id; ?> </td>
 											<td><?php echo $data->state_name; ?></td>
 											<td><?php echo GetTitleById('tbl_country',$data->countryID,'country_name'); ?></td>
+											<td><?php echo ($data->amount != null)?$data->amount:'0.00'; ?></td>
 											<td><?php echo ($data->status == 1)?'Active':'Inactive'; ?></td>
 											<!--<td><input type="checkbox" class="status12" name="status[]" value="<?php echo $data->id; ?>"></td>-->
 											<td>

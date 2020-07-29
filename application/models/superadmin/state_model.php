@@ -95,10 +95,12 @@ class State_model extends CI_Model {
 		$id = $this->input->post('id');
 		$state_name = $this->input->post('name');
 		$countryID = $this->input->post('country_id');
+		$amount = $this->input->post('amount');
 		$status = $this->input->post('status');
 		$data = array(
 					'state_name'=>$state_name ,
 					'countryID'=>$countryID ,
+					'amount'=>$amount,
 					'status'=>$status
 					);
 		if($id)			

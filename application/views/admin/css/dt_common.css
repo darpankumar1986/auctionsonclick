@@ -34,7 +34,7 @@ body{font-family: 'Open Sans', sans-serif; font-size:16px; background:#fff;}
 hr { height:1px; }
 
 /*----- Header -------*/
-header{width:100%; border-top:solid 3px #1776ae; background:#fff; border-bottom: 1px solid #222; float:left;}
+header{width:100%; border-top:solid 3px #1776ae; background-color:#5e23dc; border-bottom: 1px solid #222; float:left;}
 .header_wrapper{width:85%; margin:0 auto;}
 .header_top{width:100%; float:left;}
 .logo{width:40%; float:left; padding:5px 0 5px 0;}
