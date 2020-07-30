@@ -846,9 +846,10 @@ class Bank_model extends CI_Model {
 			$this->db->where('id', $id);
 			$this->db->update('tbl_branch', $data); 
 		}else{
-                        $data['indate']=date('Y-m-d H:i:s');
-                        $this->db->insert('tbl_branch',$data);
-                               $insert_id=mysql_insert_id();
+			$data['indate']=date('Y-m-d H:i:s');
+			$this->db->insert('tbl_branch',$data);
+							
+							 $insert_id=mysql_insert_id();
                                $userlog=array(
                                     'actiontype'=>'create_branch',
                                     //'email_id'=>$email_id,
@@ -859,7 +860,7 @@ class Bank_model extends CI_Model {
                                     'status'=>'1',
                                     'message'=>'Branch Registered Successfully'
                                         ); 
- $this->db->insert('tbl_log_user_registration',$userlog);  
+								//$this->db->insert('tbl_log_user_registration',$userlog);  
 		     }
 		return true;
 	}
@@ -1632,9 +1633,9 @@ class Bank_model extends CI_Model {
 	}
     function findBankBranch($data) {
         $this->db->where('bank_id', $data['bankid']);
-		$this->db->where('zone_id', $data['zone']);
-		$this->db->where('region_id', $data['region']);
-		$this->db->where('drt_id', $data['drt']);
+		//$this->db->where('zone_id', $data['zone']);
+		//$this->db->where('region_id', $data['region']);
+		//$this->db->where('drt_id', $data['drt']);
         $this->db->where("name", $data['brancName']);
 		if(!empty($data['id'])) {
 			$this->db->where("id !=", $data['id']);

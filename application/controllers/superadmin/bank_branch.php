@@ -135,23 +135,23 @@ class Bank_branch extends MY_Controller {
 		$branch_id = $param;
 		
 		$this->form_validation->set_rules('bank', 'bank', 'trim|required|xss_clean');		
-		$this->form_validation->set_rules('zone', 'zone', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('region', 'region', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('drt', 'drt', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('zone', 'zone', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('region', 'region', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('drt', 'drt', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('name', 'name', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('address1', 'address1', 'trim|required|xss_clean');		
-		$this->form_validation->set_rules('country_id', 'country_id', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('state_id', 'state_id', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('city_id', 'city_id', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('zip', 'zip', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('phone', 'phone', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('agreementnodate', 'agreementnodate', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('revenueamount', 'revenueamount', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('agreementstartdate', 'agreementstartdate', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('agreementenddate', 'agreementenddate', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('unsuc_revenueamount', 'unsuc_revenueamount', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('stay_amount', 'stay_amount', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('cancel_amount', 'cancel_amount', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('address1', 'address1', 'trim|required|xss_clean');		
+		//$this->form_validation->set_rules('country_id', 'country_id', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('state_id', 'state_id', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('city_id', 'city_id', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('zip', 'zip', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('phone', 'phone', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('agreementnodate', 'agreementnodate', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('revenueamount', 'revenueamount', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('agreementstartdate', 'agreementstartdate', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('agreementenddate', 'agreementenddate', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('unsuc_revenueamount', 'unsuc_revenueamount', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('stay_amount', 'stay_amount', 'trim|required|xss_clean');
+		//$this->form_validation->set_rules('cancel_amount', 'cancel_amount', 'trim|required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){
 				

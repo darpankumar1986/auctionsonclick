@@ -1,6 +1,6 @@
 jQuery(document).ready(function(){
 	
-		jQuery('#overviewselect, input:checkbox').uniform();
+		//jQuery('#overviewselect, input:checkbox').uniform();
 		
 		///// DATE PICKER /////
 		jQuery( "#datepickfrom, #datepickto" ).datepicker();

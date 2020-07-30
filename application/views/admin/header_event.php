@@ -21,7 +21,7 @@
 
 
 <!--<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/plugins/jquery-1.7.min.js"></script>-->
-<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/plugins/jquery-3.2.0.min"></script>
+<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/plugins/jquery-3.2.0.min.js"></script>
 
 
 <script type="text/javascript" src="<?php echo VIEWBASE; ?>js/plugins/jquery-ui-1.8.16.custom.min.js"></script>
