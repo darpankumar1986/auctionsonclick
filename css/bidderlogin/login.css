@@ -11,8 +11,8 @@ body {font-family:Arial, Helvetica, sans-serif; background: #d8d6d8 url(../image
 header
  -------------------------------------------------
  */
-.headerplain {height: 90px; background:#fff; border-top: 1px solid #bd2000; border-bottom: 1px solid #bd2000;}
-.orange_line{width: 100%; background-color: #bd2000; height: 3px;}
+.headerplain {height: 90px; background-color:#5e23dc;}
+.orange_line{width: 100%; background-color: #5e23dc; height: 3px;}
 .logo{width:40%; padding:5px 0 5px 0; }
 .logo-text {
     font-size: 25px;

@@ -151,7 +151,7 @@ if (!empty($row)) {
                         <div class="lft_heading">Name of the Organization <span class="red"> *</span></div>
                         <div class="rgt_detail">
                             <select name="bank" id="bank" onchange="getZone(jQuery(this).val())" class="html_found">
-                                <option value="">Select Organization</option>
+                                <option value="">Select Organization </option>
 <?php foreach ($banks as $bank_record) { ?>
                                     <option value="<?php echo $bank_record->id; ?>" <?php echo ($bank_record->id == $bank_id) ? 'selected' : ''; ?>><?php echo $bank_record->name; ?></option>
                                 <?php } ?>
@@ -173,7 +173,7 @@ if (!empty($row)) {
                     </div>
                     <?php */ ?>
                     <div class="row">
-                        <div class="lft_heading">Zone <span class="red"> *</span></div>
+                        <div class="lft_heading">Zone </div>
                         <div class="rgt_detail">
                             <select name="zone" id="zone" onchange="getRegion(jQuery(this).val())" class="html_found">
                                 <option value="" >Select Zone</option>
@@ -184,7 +184,7 @@ if (!empty($row)) {
                         </div>					
                     </div>
                     <div class="row">
-                        <div class="lft_heading">Region <span class="red"> *</span></div>
+                        <div class="lft_heading">Region </div>
                         <div class="rgt_detail">
                             <select name="region" id="region" class="html_found">
                                 <option value="">Select Region</option>
@@ -195,7 +195,7 @@ if (!empty($row)) {
                         </div>					
                     </div>
                     <div class="row">
-                        <div class="lft_heading">DRT Name <span class="red"> *</span></div>
+                        <div class="lft_heading">DRT Name </div>
                         <div class="rgt_detail">
                             <select name="drt" id="drt" class="html_found">
                                 <option value="">Select DRT</option>
@@ -206,9 +206,9 @@ if (!empty($row)) {
                         </div>					
                     </div>
                     <div class="row">
-                        <div class="lft_heading">Branch Name<span class="red"> *</span></div>
+                        <div class="lft_heading">Branch Name <span class="red"> *</span></div>
                         <div class="rgt_detail">
-                            <input maxlength="150" onblur="checkBankBranch(this.value);" onkeyup="return checkBankBranchkeypress();" type="text" name="name" id="name" class="longinput html_found" value="<?php echo $name ?>" />
+                            <input maxlength="150" type="text" name="name" id="name" class="longinput html_found" value="<?php echo $name ?>" /><!--onblur="checkBankBranch(this.value);" onkeyup="return checkBankBranchkeypress();" -->
                             <label class="error" id="check-all-field"></label>
                             <label class="error" style="display:none;">Please enter Name</label>
 
@@ -217,7 +217,7 @@ if (!empty($row)) {
                     </div>
 
                     <div class="row">
-                        <div class="lft_heading">Address 1 <span class="red"> *</span></div>
+                        <div class="lft_heading">Address 1 </div>
                         <div class="rgt_detail">
                             <textarea maxlength="200" name="address1" class="html_found"><?php echo $address1 ?></textarea>
                             <label class="error" style="display:none;">Please enter address1</label>
@@ -239,7 +239,7 @@ if (!empty($row)) {
                             </div>					
                         </div>
                         <div class="row">
-                            <div class="lft_heading">Country <span class="red"> *</span></div>
+                            <div class="lft_heading">Country </div>
                             <div class="rgt_detail">
                                 <select name="country_id" id="country_id" class="html_found">
                                     <option value="">Select country</option>
@@ -250,7 +250,7 @@ if (!empty($row)) {
                             </div>					
                         </div>
                         <div class="row">
-                            <div class="lft_heading">State <span class="red"> *</span></div>
+                            <div class="lft_heading">State </div>
                             <div class="rgt_detail">
                                 <select name="state_id" id="state_id" class="html_found">
                                     <option value="">Select state</option>
@@ -262,7 +262,7 @@ if (!empty($row)) {
                         </div>
 
                         <div class="row">
-                            <div class="lft_heading">City <span class="red"> *</span></div>
+                            <div class="lft_heading">City </div>
                             <div class="rgt_detail">
                                 <select name="city_id" id="city_id" class="html_found">
                                     <option value="">Select city</option>
@@ -273,14 +273,14 @@ if (!empty($row)) {
                             </div>					
                         </div>
                         <div class="row">
-                            <div class="lft_heading">Pin/Zip Code <span class="red"> *</span></div>
+                            <div class="lft_heading">Pin/Zip Code </div>
                             <div class="rgt_detail">
                                 <input maxlength="6" type="text" name="zip" id="zip" onkeypress="return isNumberKey(event);" class="longinput html_found" value="<?php echo $zip ?>" />
                                 <label class="error" style="display:none;">Please enter zip</label>
                             </div>					
                         </div>
                         <div class="row">
-                            <div class="lft_heading">Phone Number <span class="red"> *</span></div>
+                            <div class="lft_heading">Phone Number </div>
                             <div class="rgt_detail">
                                 <input maxlength="15" type="text" onkeypress="return isNumberKey(event);" name="phone" maxlength="12" id="phone" class="longinput html_found" value="<?php echo $phone ?>" />
                                 <label class="error" style="display:none;">Please enter phone</label>
@@ -294,14 +294,14 @@ if (!empty($row)) {
                                 </div>					
                             </div>
                             <div class="row">
-                                <div class="lft_heading">Agreement No Date  <span class="red"> *</span> </div>
+                                <div class="lft_heading">Agreement No Date   </div>
                                 <div class="rgt_detail"> 
                                     <input maxlength="255" type="text" name="agreementnodate" id="agreementnodate" class="longinput html_found" value="<?php echo $agreementnodate ?>"  />
                                     <label class="error" style="display:none;">Please enter Agreement No. Date</label>
                                 </div>					
                             </div>
                             <div class="row">
-                                <div class="lft_heading">Revenue Amount(Successful) <span class="red"> *</span> </div>
+                                <div class="lft_heading">Revenue Amount(Successful)  </div>
                                 <div class="rgt_detail">
                                     <input onkeypress="return isNumberKey(event);" maxlength="13" type="text" name="revenueamount" id="revenueamount" class="longinput html_found" value="<?php echo $revenueamount ?>"  />
                                     <label class="error" style="display:none;">Please enter Revenue Amount</label>
@@ -346,7 +346,7 @@ if (!empty($row)) {
  */ ?>
 
                             <div class="row">
-                                <div class="lft_heading">Start Date <span class="red"> *</span> </div>
+                                <div class="lft_heading">Start Date  </div>
                                 <div class="rgt_detail">
                                     <input type="text" name="agreementstartdate" id="agreementstartdate" class="longinput html_found" value="<?php echo $agreementstartdate ?>" >
                                     <label class="error" style="display:none;">Please enter start date</label>
@@ -355,7 +355,7 @@ if (!empty($row)) {
 
 
                             <div class="row">
-                                <div class="lft_heading">End Date <span class="red"> *</span> </div>
+                                <div class="lft_heading">End Date  </div>
                                 <div class="rgt_detail"><input type="text" name="agreementenddate" onchange="checkvalidate();" id="agreementenddate" class="longinput html_found" value="<?php echo $agreementenddate ?>" ></div>
                                 <span id="spMsg" style="color:red; font-size:11px;margin-left:310px;"></span>
                             </div>
@@ -366,21 +366,21 @@ if (!empty($row)) {
                             </div>-->
 
                             <div class="row">
-                                <div class="lft_heading">Revenue Amount(Un Successful) <span class="red"> *</span> </div>
+                                <div class="lft_heading">Revenue Amount(Un Successful)  </div>
                                 <div class="rgt_detail">
                                     <input onkeypress="return isNumberKey(event);" maxlength="13" type="text" name="unsuc_revenueamount" id="unsuc_revenueamount" class="longinput html_found" value="<?php echo $unsuc_revenueamount ?>"  />
                                     <label class="error" style="display:none;">Please enter Revenue Amount</label>
                                 </div>					
                             </div>
                               <div class="row">
-                                <div class="lft_heading">Stay Amount <span class="red"> *</span></div>
+                                <div class="lft_heading">Stay Amount </div>
                                 <div class="rgt_detail">
                                    <input onkeypress="return isNumberKey(event);" maxlength="13" type="text" name="stay_amount" id="stay_amount" class="longinput html_found" value="<?php echo $stay_amount ?>"  />
                                     <label class="error" style="display:none;">Please enter Cancel/Stay Amount</label>  
                                  </div>
                             </div>
                              <div class="row">
-                                <div class="lft_heading">Cancel Amount <span class="red"> *</span></div>
+                                <div class="lft_heading">Cancel Amount </div>
                                 <div class="rgt_detail">
                                    <input onkeypress="return isNumberKey(event);" maxlength="13" type="text" name="cancel_amount" id="cancel_amount" class="longinput html_found" value="<?php echo $cancel_amount ?>"  />
                                     <label class="error" style="display:none;">Please enter Cancel/Stay Amount</label>  
@@ -422,20 +422,20 @@ if (!empty($row)) {
                                 required: true
                                         //,alphanumeric: true
                             },
-                            address1: "required",
-                            drt: "required",
-                            bank: "required",
-                            zone: "required",
-                            region: "required",
-                            country_id: "required",
-                            state_id: "required",
-                            city_id: "required",
-                            unsuc_revenueamount: "required",
-                            agreementstartdate: "required",
-                            agreementenddate: "required",
-                            cancel_amount:"required",
-                            stay_amount:"required",
-                            zip: {
+                            //address1: "required",
+                            //drt: "required",
+                            bank: "required"
+                            //zone: "required",
+                            //region: "required",
+                            //country_id: "required",
+                            //state_id: "required",
+                            //city_id: "required",
+                            //unsuc_revenueamount: "required",
+                            //agreementstartdate: "required",
+                            //agreementenddate: "required",
+                            //cancel_amount:"required",
+                            //stay_amount:"required",
+                            /*zip: {
                                 required: true,
                                 alphanumeric: true
                                         //number: true
@@ -446,7 +446,7 @@ if (!empty($row)) {
                             },
                             agreementnodate: {
                                 required: true,
-                                /*alphanumeric: true*/
+                                //alphanumeric: true
                             },
                             revenueamount: {
                                 required: true,
@@ -467,13 +467,14 @@ if (!empty($row)) {
                             total: {
                                 required: true,
                                 number: true
-                            }
+                            }*/
                         },
                         messages: {
                             bank: "Please select bank",
                             name: {
                                 required: "Please enter name"
-                            },
+                            }
+							/*,
                             address1: "Please enter address1",
                             drt: "Please select drt",
                             zone: "Please select zone",
@@ -520,7 +521,7 @@ if (!empty($row)) {
                             unsuc_revenueamount: {
                                 required: "Please enter unsuccess revenueamount",
                                 number: "Please enter decimal or float value"
-                            }
+                            }*/
 
                         }
                     });

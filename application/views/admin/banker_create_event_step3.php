@@ -1514,10 +1514,10 @@ jQuery(".numericonly_1").keydown(function (e) {
    }
     
 });
-jQuery("#state").attr("value","<?php echo $auctionData->state; ?>");
-jQuery("#city").attr("value","<?php echo $auctionData->city; ?>");
-jQuery("#bank_id").attr("value","<?php echo $auctionData->bank_id; ?>");
-jQuery("#category_id").attr("value","<?php echo $auctionData->category_id; ?>");
+//jQuery("#state").attr("value","<?php echo $auctionData->state; ?>");
+//jQuery("#city").attr("value","<?php echo $auctionData->city; ?>");
+//jQuery("#bank_id").attr("value","<?php echo $auctionData->bank_id; ?>");
+//jQuery("#category_id").attr("value","<?php echo $auctionData->category_id; ?>");
 
    jQuery('#country').change(function () {
 		var country_id = jQuery(this).val();

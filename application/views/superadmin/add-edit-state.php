@@ -7,6 +7,7 @@ if(!empty($row)){
 	$id=$row->id; 
 	$country=$row->countryID; 
 	$state_name=$row->state_name; 
+	$amount=$row->amount; 
 	$status=$row->status; 
 }
 else{
@@ -14,6 +15,7 @@ else{
 	if(!empty($_POST)) {
 		$country=$_POST['country_id']; 
 		$state_name=$_POST['name']; 
+		$amount=$_POST['amount']; 
 		$status=$_POST['status']; 
 	}
 }
@@ -62,6 +64,13 @@ else{
 					</div>					
 				</div>
 				<div class="row">
+					<div class="lft_heading">Amount <span class="red">&nbsp;&nbsp;</span></div>
+					<div class="rgt_detail">
+						<input name="amount" id="amount" type="text" maxlength="13" value="<?php echo $amount;?>" class="input numericonly">
+						
+					</div>					
+				</div>
+				<div class="row">
 					<div class="lft_heading">Status<span class="red"> *</span></div>
 					<div class="rgt_detail">
 					<select name="status">
@@ -86,6 +95,22 @@ else{
 
 <script>
 jQuery(document).ready(function(){
+	jQuery('.numericonly').keypress(function(event) {
+	  if ((event.which != 46 || jQuery(this).val().indexOf('.') != -1) &&
+		((event.which < 48 || event.which > 57) &&
+		  (event.which != 0 && event.which != 8))) {
+		event.preventDefault();
+	  }
+
+	  var text = jQuery(this).val();
+
+	  if ((text.indexOf('.') != -1) &&
+		(text.substring(text.indexOf('.')).length > 2) &&
+		(event.which != 0 && event.which != 8) &&
+		(jQuery(this)[0].selectionStart >= text.length - 2)) {
+		event.preventDefault();
+	  }
+	});
 	jQuery("#state").validate({
 		rules: {
 			name: {
@@ -107,7 +132,7 @@ jQuery(document).ready(function(){
 					}
 				}
 			},		
-			country_id: "required"
+			country_id: "required"			
 		},
 		messages: {
 			name: {
