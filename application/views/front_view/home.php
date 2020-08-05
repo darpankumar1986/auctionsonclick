@@ -17,28 +17,31 @@
 								<div class="dropdown">
 									<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select
 										<span class="caret"></span></button>
-									<ul class="dropdown-menu">
+									<ul class="dropdown-menu assetsType">
 										<?php $parentCat = $this->home_model->getAllCategory(0); ?>
 											<?php foreach($parentCat as $key => $parCat){ ?>
                                             <li class="dropdown-header">
-											<input type="radio" id="test<?php echo $key; ?>" name="parentCat" value="<?php echo $parCat->id;?>">
+											<input type="radio" id="test<?php echo $key; ?>" class="s_parent_id" s-data-parent-id="<?php echo $parCat->id;?>" name="parentCat" value="<?php echo $parCat->id;?>">
                                                 <label for="test<?php echo $key; ?>">All <?php echo $parCat->name; ?></label></li>
 												<?php $Cats = $this->home_model->getAllCategory($parCat->id); ?>
 												<?php foreach($Cats as $cat){ ?>
-		                                            <li><label class="checkbox-inline"><input type="checkbox" value="<?php echo $cat->id;?>"><?php echo $cat->name; ?></label></li>
+		                                            <li><label class="checkbox-inline"><input type="checkbox" s-data-parent="<?php echo $parCat->id;?>" name="s_sub_id" value="<?php echo $cat->id;?>"><?php echo $cat->name; ?></label></li>
 												<?php } ?>
                                            
 											<?php } ?>                                            
 									</ul>
+									<input type="hidden" name="assetsTypeId" id="assetsTypeId" value="0"/>
 								</div>
 								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Type City" name="city_name" value="">
+									<input type="hidden" id="txt-category">  
+									<input type="text" id="txt-search" class="form-control searchres" name="x" onKeyPress="enterpressalert(event)" placeholder="Type City" value="<?php echo $_GET['search'];?>">
 									<div class="input-group-btn search_btn">
-										<button class="btn btn-default" type="submit">
+										<button class="btn btn-default searhcbtn" type="button" onclick="goForSearch(this)">
 											<i class="fa fa-search"></i> Auctions
 										</button>
 									</div>
 								</div>
+								<div class="error" id="error_txt" style="margin-top: 50px;background-color: #00000073;display: block;height: 20px;padding-right: 30px;color: #e41b1b;margin-left: 148px;"></div>
 							</form>
 						</div>
 				</div><!--banner-text-->

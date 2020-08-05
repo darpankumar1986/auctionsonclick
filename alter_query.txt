@@ -48,6 +48,7 @@ ALTER TABLE `tbl_user_registration` CHANGE `city_id` `city_id` VARCHAR(500) NULL
 
 ----------------- Dheeraj -------------------------------
 ALTER TABLE `tbl_log_auction` ADD `sales_person_id` INT NOT NULL DEFAULT '0' AFTER `scheme_id`;
+ALTER TABLE `tbl_auction` ADD `sales_person_id` INT NOT NULL DEFAULT '0' AFTER `scheme_id`;
 ALTER TABLE `tbl_auction` CHANGE `sales_person_id` `sales_person_id` INT(11) NULL;
 ALTER TABLE `tbl_log_auction` CHANGE `sales_person_id` `sales_person_id` INT(11) NULL;
 ALTER TABLE `tbl_state `ADD `amount` decimal(27,2) NULL AFTER `countryID`;

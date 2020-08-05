@@ -147,41 +147,52 @@ class Home_model extends CI_Model {
     }
     
     function liveAuctionDatatableHome($bankIdbyshortname='')
-    {           //$this->datatables->select("b.logopath,a.id,b.name, a.event_title,cit.city_name,DATE_FORMAT(a.bid_last_date,'%m %b %Y'), a.reserve_price,a.emd_amt,a.productID",false)
-		//$this->datatables->select("b.logopath,a.id,b.name, a.event_title,IFNULL( cit.city_name, a.other_city) AS city_name,a.bid_last_date, a.reserve_price,a.emd_amt,a.productID,a.dsc_enabled",false)
+    {           		
 		
-		/*$monthArr = array("january"=>"01","febuary"=>"02","march"=>"03","april"=>"04","may"=>"05","june"=>"06","january"=>"01","january"=>"01","january"=>"01","january"=>"01","january"=>"01","january"=>"01");
-		$dateArr = explode(" ",$_POST['sSearch']);*/
-		
-		
-				$searchArr = $this->searchFromUrl($bankIdbyshortname);
-				
-               $this->datatables->select("a.reference_no, a.PropertyDescription,a.emd_amt, a.registration_start_date, a.bid_last_date, a.auction_start_date, a.auction_end_date,a.id",false)
+			$_POST['sColumns'] = "a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id";
+               $this->datatables->select("a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
                 ->from('tbl_auction as a')				
-				->join('tblmst_uom_type as ut','ut.uom_id=a.area_unit_id','left')
+				->join('tbl_category as c','c.id=a.subcategory_id','left')
+				->join('tbl_city as city','city.id=a.city','left')
                 ->where('a.status IN(1)')
                 ->where('auction_end_date >= NOW()');
                   $this->db->order_by('a.bid_last_date','ASC');
-                  
-                  /*if($bankIdbyshortname > 0)
-                  {
-					 $this->db->where('a.bank_id',$bankIdbyshortname);
-				  }*/
-				  
-				  if(is_array($searchArr))
+			  
+	
+				  if($_GET['search_box'] != '')
 				  {
-					  foreach($searchArr as $key => $v)
-					  {
-						  $this->db->where('a.'.$key,$v);
-					  }
+					$this->db->where('a.id',$_GET['search_box']);
 				  }
-                  
-      			//$result = $this->datatables->generate();				
-      			
-				//echo '<pre>';
-				//print_r($result);die;
+
+			
+				  if($_GET['parent_id'] != '')
+				  {
+					$this->db->where('a.category_id',$_GET['parent_id']);
+				  }
+
+				  if(is_array($_GET['sub_id']) && count($_GET['sub_id']) > 0)
+				  {
+					$this->db->where('a.subcategory_id IN('.implode(',',$_GET['sub_id']).')');
+				  }
+
+
+				$reservePriceMinRange = $_GET['reservePriceMinRange'];
+				$reservePriceMaxRange = $_GET['reservePriceMaxRange'];
+				
+				if($reservePriceMinRange > 0)
+				{
+					$this->db->where('a.reserve_price >=',$reservePriceMinRange);
+					//$this->db->where('a.reserve_price <=',$reservePriceMaxRange);
+				}
+
+				if($reservePriceMaxRange > 0)
+				{
+					//$this->db->where('a.reserve_price >=',$reservePriceMinRange);
+					$this->db->where('a.reserve_price <=',$reservePriceMaxRange);
+				}
 
                  return $this->datatables->generate();
+				 //echo $this->db->last_query();die;
     }
     
     function getAllAssetsType()
@@ -661,6 +672,26 @@ class Home_model extends CI_Model {
 		$this->db->from("tbl_category");
 		$query = $this->db->get();
 		return $query->result();
+	}
+
+	function getAuctionCityLocation()
+	{
+		$this->db->select("a.city,a.reference_no as location,city.city_name",false)
+		->from('tbl_auction as a')	
+		->join('tbl_city as city','city.id=a.city','left')
+		->where('a.status IN(1)')
+		->where('auction_end_date >= NOW()');
+
+		$query = $this->db->get('');
+
+		$data = array();
+		foreach($query->result() as $row)
+		{
+			//echo $row->city_name;die;
+			$data['city'][$row->city] = $row->city_name;
+			$data['location'][$row->location] = $row->location;
+		}
+		return $data;
 	}
 }
 

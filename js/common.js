@@ -2111,7 +2111,6 @@ function submitForgotPassword(utype) {
 		
 	 }
     
-    
 	if (flag == 1) {
         return false;
     } else {

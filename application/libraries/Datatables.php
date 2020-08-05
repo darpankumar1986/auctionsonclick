@@ -286,7 +286,7 @@
         $mColArray = $this->columns;
 
       $sWhere = '';
-      //$sSearch = mysql_real_escape_string($this->ci->input->post('sSearch'));
+      $sSearch = ($this->ci->input->post('sSearch'));
       $mColArray = array_values(array_diff($mColArray, $this->unset_columns));
       $columns = array_values(array_diff($this->columns, $this->unset_columns));
 

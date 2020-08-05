@@ -19,40 +19,40 @@
       <meta name="rating" content="General"/>
       <meta name="audience" content="All"/>
 	 
-	<link rel="icon" href="<?php echo base_url();?>favicon.ico">	
-	<link href="<?php echo base_url(); ?>assets/front_view/css/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<link href="<?php echo base_url();?>assets/front_view/css/flexslider.css" rel="stylesheet" type="text/css" />
-	<link href="<?php echo base_url();?>assets/front_view/css/owl.carousel.css" rel="stylesheet">
-	<!--<link href="<?php echo base_url();?>assets/front_view/css/style.css" rel="stylesheet" type="text/css" />-->
-	<link href="<?php echo base_url();?>assets/front_view/css/popup.css" rel="stylesheet" type="text/css" />
-	<link href="<?php echo base_url();?>assets/front_view/css/custom.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" href="<?php echo base_url();?>favicon.ico?rand=<?php echo CACHE_RANDOM; ?>">	
+	<link href="<?php echo base_url(); ?>assets/auctiononclick/css/jquery-ui.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url();?>assets/front_view/css/flexslider.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url();?>assets/front_view/css/owl.carousel.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
+	<!--<link href="<?php echo base_url();?>assets/front_view/css/style.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet" type="text/css" />-->
+	<link href="<?php echo base_url();?>assets/front_view/css/popup.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url();?>assets/front_view/css/custom.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet" type="text/css" />
 	<!-- FONTS -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500italic,700,500,700italic,900,900italic' rel='stylesheet' type='text/css'>
-	<link href="<?php echo base_url();?>assets/front_view/css/font-awesome.min.css" rel="stylesheet">	
+	<link href="<?php echo base_url();?>assets/front_view/css/font-awesome.min.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">	
 	<!-- SCRIPTS -->
 	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<!--[if IE]><html class="ie" lang="en"> <![endif]-->
-	    <script src="<?php echo base_url(); ?>assets/auctiononclick/js/jquery-3.2.0.min.js"></script>
-	<script src="<?php echo base_url();?>assets/front_view/js/jquery.nicescroll.min.js" type="text/javascript"></script>
-	<script src="<?php echo base_url();?>assets/front_view/js/superfish.min.js" type="text/javascript"></script>
-	<script src="<?php echo base_url();?>assets/front_view/js/jquery.flexslider-min.js" type="text/javascript"></script>
-	<script src="<?php echo base_url();?>assets/front_view/js/owl.carousel.js" type="text/javascript"></script>
-	<script src="<?php echo base_url();?>assets/front_view/js/velocity.min.js"></script>
-	<script src="<?php echo base_url();?>assets/front_view/js/popup.js" type="text/javascript"></script>
-	<!--<script src="<?php echo base_url();?>assets/front_view/js/myscript.js" type="text/javascript"></script>-->
-	<script src="<?php echo base_url();?>js/core-min.js" type="text/javascript"></script>
-	<script src="<?php echo base_url();?>js/sha256-min.js" type="text/javascript"></script>
-	<script src="<?php echo base_url();?>js/validation.js" type="text/javascript"></script>
-	<script src="<?php echo base_url(); ?>bankeauc/js/promise.min.js"></script>
-	<script src="<?php echo base_url(); ?>bankeauc/js/sweetalert.min.js"></script>
-    <script src="<?php echo base_url(); ?>bankeauc/js/sweetalert.core.js"></script>
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bankeauc/css/sweetalert.css">
+	<script src="<?php echo base_url(); ?>assets/auctiononclick/js/jquery-3.2.0.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+
+	<script src="<?php echo base_url();?>assets/front_view/js/jquery.nicescroll.min.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>assets/front_view/js/superfish.min.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>assets/front_view/js/jquery.flexslider-min.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>assets/front_view/js/owl.carousel.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>assets/front_view/js/velocity.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+	<script src="<?php echo base_url();?>assets/front_view/js/popup.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>js/core-min.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>js/sha256-min.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
+	<script src="<?php echo base_url();?>js/validation.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
+	<!--<script src="<?php echo base_url(); ?>bankeauc/js/promise.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+	<script src="<?php echo base_url(); ?>bankeauc/js/sweetalert.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+    <script src="<?php echo base_url(); ?>bankeauc/js/sweetalert.core.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bankeauc/css/sweetalert.css?rand=<?php echo CACHE_RANDOM; ?>">-->
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="<?php echo base_url(); ?>assets/auctiononclick/css/bootstrap.min.css" rel="stylesheet">
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-    <link href="<?php echo base_url(); ?>assets/auctiononclick/css/font-awesome.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/auctiononclick/css/style.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/auctiononclick/css/bootstrap.min.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?rand=<?php echo CACHE_RANDOM; ?>">-->
+    <link href="<?php echo base_url(); ?>assets/auctiononclick/css/font-awesome.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/auctiononclick/css/style.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
 	
 		<?php
 			if(isset($_GET['track'])){$track=$_GET['track'];}else{$track='';}
@@ -138,33 +138,31 @@
                                 <form class="form_desc">
                                     <div class="dropdown">
                                         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select
-                                            <span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
+                                            <span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
 											<?php $parentCat = $this->home_model->getAllCategory(0,true); ?>
-											<?php foreach($parentCat as $parCat){ ?>
-                                            <li class="dropdown-header">
-											<input type="radio" id="test1" name="radio-group" checked>
-                                                <label for="test1">All Properties</label></li>
-                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Land</label></li>
-                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Residential</label></li>
-                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Commercial</label></li>
+											<?php foreach($parentCat as $key => $parCat){ ?>
+												<li class="dropdown-header">
+													<input type="radio" id="test<?php echo $key; ?>" class="s_parent_id" s-data-parent-id="<?php echo $parCat->id;?>" name="parentCat" value="<?php echo $parCat->id;?>" <?php echo ($parCat->id == $_GET['assetsTypeId'])?'checked="checked"':''; ?> />
+													<label for="test<?php echo $key; ?>">All <?php echo $parCat->name; ?></label>
+												</li>
+												<?php $Cats = $this->home_model->getAllCategory($parCat->id); ?>
+												<?php foreach($Cats as $cat){ ?>
+		                                             <li><label class="checkbox-inline"><input type="checkbox" s-data-parent="<?php echo $parCat->id;?>" name="s_sub_id" value="<?php echo $cat->id;?>" <?php echo (in_array($cat->id,$_GET['sc']))?'checked="checked"':''; ?> /><?php echo $cat->name; ?></label></li>
+												<?php } ?>
 											<?php } ?>
-                                            <li class="dropdown-header"><input type="radio" id="test2" name="radio-group" checked>
-                                                <label for="test2">All Vehicles</label></li>
-                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Personal</label></li>
-                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Commercial</label></li>
-                                            <li class="dropdown-header"><input type="radio" id="test3" name="radio-group" checked>
-                                                <label for="test3">Others</label></li>
                                         </ul>
                                     </div>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Type City">
+                                        <input type="text" id="txt-search" class="form-control" placeholder="Type City" value="<?php echo $_GET['search'];?>">
                                         <div class="input-group-btn search_btn">
-                                            <button class="btn btn-default" type="submit">
+                                            <button class="btn btn-default" type="button" onclick="goForSearch(this)">
                                                 <i class="fa fa-search"></i>
                                             </button>
                                         </div>
                                     </div>
+									<div class="error" id="error_txt" style="display: block;height: 20px;padding-right: 30px;color: rgb(251 189 189);    background-color: transparent;    margin-top: 42px;    margin-left: 148px;;"></div>
                                 </form>
                             </div>
                         </div>
@@ -180,7 +178,7 @@
                                             <li><span><i class="fa fa-phone big"></i></span>+91-124-4302020 / 21 / 22 / 23</li>
                                         </ul>
                                     </div></li>
-                                    <li><a href="#"><span><i class="fa fa-user"></i></span>Login / Register</a></li>
+                                    <li><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span>Login / Register</a></li>
                                     <li><a href="#"><span class="cret-1" onclick="openNav()"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/menu_icon.png"></span></a></li>
                                 </ul>
                                 <div id="mySidenav" class="sidenav">

@@ -56,7 +56,104 @@
     </div><!--auction-main-->
 
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-    <script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/auctiononclick/js/myscript.js"></script>
+    <!--<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>-->
+    <script src="<?php echo base_url(); ?>assets/auctiononclick/js/myscript.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+
+	<script>
+
+checkSearch();
+function enterpressalert(e)
+{
+	var code = (e.keyCode ? e.keyCode : e.which);
+	if(code == 13) 
+	{
+		goForSearch();
+	}
+}
+
+function checkSearch()
+{
+		$('#srch-category').html('Products');
+		var searchBy = $("#searchby").val(1);
+	
+	
+}
+
+
+function goForSearch(str)
+{
+	$("#error_txt").html('');
+	//var searchBy = $("#searchby").val();
+	$("#error_txt").hide();
+	var searchText = $("#txt-search").val();
+	
+	if(searchText.trim() == '')
+	{
+		$("#error_txt").show();
+		$("#error_txt").html('Please enter keyword for your search');
+		return false;
+	}
+	else
+	{
+		var assetsTypeId = $('.dropdown-header input[name=parentCat]').val();
+
+		var sub_id_str = '';
+		$("input[name=s_sub_id]:checked").each(function(){
+			var sub_id = $(this).val();
+			sub_id_str += '&sc[]='+sub_id;
+		});
+		
+		window.location='<?php echo base_url();?>propertylisting?search='+searchText+'&assetsTypeId='+assetsTypeId+sub_id_str;
+	}
+}
+	
+	
+$(document).on('keypress','#txt-search',function(){
+	$("#error_txt").hide();
+});
+
+$(document).on('click','.assetsType li',function(){
+	//alert();
+	var assetsTypeId = $(this).attr('data-id');
+	if(assetsTypeId != '' && typeof(assetsTypeId) !== 'undefined')
+	{
+		$('#assetsTypeId').val(assetsTypeId);
+	}
+	
+});
+$(document).ready(function(){
+	$("input[name=parentCat]").change(function(){
+		var parent = $(this).val();
+		
+		$(".s_parent_id").each(function(){
+			var parent_id = $(this).val();
+			if(parent != parent_id)
+			{
+				$("input[s-data-parent="+parent_id+"]").prop('checked',false);
+			}
+		});
+		$("input[s-data-parent-id]").prop('checked',false);
+		$("input[s-data-parent-id="+parent+"]").prop('checked',true);
+	});
+
+	$("input[name=s_sub_id]").change(function(){
+		var parent_id = $(this).attr('s-data-parent');
+
+		$(".s_parent_id").each(function(){
+			var parent = $(this).val();
+
+			if(parent != parent_id)
+			{
+				$("input[s-data-parent="+parent+"]").prop('checked',false);
+				$("input[s-data-parent-id="+parent+"]").prop('checked',false);
+			}
+		});
+
+		$("input[s-data-parent-id="+parent_id+"]").prop('checked',true);
+	});
+});
+</script>
+
+
 </body>
 </html>

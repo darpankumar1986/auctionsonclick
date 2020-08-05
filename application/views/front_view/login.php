@@ -2,12 +2,12 @@
 			$(document).ready(function(){
 				$('.error1').css('display','none');
 				$("#username").focus();
-				$('.keysubmit').keypress(function (e) {
+				/*$('.keysubmit').keypress(function (e) {
 					if (e.which == 13) {
 						validateloginform();
 						return false;    //<---- Add this line
 					}
-				});
+				});*/
 		
 	
 			$("#ddlLogin").change(function(){
@@ -323,3 +323,4 @@
             </div><!--row-->
 
         </div><!--container-fluid-->
+		<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>

@@ -141,6 +141,9 @@ define('NEFT_STATUS_CHECK_DAYS','15');
 define('IS_PAYMENT_GATEWAY_OFF',TRUE);
 
 
+$random = '67894567345';
+$random = rand(1000000000,9999999999);
+define('CACHE_RANDOM',$random);
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

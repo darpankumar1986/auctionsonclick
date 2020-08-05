@@ -383,13 +383,13 @@ body{
     font-weight: normal;
     font-size: 13px;
 }
-[type="radio"]:checked,
-[type="radio"]:not(:checked) {
+.dropdown-header [type="radio"]:checked,
+.dropdown-header [type="radio"]:not(:checked) {
     position: absolute;
     left: -9999px;
 }
-[type="radio"]:checked + label,
-[type="radio"]:not(:checked) + label
+.dropdown-header [type="radio"]:checked + label,
+.dropdown-header [type="radio"]:not(:checked) + label
 {
     position: relative;
     padding-left: 23px;
@@ -398,8 +398,8 @@ body{
     display: inline-block;
     color: #333333;
 }
-[type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before {
+.dropdown-header [type="radio"]:checked + label:before,
+.dropdown-header [type="radio"]:not(:checked) + label:before {
     content: '';
     position: absolute;
     left: 0;
@@ -410,8 +410,8 @@ body{
     border-radius: 100%;
     background: #fff;
 }
-[type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after {
+.dropdown-header [type="radio"]:checked + label:after,
+.dropdown-header [type="radio"]:not(:checked) + label:after {
     content: '';
     width: 6px;
     height: 6px;
@@ -423,12 +423,12 @@ body{
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
-[type="radio"]:not(:checked) + label:after {
+.dropdown-header [type="radio"]:not(:checked) + label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
-[type="radio"]:checked + label:after {
+.dropdown-header [type="radio"]:checked + label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
@@ -537,6 +537,7 @@ h3.auction_heading {
 
 
 /*----------------------------Login-page---------------------------------------*/
+
 .auction-main-wrapper .position-fix {
     background-color: #5e23dc;
 }
@@ -749,6 +750,345 @@ button.login_btn {
     margin-top: 0;
 }
 
+
+
+/*----------------------------Login-page_end---------------------------------------*/
+
+
+/*----------------------------Property_Listing_page---------------------------------------*/
+
+.breadcrumb_main {
+    margin: 40px 0px;
+}
+.breadcrumb_main .breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 0;
+}
+.breadcrumb>.active {
+    color: #666666;
+}
+.breadcrumb_main .breadcrumb li a {
+    color: #5e23dc;
+    font-family: 'Roboto-Regular';
+    font-size: 12px;
+}
+.breadcrumb_main .breadcrumb li a:hover {
+    color: #5e23dc;
+}
+.breadcrumb_main h3 {
+    margin-bottom: 0;
+    font-size: 24px;
+    font-family: 'Roboto-Bold';
+    color: #333333;
+}
+.adblock {
+    text-align: center;
+    padding: 17px 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+/*-------------------Accordian--------------------------*/
+
+.search_filter {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+.search_filter .ui-accordion {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.search_filter .ui-state-active {
+    border: 0;
+}
+.search_filter .ui-widget-content {
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    padding: 0 16px 32px 16px;
+}
+.search_filter .ui-widget-content:last-child {
+    border: 0;
+}
+.search_filter .ui-accordion .ui-accordion-icons {
+    padding: 16px;
+    margin-top: 0;
+    color: #999999;
+    font-family: 'Roboto-Regular';
+    font-size: 13px;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+}
+.search_filter .ui-accordion .ui-accordion-icons.ui-state-active {
+    border: 0;
+}
+.search_filter_box {
+    position: relative;
+}
+.search_filter_box span {
+    position: absolute;
+    top: 7px;
+    right: 12px;
+}
+.search_filter_box span i {
+    color: #666666;
+    font-size: 17px;
+}
+.search_filter_box .form-control:focus {
+    box-shadow: none;
+    border-color: #cccccc;
+}
+.search_filter .ui-custom-dropdown {
+    overflow: inherit;
+}
+
+
+/*-------------Select-------------------------*/
+
+.custom-dropdown-select .select-items {
+    overflow-y: auto;
+    height: 300px;
+}
+.custom-dropdown-select .select-selected {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Roboto-Regular';
+    font-size: 13px;
+    color: #666666;
+}
+.custom-select {
+    position: relative;
+}
+.custom-select select {
+    display: none;
+}
+.select-selected:after {
+    position: absolute;
+    font-family: FontAwesome;
+    content: "\f107";
+    top: 9px;
+    right: 24px;
+    width: 0;
+    height: 0;
+}
+.select-items div,.select-selected {
+    font-family: 'Roboto-Regular';
+    font-size: 13px;
+    color: #666666;
+    padding: 7px 16px;
+    cursor: pointer;
+    user-select: none;
+}
+.select-items {
+    position: absolute;
+    background-color: #ffffff;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    margin-top: -2px;
+    border-radius: 0 0 4px 4px;
+}
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: #f0f0f0;
+    color: #333333;
+}
+
+/*------------Select_end------------------------------*/
+
+.form-wrap-category .radio_box {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.form-wrap-category ul li.last_child .radio_box {
+    margin-bottom: 0;
+}
+.form-wrap-category ul li label {
+    font-family: 'Roboto-Regular';
+    font-size: 13px;
+    color: #999999;
+    font-weight: normal;
+}
+
+.form-wrap-category .radio_box input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.form-wrap-category .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 1px solid;
+}
+.form-wrap-category .radio_box input:checked ~ .checkmark {
+    background-color: #ffffff;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.form-wrap-category .radio_box input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.form-wrap-category .radio_box .checkmark:after {
+    top: 3px;
+    left: 3px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #5e23dc;
+}
+
+/*----------------checkbox----------------------------*/
+
+.form-wrap-category .check_box {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.form-wrap-category .check_box input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 13px;
+    width: 13px;
+    background-color: #ffffff;
+    border: 1px solid;
+    border-radius: 2px;
+}
+
+
+/* When the checkbox is checked, add a blue background */
+.form-wrap-category .check_box input:checked ~ .checkmark2 {
+    background-color: #0075ff;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark2:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.form-wrap-category .check_box input:checked ~ .checkmark2:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.form-wrap-category .check_box .checkmark2:after {
+    left: 3px;
+    top: 1px;
+    width: 6px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.auction_table_box {
+    border-collapse: collapse;
+    width: 100%;
+}
+.auction_table_box td, .auction_table_box th {
+    border: 1px solid #cccccc;
+    padding: 13px;
+}
+.auction_table_box th {
+    font-family: 'Roboto-Bold';
+    font-size: 14px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    text-align: left;
+    background-color: #fba510;
+    color: white;
+}
+/*
+.auction_table_box th:first-child {
+    border-radius:5px 0 0 0;
+    border: 0;
+}
+.auction_table_box th:last-child {
+    border-radius:0 5px 0 0;
+}
+*/
+.auction_table_box td {
+    font-size: 13px;
+}
+.auction_table_box td.button-img {
+    text-align: center;
+}
+.auction_table_box td.button-img img {
+    cursor: pointer;
+}
+.auction_table {
+    margin-top: 20px;
+}
+.pagination_main {
+    text-align: right;
+}
+.pagination_main .pagination>li>a, .pagination_main .pagination>li>span {
+    border: 0;
+    color: #666666;
+    font-size: 13px;
+}
+.pagination_main .pagination>li>a:focus, .pagination_main .pagination>li>a:hover, .pagination_main .pagination>li>span:focus, .pagination_main .pagination>li>span:hover {
+    background-color: #5e23dc;
+    color: #ffffff;
+    border-radius: 4px;
+}
+.pagination_main .pagination>.active>a, .pagination_main .pagination>.active>a:focus, .pagination_main .pagination>.active>a:hover, .pagination_main .pagination>.active>span, .pagination_main .pagination>.active>span:focus, .pagination_main .pagination>.active>span:hover {
+    background-color: #5e23dc;
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+/*----------------------------Property_Listing_page_end---------------------------------------*/
 
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}

@@ -1,395 +1,388 @@
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.css" type="text/css" media="screen"/>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/front_view/js/jquery-ui.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/colorbox.css" />
-<link rel="stylesheet" href="<?php echo base_url(); ?>bankeauc/css/tables.css" />
-<script src="<?php echo base_url(); ?>js/jquery.colorbox.js"></script>
+<!--<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.css" type="text/css" media="screen"/>-->
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url(); ?>css/colorbox.css?rand=<?php echo CACHE_RANDOM; ?>" />
+<!--<link rel="stylesheet" href="<?php echo base_url(); ?>bankeauc/css/tables.css" />-->
+<script src="<?php echo base_url(); ?>js/jquery.colorbox.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <script>
+
 jQuery(document).ready(function () {
 
 	jQuery(".auction_detail_iframe").colorbox({iframe: true, width: "85%", height: "90%", onClosed: function () {
 		//jQuery(".inline_auctiondetail").click();
 		jQuery(".inline_auctiondetail");
 	}});
+
+	
 });
 </script>
-<div class="preloader_hide">
-	<!-- PAGE -->
-	<div id="page">
-	<section id="home" class="padbot0">
-				
-			<!-- TOP SLIDER -->
-			<div class="flexslider top_slider">
-				<div class="flex_caption1">
-					<p class="title1 captionDelay1 FromBottom">Find your <strong>Next</strong></p>
-					<p class="title2 captionDelay2 FromBottom">INVESTMENT HOME NOW.</p>
-					<div class="col-xs-12 pad0">
-								<div class="input-group blockdisplay">
-								   <div class="input-group-btn search-panel blockdisplay fullwid">
-									  <button type="button" class="btn btn-default dropdown-toggle filter_btn fullwid" data-toggle="dropdown">
-									  <span id="search_concept">All Assets Type</span> <i class="fa fa-angle-down fa-lg pd_lf_10 search_caret" aria-hidden="true"></i>
-									  </button>
-									  <ul class="dropdown-menu autoheight no_mrgn assetsType" role="menu">
-										 <li data-id="0"><a href="javascript:void(0);">All Assets Type</a></li>
-										 <li class="divider"></li>
-										  <?php 
-										 if(count($assetsType)>0)
-										 {
-											 foreach($assetsType as $assets)
-											 {
-											 ?>
-												<li class="p_t_b_10" data-id="<?php echo $assets->id;?>"><a href="javascript:void(0);"><?php echo $assets->name;?></a></li>
-											 <?php
-											 }
-										 }										 
-										 ?>										
-										 <!--
-										 <li class="p_t_b_10"><a href="#bankownednew">Bank Owned &amp; Newly Foreclosed</a></li>
-										 <li class="p_t_b_10"><a href="#bankowned">Bank Owned</a></li>
-										 <li class="p_t_b_10"><a href="#Foreclosure">Foreclosure Sales </a></li>
-										 -->
-									  </ul>
-									  <input type="hidden" name="assetsTypeId" id="assetsTypeId" value="0"/>
-								   </div>
-								   <!--<input type="hidden" name="search_param" value="all" id="search_param">  -->
-								   <input type="hidden" id="txt-category">       
-								   <input type="text" id="txt-search" class="form-control searchres" name="x" onKeyPress="enterpressalert(event)" placeholder="Property Address" value="<?php echo $_GET['search'];?>">
-								   <span class="input-group-btn reflt">
-								   <button class="btn btn-default btn_green btn_focus btnres searhcbtn" type="button" onclick="goForSearch()"><i class="fa fa-search" aria-hidden="true"></i></button>
-								   </span>
-								</div>
-								<div class="error" id="error_txt"></div>
-							</div>
-				</div>
-			</div>
-			<!-- //TOP SLIDER -->
-		</section>	
-		
-		
-		<!-- ABOUT -->
-		<section id="about">
-			
-			<!-- SERVICES -->
-			<!-- //SERVICES -->
-			
-			
-			
-			
-				<!-- PROJECTS -->
-		<section id="projects" class="padbot20">
-		
-			<!-- CONTAINER -->
-			<div class="container">
-				<h2 class="pull-left"><strong>NEWLY ADDED</strong> FORECLOSURE PROPERTIES</h2>
-				<div class="btn-group pull-right">
-            <a href="#" id="list" class="btn btn-default btn-sm"><i class="fa fa-list" aria-hidden="true"></i> List</a> 
-			<a href="#" id="grid" class="btn btn-default btn-sm"><i class="fa fa-th" aria-hidden="true"></i> Grid</a>
-        </div>
-			</div><!-- //CONTAINER -->
-			
-	<?php
-	if(count($property) > 0)
-	{			
-		?>
-	<div class="container">   
-		<div id="products" class="row list-group no-mrgn"> 
-			<?php
-					//echo '<pre>';
-					//print_r($products);die;
-					foreach($property as $p)
-					{
-				?>	
-			
-						<div class="item  col-xs-12 col-lg-4">
-							<div class="thumbnail">
-								<img class="group list-group-image" src="<?php echo base_url();?>assets/front_view/images/works/8.jpg" />
-								<div class="caption">
-									<h4 class="group inner list-group-item-heading">
-										<?php echo $p->reference_no;?></h4>
-									<p class="group inner list-group-item-text"><?php echo $p->PropertyDescription;?></p>
-									<div class="row">
-										<!--
-										<div class="col-xs-12 col-md-6">
-											<p class="lead">
-												$21.000</p>
-										</div>
-										-->
-										<div class="col-xs-12 col-md-6">
-											<a class="btn btn-success view-details-btn grn-txt float-right b_showevent inline_auctiondetail auction_detail_iframe" href="<?php echo base_url(); ?>home/auctionDetailPopup/<?php echo $p->id;?>">View Details</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-				<?php }?>
-				<?php /*?>
-				<div class="item  col-xs-12 col-lg-4">
-					<div class="thumbnail">
-						<img class="group list-group-image" src="<?php echo base_url();?>assets/front_view/images/works/6.jpg" />
-						<div class="caption">
-							<h4 class="group inner list-group-item-heading">
-								Auction Title</h4>
-							<p class="group inner list-group-item-text">
-								Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-								sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-							<div class="row">
-								<div class="col-xs-12 col-md-6">
-									<p class="lead">
-										$21.000</p>
-								</div>
-								<div class="col-xs-12 col-md-6">
-									<a class="btn btn-success" href="#">View Details</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item  col-xs-12 col-lg-4">
-					<div class="thumbnail">
-						<img class="group list-group-image" src="<?php echo base_url();?>assets/front_view/images/works/7.jpg" />
-						<div class="caption">
-							<h4 class="group inner list-group-item-heading">
-								Auction Title</h4>
-							<p class="group inner list-group-item-text">
-								Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-								sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-							<div class="row">
-								<div class="col-xs-12 col-md-6">
-									<p class="lead">
-										$21.000</p>
-								</div>
-								<div class="col-xs-12 col-md-6">
-									<a class="btn btn-success" href="#">View Details</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item  col-xs-12 col-lg-4">
-					<div class="thumbnail">
-						<img class="group list-group-image" src="<?php echo base_url();?>assets/front_view/images/works/8.jpg"/>
-						<div class="caption">
-							<h4 class="group inner list-group-item-heading">
-								Auction Title</h4>
-							<p class="group inner list-group-item-text">
-								Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-								sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-							<div class="row">
-								<div class="col-xs-12 col-md-6">
-									<p class="lead">
-										$21.000</p>
-								</div>
-								<div class="col-xs-12 col-md-6">
-									<a class="btn btn-success" href="#">View Details</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item  col-xs-12 col-lg-4">
-					<div class="thumbnail">
-						<img class="group list-group-image" src="<?php echo base_url();?>assets/front_view/images/works/5.jpg" />
-						<div class="caption">
-							<h4 class="group inner list-group-item-heading">
-								Auction Title</h4>
-							<p class="group inner list-group-item-text">
-								Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-								sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-							<div class="row">
-								<div class="col-xs-12 col-md-6">
-									<p class="lead">
-										$21.000</p>
-								</div>
-								<div class="col-xs-12 col-md-6">
-									<a class="btn btn-success" href="#">View Details</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item  col-xs-12 col-lg-4">
-					<div class="thumbnail">
-						<img class="group list-group-image" src="<?php echo base_url();?>assets/front_view/images/works/6.jpg" />
-						<div class="caption">
-							<h4 class="group inner list-group-item-heading">
-								Auction Title</h4>
-							<p class="group inner list-group-item-text">
-								Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-								sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-							<div class="row">
-								<div class="col-xs-12 col-md-6">
-									<p class="lead">
-										$21.000</p>
-								</div>
-								<div class="col-xs-12 col-md-6">
-									<a class="btn btn-success" href="#">View Details</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<?php */?>
-			</div>
-		</div>
-		
-			
-		
-		</section><!-- //PROJECTS -->
-	<?php }
-	?>	
-		</section><!-- //ABOUT -->
-		
-	</div><!-- //PAGE -->
-
-</div>
-
-<script>
-
-$(document).ready(function(){
+<script type="text/javascript">
+var oTable = null;
+    $(document).ready(function () {
+		//$("#big_table thead tr th").eq(0).addClass("hidetd");
 	
-	if(<?php echo $_GET['assetsTypeId'];?> !='')
-	{
-		<?php 
-		if(count($assetsType)>0)
-		{
-			foreach($assetsType as $at)
-			{
-				if($at->id == $_GET['assetsTypeId'])
+
+			initHomeTable();
+			<?php if($_GET['search'] != ''){ ?>
+				oTable.columns(3).search('<?php echo $_GET['search']; ?>').draw();
+			<?php } ?>
+            setTimeout(function(){ $("#big_table_info").text(''); }, 500);
+            
+             $("#reservePriceMaxRange,#reservePriceMinRange").keyup(function(){
+					initHomeTable();
+					setTimeout(function(){ $("#big_table_info").text(''); }, 500);
+			});
+
+			$("#search_box").on('keyup change', function () {
+				var search_box = $(this).val();
+			
+				oTable.search(search_box).draw();
+			});
+
+			 $("#search_ListID").on('keyup change', function () {
+				//var search_box = $(this).val();			
+				//oTable.columns(0).search(search_box).draw();
+
+				initHomeTable();
+				setTimeout(function(){ $("#big_table_info").text(''); }, 500);
+			});
+			$(document).on("click",".select-items",function(){
+				var isCity = $(this).closest('.custom-select').find('select').hasClass('search_city');
+				if(isCity)
 				{
-					?>
-					$('#search_concept').html("<?php echo $at->name;?>");
-					<?php
+					var selected_text = $(this).find('.same-as-selected').html();
+					
+					if(selected_text == 'All Cities')
+					{
+						oTable.columns(3).search('').draw();
+					}
+					else
+					{
+						oTable.columns(3).search(selected_text).draw();
+					}
 				}
-			}
-		}
-		?>
-		$('#assetsTypeId').val(<?php echo $_GET['assetsTypeId'];?>);
-	}
-	
-	
-	$.ui.autocomplete.prototype._renderItem = function( ul, item){
-	  var term = this.term.split(' ').join('|');
-	  var re = new RegExp("(" + term + ")", "gi") ;
-	  var t = item.label.replace(re,"<strong style='color:#ff6600;font-weight: normal;'>$1</strong>");
-	  return $( "<li class='search-selected'></li>" )
-		 .data( "item.autocomplete", item )
-		 .append( "<a>" + t + "</a>" )
-		 .appendTo( ul );
-	};
-	
-	jQuery("#txt-search").autocomplete({
-		source: function (request, response) {
-			var assetsTypeId = $('#assetsTypeId').val();					
-			$.ajax({
-				dataType: "json",
-				type : 'Get',
-				url: '<?php echo base_url();?>home/search_product?q='+request.term+'&assetsTypeId='+assetsTypeId,
-				success: function(data) {
-					$('input.suggest-user').removeClass('ui-autocomplete-loading');  
-					// hide loading image
-
-					response(data);
-				},
-				error: function(data) {
-					$('input.suggest-user').removeClass('ui-autocomplete-loading');  
+				else
+				{
+					var selected_text = $(this).find('.same-as-selected').html();
+					if(selected_text == 'All Location')
+					{
+						oTable.columns(2).search('').draw();
+					}
+					else
+					{
+						oTable.columns(2).search(selected_text).draw();
+					}
 				}
 			});
-		},
-		minLength: 2,
-		classes: {
-		"ui-autocomplete": "autoclass"
-		},
-	  select: function(event, ui){
-		console.log([ui.item.value]);
-		goForSearch(ui.item.value);
-	  }
-	});
-});	
-function enterpressalert(e)
-{
-	var code = (e.keyCode ? e.keyCode : e.which);
-	if(code == 13) 
-	{
-		goForSearch();
-	}
-}
 
-function checkSearch()
-{
-	$('#srch-category').html('Products');
-	var searchBy = $("#searchby").val(1);
-	
-}
-checkSearch();
+			$("input[name=parent_id]").change(function(){
+				var parent = $(this).val();
+				
+				$(".parent_id").each(function(){
+					var parent_id = $(this).val();
+					if(parent != parent_id)
+					{
+						$("input[data-parent="+parent_id+"]").prop('checked',false);
+					}
+				});
+				$("input[data-parent-id]").prop('checked',false);
+				$("input[data-parent-id="+parent+"]").prop('checked',true);
 
-function goForSearch(str)
-{
-	$("#error_txt").html('');
-	//var searchBy = $("#searchby").val();
-	$("#error_txt").hide();
-	var searchText = (typeof(str)==='undefined' ) ? $("#txt-search").val() : str;
-	
-	if(searchText.trim() == '')
-	{
-		$("#error_txt").show();
-		$("#error_txt").html('Please enter keyword for your search');
-		return false;
-	}
-	else
-	{
-		var assetsTypeId = $('#assetsTypeId').val();
-		
-		window.location='<?php echo base_url();?>propertylisting?search='+searchText+'&assetsTypeId='+assetsTypeId;
-	}
-	
-	
-	/*if(searchBy.trim() == '')
-	{
-		$("#error_txt").show();
-		$("#error_txt").html('Please select category');
-		return false;
-	}
-	else if(searchText.trim() == '')
-	{
-		$("#error_txt").html('Please enter search text');
-		return false;
-	}
-	else
-	{
-		if(searchBy == 1)
+				initHomeTable();
+				setTimeout(function(){ $("#big_table_info").text(''); }, 500);
+
+
+			});
+
+			$("input[name=sub_id]").change(function(){
+				var parent_id = $(this).attr('data-parent');
+
+				$(".parent_id").each(function(){
+					var parent = $(this).val();
+
+					if(parent != parent_id)
+					{
+						$("input[data-parent="+parent+"]").prop('checked',false);
+						$("input[data-parent-id="+parent+"]").prop('checked',false);
+					}
+				});
+
+				$("input[data-parent-id="+parent_id+"]").prop('checked',true);
+
+				initHomeTable();
+				setTimeout(function(){ $("#big_table_info").text(''); }, 500);
+			});
+        });
+
+		function initHomeTable()
 		{
-			window.location='<?php echo base_url();?>propertylisting?search='+searchText;
-		}
-		else if(searchBy == 2)
-		{
-			window.location='<?php echo base_url();?>supplierlist?search='+searchText;
-		}
-		else
-		{
-			window.location='<?php echo base_url();?>buying-request?search='+searchText;
-		}
-	}*/
-}
+			if(oTable)
+			{
+				oTable.destroy();
+				//oTable = null
+			}
+			var parent_id = $("input[name=parent_id]:checked").val();
 
-/*
-$(window).load(function(){   			
-   		$('#login-modal1').modal({
-			
-			keyboard: false  // to prevent closing with Esc button (if you want this too)
-		});
-});
-*/
-$(document).on('keypress','#txt-search',function(){
-	$("#error_txt").hide();
-});
+			var sub_id_str = '';
+			$("input[name=sub_id]:checked").each(function(){
+				var sub_id = $(this).val();
+				sub_id_str += '&sub_id[]='+sub_id;
+			});
 
-$(document).on('click','.assetsType li',function(){
-	
-	var assetsTypeId = $(this).attr('data-id');
-	if(assetsTypeId != '' && typeof(assetsTypeId) !== 'undefined')
-	{
-		$('#assetsTypeId').val(assetsTypeId);
-	}
-	
-});
+
+			var reservePriceMaxRange = $("#reservePriceMaxRange").val();
+			var reservePriceMinRange = $("#reservePriceMinRange").val();
+			var search_box = $("#search_ListID").val();
+			oTable = $('#big_table').DataTable({
+				"bAutoWidth": false,
+				//"aoColumns": [{"sWidth": "5%"}, {"sWidth": "10%"}, {"sWidth": "20%"}, {"sWidth": "30%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "10%"}, {"sWidth": "10%"}],
+				"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6] } ], 
+				"bProcessing": true,
+				"bServerSide": true,
+				"sAjaxSource": '<?php echo base_url(); ?>home/liveAuctionDatatableHome/?reservePriceMaxRange='+reservePriceMaxRange+"&reservePriceMinRange="+reservePriceMinRange+"&search_box="+search_box+"&parent_id="+parent_id+sub_id_str,
+				"sPaginationType": "full_numbers",
+				"iDisplayStart ": 10,
+				"oLanguage": {
+					"sProcessing": "<img src='<?php echo base_url(); ?>assets/images/ajax-loader_dark.gif'>"
+				},
+				"fnInitComplete": function () {
+				   /* $('#big_table_paginate').addClass('oneTemp');
+					$('#big_table_info').addClass('oneTemp');
+					$('.oneTemp').wrapAll('<div class="tableFooter">');
+					$('select[name="big_table_length"]').insertAfter('#big_table_length > label');*/
+				},
+				'fnServerData': function (sSource, aoData, fnCallback){
+					$.ajax({    'dataType': 'json',
+								'type': 'POST',
+								'url': sSource,
+								'data': aoData,
+								'success': fnCallback
+							});
+				},
+				"fnRowCallback": function (nRow, aData, iDisplayIndex) {
+								
+									 
+						   
+					  $('td:eq(6)', nRow).addClass('button-img');
+					  $('td:eq(5)', nRow).html('₹'+aData[5]);
+
+					  
+					  $('td:eq(6)', nRow).html('<a class="corrigendum_iframe" href="<?php echo base_url(); ?>home/auctionDetailPopup/' + aData[6] + '"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/view_button.png" title="View Auction" class="edit1"></a>');
+					  
+					  setTimeout(function(){
+							$(".corrigendum_iframe").colorbox({iframe:true, width:"65%", height:"80%",onClosed:function(){ /* location.reload(true); */ }});							
+							$(".corrigendum_iframe").addClass("cboxElement");
+						},1000);
+						
+					return nRow;
+					}
+				});
+
+				var search_box = $("#search_box").val();
+				oTable.search(search_box).draw();
+
+				var search_city = $("#search_city").closest(".custom-select").find('.select-selected').html();
+
+				if(search_city == 'Select City')
+				{
+					oTable.columns(3).search("<?php echo $_GET['search']; ?>").draw();
+				}
+				else if(search_city != 'All Cities')
+				{
+					oTable.columns(3).search(search_city).draw();
+				}
+
+
+				var search_location = $("#search_location").closest(".custom-select").find('.select-selected').html();
+
+				if(search_location != 'Select Location' && search_location != 'All Location')
+				{
+					oTable.columns(2).search(search_location).draw();
+				}
+
+		}
+
+		function isNumberKey(evt)
+		{
+			var charCode = (evt.which) ? evt.which : event.keyCode;
+			console.log(charCode);
+			if (charCode != 46 && charCode != 45 && charCode > 31
+					&& (charCode < 48 || charCode > 57))
+				return false;
+
+			return true;
+		}
+        
 </script>
+<style>
+.dataTables_info{display: none;}
+.table-responsive{overflow-x: hidden;}
+#big_table_length,.dataTables_filter,#big_table_processing{display: none;}
+.dataTables_paginate{float: right;}
+.dataTables_paginate .pagination{ border-radius: 0;}
+.dataTables_paginate .pagination li{ border-radius: 0 !important;}
+.dataTables_paginate .pagination li a{ border-radius: 0 !important; border: 0;
+    color: #666666;
+    font-size: 13px;padding: 6px 12px;}
+.dataTables_paginate .pagination li.active a{ background-color: #5e23dc;
+    color: #ffffff;
+    border-radius: 4px !important;}
+.dataTables_paginate .pagination li:hover a{cursor: pointer;}
+.pagination>li a:focus{border: 0px !important;}
+</style>
+<div class="container container_margin">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="breadcrumb_main">
+                        <ol class="breadcrumb">
+                            <li><a href="#">Home</a></li>
+                            <li class="active"><?php echo ucwords($_GET['search']); ?> Auctions</li>
+                        </ol>
+                        <h3>Bank Auctions in <?php echo ucwords($_GET['search']); ?></h3>
+                    </div><!--breadcrumb_main-->
+                </div>
+            </div><!--row-->
+        </div><!--container-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="adblock">
+                            <img src="<?php echo base_url(); ?>assets/auctiononclick/images/ad_space.png">
+                        </div><!--adblock-->
+                    </div>
+                </div><!--row-->
+        </div><!--container-fluid-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="search_filter">
+                        <div id="StickyNotes">
+                                <div id="accordion" class="ui-accordion ui-widget ui-helper-reset">
+                                    <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-top ui-accordion-header-active ui-state-active">
+                                        <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>
+                                        Search Text
+                                    </h3>
+                                    <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+                                        <div class="search_filter_box">
+                                            <input type="text" id="search_box" class="form-control" placeholder="" />
+                                            <span><i class="fa fa-search"></i></span>
+                                        </div>
+                                    </div>
+                                    <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-top ui-accordion-header-active ui-state-active">
+                                        <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>
+                                        Category
+                                    </h3>
+                                    <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+                                        <div class="form-wrap-category">
+                                            <ul>
+												<?php $parentCat = $this->home_model->getAllCategory(0); ?>
+													<?php foreach($parentCat as $key => $parCat){ ?>
+														<li>
+															<label class="radio_box">All <?php echo $parCat->name; ?>
+															<input type="radio" class="parent_id" name="parent_id" data-parent-id="<?php echo $parCat->id;?>" <?php echo ($parCat->id == $_GET['assetsTypeId'])?'checked="checked"':''; ?> name="radio" value="<?php echo $parCat->id;?>">
+															<span class="checkmark"></span>
+															</label>
+														</li>
+														<?php $Cats = $this->home_model->getAllCategory($parCat->id); ?>
+														<?php foreach($Cats as $cat){ ?>
+															<li><label class="check_box"><?php echo $cat->name; ?>
+																<input type="checkbox" data-parent="<?php echo $parCat->id;?>" name="sub_id" <?php echo (in_array($cat->id,$_GET['sc']))?'checked="checked"':''; ?> value="<?php echo $cat->id;?>">
+																<span class="checkmark2"></span>
+																</label>
+															</li>
+														<?php } ?>
+												<?php } ?>                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-top ui-accordion-header-active ui-state-active">
+                                        <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>
+                                        Listing ID
+                                    </h3>
+                                    <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+                                        <div class="search_filter_box">
+                                            <input type="text" class="form-control" placeholder="" id="search_ListID" onkeypress="return isNumberKey(event);"/>
+                                            <span><i class="fa fa-search"></i></span>
+                                        </div>
+                                    </div>
+                                    <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-top ui-accordion-header-active ui-state-active">
+                                        <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>
+                                        City
+                                    </h3>
+                                    <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active ui-custom-dropdown">
+                                        <div class="custom-dropdown-select">
+                                            <div class="custom-select">
+                                                <select id="search_city" class="search_city">
+                                                    <option value="">Select City</option>
+													<option value="">All Cities</option>
+													<?php foreach($data['city'] as $key => $n){ ?>
+														<option value="<?php echo $key; ?>"><?php echo $n; ?></option>
+													<?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-top ui-accordion-header-active ui-state-active">
+                                        <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>
+                                        Location
+                                    </h3>
+                                    <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active ui-custom-dropdown">
+                                        <div class="custom-dropdown-select">
+                                           <div class="custom-select">
+                                            <select id="search_location">
+                                                <option value="">Select Location</option>
+                                                <option value="">All Location</option>
+												<?php foreach($data['location'] as $key => $n){ ?>
+													<option value="<?php echo $key; ?>"><?php echo $n; ?></option>
+												<?php } ?>
+                                            </select>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-top ui-accordion-header-active ui-state-active">
+                                        <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>
+                                        Minium Reserve Price
+                                    </h3>
+                                    <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+                                        <div class="search_filter_box">
+                                            <input type="text" class="form-control" placeholder="" id="reservePriceMinRange" onkeypress="return isNumberKey(event);"/>
+                                        </div>
+                                    </div>
+                                    <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-top ui-accordion-header-active ui-state-active">
+                                        <span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>
+                                        Maximum Reserve Price
+                                    </h3>
+                                    <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+                                        <div class="search_filter_box">
+                                            <input type="text" class="form-control" placeholder="" id="reservePriceMaxRange" onkeypress="return isNumberKey(event);"/>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+
+
+                    </div><!--search_filter-->
+                </div>
+                <div class="col-sm-9">
+                    <div class="auction_table table-responsive">
+						<?php
+								//set table id in table open tag
+									$tmpl = array('table_open' => '<table id="big_table" border="1" width="100%" cellpadding="2" cellspacing="1" class="myTable auction_table_box">');
+									$this->table->set_template($tmpl);
+									$this->table->set_heading('List ID', 'Property Type','Location','City','EMD Submission Last Date','Reserve Price','View Details');
+									echo $this->table->generate();
+								?>
+                        
+                    </div>
+                    
+                </div>
+            </div><!--row-->
+        </div><!--container-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="adblock">
+                        <img src="<?php echo base_url(); ?>assets/auctiononclick/images/ad_space.png">
+                    </div><!--adblock-->
+                </div>
+            </div><!--row-->
+        </div><!--container-fluid-->

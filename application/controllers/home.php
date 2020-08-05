@@ -110,6 +110,8 @@ class Home extends MY_Controller {
 		$data['aData'] = $this->home_model->liveAuctionDatatable();
 		$data['assetsType'] = $this->home_model->getAllAssetsType();
 
+		
+
         $this->load->view('front_view/header', $data);
         if(MOBILE_VIEW)
 		{			
@@ -190,38 +192,12 @@ class Home extends MY_Controller {
         
 	public function propertylisting()
 	{	
-		/*		
-		$vdata['subCategory'] = $this->search_model->getSubCategories();
 		
-		
-		$sub_cat_name = $vdata['subCategory'][0]['sub_categories'][0]['name'];
-		if($sub_cat_name)
-		{
-			$subcatname = $sub_cat_name.', '.$sub_cat_name;
-		}
-		else
-		{
-			$subcatname = '';
-		}
-		//$data['title'] = $subcatname.' manufacturers, '.$sub_cat_name.' suppliers, '.$sub_cat_name.'  exporters | '.$this->siteurl;
-		$data['title'] = 'Assets List';
-		
-		$this->load->view('front_view/header', $data);
-		$vdata['topProducts'] = $this->search_model->getTopProducts();
-		
-		$vdata['products'] = $this->search_model->getProducts();
-		
-		//echo '<pre>';
-	   // print_r($vdata['products']);die
-		$vdata['total'] = $this->search_model->count_products();
-		$vdata['country'] = $this->search_model->getSupplierLocation();
-		//echo'<pre>'; print_r($vdata['country']);die;
-		$this->load->view('productlist',$vdata);
-		$this->load->view('front_view/footer');
-		*/
 		$data['assetsType'] = $this->home_model->getAllAssetsType();
 		$this->load->view('front_view/header', $data);	
-		$vdata['property'] = $this->home_model->getProperty();	
+		$vdata['property'] = $this->home_model->getProperty();
+		
+		$vdata['data'] = $this->home_model->getAuctionCityLocation();
 		
 		 if(MOBILE_VIEW)
 		{				
