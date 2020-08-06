@@ -166,12 +166,12 @@ var oTable = null;
 					  $('td:eq(5)', nRow).html('₹'+aData[5]);
 
 					  
-					  $('td:eq(6)', nRow).html('<a class="corrigendum_iframe" href="<?php echo base_url(); ?>home/auctionDetailPopup/' + aData[6] + '"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/view_button.png" title="View Auction" class="edit1"></a>');
+					  $('td:eq(6)', nRow).html('<a class="corrigendum_iframe" href="<?php echo base_url(); ?>home/auctionDetail/' + aData[6] + '"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/view_button.png" title="View Auction" class="edit1"></a>'); /* auctionDetailPopup */
 					  
-					  setTimeout(function(){
-							$(".corrigendum_iframe").colorbox({iframe:true, width:"65%", height:"80%",onClosed:function(){ /* location.reload(true); */ }});							
+					  /*setTimeout(function(){
+							$(".corrigendum_iframe").colorbox({iframe:true, width:"65%", height:"80%",onClosed:function(){  }});							
 							$(".corrigendum_iframe").addClass("cboxElement");
-						},1000);
+						},1000);*/
 						
 					return nRow;
 					}

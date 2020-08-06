@@ -1,6 +1,10 @@
 <?php 
 	$controller_name = $this->router->fetch_class(); // class = controller
 	$method = $this->router->fetch_method();
+
+
+    $userid=$this->session->userdata('id');
+    $full_name =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "first_name");
 ?>
 <!doctype html>
 <html>
@@ -10,7 +14,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       
       <meta name="description" content="<?php echo ucwords($getBankName); ?> selling residential, commercial, industrial, agricultural properties, land, plots, house and  flats across the India. View, Bid & Win Non Performing Assets (NPA), DRT Properties."/>
-		<title>Auction</title>
+		<title><?php if($title != ''){echo $title;}else{ echo 'Auction';} ?></title>
       <meta name="description" content="Find residential and commercial auction properties for sale from the <?php echo BRAND_NAME; ?> . View, Bid & Win Non Performing Assets (NPA), Auction, Foreclosure and Sarfaesi Auction Properties."/>
       <meta name="Owner" content=" "/>
 	  <meta name="Copyright" content=""/>
@@ -96,7 +100,19 @@
                                             <li><span><i class="fa fa-phone big"></i></span>+91-124-4302020 / 21 / 22 / 23</li>
                                         </ul>
                                     </div></li>
+                                    <?php if($this->session->userdata('id') > 0){ ?>
+									 <li class="user_info"><div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span><i class="fa fa-user"></i></span> <?php echo $full_name; ?><span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Modify Profile</a></li>
+                                            <li><a href="#">Change Password</a></li>
+                                            <li><a href="#">Shortlist</a></li>
+                                            <li><a href="<?php echo base_url(); ?>registration/logout">Logout</a></li>
+                                        </ul>
+                                        </div></li>
+									<?php }else{ ?>
                                     <li><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span>Login / Register</a></li>
+									<?php } ?>
+									
                                     <li><a href="#"><span class="cret-1" onclick="openNav()"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/menu_icon.png"></span></a></li>
                                 </ul>
                                 <div id="mySidenav" class="sidenav">
@@ -178,7 +194,18 @@
                                             <li><span><i class="fa fa-phone big"></i></span>+91-124-4302020 / 21 / 22 / 23</li>
                                         </ul>
                                     </div></li>
+									<?php if($this->session->userdata('id') > 0){ ?>
+									 <li class="user_info"><div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span><i class="fa fa-user"></i></span> <?php echo $full_name; ?><span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Modify Profile</a></li>
+                                            <li><a href="#">Change Password</a></li>
+                                            <li><a href="#">Shortlist</a></li>
+                                            <li><a href="<?php echo base_url(); ?>registration/logout">Logout</a></li>
+                                        </ul>
+                                        </div></li>
+									<?php }else{ ?>
                                     <li><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span>Login / Register</a></li>
+									<?php } ?>
                                     <li><a href="#"><span class="cret-1" onclick="openNav()"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/menu_icon.png"></span></a></li>
                                 </ul>
                                 <div id="mySidenav" class="sidenav">

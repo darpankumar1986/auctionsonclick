@@ -235,20 +235,71 @@ class Home_model extends CI_Model {
 		}
 		return $aData;
     }
+
+	public function liveupcomingauciton_event_add_save(){
+		
+				$auctionID = $this->input->post('auctionID');
+				$bidderID = $this->session->userdata('id');
+       
+                $sqlown = "SELECT auctionID,is_fav  FROM tbl_auction_bidder_fav WHERE auctionID='".$auctionID."' AND bidderID='".$bidderID."'";
+							$queryown=$this->db->query($sqlown);
+							$data = $queryown->result();
+							//echo '<pre>';
+							//print_r($data);
+							//die;	
+							$totalRow=$queryown->num_rows();
+							if($totalRow>0)			
+							{
+								if($data[0]->is_fav!=1)
+								{
+									$data1['updated_date']=date('Y-m-d H:i:s');
+									$data1['is_fav']=1;
+									$this->db->where('auctionID', $auctionID);
+									$this->db->where('bidderID', $bidderID);
+									$this->db->update('tbl_auction_bidder_fav', $data1); 
+								}
+								else
+								{
+									$data1['updated_date']=date('Y-m-d H:i:s');
+									$data1['is_fav']=0;
+									$this->db->where('auctionID', $auctionID);
+									$this->db->where('bidderID', $bidderID);
+									$this->db->update('tbl_auction_bidder_fav', $data1); 
+								}
+							}else{
+								//return "NOT FOUND";
+								  $data2['auctionID']=$auctionID;
+								  $data2['bidderID']=$bidderID;
+								  $data2['is_fav']=1;
+								  $data2['indate']=date('Y-m-d H:i:s');
+								
+								  $this->db->insert('tbl_auction_bidder_fav', $data2);	
+								//$product_id = $this->db->insert_id();
+							}
+		return true;
+	}
     
     
     function aucDetailPopupData($auctionID)
-    {           
-		$this->db->select("a.*");               
+    {  
+		$bidderID = (int)$this->session->userdata('id');
+		$currentDate = date("Y-m-d H:i:s");
+
+		$this->db->select("a.*,c.name as sub_category_name,cat.name as category_name,a.reference_no as location_name,city.city_name,bank.bank_name,state.state_name,b.name as branch_name,fav.is_fav,sub.subscription_participate_city_id as isSub");               
 		$this->db->from('tbl_auction as a');
-		$this->db->join('tbl_zone as z','z.zone_id=a.zone_id','left');
-		$this->db->join('tbl_product as pro','pro.id=a.productID','left');
-		$this->db->join('tblmst_uom_type as ut','ut.uom_id=a.area_unit_id','left');
-		$this->db->where('a.status IN(1,3,4)');
-		$this->db->where('a.show_home = 1');
-                $this->db->where('a.id = "'.$auctionID.'"');
-		//$this->db->where('a.bid_last_date >= NOW()');//commented by Azizur Rahman
-                $this->db->where('a.auction_end_date >= NOW()');//Added by Azizur Rahman
+				
+		$this->db->join('tbl_category as cat','cat.id=a.category_id','left');
+		$this->db->join('tbl_category as c','c.id=a.subcategory_id','left');
+		$this->db->join('tbl_city as city','city.id=a.city','left');
+		$this->db->join('tbl_branch as b','b.id=a.branch_id','left');
+		$this->db->join('tblmst_bank as bank','bank.bank_id=a.bank_id','left');
+		$this->db->join('tbl_state as state','state.id=a.state','left');
+		$this->db->join('tbl_auction_bidder_fav as fav','fav.auctionID=a.id and fav.bidderID = '.$bidderID.' and fav.status = 1','left');
+		$this->db->join('tbl_subscription_participate_city as sub','sub.sub_state_id=a.state and sub.member_id = '.$bidderID.' and sub.sub_start_date > "'.$currentDate.'" and sub.sub_end_date < "'.$currentDate.'" and sub.sub_status = 1','left');
+		$this->db->where('a.status IN(1)');
+        $this->db->where('a.id = "'.$auctionID.'"');
+		$this->db->where('a.bid_last_date >= NOW()');
+         //       $this->db->where('a.auction_end_date >= NOW()');
 		$query = $this->db->get();
 		if ($query->num_rows() > 0) {				
 			foreach ($query->result() as $row) {	
@@ -587,15 +638,8 @@ class Home_model extends CI_Model {
 		$this->db->order_by("upload_document_field_id", "ASC");
         $query = $this->db->get("tbl_auction_document");	
 		//echo $this->db->last_query();
-		
-        $data = array();
-				if ($query->num_rows() > 0) {
-            foreach ($query->result() as $row) {
-							$data[] = $row;
-            }
-             return $data;
-        }
-        return false;		
+
+		return $query->result();
 	}
     
     public function GetAuctionDocuments($auctionId)

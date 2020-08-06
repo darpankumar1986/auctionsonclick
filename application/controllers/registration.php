@@ -698,7 +698,7 @@ class Registration extends WS_Controller {
 			
 			if($this->session->userdata('id')&& $this->session->userdata('user_type'))
 			{
-				redirect("registration/redirectDashboard");
+				redirect("/");
 			}
 				$data['redirectData'] = $_GET['review'];
 			if(!empty($_GET['review']))
@@ -762,7 +762,7 @@ class Registration extends WS_Controller {
 							}
 							else
 							{ 								
-								redirect("registration/redirectDashboard");
+								redirect("/");
 							}
 						}
 					}
@@ -1011,7 +1011,7 @@ class Registration extends WS_Controller {
 			if($usertype=='branch'){
 				redirect('registration/banker_login');	
 			}else{
-				redirect('registration/login');		
+				redirect('home/login');		
 			}
 		}
 		else
@@ -1019,7 +1019,7 @@ class Registration extends WS_Controller {
 			/*
 			redirect(SSO_URL);
 			exit;*/	
-			redirect('registration/login');	
+			redirect('home/login');	
 			exit;
 		}
 		

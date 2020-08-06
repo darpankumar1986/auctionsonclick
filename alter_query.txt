@@ -53,3 +53,7 @@ ALTER TABLE `tbl_auction` CHANGE `sales_person_id` `sales_person_id` INT(11) NUL
 ALTER TABLE `tbl_log_auction` CHANGE `sales_person_id` `sales_person_id` INT(11) NULL;
 ALTER TABLE `tbl_state `ADD `amount` decimal(27,2) NULL AFTER `countryID`;
 
+
+---------------- Neeraj ----------------------------------
+
+ALTER TABLE `tbl_subscription_participate_city` ADD `sub_state_id` INT NOT NULL AFTER `member_id`, ADD INDEX (`sub_state_id`);

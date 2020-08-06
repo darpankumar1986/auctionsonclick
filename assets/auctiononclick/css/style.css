@@ -25,6 +25,15 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: url('../fonts/Roboto-Medium.woff2') format('woff2'),
+        url('../fonts/Roboto-Medium.woff') format('woff'),
+        url('../fonts/Roboto-Medium.ttf') format('truetype'),
+        url('../fonts/Roboto-Medium.svg#dosisregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 .clr {
     clear: both;
     width: 100%;
@@ -317,7 +326,7 @@ body{
     background-color: #fff;
 }
 .form-wrap .form_desc .btn-default.dropdown-toggle {
-    border: 1px solid #ccc;
+    border-right: 1px solid #ccc;
 }
 .form-wrap .form_desc .btn-default .caret {
     margin-left: 40px;
@@ -462,7 +471,7 @@ h3.auction_heading {
 }
 .footer_box {
     background-color: #333333;
-    border-top: 5px solid #5e23dc;
+    border-top: 5px solid #005ca8;
 }
 .footer_about h4 {
     font-family: 'Roboto-Regular';
@@ -479,7 +488,7 @@ h3.auction_heading {
     margin: 15px auto;
     width: 60px;
     height: 2px;
-    background: #5e23dc;
+    background: #0078db;
 }
 .footer_about p {
     font-size: 12px;
@@ -539,7 +548,7 @@ h3.auction_heading {
 /*----------------------------Login-page---------------------------------------*/
 
 .auction-main-wrapper .position-fix {
-    background-color: #5e23dc;
+    background-color: #005ca8;
 }
 .auction-main-wrapper .web-logo {
     padding-top: 16px;
@@ -758,7 +767,7 @@ button.login_btn {
 /*----------------------------Property_Listing_page---------------------------------------*/
 
 .breadcrumb_main {
-    margin: 40px 0px;
+    margin: 10px 0;
 }
 .breadcrumb_main .breadcrumb {
     background-color: transparent;
@@ -772,6 +781,10 @@ button.login_btn {
     color: #5e23dc;
     font-family: 'Roboto-Regular';
     font-size: 12px;
+}
+.breadcrumb_main .breadcrumb>li+li:before {
+    padding: 0;
+    color: #666666;
 }
 .breadcrumb_main .breadcrumb li a:hover {
     color: #5e23dc;
@@ -787,6 +800,9 @@ button.login_btn {
     padding: 17px 0;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
+}
+.ad_row_width .col-sm-12 {
+    padding: 0;
 }
 /*-------------------Accordian--------------------------*/
 
@@ -819,8 +835,10 @@ button.login_btn {
     font-size: 13px;
     background: transparent;
     border: 0;
-    border-bottom: 1px solid #ccc;
     border-radius: 0;
+}
+.search_filter .ui-accordion  .border-none {
+    border-bottom: 1px solid #cccccc;
 }
 .search_filter .ui-accordion .ui-accordion-icons.ui-state-active {
     border: 0;
@@ -1048,6 +1066,9 @@ button.login_btn {
     background-color: #fba510;
     color: white;
 }
+.auction_table_box th {
+    border-right: 1px solid #df910a;
+}
 /*
 .auction_table_box th:first-child {
     border-radius:5px 0 0 0;
@@ -1090,6 +1111,271 @@ button.login_btn {
 
 /*----------------------------Property_Listing_page_end---------------------------------------*/
 
+/*----------------------------View Detail - Before Login & Subscription------------------------*/
+.row_bg {
+    background-color: #f3f3f3;
+}
+.row_bg .col-sm-12 {
+    padding: 0;
+}
+.auction-main-wrapper .form_wrap_anction_search {
+    padding: 20px 0;
+}
+.form_wrap_anction_search .dropdown {
+    flex: 1;
+}
+.form_wrap_anction_search .custom-dropdown-select {
+    flex: 1;
+}
+.form_wrap_anction_search .search_btn_section {
+    flex: 0 0 13%;
+}
+.form_wrap_anction_search .btn-default.dropdown-toggle {
+    font-family: 'Roboto-Regular';
+    width: 100%;
+    height: 50px !important;
+    text-align: left;
+    border-right: 0;
+    border: 1px solid #ccc;
+    border-radius: 0 !important;
+}
+.form_wrap_anction_search .btn-default.active.focus, .form_wrap_anction_search .btn-default.active:focus, .form_wrap_anction_search .btn-default.active:hover, .form_wrap_anction_search .btn-default:active.focus, .form_wrap_anction_search .btn-default:active:focus, .form_wrap_anction_search .btn-default:active:hover, .form_wrap_anction_search .open>.dropdown-toggle.btn-default.focus, .form_wrap_anction_search .open>.dropdown-toggle.btn-default:focus, .form_wrap_anction_search .open>.dropdown-toggle.btn-default:hover {
+    border-color: #ccc;
+}
+.form_wrap_anction_search .form_desc .dropdown-menu {
+    min-width: 100%;
+    border: 1px solid #ccc;
+    margin-top: -1px;
+}
+.form_wrap_anction_search .form_desc .btn-default .caret {
+    position: absolute;
+    right: 20px;
+    margin-left: 0;
+    top: 24px;
+}
+.form_wrap_anction_search .custom-dropdown-select .select-selected {
+    font-family: 'Roboto-Regular';
+    border-left: 0;
+    height: 50px;
+    color: #333333;
+    font-size: 14px;
+    padding: 14px 16px;
+    border-radius: 0;
+}
+.form_wrap_anction_search .custom-dropdown-select .select-selected:after {
+    content: "\f0D7";
+    top: 14px;
+    right: 28px;
+}
+.form_wrap_anction_search .custom-dropdown-select .select-items {
+    margin-top: -1px;
+    border: 1px solid #ccc;
+}
+.form_wrap_anction_search .search_btn_section .btn-default {
+    font-family: 'Roboto-Bold';
+    text-transform: uppercase;
+    min-width: 100% !important;
+    height: 50px !important;
+    background-color: #0078db !important;
+    color: #fff;
+    border-radius: 0 !important;
+}
+.form_wrap_anction_search .search_btn_section .btn-default:hover {
+    background-color: #005ca8 !important;
+}
+.form_wrap_anction_search .search_btn_section .btn-default .fa-search {
+    padding-right: 6px;
+}
+.row .border_right {
+    border-right: 1px solid #cccccc;
+}
+.desc_wrapper {
+    margin-top: 30px;
+}
+.desc_wrapper_inner h3 {
+    font-family: 'Roboto-Medium';
+    color: #333333;
+    margin-top: 0;
+}
+.desc_wrapper_inner p {
+    color: #777777;
+    font-size: 20px;
+}
+.desc_wrapper_inner img {
+    padding-right: 5px;
+}
+.social_platform ul {
+    text-align: right;
+}
+.social_platform ul li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-right: 6px;
+}
+.social_platform ul li a {
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    width: 30px;
+    height: 30px;
+    color: #000;
+    border: 1px solid #b8b8b8;
+}
+.social_platform ul li a.whatsapp:hover {
+    background-color: #1bd741;
+    color: #fff;
+    border: 0;
+}
+.social_platform ul li a.facebook:hover {
+    background-color: #4267b2;
+    color: #fff;
+    border: 0;
+}
+.social_platform ul li a.twitter:hover {
+    background-color: #50abf1;
+    color: #fff;
+    border: 0;
+}
+.social_platform ul li a.envelope:hover {
+    background-color: #0077b5;
+    color: #fff;
+    border: 0;
+}
+.shortlist_desc {
+    padding: 5px 0 15px;
+}
+.shortlist_desc .desc_para {
+    float: left;
+    width: 85%;
+}
+.shortlist_desc .desc_para p {
+    color: #0078db;
+    font-size: 16px;
+    margin: 0;
+    line-height: 38px;
+}
+.shortlist_desc .desc_shortlist_button {
+    float: left;
+    width: 14%;
+}
+.shortlist_desc .desc_shortlist_button .shortlist_list {
+    width: 96%;
+    height: 38px;
+    background-color: #0078db;
+    color: #fff;
+    border: 0;
+}
+.shortlist_desc .desc_shortlist_button .shortlist_list:hover {
+    background-color: #005ca8;
+}
+.shortlist_desc .desc_shortlist_button .shortlist_list .fa-star {
+    padding-right: 5px;
+}
+.table_desc .table-bordered>tbody>tr>td {
+    font-size: 13px;
+    color: #333333;
+    border: 1px solid #cccccc;
+    padding: 15px 21px;
+}
+.table_desc .table-bordered>tbody>tr>td:first-child {
+    width: 30%;
+}
+.adblock_right img {
+    padding: 20px 0 0 30px;
+}
+.premium_section {
+    width: 600px;
+    margin: 40px auto 80px;
+}
+.premium_section_inner {
+    background-color: #005ca8;
+    text-align: center;
+    color: #fff;
+    padding: 30px 10px;
+    border-radius: 6px;
+}
+.premium_section_inner p {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+.premium_section_inner > .btn-default {
+    background-color: #4ea94f;
+    border: 0;
+    color: #fff;
+    padding: 9px 28px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+.premium_section_inner .login_register_section li {
+    display: inline-block;
+}
+.premium_section_inner .login_register_section li p {
+    margin-bottom: 0;
+    padding: 0 10px;
+    font-size: 16px;
+}
+.premium_section_inner .login_register_section li button {
+    font-family: 'Roboto-Regular';
+    font-size: 14px;
+    color: #333333;
+    background-color: #fba510;
+    border: 0;
+    text-transform: uppercase;
+    padding: 8px 24px;
+}
+
+/*----------------------------View Detail - Before Login & Subscription_end------------------------*/
+
+/*----------------------------View Detail - After Login Before Subscription------------------------*/
+.login ul li .dropdown .btn-default span i {
+    padding-right: 5px;
+}
+.login ul li.user_info .btn-default {
+    padding: 10px 22px;
+    background-color: transparent;
+    border: 0;
+    color: #fff;
+    text-transform: uppercase;
+}
+.login ul li.user_info .btn-default.active.focus, .login ul li.user_info .btn-default.active:focus, .login ul li.user_info .btn-default.active:hover, .login ul li.user_info .btn-default:active.focus, .login ul li.user_info .btn-default:active:focus, .login ul li.user_info .btn-default:active:hover, .login ul li.user_info .open>.dropdown-toggle.btn-default.focus, .login ul li.user_info .open>.dropdown-toggle.btn-default:focus, .login ul li.user_info .open>.dropdown-toggle.btn-default:hover {
+    background-color: white;
+    outline: 0;
+    border-color: transparent;
+    outline-offset: 0;
+    box-shadow: none;
+    color: #333333;
+    padding: 10px 22px;
+    border-radius: 4px 4px 0 0;
+}
+.login ul li.user_info .btn-default .caret {
+    margin-left: 15px;
+}
+.login ul li.user_info ul.dropdown-menu {
+    margin-top: -1px;
+    border: 0;
+    border-radius: 0;
+    padding-top: 0;
+    padding-bottom: 10px;
+    border-radius: 0 0 4px 4px;
+}
+.login ul li.user_info ul.dropdown-menu li {
+    width: 100%;
+    padding-top: 0;
+}
+.login ul li.user_info ul.dropdown-menu li a {
+    font-size: 13px;
+    color: #333333;
+    padding: 10px 0 0 40px;
+    text-transform: none;
+}
+.login ul li.user_info ul.dropdown-menu>li>a:focus, .login ul li.user_info ul.dropdown-menu>li>a:hover {
+    outline: 0;
+    color: #0078db;
+    background-color: #ffffff;
+}
+
+/*----------------------------View Detail - After Login Before Subscription_end------------------------*/
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}

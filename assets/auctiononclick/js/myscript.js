@@ -52,6 +52,14 @@ $("select").change(function(e) {
 
 //---------------------accordion_end--------------------------------------//
 
+//---------------------accordion_remove_border--------------------------------------//
+$(document).ready(function(){
+    $(".ui-accordion-header").click(function(){
+        $(this).toggleClass("border-none");
+    });
+});
+//---------------------accordion_remove_border--------------------------------------//
+
 /*------------------------Custom_Select---------------------------------------------*/
 
 
@@ -136,7 +144,5 @@ document.addEventListener("click", closeAllSelect);
 
 
 /*------------------------Custom_Select_end---------------------------------------------*/
-
-
 
 

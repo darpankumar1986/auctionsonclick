@@ -24,40 +24,7 @@ class Home extends MY_Controller {
         $this->load->model('home_model');
         $this->load->model('admin/news_model');
         $this->load->model('property_model');
-		
-		/* run auction completed script */
-        $this->load->model('account_model');
-        $this->account_model->completedAuctionScript();
-        /* end run auction completed script */
-		
-        if ($this->session->userdata('user_type') == 'owner' || $this->session->userdata('user_type') == 'builder' || $this->session->userdata('user_type') == 'broker') {
-            redirect('/registration/logout');
-        }
-        if ($this->session->userdata('user_type') == 'helpdesk_ex') {
-            redirect('/registration/logout');
-        }
-        if ($this->session->userdata('user_type') == 'sales_cordinator') {
-            redirect('/registration/logout');
-        }
-        if ($this->session->userdata('user_type') == 'banker') {
-            redirect('/registration/logout');
-        }
-        if ($this->session->userdata('user_type') == 'account') {
-            redirect('/registration/logout');
-        }
-        if ($this->session->userdata('user_type') == 'helpdesk_admin') {
-            redirect('/registration/logout');
-        }
-        if ($this->session->userdata('user_type') == 'sales') {
-            redirect('/registration/logout');
-        }
-        if ($this->session->userdata('user_type') == 'mis') {
-            redirect('/registration/logout');
-        }
 
-        if (preg_match("/index.php/", $_SERVER['REQUEST_URI'])) {
-            redirect('/', 'location', 301);
-        }
     }
 
     function page($slug) {
@@ -188,6 +155,17 @@ class Home extends MY_Controller {
             $data['auction_data'] = $this->home_model->aucDetailPopupData($auctionID);
             $data['uploadedDocs'] = $this->home_model->GetUploadedDocsByAuctionId($auctionID);
             $this->load->view('front_view/auction_detail_popup', $data);
+        }
+
+	function auctionDetail($auctionID) {
+		$data['title'] = "View Detail";
+            $data['auction_data'] = $this->home_model->aucDetailPopupData($auctionID);
+            $data['uploadedDocs'] = $this->home_model->GetUploadedDocsByAuctionId($auctionID);
+
+			//$data['data'] = $this->home_model->GetAuctionDocuments($auctionID);
+			$this->load->view('front_view/header', $data);	
+            $this->load->view('front_view/auctionDetail', $data);
+			$this->load->view('front_view/footer');
         }
         
 	public function propertylisting()
@@ -358,6 +336,11 @@ class Home extends MY_Controller {
 		}
         
         $this->load->view('front_view/footer');
+    }
+
+	public function liveupcomingauciton_event_add() {
+       $save = $this->home_model->liveupcomingauciton_event_add_save();
+        
     }
 }
 
