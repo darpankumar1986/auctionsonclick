@@ -3886,6 +3886,201 @@ function getLoggedInOwner()
 		$data_doc[]=$row_doc;
 		}
 		return $data_doc;
-	}	
+	}
+	
+	function getAllAssetsType()
+    {
+		$this->db->where('status',1);
+		$query = $this->db->get('tbl_category');
+		 
+		if ($query->num_rows() > 0) {				
+			foreach ($query->result() as $row) {	
+				$aData[] = $row;				
+			}				
+		}
+		return $aData;
+	}
+    
+    function getProperty()
+    {           
+		$this->db->select("a.PropertyDescription, a.id, a.reference_no");
+	   
+		$this->db->from('tbl_auction as a');
+		$this->db->where('a.status IN(1,3,4)');				
+        $this->db->where('a.auction_end_date >= NOW()');//Added by Azizur Rahman
+        if(isset($_GET['search']) && $_GET['search']!='')
+		{
+			$pt = trim(str_replace("'","''",$_GET['search']));			
+			$this->db->like('a.PropertyDescription', $pt);
+		}
+		if($_GET['assetsTypeId']>0)
+		{
+			
+			$this->db->join('tbl_category as c','c.id=a.category_id','inner');
+			$this->db->where('c.id',$_GET['assetsTypeId']);
+		}
+		$query = $this->db->get();
+		//echo $this->db->last_query();die;
+		if ($query->num_rows() > 0) {				
+			foreach ($query->result() as $row) {	
+				$aData[] = $row;				
+			}				
+		}
+		return $aData;
+    }
+
+	function getAuctionCityLocation()
+	{
+		$this->db->select("a.city,a.reference_no as location,city.city_name",false)
+		->from('tbl_auction as a')	
+		->join('tbl_city as city','city.id=a.city','left')
+		->where('a.status IN(1)')
+		->where('auction_end_date >= NOW()');
+
+		$query = $this->db->get('');
+
+		$data = array();
+		foreach($query->result() as $row)
+		{
+			//echo $row->city_name;die;
+			$data['city'][$row->city] = $row->city_name;
+			$data['location'][$row->location] = $row->location;
+		}
+		return $data;
+	}
+	
+
+	function getShortlistedAuctionsCount($catId=0)
+	{
+		$bidderId=$this->session->userdata['id'];
+		$this->db->select("a.id",false)
+		->from('tbl_auction as a')				
+		//->join('tbl_category as c','c.id=a.subcategory_id','left')
+		->join('tbl_auction_bidder_fav as f','f.auctionID=a.id','left')
+		->where('f.bidderID',$bidderId);
+		if($catId==1)
+		{
+			$this->db->where('a.category_id',1);
+		}
+		if($catId==2)
+		{
+			$this->db->where('a.category_id',2);
+		}
+		if($catId==3)
+		{
+			$this->db->where('a.category_id',3);
+		}
+		$this->db->where('f.is_fav', 1);
+		$this->db->where('a.status IN(1)');
+		$this->db->where('auction_end_date >= NOW()');
+
+		$query = $this->db->get('');
+		if($query->num_rows()>0)
+		{
+			return $query->num_rows();
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+
+	function allShortlistedAuctionDatatable($bankIdbyshortname='')
+    {           		
+		
+		$bidderId=$this->session->userdata['id'];
+
+		$_POST['sColumns'] = "a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id";
+		
+		$this->datatables->select("a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+		->from('tbl_auction as a')				
+		//->join('tbl_category as c','c.id=a.subcategory_id','left')
+		->join('tbl_auction_bidder_fav as f','f.auctionID=a.id','left')
+		->join('tbl_bank as b','b.id=a.bank_id','left')
+		->join('tbl_city as city','city.id=a.city','left')
+		->where('f.bidderID',$bidderId)
+		->where('f.is_fav', 1)
+		->where('a.status IN(1)')
+		->where('auction_end_date >= NOW()');
+		$this->db->order_by('a.bid_last_date','ASC');
+
+		return $this->datatables->generate();
+		//echo $this->db->last_query();die;
+    }
+
+	function propertyShortlistedAuctionDatatable($bankIdbyshortname='')
+    {           		
+		
+		$bidderId=$this->session->userdata['id'];
+
+		$_POST['sColumns'] = "a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id";
+		
+		$this->datatables->select("a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+		->from('tbl_auction as a')				
+		//->join('tbl_category as c','c.id=a.subcategory_id','left')
+		->join('tbl_auction_bidder_fav as f','f.auctionID=a.id','left')
+		->join('tbl_bank as b','b.id=a.bank_id','left')
+		->join('tbl_city as city','city.id=a.city','left')
+		->where('f.bidderID',$bidderId)
+		->where('f.is_fav', 1)
+		->where('a.category_id',1)
+		->where('a.status IN(1)')
+		->where('auction_end_date >= NOW()');
+		$this->db->order_by('a.bid_last_date','ASC');
+
+		return $this->datatables->generate();
+		//echo $this->db->last_query();die;
+    }
+
+	function vehicleShortlistedAuctionDatatable($bankIdbyshortname='')
+    {           		
+		
+		$bidderId=$this->session->userdata['id'];
+
+		$_POST['sColumns'] = "a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id";
+		
+		$this->datatables->select("a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+		->from('tbl_auction as a')				
+		//->join('tbl_category as c','c.id=a.subcategory_id','left')
+		->join('tbl_auction_bidder_fav as f','f.auctionID=a.id','left')
+		->join('tbl_bank as b','b.id=a.bank_id','left')
+		->join('tbl_city as city','city.id=a.city','left')
+		->where('f.bidderID',$bidderId)
+		->where('f.is_fav', 1)
+		->where('a.status IN(1)')
+		->where('a.category_id',2)
+		->where('auction_end_date >= NOW()');
+		$this->db->order_by('a.bid_last_date','ASC');
+
+		return $this->datatables->generate();
+		//echo $this->db->last_query();die;
+    }
+
+	function otherShortlistedAuctionDatatable($bankIdbyshortname='')
+    {           		
+		$bidderId=$this->session->userdata['id'];
+
+		$_POST['sColumns'] = "a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id";
+		
+		$this->datatables->select("a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+		->from('tbl_auction as a')				
+		//->join('tbl_category as c','c.id=a.subcategory_id','left')
+		->join('tbl_auction_bidder_fav as f','f.auctionID=a.id','left')
+		->join('tbl_bank as b','b.id=a.bank_id','left')
+		->join('tbl_city as city','city.id=a.city','left')
+		->where('f.bidderID',$bidderId)
+		->where('f.is_fav', 1)
+		->where('a.status IN(1)')
+		->where('a.category_id',3)
+		->where('auction_end_date >= NOW()');
+		$this->db->order_by('a.bid_last_date','ASC');
+
+		return $this->datatables->generate();
+		//echo $this->db->last_query();die;
+    }
+
+	
 }
+
 ?>

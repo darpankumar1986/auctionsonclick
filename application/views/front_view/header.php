@@ -85,7 +85,7 @@
                         <div class="col-sm-9">
                             <div class="alert_notification">
                                 <ul>
-                                    <li><a href="#"><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/star_icon.png"></span>Shortlist</a></li>
+                                    <li><a href="<?php echo base_url(); ?>owner/shortlistedAuction"><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/star_icon.png"></span>Shortlist</a></li>
                                     <li><a href="#"><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/alarm_icon.png"></span>Set Alerts</a></li>
                                 </ul>
                             </div>
@@ -105,7 +105,7 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="#">Modify Profile</a></li>
                                             <li><a href="#">Change Password</a></li>
-                                            <li><a href="#">Shortlist</a></li>
+                                            <li><a href="<?php echo base_url(); ?>owner/shortlistedAuction">Shortlist</a></li>
                                             <li><a href="<?php echo base_url(); ?>registration/logout">Logout</a></li>
                                         </ul>
                                         </div></li>
@@ -119,7 +119,7 @@
                                     <button type="button" class="closebtn" onclick="closeNav()">&times;</button>
                                     <ul class="notification_alert">
                                         <li><a class="first_list" href="#"><i class="fa fa-bell-o"></i>Set Alerts</a></li>
-                                        <li><a class="first_list" href="#"><i class="fa fa-star"></i>Shortlist</a></li>
+                                        <li><a class="first_list" href="<?php echo base_url(); ?>owner/shortlistedAuction"><i class="fa fa-star"></i>Shortlist</a></li>
                                     </ul>
                                     <ul class="nav_section">
                                         <li class="list_desc"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span> Login / Register</a></li>
@@ -199,7 +199,7 @@
                                         <ul class="dropdown-menu">
                                             <li><a href="#">Modify Profile</a></li>
                                             <li><a href="#">Change Password</a></li>
-                                            <li><a href="#">Shortlist</a></li>
+                                            <li><a href="<?php echo base_url(); ?>owner/shortlistedAuction">Shortlist</a></li>
                                             <li><a href="<?php echo base_url(); ?>registration/logout">Logout</a></li>
                                         </ul>
                                         </div></li>
@@ -212,7 +212,7 @@
                                     <button type="button" class="closebtn" onclick="closeNav()">&times;</button>
                                     <ul class="notification_alert">
                                         <li><a class="first_list" href="#"><i class="fa fa-bell-o"></i>Set Alerts</a></li>
-                                        <li><a class="first_list" href="#"><i class="fa fa-star"></i>Shortlist</a></li>
+                                        <li><a class="first_list" href="<?php echo base_url(); ?>owner/shortlistedAuction"><i class="fa fa-star"></i>Shortlist</a></li>
                                     </ul>
                                     <ul class="nav_section">
                                         <li class="list_desc"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span> Login / Register</a></li>

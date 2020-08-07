@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/colorbox.css" />
 <script src="/js/jquery.colorbox.js"></script>
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/jquery.dataTables.css" type="text/css" media="screen"/>	
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<?php echo VIEWBASE?>js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
 	jQuery(".auctiondetail_iframe").colorbox({iframe:true, width:"70%", height:"70%"});	
         jQuery(document).ready(function() {

@@ -184,6 +184,17 @@ $other_city=$auctionData->other_city;
 							</div>
 						   </div>
 					  </div> 
+					  
+					  <div class="row">
+							<div class="lft_heading">Borrower Name</div>
+							<div class="rgt_detail">
+								<input name="borrower_name" id="borrower_name" type="text" value="<?php echo $auctionData->borrower_name;?>"  class="input html_found">
+								<div class="tooltips">
+									<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
+									<span></span>
+								</div>	
+							</div>
+						</div>
 					 <div class="row">
 							<div class="lft_heading">Location <span class="red">*</span></div>
 							<div class="rgt_detail">
@@ -396,19 +407,6 @@ $other_city=$auctionData->other_city;
 						</div>
 					</div>
 					
-					
-					
-					<div class="row">
-						<div class="lft_heading">Name of Owner/ Occupier as per MCG record </div>
-						<div class="rgt_detail">
-							<input name="service_no" id="service_no" type="text"  value="<?php echo $auctionData->service_no;?>"  class="input alphanumeric html_found">
-							<div class="tooltips">
-								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-								<span>This is the unique refrence number by which an event may be identified.e.g. in case of DRT event it may be the R C Number</span>
-							</div>	
-						</div>
-					</div>
-					
 					<div class="row">
 						<div class="lft_heading">Concerned Zone <span class="red"> *</span></div>
 						<div class="rgt_detail">
@@ -426,16 +424,7 @@ $other_city=$auctionData->other_city;
 						</div>
 					  </div>
 					  
-					  <div class="row">
-						<div class="lft_heading">Applicable FAR </div>
-						<div class="rgt_detail">
-							<input name="far" id="far" type="text"  value="<?php echo $auctionData->far;?>"  class="input alphanumeric html_found">
-							<div class="tooltips">
-								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-								<span>This is the unique refrence number by which an event may be identified.e.g. in case of DRT event it may be the R C Number</span>
-							</div>	
-						</div>
-						</div>
+					  
 					  
 					  <div class="row">
 						<div class="lft_heading">Max Coverage Area </div>
@@ -914,6 +903,26 @@ $other_city=$auctionData->other_city;
 							</div>
 						</div>
 					-->	
+					<div class="row">
+						<div class="lft_heading">E-Auction Provider</div>
+						<div class="rgt_detail">
+							<input name="service_no" id="service_no" type="text"  value="<?php echo $auctionData->service_no;?>"  class="input html_found">
+							<div class="tooltips">
+								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
+								<span>E-Auction Provider</span>
+							</div>	
+						</div>
+					</div>
+					<div class="row">
+						<div class="lft_heading">E-Auction Website </div>
+						<div class="rgt_detail">
+							<input name="far" id="far" type="text"  value="<?php echo $auctionData->far;?>"  class="input html_found">
+							<div class="tooltips">
+								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
+								<span>E-Auction Website</span>
+							</div>	
+						</div>
+					</div>
 <?php 
     if(is_array($upload_document_field) && count($upload_document_field)>0 )
         { 

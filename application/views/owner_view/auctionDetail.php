@@ -102,7 +102,7 @@
                             <div class="col-sm-9">
                                 <div class="desc_wrapper_inner">
                                     <h3>Residential Plot in <?php echo $auction_data[0]->location_name; ?>, <?php echo $auction_data[0]->city_name; ?></h3>
-                                    <p><img src="<?php echo base_url().$auction_data[0]->bank_img; ?>" style="width:18px;height:18px;"> <?php echo $auction_data[0]->bank_name; ?></p>
+                                    <p><img src="<?php echo base_url(); ?>assets/auctiononclick/images/pnbindia.png"> <?php echo $auction_data[0]->bank_name; ?></p>
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -119,8 +119,8 @@
                         <div class="shortlist_desc">
                             <div class="desc_para"><p>Description</p></div>
                             <div class="desc_shortlist_button">
-                                <button class="btn btn-default shortlist_list <?php echo ($auction_data[0]->is_fav)?'shortlisted_list':''; ?>" type="button" onclick="addtoeventfavlist(<?php echo (int)$auction_data[0]->id; ?>)">
-                                    <i class="fa fa-star"></i> <?php echo ($auction_data[0]->is_fav)?'Shortlisted':'Shortlist'; ?>
+                                <button class="btn btn-default shortlist_list" type="button" onclick="addtoeventfavlist(<?php echo (int)$auction_data[0]->id; ?>)">
+                                    <i class="fa fa-star"></i> Shortlist
                                 </button>
                             </div>
                             <div class="clr"></div>
@@ -192,11 +192,11 @@
 									</tr>
 									<tr>
 										<td>E-Auction Provider</td>
-										<td><?php echo $auction_data[0]->service_no; ?></td>
+										<td></td>
 									</tr>
 									<tr>
 										<td>E-Auction Website</td>
-										<td><a href="<?php echo 'https://'.$auction_data[0]->far; ?>" target="_blank"><?php echo $auction_data[0]->far; ?></a></td>
+										<td></td>
 									</tr>
 									<tr>
 										<td>Documents Available</td>
@@ -211,7 +211,7 @@
 										</td>
 									</tr>
 								<?php } ?>
-								<?php if(($auction_data[0]->isSub > 0)){ ?>
+								<?php if(!($auction_data[0]->isSub > 0)){ ?>
 								<tr>
                                     <td colspan="2" class="contact_desc"><p>For further assistance, please contact our sales team</p>
                                         <p><?php echo $sales_person_detail; ?>
@@ -219,7 +219,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="residential_btn"><button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url(); ?>propertylisting?search=<?php echo $auction_data[0]->city_name; ?>&assetsTypeId=1'">View more residential plot in <?php echo $auction_data[0]->city_name; ?> <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button></td>
+                                    <td colspan="2" class="residential_btn"><button class="btn btn-default" type="button">View more residential plot in <?php echo $auction_data[0]->city_name; ?> <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button></td>
                                 </tr>
 								<?php } ?>
                             </tbody>
@@ -264,17 +264,7 @@
 
 						
 						if (auctionID) {
-								var is_fav = $(".shortlist_list").hasClass('shortlisted_list');
-								if(is_fav)
-								{
-									$(".shortlist_list").removeClass('shortlisted_list');
-									$(".shortlist_list").html('<i class="fa fa-star"></i> Shortlist');
-								}
-								else
-								{
-									$(".shortlist_list").addClass('shortlisted_list');
-									$(".shortlist_list").html('<i class="fa fa-star"></i> Shortlisted');
-								}
+
 						jQuery.ajax({
 							url: '/home/liveupcomingauciton_event_add',
 							type: 'POST',

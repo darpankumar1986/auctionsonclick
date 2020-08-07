@@ -159,14 +159,19 @@ class Home extends MY_Controller {
 
 	function auctionDetail($auctionID) {
 		$data['title'] = "View Detail";
-            $data['auction_data'] = $this->home_model->aucDetailPopupData($auctionID);
-            $data['uploadedDocs'] = $this->home_model->GetUploadedDocsByAuctionId($auctionID);
+		$data['auction_data'] = $this->home_model->aucDetailPopupData($auctionID);
+		$data['uploadedDocs'] = $this->home_model->GetUploadedDocsByAuctionId($auctionID);
+		//print_r($data['auction_data']);
+		//echo $data['auction_data'][0]->state;die;
+		$salesPerson = $this->home_model->getSalesPerson($data['auction_data'][0]->state);
 
-			//$data['data'] = $this->home_model->GetAuctionDocuments($auctionID);
-			$this->load->view('front_view/header', $data);	
-            $this->load->view('front_view/auctionDetail', $data);
-			$this->load->view('front_view/footer');
-        }
+		$data['sales_person_detail'] = 'Mr. '.$salesPerson[0]->sales_person_name.', Mobile No. '.$salesPerson[0]->mobile_no.', <a href="mailto:'.$salesPerson[0]->email_id.'">'.$salesPerson[0]->email_id.'</a>';
+		
+		//$data['data'] = $this->home_model->GetAuctionDocuments($auctionID);
+		$this->load->view('front_view/header', $data);	
+		$this->load->view('front_view/auctionDetail', $data);
+		$this->load->view('front_view/footer');
+    }
         
 	public function propertylisting()
 	{	

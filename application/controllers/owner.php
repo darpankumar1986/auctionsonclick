@@ -3463,6 +3463,64 @@ class Owner extends WS_Controller {
         }
     }
         
-}
+	function auctionDetail($auctionID) {
+		$data['title'] = "View Detail";
+		$data['auction_data'] = $this->home_model->aucDetailPopupData($auctionID);
+		$data['uploadedDocs'] = $this->home_model->GetUploadedDocsByAuctionId($auctionID);
+		//print_r($data['auction_data']);
+		//echo $data['auction_data'][0]->state;die;
+		$salesPerson = $this->home_model->getSalesPerson($data['auction_data'][0]->state);
 
+		$data['sales_person_detail'] = 'Mr. '.$salesPerson[0]->sales_person_name.', Mobile No. '.$salesPerson[0]->mobile_no.', <a href="mailto:'.$salesPerson[0]->email_id.'">'.$salesPerson[0]->email_id.'</a>';
+		
+		//$data['data'] = $this->home_model->GetAuctionDocuments($auctionID);
+		$this->load->view('front_view/header', $data);	
+		$this->load->view('owner_view/auctionDetail', $data);
+		$this->load->view('front_view/footer');
+	}
+
+	public function shortlistedAuction()
+	{	
+		$data['assetsType'] = $this->owner_model->getAllAssetsType();
+		$vdata['property'] = $this->owner_model->getProperty();
+		$this->load->view('front_view/header',$data);
+
+
+		$vdata['data'] = $this->owner_model->getAuctionCityLocation();
+		$vdata['allShortlistedAuctionsCounts'] = $this->owner_model->getShortlistedAuctionsCount(0);
+		$vdata['propertyShortlistedAuctionsCounts'] = $this->owner_model->getShortlistedAuctionsCount(1);
+		$vdata['vehicleShortlistedAuctionsCounts'] = $this->owner_model->getShortlistedAuctionsCount(2);
+		$vdata['otherShortlistedAuctionsCounts'] = $this->owner_model->getShortlistedAuctionsCount(3);
+		$vdata['otherShortlistedAuctionsCounts'] = $this->owner_model->getShortlistedAuctionsCount(3);
+
+		if(MOBILE_VIEW)
+		{				
+			$this->load->view('mobile/shortlistedAuction',$vdata);
+		}
+		else
+		{				
+			$this->load->view('owner_view/shortlistedAuction',$vdata);
+		}
+		
+		
+		$this->load->view('front_view/footer');
+	}
+	
+	 public function allShortlistedAuctionDatatable() {
+        echo $this->owner_model->allShortlistedAuctionDatatable();
+    }
+
+	 public function propertyShortlistedAuctionDatatable() {
+        echo $this->owner_model->propertyShortlistedAuctionDatatable();
+    }
+
+	public function vehicleShortlistedAuctionDatatable() {
+        echo $this->owner_model->vehicleShortlistedAuctionDatatable();
+    }
+
+	public function otherShortlistedAuctionDatatable() {
+        echo $this->owner_model->otherShortlistedAuctionDatatable();
+    }
+
+}
 ?>

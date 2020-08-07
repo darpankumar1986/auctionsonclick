@@ -91,70 +91,74 @@ section{float:none;}
         </tr>
 
         <tr class="odd">
-            <td align="left" valign="top" class=""><strong>Location </strong></td>
+            <td align="left" valign="top" class=""><strong>Borrower Name </strong></td>
+            <td align="left" valign="top" class=""  colspan="3"><?php echo $auction_detail->borrower_name?></td> 
+			<td align="left" valign="top" class=""><strong>Location </strong></td>
             <td align="left" valign="top" class=""  colspan="3"><?php echo $auction_detail->reference_no?></td> 
-			<td align="left" valign="top" class=""><strong>City</strong></td>
+        </tr>
+
+		<tr class="even">
+            <td align="left" valign="top" class=""><strong>City</strong></td>
             <td align="left" valign="top" class="" colspan="3"><?php
                 echo GetTitleByField('tbl_city', "id='".$auction_detail->city."'" ,'city_name');
-            ?></td></td>
-        </tr>
-        
-        <tr class="even">
-            <td align="left" valign="top" class=""><strong>State</strong></td>
+            ?></td>
+			<td align="left" valign="top" class=""><strong>State</strong></td>
             <td align="left" valign="top" class="" colspan="3"><?php
                 echo GetTitleByField('tbl_state', "id='".$auction_detail->state."'" ,'state_name');
-            ?></td></td>
-			<td align="left" valign="top" class=""><strong>Country</strong></td>
-            <td align="left" valign="top" class="" colspan="3"><?php
-                echo GetTitleByField('tbl_country', "id='".$auction_detail->countryID."'" ,'country_name');
-            ?></td></td>
-			
+            ?></td>
         </tr>
         
         <tr class="odd">
             
-            <td align="left" valign="top" class=""><strong>Reserve Price</strong></td>
+			<td align="left" valign="top" class=""><strong>Country</strong></td>
+            <td align="left" valign="top" class="" colspan="3"><?php
+                echo GetTitleByField('tbl_country', "id='".$auction_detail->countryID."'" ,'country_name');
+            ?></td>
+			 <td align="left" valign="top" class=""><strong>Reserve Price</strong></td>
             <td align="left" valign="top" class=""  colspan="3"><?php echo $auction_detail->reserve_price;?>
-            </td>  
+            </td>
+        </tr>
+        
+        <tr class="even">
             <td align="left" valign="top" class=""><strong>EMD Amount</strong></td>
             <td align="left" valign="top" class=""  colspan="3"><?php echo $auction_detail->emd_amt;?>
             </td>
-        </tr>
-       
-        <tr class="even">
-            
-            <td align="left" valign="top" class=""><strong>EMD Submission Last Date</strong></td>
+			<td align="left" valign="top" class=""><strong>EMD Submission Last Date</strong></td>
             <td align="left" valign="top" class=""  colspan="3">
                 <?php echo date("d-m-Y H:i",strtotime($auction_detail->bid_last_date));?>
             </td>
-			
+        </tr>
+       
+        <tr class="odd">
+            
             <td align="left" valign="top" class=""><strong>Auction Start date</strong></td>
             <td align="left" valign="top" class=""  colspan="3">
                 <?php echo date("d-m-Y H:i",strtotime($auction_detail->auction_start_date));?>
             </td> 
-            
-        </tr>
-        <tr class="odd">
             <td align="left" valign="top" class=""><strong>Auction End date</strong></td>
             <td align="left" valign="top" class=""  colspan="3">
                 <?php echo date("d-m-Y H:i",strtotime($auction_detail->auction_end_date));?>
-            </td> 
-            <td align="left" valign="top" class=""><strong>How to Reach</strong></td>
-            <td td align="left" valign="top" class="" colspan="3"><a target="_blank" href="<?php echo base_url().'admin/home/viewGoogleMap/'. $auction_detail->id;?>">View</a></td>
-        </tr>
-        
-        <?php if(count($uploadedDocs)>0 && is_array($uploadedDocs)){ ?>
-        <tr class="odd">
-            
-            <td align="left" valign="top" class=""><strong><?php echo $uploadedDocs[0]->upload_document_field_name;?></strong></td>
-            <td align="left" valign="top" class=""  colspan="3">
-			<a href="/public/uploads/event_auction/<?php echo $uploadedDocs[0]->file_path;?>" target="_blank">View</a>
-			<td align="left" valign="top" class=""></td>
-            <td align="left" valign="top" class="" colspan="3">
             </td>
         </tr>
-		<?php } ?>
-    
+        <tr class="even">
+             
+            <td align="left" valign="top" class=""><strong>How to Reach</strong></td>
+            <td td align="left" valign="top" class="" colspan="3"><a target="_blank" href="<?php echo base_url().'admin/home/viewGoogleMap/'. $auction_detail->id;?>">View</a></td>
+			<td align="left" valign="top" class=""><strong>E-Auction Provider</strong></td>
+            <td align="left" valign="top" class=""  colspan="3">
+                <?php echo $auction_detail->service_no; ?>
+            </td>
+        </tr>
+        <tr class="odd">
+            <td align="left" valign="top" class=""><strong>E-Auction Website</strong></td>
+            <td td align="left" valign="top" class="" colspan="3"><?php echo $auction_detail->far; ?></td>
+			<td align="left" valign="top" class=""><strong><?php echo $uploadedDocs[0]->upload_document_field_name;?></strong></td>
+            <td align="left" valign="top" class=""  colspan="3">
+			<?php if(count($uploadedDocs)>0 && is_array($uploadedDocs)){ ?><a href="/public/uploads/event_auction/<?php echo $uploadedDocs[0]->file_path;?>" target="_blank">View</a>
+			<?php } else { echo 'N/A'; } ?>
+
+        </tr>
+       
     </tbody>
 	 
 	</table>
