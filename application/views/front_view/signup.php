@@ -110,7 +110,7 @@
 									   <div class="floating-label">
 										   <input  class="floating-input floating-float" maxlength="10" name="mobile" id="mobile_number"  class="numericonly" type="text" value="" placeholder=" ">
                                            <label class="custom_label">Mobile Number</label>
-                                           <button type="button" class="btn verify_btn mobile_send_code">Send Code</button>
+                                           <button type="button" class="btn verify_btn mobile_send_code">Send OTP</button>
 										   <button type="button" class="btn verify_btn verify_btn3 mobile_resend">Resend in 30</button>
 										   <button type="button" class="btn verify_btn mobile_verified" style="background-color: green;">Verified</button>
 										   <span  class="field-signupform-mobile_number help-block-error error2"></span>
@@ -488,7 +488,7 @@ $('.alphanumericemail').bind('keypress', function (event) {
 									$(".mobile_resend").html('Resend in '+dataSecond);
 									$(".mobile_resend").attr('data-second',dataSecond);
 									if(dataSecond == 0){ 
-										$(".mobile_resend").html('Resend Code');
+										$(".mobile_resend").html('Resend OTP');
 										$(".mobile_resend").attr('disabled',false);
 										clearInterval(myVar);
 									} 
