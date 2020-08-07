@@ -737,6 +737,65 @@ class Home_model extends CI_Model {
 		}
 		return $data;
 	}
+
+	function getSubcriptionPlan($plan_id = 0)
+	{
+		if($plan_id > 0)
+		{
+			$this->db->where('package_id',$plan_id);	
+		}
+		$this->db->where('package_status',1);
+		$query = $this->db->get('tbl_subscription_package');
+		return $query->result();
+	}
+
+	public function get_subcription_payment($paymentId) 
+    {
+		$resArr = array();
+		$this->db->select("p.id,p.auctionID,p.payu_amount,p.type,r.user_type,r.authorized_person,r.first_name,r.email_id,r.mobile_no");
+		$this->db->where('p.id', $paymentId);
+		$this->db->join('tbl_user_registration as r','r.id = p.bidderID');
+		$query = $this->db->get("tbl_payment as p");
+		//echo $this->db->last_query();die;
+		if ($query->num_rows() > 0) {
+			$res = $query->result();
+			foreach($res as $row)
+			{
+				$resArr = $row; 
+			}
+		}
+		return $resArr;
+	}
+
+	public function save_payment($bidderID,$package_id) 
+      {	
+			$this->db->where('package_id', $package_id);
+			$query = $this->db->get("tbl_subscription_package");
+			$package = $query->row();
+
+			$this->db->where('id', $bidderID);
+			$query = $this->db->get("tbl_user_registration");
+			$bidder = $query->row();
+
+			$indate=date('Y-m-d H:i:s');
+               
+			$data = array('bidderID'=>$bidderID ,
+					'auctionID'=>$package_id,
+					'paymentStatus'=>'pending' ,
+					'sendTime'=>$indate ,
+					'ip'=>$_SERVER['REMOTE_ADDR'] ,
+					'type'=>'subscription',	
+					'payu_amount'=>$package->package_amount,					
+					'payu_email'=>$bidder->email_id
+					);
+
+			
+                    $this->db->insert('tbl_payment',$data); 
+//					echo $this->db->last_query();die;
+					$insert_id1=$this->db->insert_id();
+
+		return $insert_id1;
+	}
 }
 
 ?>

@@ -124,7 +124,7 @@
                                     <ul class="nav_section">
                                         <li class="list_desc"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span> Login / Register</a></li>
                                         <li class="list_desc"><a href="#"><span><i class="fa fa-headphones"></i></span> Customer Service</a></li>
-                                        <li><a href="#">Premium Services</a></li>
+                                        <li><a href="<?php echo base_url();?>home/premiumServices">Premium Services</a></li>
                                         <li><a href="#">Top Cities</a></li>
                                         <li><a href="#">Bankeauctions.com</a></li>
                                         <li><a href="#">About Us</a></li>
@@ -217,7 +217,7 @@
                                     <ul class="nav_section">
                                         <li class="list_desc"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span> Login / Register</a></li>
                                         <li class="list_desc"><a href="#"><span><i class="fa fa-headphones"></i></span> Customer Service</a></li>
-                                        <li><a href="#">Premium Services</a></li>
+                                        <li><a href="<?php echo base_url();?>home/premiumServices">Premium Services</a></li>
                                         <li><a href="#">Top Cities</a></li>
                                         <li><a href="#">Bankeauctions.com</a></li>
                                         <li><a href="#">About Us</a></li>

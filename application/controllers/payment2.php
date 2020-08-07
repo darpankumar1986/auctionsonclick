@@ -17,7 +17,7 @@ class Payment2 extends WS_Controller
         $this->load->library('table');
         $this->load->database();
 		$this->load->helper(array('form'));
-		$this->load->model('owner_model');		
+		$this->load->model('home_model');		
 		//	$this->check_isvalidated();
 	}	
 		
@@ -27,7 +27,7 @@ class Payment2 extends WS_Controller
 		$paymentId = $this->input->get("txnid");
 		if($paymentId != '')
 		{
-			$payment_res = $this->owner_model->get_tenderfee_payment(base64_decode($paymentId));		
+			$payment_res = $this->home_model->get_subcription_payment(base64_decode($paymentId));		
 			//echo '<pre>';
 			//print_r($payment_res);die;
 			$this->page($payment_res);
@@ -186,78 +186,50 @@ class Payment2 extends WS_Controller
 						$payment_res = $res[0];
 						 
 						$bidderID = $payment_res->bidderID;
-						$auctionID = $payment_res->auctionID;
-						$tenderfeeID = $payment_res->tenderfeeID;
-						
-						
-						$rData = array(
-							'payment_response'=>json_encode($_REQUEST),
-							'payment_status'=>'success',
-							'date_modified'=>date('Y-m-d H:i:s')
+						$package_id = $payment_res->auctionID;
+					
+						$this->db->where('package_id', $package_id);
+						$query = $this->db->get("tbl_subscription_package");
+						$package = $query->row();
+
+						$startDate = date('Y-m-d H:i:s');
+						$endDate = date('Y-m-d H:i:s',strtotime("+".$package->sub_month." months"));
+
+						$participated_data = array(
+						'member_id'=>$bidderID,
+						'package_id'=>$package_id,
+						'package_amount'=>$package->package_amount,
+						'package_start_date' => $startDate,
+						'package_end_date' => $endDate,
+						'subscription_status' => 1,
+						'subscription_created_on' => date("Y-m-d H:i:s")
 						);
-						
-						
-						$this->db->where('payment_log_id',$tenderfeeID);
-						$this->db->update('tbl_jda_payment_log',$rData);
-						
-						//data for gst_mis table
-						$register_as = GetTitleByField('tbl_user_registration', "id='".$bidderID."'", 'register_as');
-						$city_id = GetTitleByField('tbl_user_registration', "id='".$bidderID."'", 'city_id');
-						$state_id = GetTitleByField('tbl_user_registration', "id='".$bidderID."'", 'state_id');
-						$country_id = GetTitleByField('tbl_user_registration', "id='".$bidderID."'", 'country_id');		
-						
-						if($register_as =='builder')
+
+						$this->db->insert('tbl_subscription_participate',$participated_data);
+						$subscription_participate_id = $this->db->insert_id();
+
+						$this->db->where('status', 1);
+						$query = $this->db->get("tbl_state");
+						foreach($query->result() as $state)
 						{
-							$customer_name = GetTitleByField('tbl_user_registration', "id='".$bidderID."'", 'organisation_name');
+							$participated_city_data = array(
+								'subscription_participate_id'=>$subscription_participate_id,
+								'member_id'=>$bidderID,
+								'sub_state_id'=>$state->id,
+								'package_id'=>$package_id,
+								'sub_start_date' => $startDate,
+								'sub_end_date' => $endDate,
+								'sub_status' => 1,
+								'sub_type' => 'package',
+								'sub_created_on' => date("Y-m-d H:i:s")
+								);
+
+								$this->db->insert('tbl_subscription_participate_city',$participated_city_data);
 						}
-						else
-						{
-							$first_name = GetTitleByField('tbl_user_registration', "id='".$bidderID."'", 'first_name');
-							$last_name = GetTitleByField('tbl_user_registration', "id='".$bidderID."'", 'last_name');
-							$customer_name = $first_name.' '.$last_name;
-						}
-						$address1 = GetTitleByField('tbl_user_registration', "id='".$bidderID."'", 'address1');
-						$address2 = GetTitleByField('tbl_user_registration', "id='".$bidderID."'", 'address2');
-						$cityName = GetTitleByField('tbl_city', "id='".$city_id."'", 'city_name');
-						$stateName = GetTitleByField('tbl_state', "id='".$state_id."'", 'state_name');
-						$countryName = GetTitleByField('tbl_country', "id='".$country_id."'", 'country_name');						
-						$zip = GetTitleByField('tbl_user_registration', "id='".$bidderID."'", 'zip');
-						
-						$customer_address = $address1;
-						if($address2 !='')
-						{
-							$customer_address .= ', '.$address2;
-						}
-						$customer_address .= ', '.$cityName.', '.$stateName.', '.$countryName.', '.$zip;
-						
-						$supplyPlaceName = GetTitleByField('tbl_payment', "id='".$txnidArr[0]."'", 'supply_place');
-						$delivery_address = GetTitleByField('tbl_payment', "id='".$txnidArr[0]."'", 'delivery_address');
-						$gstin = GetTitleByField('tbl_payment', "id='".$txnidArr[0]."'", 'gst_available');
-						$gst_no = GetTitleByField('tbl_payment', "id='".$txnidArr[0]."'", 'gst_no');
-						
-						$gstMisArr = array(
-								'bidder_id'=>$bidderID,
-								'auction_id'=>$auctionID,
-								'customer_name'=>$customer_name,
-								'customer_address'=>$customer_address,
-								'supply_place'=>$supplyPlaceName,
-								'delivery_address'=>$delivery_address,
-								'gst_available'=>$gstin,
-								'gst_no'=>$gst_no,
-								'service_description'=>'Processing Fee Payment',
-								'base_amt'=> SUBMISSION_FEE,
-								'tax_rate'=> SUBMISSION_TAX,
-								'total_tax_applicable'=> SUBMISSION_TAX_AMOUNT,
-								'net_amt_paid'=> SUBMISSION_AMOUNT,
-								'payment_date'=>$data['returnTime'],
-								'transaction_number'=>$_REQUEST['mihpayid']
-						);
-						//echo '<pre>';print_r($gstMisArr);die;
-						//insert data into gst_mis table
-						$this->db->insert('tbl_gst_mis',$gstMisArr);
+
 				
 						$this->session->set_flashdata('message','Processing Fee Paid Successfully !<br>');	
-						redirect("/owner/auction_participate/".$payment_res->auctionID);
+						redirect("/home/success");
 			}else{
 					
 					$this->db->where('id', $txnidArr[0]);
@@ -321,7 +293,7 @@ class Payment2 extends WS_Controller
 
 				$this->db->where('id', $txnidArr[0]);
 				$this->db->update('tbl_payment',$data); 
-				
+
 				$this->db->where('id', $txnidArr[0]);
 				$query1  =   $this->db->get('tbl_payment');
 				$res1 = $query1->result();
@@ -338,7 +310,7 @@ class Payment2 extends WS_Controller
 						
 						$this->db->where('payment_log_id',$tenderfeeID);
 						$this->db->update('tbl_jda_payment_log',$rData);
-
+			
 
 				$this->db->where('id', $txnidArr[0]);
 				$query  =   $this->db->get('tbl_payment');
@@ -356,23 +328,9 @@ class Payment2 extends WS_Controller
 				$this->db->where('auctionID',$auctionID);
 				$this->db->update('tbl_auction_participate',$dataAP);	
 				$insertedid_id	=1;		
-				
-				
-				$this->db->where('bidderID',$bidderID);
-				$this->db->where('auctionID',$auctionID);
-				$pQry = $this->db->get('tbl_auction_participate');
-				$rowsAP = $pQry->result_array();					
-				$dataAP1 = $rowsAP[0];
-				unset($dataAP1['id']);
-				unset($dataAP1['pstatus']);
-				unset($dataAP1['dsc_verified_status']);
-				$data1['final_submit_date'] = $indate;
-				$data1['auction_participate_id'] = $rowsAP[0]['id'];
-				$this->db->where('bidderID',$bidderid);
-				$this->db->where('auctionID',$auction_id);
-				$this->db->insert('tbl_log_auction_participate',$dataAP1);	
-				
-				
+			
+					
+			
 				$rData = array(					
 					'payment_status'=>'failure',
 					'date_modified'=>date('Y-m-d H:i:s')
@@ -383,8 +341,8 @@ class Payment2 extends WS_Controller
 				$this->db->where('control_number',$controlNumber);
 				$this->db->update('tbl_jda_payment_log',$rData);	
 
-				$this->session->set_flashdata('message_new','Processing Fee Payment Failure ! Please try again<br>');	
-				redirect("/owner/auction_participate/".$payment_res->auctionID);
+				$this->session->set_flashdata('message_new','Subcription Payment Failure ! Please try again<br>');	
+				redirect("/home/premiumServices/");
 		}
 		else
 		{

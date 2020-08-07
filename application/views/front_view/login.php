@@ -193,6 +193,8 @@
                                    <div class="floating-form">
                                        <div class="floating-label">
 											<input type="hidden" id="loginType" name="login_as" value="owner">
+											<input type="hidden" id="action" name="action" value="<?php echo $_GET['action']; ?>">
+
                              			   <input type="text" placeholder=" " class="keysubmit floating-input" name="user_name" id="username" value="<?php if($this->session->userdata('session_found_emailid')) { echo $this->session->userdata('session_found_emailid');} ?>">
                                            <label class="custom_label">Email ID/Mobile No./Username</label>
                                        </div>

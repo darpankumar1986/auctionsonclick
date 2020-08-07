@@ -342,6 +342,41 @@ class Home extends MY_Controller {
        $save = $this->home_model->liveupcomingauciton_event_add_save();
         
     }
+
+	public function premiumServices() {
+
+		if($_GET['package_id'] > 0)
+		{
+			if(IS_PAYMENT_GATEWAY_OFF===TRUE)
+			{
+				$res = $this->registration_model->save_step_first();
+				$this->session->set_flashdata('msg','Registration done Successfully !<br>');	
+				redirect("/registration/signup");
+			}
+			else
+			{
+				$bidderID = $this->session->userdata('id');
+				$last_insert_id_payment = $this->home_model->save_payment($bidderID,$_GET['package_id']);
+				
+				redirect('/payment2/index?txnid='.base64_encode($last_insert_id_payment));die;
+			}
+		}
+
+		
+		$data['title'] = 'Premium Services';
+		$data['subcription_plan'] = $this->home_model->getSubcriptionPlan(0);
+        $this->load->view('front_view/header', $data);
+        if(MOBILE_VIEW)
+		{			
+			$this->load->view('mobile/home', $data);
+		}
+		else
+		{		
+			$this->load->view('front_view/premiumServices', $data);
+		}
+        
+        $this->load->view('front_view/footer');
+    }
 }
 
 ?>

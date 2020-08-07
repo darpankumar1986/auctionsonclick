@@ -695,6 +695,7 @@ class Registration extends WS_Controller {
 		
 			$track=$this->input->post('track');
 			$auctionID=$this->input->post('auctionID');
+			$action=$this->input->post('action');
 			
 			if($this->session->userdata('id')&& $this->session->userdata('user_type'))
 			{
@@ -751,7 +752,11 @@ class Registration extends WS_Controller {
 						{
 							redirect("/owner/auctionParticipage/".$auctionID);	
 						}
-						else
+						else if($action == "premium")
+						{
+							redirect("/home/premiumServices/");
+						}
+						else 
 						{
 							
 							if(!empty($redirect))
