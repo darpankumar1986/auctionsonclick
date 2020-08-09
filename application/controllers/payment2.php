@@ -187,6 +187,14 @@ class Payment2 extends WS_Controller
 						 
 						$bidderID = $payment_res->bidderID;
 						$package_id = $payment_res->auctionID;
+						$state_str = $payment_res->state;
+
+						$stateArr = array();
+						if($state_str != '')
+						{
+							$stateArr = explode(',',$state_str);
+						}
+
 					
 						$this->db->where('package_id', $package_id);
 						$query = $this->db->get("tbl_subscription_package");
@@ -212,19 +220,22 @@ class Payment2 extends WS_Controller
 						$query = $this->db->get("tbl_state");
 						foreach($query->result() as $state)
 						{
-							$participated_city_data = array(
-								'subscription_participate_id'=>$subscription_participate_id,
-								'member_id'=>$bidderID,
-								'sub_state_id'=>$state->id,
-								'package_id'=>$package_id,
-								'sub_start_date' => $startDate,
-								'sub_end_date' => $endDate,
-								'sub_status' => 1,
-								'sub_type' => 'package',
-								'sub_created_on' => date("Y-m-d H:i:s")
+							if(($package->package_city == "0" && $package_id < 4) || in_array($state->id,$stateArr))
+							{
+								$participated_city_data = array(
+									'subscription_participate_id'=>$subscription_participate_id,
+									'member_id'=>$bidderID,
+									'sub_state_id'=>$state->id,
+									'package_id'=>$package_id,
+									'sub_start_date' => $startDate,
+									'sub_end_date' => $endDate,
+									'sub_status' => 1,
+									'sub_type' => 'package',
+									'sub_created_on' => date("Y-m-d H:i:s")
 								);
 
 								$this->db->insert('tbl_subscription_participate_city',$participated_city_data);
+							}
 						}
 
 				

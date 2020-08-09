@@ -57,6 +57,9 @@
 
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
     <!--<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>-->
+
+	<script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/auctiononclick/js/chosen.jquery.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
     <script src="<?php echo base_url(); ?>assets/auctiononclick/js/myscript.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 
 	<script>
@@ -78,6 +81,42 @@ function checkSearch()
 	
 	
 }
+
+function goForSearch1(str)
+{
+	$("#error_txt1").html('');
+
+	$("#error_txt1").hide();
+	var searchText = $("#txt-search1").val();
+
+	var bank = $("#bank").closest('.custom-select').find('.select-selected').html();
+	
+	if(searchText.trim() == '')
+	{
+		$("#error_txt1").show();
+		$("#error_txt1").html('Please enter keyword for your search');
+		return false;
+	}
+	else
+	{
+		var assetsTypeId = $('.dropdown-header input[name=parentCat]').val();
+
+		var sub_id_str = '';
+		$("input[name=s_sub_id]:checked").each(function(){
+			var sub_id = $(this).val();
+			sub_id_str += '&sc[]='+sub_id;
+		});
+
+		var bank_text = '';
+		if(bank != '' && bank != 'Select Bank' && bank != 'All Cities')
+		{
+			bank_text = "&bank="+bank;
+		}
+		
+		window.location='<?php echo base_url();?>propertylisting?search='+searchText+'&assetsTypeId='+assetsTypeId+sub_id_str+bank_text;
+	}
+}
+
 
 
 function goForSearch(str)

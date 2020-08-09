@@ -382,6 +382,7 @@ class Home extends MY_Controller {
 	{	
 		$data['title'] = 'Thank You!';
 		$data['subcription_plan'] = $this->home_model->getSubcriptionPlan(0);
+		$data['total_auction'] = $this->home_model->getTotalAuction();
         $this->load->view('front_view/header', $data);
         if(MOBILE_VIEW)
 		{			
@@ -394,6 +395,29 @@ class Home extends MY_Controller {
         
         $this->load->view('front_view/footer');
     }
+
+	public function getCity()
+	{
+		if(isset($_GET['q']) && $_GET['q']!='')
+		{
+			$searchtext = $_GET['q'];
+			$searchtext = trim(str_replace("'","''",$searchtext));
+			
+			$this->db->where("city_name LIKE '%".$searchtext."%'");
+		}
+
+		$this->db->where('status IN(1)');
+		$this->db->limit(50);
+		$this->db->order_by('city_name','ASC');
+		$query = $this->db->get('tbl_city');
+
+		$data = array();
+		foreach($query->result() as $city)
+		{
+			array_push($data,array("id"=>$city->id,"label"=>$city->city_name));
+		}
+		echo json_encode($data);
+	}
 }
 
 ?>

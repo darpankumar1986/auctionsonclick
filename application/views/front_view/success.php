@@ -19,70 +19,77 @@
                <div class="row">
                    <div class="col-sm-12">
                        <div class="form_wrap_anction_search form-wrap thankyou_wrap">
-                           <p><a href="#">Explore 4677 Live Bank Auctions</a></p>
+                           <p><a href="#">Explore <?php echo (int)$total_auction; ?> Live Bank Auctions</a></p>
                            <form class="form_desc">
                                <div class="dropdown">
                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Category
                                        <span class="caret"></span></button>
                                    <ul class="dropdown-menu">
-                                       <li class="dropdown-header"><input type="radio" id="test1" name="radio-group" checked>
-                                           <label for="test1">All Properties</label></li>
-                                       <li><label class="checkbox-inline"><input type="checkbox" value="">Land</label></li>
-                                       <li><label class="checkbox-inline"><input type="checkbox" value="">Residential</label></li>
-                                       <li><label class="checkbox-inline"><input type="checkbox" value="">Commercial</label></li>
-                                       <li class="dropdown-header"><input type="radio" id="test2" name="radio-group">
-                                           <label for="test2">All Vehicles</label></li>
-                                       <li><label class="checkbox-inline"><input type="checkbox" value="">Personal</label></li>
-                                       <li><label class="checkbox-inline"><input type="checkbox" value="">Commercial</label></li>
-                                       <li class="dropdown-header"><input type="radio" id="test3" name="radio-group">
-                                           <label for="test3">Others</label></li>
+                                       <?php $parentCat = $this->home_model->getAllCategory(0); ?>
+										<?php foreach($parentCat as $key => $parCat){ ?>
+										<li class="dropdown-header">
+										<input type="radio" id="test<?php echo $key; ?>" class="s_parent_id" s-data-parent-id="<?php echo $parCat->id;?>" name="parentCat" value="<?php echo $parCat->id;?>">
+											<label for="test<?php echo $key; ?>">All <?php echo $parCat->name; ?></label></li>
+											<?php $Cats = $this->home_model->getAllCategory($parCat->id); ?>
+											<?php foreach($Cats as $cat){ ?>
+												<li><label class="checkbox-inline"><input type="checkbox" s-data-parent="<?php echo $parCat->id;?>" name="s_sub_id" value="<?php echo $cat->id;?>"><?php echo $cat->name; ?></label></li>
+											<?php } ?>
+									   
+										<?php } ?>   
                                    </ul>
                                </div>
-                               <div class="custom-dropdown-select">
-                                   <div class="custom-select">
-                                       <select>
-                                           <option value="0">Select City</option>
-                                           <option value="1">All Cities</option>
-                                           <option value="2">Agra</option>
-                                           <option value="3">Ahmedabad</option>
-                                           <option value="4">Delhi</option>
-                                           <option value="5">UP</option>
-                                           <option value="6">Goa</option>
-                                           <option value="7">Kerla</option>
-                                           <option value="8">Ahmedabad</option>
-                                           <option value="9">Delhi</option>
-                                           <option value="10">UP</option>
-                                           <option value="11">Goa</option>
-                                           <option value="12">Kerla</option>
-                                       </select>
+                               <div class="custom-dropdown-select1">
+                                   <div class="custom-select1">
+				
+										<input type="text" id="txt-search1" class="form-control item-suggest btn-default dropdown-toggle" name="x" placeholder="Type City" value="" style="border-left: 0px solid #ccc;">
+
+                                    
                                    </div>
                                </div>
+							   <?php $allbank = $this->home_model->getAllBank(); ?>
                                <div class="custom-dropdown-select">
                                    <div class="custom-select">
-                                       <select>
-                                           <option value="0">Select Bank</option>
-                                           <option value="1">All Cities</option>
-                                           <option value="2">Agra</option>
-                                           <option value="3">Ahmedabad</option>
-                                           <option value="4">Delhi</option>
-                                           <option value="5">UP</option>
-                                           <option value="6">Goa</option>
-                                           <option value="7">Kerla</option>
-                                           <option value="8">Ahmedabad</option>
-                                           <option value="9">Delhi</option>
-                                           <option value="10">UP</option>
-                                           <option value="11">Goa</option>
-                                           <option value="12">Kerla</option>
+                                       <select name="bank" id="bank">
+                                           <option value="">Select Bank</option>
+                                           <option value="">All Cities</option>
+										   <?php foreach($allbank as $bank){ ?>
+	                                           <option value="<?php echo $bank->id; ?>"><?php echo $bank->name; ?></option>
+										   <?php } ?>
                                        </select>
                                    </div>
                                </div>
                                <div class="search_btn_section">
-                                   <button class="btn btn-default btn-search" type="Search">
+                                   <button class="btn btn-default btn-search" type="button" onclick="goForSearch1(this)">
                                         <i class="fa fa-search"></i> Search
                                    </button>
                                </div>
+							   <div class="error" id="error_txt1" style="display: block;height: 20px;padding-right: 30px;color: rgb(251 189 189);    background-color: transparent;    margin-top: 50px;    margin-left: 232px;;"></div>
                            </form>
                        </div>
                    </div>
                </div>
            </div>
+		   <script>
+			$(document).ready(function(){
+				$( ".item-suggest" ).autocomplete({
+				  minLength: 0,
+				  source: function (request, response) {			
+						$.ajax({
+							dataType: "json",
+							type : 'Get',
+							url: '<?php echo base_url();?>home/getCity?q='+request.term,
+							success: function(data) { 
+								
+								response(data);
+							},
+							error: function(data) {
+								$('input.suggest-user').removeClass('ui-autocomplete-loading');  
+							}
+						});
+					},
+					select: function(event, ui){
+						console.log([ui.item.value]);
+					}
+				});
+			});
+		   </script>

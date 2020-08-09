@@ -65,7 +65,7 @@
                                                 </div>
 												<?php if($this->session->userdata('id') > 0){ ?>	
 													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[0]->package_id; ?>" />
-													<button class="btn btn-default upgrade_btn" type="button" onclick="window.location='?package_id=<?php echo $subcription_plan[0]->package_id; ?>'">Upgrade Now</button>
+													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[0]->package_id; ?>">Upgrade Now</button>
 												<?php }else{ ?>
 													<a href="<?php echo base_url(); ?>home/login?action=premium"><button class="btn btn-default upgrade_btn" type="button">Login to Subscribe</button></a>
 												<?php } ?>
@@ -90,7 +90,7 @@
                                                 </div>
                                                 <?php if($this->session->userdata('id') > 0){ ?>	
 													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[1]->package_id; ?>" />
-													<button class="btn btn-default upgrade_btn" type="button" onclick="window.location='?package_id=<?php echo $subcription_plan[1]->package_id; ?>'">Upgrade Now</button>
+													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[1]->package_id; ?>">Upgrade Now</button>
 												<?php }else{ ?>
 													<a href="<?php echo base_url(); ?>home/login?action=premium"><button class="btn btn-default upgrade_btn" type="button">Login to Subscribe</button></a>
 												<?php } ?>
@@ -115,7 +115,7 @@
                                                 </div>
                                                 <?php if($this->session->userdata('id') > 0){ ?>	
 													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[2]->package_id; ?>" />
-													<button class="btn btn-default upgrade_btn" type="button" onclick="window.location='?package_id=<?php echo $subcription_plan[2]->package_id; ?>'">Upgrade Now</button>
+													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[2]->package_id; ?>">Upgrade Now</button>
 												<?php }else{ ?>
 													<a href="<?php echo base_url(); ?>home/login?action=premium"><button class="btn btn-default upgrade_btn" type="button">Login to Subscribe</button></a>
 												<?php } ?>
@@ -139,13 +139,10 @@
                                                         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Select States
                                                             <span class="caret"></span></button>
                                                         <ul class="dropdown-menu">
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Andaman and Nicobar Islands</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Andhra Pradesh</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Arunachal Pradesh</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Assam</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Bihar</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Chandigarh</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Chhattisgarh</label></li>
+                                                            <?php $statelist = $this->home_model->getAllState(); ?>
+															<?php foreach($statelist as $state){ ?>
+	                                                            <li><label class="checkbox-inline"><input type="checkbox" class="checkbox-state" value="<?php echo $state->id; ?>"><?php echo $state->state_name; ?></label></li>
+															<?php } ?>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -161,8 +158,8 @@
                                                     </ul>
                                                 </div>
 												<?php if($this->session->userdata('id') > 0){ ?>	
-													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[4]->package_id; ?>" />
-													<button class="btn btn-default upgrade_btn" type="button" onclick="window.location='?package_id=<?php echo $subcription_plan[4]->package_id; ?>'">Upgrade Now</button>
+													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[3]->package_id; ?>" />
+													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[3]->package_id; ?>">Upgrade Now</button>
 												<?php }else{ ?>
 													<a href="<?php echo base_url(); ?>home/login?action=premium"><button class="btn btn-default upgrade_btn" type="button">Login to Subscribe</button></a>
 												<?php } ?>
@@ -182,13 +179,10 @@
                                                         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Select States
                                                             <span class="caret"></span></button>
                                                         <ul class="dropdown-menu">
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Andaman and Nicobar Islands</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Andhra Pradesh</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Arunachal Pradesh</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Assam</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Bihar</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Chandigarh</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Chhattisgarh</label></li>
+                                                            <?php $statelist = $this->home_model->getAllState(); ?>
+															<?php foreach($statelist as $state){ ?>
+	                                                            <li><label class="checkbox-inline"><input type="checkbox" class="checkbox-state" value="<?php echo $state->id; ?>"><?php echo $state->state_name; ?></label></li>
+															<?php } ?>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -204,8 +198,8 @@
                                                     </ul>
                                                 </div>
                                                 <?php if($this->session->userdata('id') > 0){ ?>	
-													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[5]->package_id; ?>" />
-													<button class="btn btn-default upgrade_btn" type="button" onclick="window.location='?package_id=<?php echo $subcription_plan[5]->package_id; ?>'">Upgrade Now</button>
+													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[4]->package_id; ?>" />
+													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[4]->package_id; ?>">Upgrade Now</button>
 												<?php }else{ ?>
 													<a href="<?php echo base_url(); ?>home/login?action=premium"><button class="btn btn-default upgrade_btn" type="button">Login to Subscribe</button></a>
 												<?php } ?>
@@ -225,13 +219,10 @@
                                                         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Select States
                                                             <span class="caret"></span></button>
                                                         <ul class="dropdown-menu">
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Andaman and Nicobar Islands</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Andhra Pradesh</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Arunachal Pradesh</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Assam</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Bihar</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Chandigarh</label></li>
-                                                            <li><label class="checkbox-inline"><input type="checkbox" value="">Chhattisgarh</label></li>
+															<?php $statelist = $this->home_model->getAllState(); ?>
+															<?php foreach($statelist as $state){ ?>
+	                                                            <li><label class="checkbox-inline"><input type="checkbox" class="checkbox-state" value="<?php echo $state->id; ?>"><?php echo $state->state_name; ?></label></li>
+															<?php } ?>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -247,8 +238,8 @@
                                                     </ul>
                                                 </div>
                                                 <?php if($this->session->userdata('id') > 0){ ?>	
-													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[6]->package_id; ?>" />
-													<button class="btn btn-default upgrade_btn" type="button" onclick="window.location='?package_id=<?php echo $subcription_plan[6]->package_id; ?>'">Upgrade Now</button>
+													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[5]->package_id; ?>" />
+													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[5]->package_id; ?>">Upgrade Now</button>
 												<?php }else{ ?>
 													<a href="<?php echo base_url(); ?>home/login?action=premium"><button class="btn btn-default upgrade_btn" type="button">Login to Subscribe</button></a>
 												<?php } ?>
@@ -263,3 +254,40 @@
             </div>
         </div><!--container-fluid-->
         </div>
+		<script>
+			$(document).ready(function(){
+				$(".checkbox-state").change(function(){
+					var checkbox_length = $(this).closest('.dropdown-menu').find('[type=checkbox]:checked').length;
+					if(checkbox_length > 3)
+					{
+						alert('Please choose only 3 states!');
+						$(this).prop('checked',false);
+					}
+				});
+
+				$(".sec-package").click(function(event){
+					var data_id = $(this).attr('data-id');
+					if(data_id > 3)
+					{
+						var selected_checkbox = $(this).closest('.subscription_box').find('[type=checkbox]:checked').length;
+						if(selected_checkbox == 3)
+						{
+							var state = '';
+							$(this).closest('.subscription_box').find('[type=checkbox]:checked').each(function(){
+								var val = $(this).val();
+								state += '&state[]='+val;
+							});
+							window.location='?package_id='+data_id+state;
+						}
+						else
+						{
+							alert('Please select 3 states!');
+						}
+					}
+					else
+					{
+						window.location='?package_id='+data_id;
+					}
+				});
+			});
+		</script>

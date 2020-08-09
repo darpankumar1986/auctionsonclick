@@ -84,3 +84,5 @@ INSERT INTO `tbl_subscription_package` (`package_id`, `package_name`, `package_d
 (4, '3 Months in state wise', '3 Months Premium Access\r\nAuction Document/Notice\r\nAuction History\r\nDaily Mobile Notification\r\nDaily Email Alert\r\nMultiple City Email Alert\r\nEmail Support', 1500, 3, 3, 1, '2020-08-07 00:00:00', '2020-08-07 11:50:11'),
 (5, '6 Months in state wise', '6 Months Premium Access\r\nAuction Document/Notice\r\nAuction History\r\nDaily Mobile Notification\r\nDaily Email Alert\r\nMultiple City Email Alert\r\nEmail Support', 2500, 6, 3, 1, '2020-08-07 00:00:00', '2020-08-07 11:50:21'),
 (6, '12 Months in state wise', '12 Months Premium Access\r\nAuction Document/Notice\r\nAuction History\r\nDaily Mobile Notification\r\nDaily Email Alert\r\nMultiple City Email Alert\r\nEmail Support', 4000, 12, 3, 1, '2020-08-07 00:00:00', '2020-08-07 11:50:44');
+
+ALTER TABLE `tbl_payment` ADD `state` VARCHAR(500) NULL AFTER `gst_no`;

@@ -148,13 +148,31 @@ class Home_model extends CI_Model {
 
 	function getTotalAuction()
 	{
-		$this->datatables->select("a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
-		->from('tbl_auction as a')				
-		->join('tbl_category as c','c.id=a.subcategory_id','left')
-		->join('tbl_city as city','city.id=a.city','left')
-		->where('a.status IN(1)')
-		->where('bid_last_date >= NOW()');
-		  $this->db->order_by('a.bid_last_date','ASC');
+		$this->db->where('a.status IN(1)');
+		$this->db->where('auction_end_date >= NOW()');
+
+		$query = $this->db->get('tbl_auction as a');
+
+		return $query->num_rows();
+
+	}
+
+	function getAllBank()
+	{
+		$this->db->where('status IN(1)');
+		$query = $this->db->get('tbl_bank');
+
+		return $query->result();
+
+	}
+
+	function getAllState()
+	{
+		$this->db->where('status IN(1)');
+		$query = $this->db->get('tbl_state');
+
+		return $query->result();
+
 	}
     
     function liveAuctionDatatableHome($bankIdbyshortname='')
@@ -166,7 +184,7 @@ class Home_model extends CI_Model {
 				->join('tbl_category as c','c.id=a.subcategory_id','left')
 				->join('tbl_city as city','city.id=a.city','left')
                 ->where('a.status IN(1)')
-                ->where('bid_last_date >= NOW()');
+                ->where('auction_end_date >= NOW()');
                   $this->db->order_by('a.bid_last_date','ASC');
 			  
 	
@@ -780,6 +798,11 @@ class Home_model extends CI_Model {
 
 	public function save_payment($bidderID,$package_id) 
       {	
+			$state = '';
+			if(is_array($_GET['state']))
+			{
+				$state = implode(',',$_GET['state']);
+			}
 			$this->db->where('package_id', $package_id);
 			$query = $this->db->get("tbl_subscription_package");
 			$package = $query->row();
@@ -797,7 +820,8 @@ class Home_model extends CI_Model {
 					'ip'=>$_SERVER['REMOTE_ADDR'] ,
 					'type'=>'subscription',	
 					'payu_amount'=>$package->package_amount,					
-					'payu_email'=>$bidder->email_id
+					'payu_email'=>$bidder->email_id,
+					'state'=>$state,
 					);
 
 			
