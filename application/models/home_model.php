@@ -145,6 +145,17 @@ class Home_model extends CI_Model {
 		}
 		return $aData;
     }
+
+	function getTotalAuction()
+	{
+		$this->datatables->select("a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+		->from('tbl_auction as a')				
+		->join('tbl_category as c','c.id=a.subcategory_id','left')
+		->join('tbl_city as city','city.id=a.city','left')
+		->where('a.status IN(1)')
+		->where('bid_last_date >= NOW()');
+		  $this->db->order_by('a.bid_last_date','ASC');
+	}
     
     function liveAuctionDatatableHome($bankIdbyshortname='')
     {           		
@@ -155,7 +166,7 @@ class Home_model extends CI_Model {
 				->join('tbl_category as c','c.id=a.subcategory_id','left')
 				->join('tbl_city as city','city.id=a.city','left')
                 ->where('a.status IN(1)')
-                ->where('auction_end_date >= NOW()');
+                ->where('bid_last_date >= NOW()');
                   $this->db->order_by('a.bid_last_date','ASC');
 			  
 	

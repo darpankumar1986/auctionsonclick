@@ -377,6 +377,23 @@ class Home extends MY_Controller {
         
         $this->load->view('front_view/footer');
     }
+
+	public function success()
+	{	
+		$data['title'] = 'Thank You!';
+		$data['subcription_plan'] = $this->home_model->getSubcriptionPlan(0);
+        $this->load->view('front_view/header', $data);
+        if(MOBILE_VIEW)
+		{			
+			$this->load->view('mobile/home', $data);
+		}
+		else
+		{		
+			$this->load->view('front_view/success', $data);
+		}
+        
+        $this->load->view('front_view/footer');
+    }
 }
 
 ?>
