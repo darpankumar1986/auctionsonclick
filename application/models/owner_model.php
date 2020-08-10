@@ -445,7 +445,7 @@ class Owner_model extends CI_Model {
             //$this->db->order_by('id DESC');
             
                 $this->db->where('id', $this->session->userdata('id'));
-		$query = $this->db->get("tbl_user_registration");
+				$query = $this->db->get("tbl_user_registration");
                 //echo $this->db->last_query();
 
 		$data = array();
@@ -459,6 +459,7 @@ class Owner_model extends CI_Model {
 		return false;
              
         }
+
         
        public function userProfileData()
 	   {       
@@ -475,90 +476,161 @@ class Owner_model extends CI_Model {
 			}
 			return false;
 				 
+	  }
+	  
+	  public function memberEmailAlertData()
+	   {       
+			$this->db->where('member_id', $this->session->userdata('id'));
+			$this->db->where('status', 1);
+			$query = $this->db->get("tbl_member_email_alerts");
+			//echo $this->db->last_query();
+
+			$data = array();
+			if ($query->num_rows() > 0){                    
+				foreach ($query->result_array() as $row) {
+					$row1[$row['alerts_type']][] = $row['state_id'];
+					
+				}
+				$data = $row1;
+				return $data;
+			}
+			return false;
+				 
 	  }  
         
-        public function myProfileEditSaveData(){
-					 
-				$id = $this->session->userdata('id');
+	public function isPremiumMember()
+   {    
+		$id = $this->session->userdata('id');
+		$currentDate = date("Y-m-d H:i:s");
+		
+		$this->db->where('subscription_status',1);
+		$this->db->where('member_id',$id);
+		$this->db->where('package_start_date <',$currentDate );
+		$this->db->where('package_end_date >',$currentDate );
+
+		$query = $this->db->get('tbl_subscription_participate');
+		//echo $this->db->last_query();die;
+		if($query->num_rows()>0)
+		{
+			return true;
+		}
+		else
+	    {
+			return false;
+		}
+		return $query->result();
+			 
+  } 
+     public function myProfileEditSaveData(){
 				
-				
-				$company_name = $this->input->post('company_name');
-                $designation = $this->input->post('designation');
-                $authorized_person = $this->input->post('authorized_person');
-                
-                $first_name = $this->input->post('first_name');
-                $last_name = $this->input->post('last_name');
-                $father_name = $this->input->post('father_name');
-                
-                
-                $mobile_no = $this->input->post('mobile_no');
-                $country = $this->input->post('country');
-                $state = $this->input->post('state');
-                $city = $this->input->post('city');
-                $address1 = $this->input->post('address1');
-                $address2 = $this->input->post('address2');
-                $zip = $this->input->post('zip');
-                $pan_form_16 = $this->input->post('pan_form-16');
-				$phone_no = $this->input->post('phone');
-				$fax = $this->input->post('fax');
-				
-				
-				
-				if($transacation_type)
-				{
-					$transacation_type=	implode(',',$transacation_type);
-				}
-				$this->load->model('registration_model');	
-				if($pan_form_16=='form-16')
-				{
-						if($_FILES['form16']['name']){
-							//$documentName=$this->registration_model->uploaduserdoc('form16');
-							$documentName=$this->registration_model->upload1('form16');
-						}else{
-							$documentName=$this->input->post('form16_old');
-						}
+		$id = $this->session->userdata('id');
+		
+		$email_alerts_array = $this->input->post('email_alerts'); 			 
+		$email_data = [];
+		if(is_array($email_alerts_array) && count($email_alerts_array)>0)
+		{
+			$this->db->where('member_id', $id);
+			$this->db->update('tbl_member_email_alerts', array('status'=>0));
+
+
+			foreach($email_alerts_array as $emailAlertsStateId)
+			{
+				$email_data['member_id'] = $id;
+				$email_data['alerts_type'] = $this->input->post('alert_type');
+				$email_data['state_id'] = $emailAlertsStateId;				
+				$email_data['status'] = 1;				
+				$email_data['created_on'] = date('Y-m-d H:i:s');				
+				$this->db->insert('tbl_member_email_alerts',$email_data);
+			}
+		
+		}
+		
+		
+		$organisation_name = $this->input->post('organisation_name');
+		$gst_no = $this->input->post('gst_no');
+		$authorized_person = $this->input->post('authorized_person');
+		
+		$first_name = $this->input->post('first_name');
+		$last_name = $this->input->post('last_name');
+		//$father_name = $this->input->post('father_name');
+		
+		
+		//$mobile_no = $this->input->post('mobile_no');
+		$country = $this->input->post('country');
+		$state = $this->input->post('state');
+		$city = $this->input->post('city');
+		$address1 = $this->input->post('address1');
+		//$address2 = $this->input->post('address2');
+		$zip = $this->input->post('zip');
+		//$pan_form_16 = $this->input->post('pan_form-16');
+		//$phone_no = $this->input->post('phone');
+		//$fax = $this->input->post('fax');
+		
+		$password = $this->input->post('password');
+		$password = hash("sha256",$password);
+		/*	
+		if($transacation_type)
+		{
+			$transacation_type=	implode(',',$transacation_type);
+		}
+		$this->load->model('registration_model');	
+		if($pan_form_16=='form-16')
+		{
+				if($_FILES['form16']['name']){
+					//$documentName=$this->registration_model->uploaduserdoc('form16');
+					$documentName=$this->registration_model->upload1('form16');
 				}else{
-						 $documentName = $this->input->post('pan_number');
+					$documentName=$this->input->post('form16_old');
 				}
-				
-				if($_FILES['broker_photo']['name']){
-							$broker_photo=$this->registration_model->upload1('broker_photo');
-						}else{
-							$broker_photo=	$this->input->post('broker_photo_old');
-						}
-				if($_FILES['company_logo']['name']){
-							$company_logo=$this->registration_model->upload1('company_logo');
-						}else{
-							$company_logo=	$this->input->post('company_logo_old');
-						}
-				/*if($_FILES['form16']['name']){
-							$documentName=$this->registration_model->upload1('form16');
-						}else{
-							$documentName=	$this->input->post('form16_old');
-						}*/
+		}else{
+				 $documentName = $this->input->post('pan_number');
+		}
+		
+		if($_FILES['broker_photo']['name']){
+					$broker_photo=$this->registration_model->upload1('broker_photo');
+				}else{
+					$broker_photo=	$this->input->post('broker_photo_old');
+				}
+		if($_FILES['company_logo']['name']){
+					$company_logo=$this->registration_model->upload1('company_logo');
+				}else{
+					$company_logo=	$this->input->post('company_logo_old');
+				}
+		*/
+		/*if($_FILES['form16']['name']){
+					$documentName=$this->registration_model->upload1('form16');
+				}else{
+					$documentName=	$this->input->post('form16_old');
+				}*/
 						
-		$data = array('mobile_no'=>$mobile_no,
+		$data = array(
+				//'mobile_no'=>$mobile_no,
 				'country_id'=>$country,
 				'state_id'=>$state,
 				'city_id'=>$city,
-				'phone_no'=>$phone_no,
-				'fax'=>$fax,
+				//'phone_no'=>$phone_no,
+				//'fax'=>$fax,
 				'zip'=>$zip,
 				'address1'=>$address1,
-				'address2'=>$address2,
-				'document_type'=>$pan_form_16,
-				'document_no'=>$documentName,
+				//'address2'=>$address2,
+				//'document_type'=>$pan_form_16,
+				//'document_no'=>$documentName,
 				);   
 				
 		if($this->input->post('profile_type') != 'builder'){
 			$data['first_name']=$first_name;
 			$data['last_name']=$last_name;
-			$data['father_name']=$father_name;
+			//$data['father_name']=$father_name;
 		}else{
-			$data['designation']=$designation;
-			$data['organisation_name']=$company_name;
+			$data['gst_no']=$gst_no;
+			$data['organisation_name']=$organisation_name;
 			$data['authorized_person']=$authorized_person;
 		}             
+		if($this->input->post('pcb') == 1)
+		{
+			$data['password'] = $password;
+		} 
+
 		$data['date_modified']=date('Y-m-d H:i:s');
 		$this->db->where('id', $id);
 		$this->db->update('tbl_user_registration', $data);
@@ -576,6 +648,10 @@ class Owner_model extends CI_Model {
 		*/
 		$this->db->insert('tbl_log_user_registration',$data1[0]);
 		
+		
+
+
+
 		return true;
 	}
         
