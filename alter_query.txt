@@ -86,3 +86,16 @@ INSERT INTO `tbl_subscription_package` (`package_id`, `package_name`, `package_d
 (6, '12 Months in state wise', '12 Months Premium Access\r\nAuction Document/Notice\r\nAuction History\r\nDaily Mobile Notification\r\nDaily Email Alert\r\nMultiple City Email Alert\r\nEmail Support', 4000, 12, 3, 1, '2020-08-07 00:00:00', '2020-08-07 11:50:44');
 
 ALTER TABLE `tbl_payment` ADD `state` VARCHAR(500) NULL AFTER `gst_no`;
+
+
+
+----------------- Dheeraj -------------------------------
+CREATE TABLE `tbl_member_email_alerts` (
+  `email_alerts_id` int(11) NOT NULL AUTO_INCREMENT,
+  `member_id` int(11) NOT NULL,
+  `alerts_type` int(11) NOT NULL COMMENT '1-Daily, 2-Weekly',
+  `state_id` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `created_on` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`email_alerts_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;

@@ -50,8 +50,8 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'auctions_on_click_dev';//propertyauction_gda
+$db['default']['password'] = 'root';
+$db['default']['database'] = 'auctionsonclick';//propertyauction_gda
 
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';

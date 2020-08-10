@@ -56,6 +56,7 @@
     <link href="<?php echo base_url(); ?>assets/auctiononclick/css/bootstrap.min.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?rand=<?php echo CACHE_RANDOM; ?>">-->
     <link href="<?php echo base_url(); ?>assets/auctiononclick/css/font-awesome.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/auctiononclick/css/chosen.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/auctiononclick/css/style.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
 	
 		<?php
@@ -103,7 +104,7 @@
                                     <?php if($this->session->userdata('id') > 0){ ?>
 									 <li class="user_info"><div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span><i class="fa fa-user"></i></span> <?php echo $full_name; ?><span class="caret"></span></button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">Modify Profile</a></li>
+                                            <li><a href="<?php echo base_url();?>owner/myProfileEdit">Modify Profile</a></li>
                                             <li><a href="#">Change Password</a></li>
                                             <li><a href="<?php echo base_url(); ?>owner/shortlistedAuction">Shortlist</a></li>
                                             <li><a href="<?php echo base_url(); ?>registration/logout">Logout</a></li>
@@ -197,7 +198,7 @@
 									<?php if($this->session->userdata('id') > 0){ ?>
 									 <li class="user_info"><div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span><i class="fa fa-user"></i></span> <?php echo $full_name; ?><span class="caret"></span></button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">Modify Profile</a></li>
+                                            <li><a href="<?php echo base_url();?>owner/myProfileEdit">Modify Profile</a></li>
                                             <li><a href="#">Change Password</a></li>
                                             <li><a href="<?php echo base_url(); ?>owner/shortlistedAuction">Shortlist</a></li>
                                             <li><a href="<?php echo base_url(); ?>registration/logout">Logout</a></li>
