@@ -308,7 +308,25 @@ class Home_model extends CI_Model {
 		return true;
 	}
     
-    
+    public function getSalesPerson($state_id) {
+		
+		$this->db->where('status', 1);
+		$this->db->where('state_id', $state_id);
+		$this->db->order_by("sales_person_name", "ASC");
+        $query = $this->db->get("tblmst_sales_person");	
+		//echo $this->db->last_query();
+		
+        $data = array();
+		if ($query->num_rows() > 0) 
+		{
+			foreach ($query->result() as $row) {
+				$data[] = $row;
+            }
+             return $data;
+        }
+        return false;
+    }
+
     function aucDetailPopupData($auctionID)
     {  
 		$bidderID = (int)$this->session->userdata('id');
