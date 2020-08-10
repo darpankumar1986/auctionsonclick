@@ -145,4 +145,9 @@ document.addEventListener("click", closeAllSelect);
 
 /*------------------------Custom_Select_end---------------------------------------------*/
 
-
+/*------------------------multiselect_dropdown------------------------------------------*/
+$(".chosen-select").chosen();
+$('button').click(function(){
+    $(".chosen-select").val('').trigger("chosen:updated");
+});
+/*------------------------multiselect_dropdown_end------------------------------------------*/

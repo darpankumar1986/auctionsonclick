@@ -696,6 +696,14 @@ h3.auction_heading {
     pointer-events: none;
     color: #cccccc;
 }
+.custom_form .floating-textarea {
+    height: 165px;
+    padding-top: 20px;
+    min-height: 30px;
+    max-height: 260px;
+    overflow:hidden;
+    overflow-x: hidden;
+}
 .highlight {
     position:absolute;
     height:50%;
@@ -1699,21 +1707,588 @@ h3.premium_service span .fa-star {
     border-radius: 0;
 }
 
-
-
-
-
-
-
-
-
 /*----------------------------Advanced Search Result end-------------------------------------------*/
 
+/*----------------------------Modify Profile - Subscribed User-------------------------------------------*/
+
+h3.user_profile {
+    margin-top: 35px;
+}
+.profile_form {
+    margin-top: 0;
+}
+.country_profile_mg {
+    margin-top: 0;
+}
+.email_bg .floating-input {
+    background-color: #f2f2f2;
+}
+.update_password {
+    margin-top: 40px;
+    position: relative;
+    padding-bottom: 13px;
+    margin-bottom: 20px;
+}
+.update_password:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 100%;
+    border-top: 1px solid #ccc;
+    width: 100%;
+}
+/* The container */
+.update_password .container-checkbox {
+    display: block;
+    font-family: 'Roboto-Medium';
+    color: #333333;
+    position: relative;
+    font-weight: normal;
+    padding-left: 28px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.update_password .container-checkbox-hide {
+    padding-left: 0;
+}
+/* Hide the browser's default checkbox */
+.update_password .container-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.update_password .container-checkbox .checkmark {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+}
+
+/* When the checkbox is checked, add a blue background */
+.update_password .container-checkbox input:checked ~ .checkmark {
+    background-color: #ffffff;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.update_password .container-checkbox .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.update_password .container-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.update_password .container-checkbox .checkmark:after {
+    left: 5px;
+    top: 1px;
+    width: 6px;
+    height: 10px;
+    border: solid #0078db;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.email_alerts .container-radio {
+    display: inline-block;
+    position: relative;
+    padding-left: 28px;
+    margin-right: 40px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.email_alerts .container-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.email_alerts .container-radio .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.email_alerts .container-radio .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.email_alerts .container-radio input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.email_alerts .container-radio .checkmark:after {
+    top: 4px;
+    left: 4px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #0078db;
+}
+.received_email_alerts {
+    position: relative;
+}
+.received_email_alerts span.down_icon {
+    position: absolute;
+    right: 18px;
+    top: 19px;
+}
+.received_email_alerts .chosen-select {
+    width: 100%;
+}
+.received_email_alerts .chosen-container-multi .chosen-choices {
+    height: 55px;
+    padding: 0 14px;
+    border-color: #cccccc;
+    background-image: none;
+}
+.received_email_alerts .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+    font-family: 'Roboto-Regular';
+    font-size: 14px;
+    padding: 4px 40px 4px 14px;
+    display: block;
+    height: 50px;
+    color: #333333;
+}
+.received_email_alerts .chosen-container-multi .chosen-choices li.search-choice {
+    font-size: 14px;
+    background-color: #f2f2f2;
+    background-image: none;
+    box-shadow: none;
+    margin: 15px 5px 6px 0;
+    padding: 4px 27px 4px 10px;
+}
+
+.received_email_alerts .chosen-container .chosen-results li.highlighted {
+    background-color: #f0f0f0;
+    color: #333;
+    background-image: none;
+}
+.received_email_alerts .chosen-container .chosen-results li {
+    font-family: 'Roboto-Regular';
+    font-size: 13px;
+    color: #666666;
+    padding: 7px 16px;
+    cursor: pointer;
+    user-select: none;
+}
+.update_profile_btn .btn {
+    width: 500px;
+    margin-top: 30px;
+    text-transform: none;
+}
+/*----------------------------Modify Profile - Subscribed User_end-------------------------------------------*/
+
+/*----------------------------Modify Profile - Non_Subscribed User-------------------------------------------*/
 
 
+.row_padding .col-sm-12 {
+    padding: 0 15px;
+}
+.become_premium_member p {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 13px 0;
+    background-color: #e71c28;
+    border-radius: 4px;
+    color: #fff;
+}
+h3.non_subscribe_profile {
+    margin-top: 25px;
+}
+/*----------------------------Modify Profile - Non_Subscribed User_end-------------------------------------------*/
 
+/*----------------------------Manage Subscription - Plan Change - Auto Renewal------------------------------*/
 
+.subscription_manage {
+    margin-top: 20px;
+}
+.subscription_table .table-bordered>tbody>tr>td {
+    border: 0;
+    padding: 4px 18px;
+}
+.subscription_manage .subscribe_user {
+    font-size: 16px;
+}
+.subscription_manage .subscribe_active_user {
+    font-family: 'Roboto-Bold';
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 15px;
+}
+.subscription_table .plan_desc h4 {
+    font-family: 'Roboto-Medium';
+    font-size: 16px;
+    color: #0078db;
+    margin-bottom: 5px;
+}
+.subscription_table .plan_desc .common_date {
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+.subscription_table .plan_desc .common_date span {
+    font-family: 'Roboto-Bold';
+    color: #0078db;
+}
+.subscription_table .plan_desc h4.other_desc_subscribe {
+    font-size: 13px;
+    color: #666666;
+    font-weight: normal;
+}
+.subscription_table .table-bordered>tbody>tr>td.auto_renew {
+    padding-right: 0;
+}
+.subscription_table .auto_renew .switch {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 14px;
+    background-color: #999999;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+.subscription_table .auto_renew .switch::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius:50%;
+    background-color: white;
+    top: 2px;
+    left: 1px;
+    transition: all 0.3s;
+}
+.subscription_table .auto_renew .checkbox:checked + .switch::after {
+    left : 12px;
+}
+.subscription_table .auto_renew .checkbox:checked + .switch {
+    background-color: #0078db;
+}
+.subscription_table .auto_renew .checkbox {
+    display : none;
+}
+.subscribe_notification {
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+.subscribe_notification .subscribe_notification_inner {
+    flex: 1;
+}
+.subscribe_notification .cancel_subscription {
+    flex: 1;
+    text-align: right;
+}
+.subscribe_notification_inner p:first-child {
+    color: #318532;
+    font-size: 13px;
+    display: block;
+    text-align: left;
+    padding-left: 24px;
+    margin-top: 10px;
+    background-image: url(../images/correct_icon.png);
+    background-repeat: no-repeat;
+    background-position: 0 2px;
+}
+.subscribe_notification_inner p.reminder_off {
+    padding-left: 24px;
+    font-size: 14px;
+}
+.subscribe_notification_inner p.reminder_off a {
+    color: #0078db;
+}
+.subscribe_notification_inner p.reminder_off a:hover {
+    text-decoration: none;
+}
+.cancel_subscription .btn {
+    background-color: #e71c28;
+    color: #fff;
+}
+.cancel_subscription .btn:hover {
+    background-color: #d8111d;
+}
 
+/*----------------------------Manage Subscription - Plan Change - Auto Renewal_end------------------------------*/
+/*----------------------------Manage Subscription - State Wise - Manual Renewal----------------------------------*/
+.subscription_table .plan_desc .subscribe_address {
+    color: #318532;
+}
+.subscription_table .plan_desc .subscribe_charges {
+    color: #c45500;
+    font-size: 12px;
+    width: 255px;
+    margin-top: -13px;
+}
+/*----------------------------Manage Subscription - State Wise - Manual Renewal_end----------------------------------*/
+
+/*----------------------------After Subscription - Thank you----------------------------------*/
+
+.thankyou {
+    text-align: center;
+}
+.thankyou h1 {
+    font-family: 'Roboto-Bold';
+    font-size: 48px;
+    color: #333333;
+    text-transform: uppercase;
+    margin-top: 60px;
+}
+.thankyou h3 {
+    font-family: 'Roboto-Medium';
+    color: #333333;
+}
+.thankyou p {
+    font-size: 18px;
+}
+.auction-main-wrapper .thankyou_wrap {
+    padding-top: 60px;
+    padding-bottom: 75px;
+    width: 840px;
+    margin: 0 auto;
+}
+.thankyou_wrap .form_desc {
+    border: 20px solid #0078db;
+}
+.thankyou_wrap p {
+    font-size: 18px;
+}
+.thankyou_wrap p a {
+    color: #0078db;
+}
+.thankyou_wrap p a:hover {
+    text-decoration: none;
+}
+.thankyou_wrap .search_btn_section .btn-default {
+    background-color: #fba510 !important;
+}
+.thankyou_wrap .search_btn_section {
+    flex: 0 0 19%;
+}
+
+/*----------------------------After Subscription - Thank you_end----------------------------------*/
+
+/*----------------------------Contact_us----------------------------------*/
+
+.contact_us_form .advanced_search_btn {
+    text-align: left;
+}
+.contact_us_address {
+    margin-left: 90px;
+}
+.contact_us_office h3 {
+    font-family: 'Roboto-Bold';
+    color: #333333;
+    margin-bottom: 20px;
+}
+.contact_us_office p {
+    line-height: 19px;
+}
+.sales_enquery_section h4 {
+    font-family: 'Roboto-Bold';
+    color: #333333;
+    margin-top: 40px;
+}
+.sales_enquery_section p {
+    margin-top: 20px;
+}
+.sales_enquery_section p.enquiry a {
+    color: #0078db;
+}
+.sales_enquery_section p.enquiry a:hover {
+    text-decoration: none;
+}
+
+/*----------------------------Contact_us_end----------------------------------*/
+
+/*----------------------------Top Cities--------------------------------------*/
+
+.top_cities_wrap_list {
+    margin-bottom: 70px;
+}
+.top_cities_wrap_list h3.premium_service {
+    text-align: left;
+    margin-bottom: 20px;
+}
+.top_cities_wrap_list ul.top_cities_list li {
+    width: 24%;
+    display: inline-block;
+    padding: 8px 0;
+    vertical-align: top;
+    padding-right: 8px;
+}
+.top_cities_wrap_list ul.top_cities_list li a {
+    color: #333333;
+    position: relative;
+}
+.top_cities_wrap_list ul.top_cities_list li a:hover {
+    text-decoration: none;
+    color: #0078db;
+}
+.top_cities_wrap_list ul.top_cities_list li a:hover:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 1px;
+    background: #0078db;
+}
+
+/*----------------------------Top Cities_end--------------------------------------*/
+
+/*----------------------------Cancel Subscription--------------------------------------*/
+
+.cancel_sub_main {
+    width: 670px;
+    margin: 0 auto;
+}
+.cancel_subscription {
+    margin-top: 20px;
+    margin-bottom: 70px;
+}
+.subscription_warning {
+    background-color: #fff3f3;
+    padding: 19px 40px 19px 20px;
+    border: 1px solid #f6b5b9;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+.subscription_warning ul {
+    padding-left: 50px;
+    background-image: url(../images/Warning.png);
+    background-repeat: no-repeat;
+    background-position: 0 2px;
+}
+.subscription_warning ul li.sure_cancel {
+    font-family: 'Roboto-Medium';
+    margin-bottom: 5px;
+}
+.subscription_warning ul li:nth-child(2){
+    line-height: 17px;
+}
+.cancel_subscription p.sorry_info {
+    margin-right: 25px;
+    line-height: 18px;
+}
+.cancel_subscription .reason_for_leaving {
+    margin-top: 50px;
+}
+.cancel_subscription .reason_for_leaving p {
+    color: #acacac;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+.reason_for_leaving .subscription_box {
+    border: 0;
+    text-align: left;
+    padding: 0;
+    width: 50%;
+}
+.reason_for_leaving .subscription_box .checklist_state {
+    margin-bottom: 45px;
+}
+.reason_for_leaving .subscription_box .checklist_state .btn-default {
+    color: #666666;
+}
+.comment .custom_form .floating-input {
+    border: 0;
+    border-bottom: 1px solid #666666;
+    border-radius: 0;
+    height: 46px;
+    padding: 0;
+}
+.comment  .custom_form label.custom_label {
+    left: 0;
+    color: #acacac;
+    font-size: 13px;
+}
+.cancel_sub_notification {
+    margin-top: 43px;
+}
+.cancel_sub_notification p {
+    margin-bottom: 50px;
+}
+.cancel_sub_notification .cancel_subscription_button {
+    text-align: right;
+}
+.cancel_sub_notification .cancel_subscription_button .dont_cancel_btn {
+    font-family: 'Roboto-Regular';
+    background: none;
+    color: #333333;
+    font-size: 13px;
+    margin-right: 20px;
+    outline: 0;
+}
+
+/*----------------------------Cancel Subscription_end--------------------------------------*/
+
+/*----------------------------Cancel Subscription - confirmation--------------------------------------*/
+
+.user_subscroption_cancel_main {
+    min-height: calc(100vh - 283px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.user_subscroption_cancel {
+    width: 600px;
+    margin: 0 auto;
+}
+.user_subscroption_cancel h3 {
+    font-family: 'Roboto-Medium';
+    color: #333333;
+    margin-bottom: 20px;
+}
+.user_subscroption_cancel p {
+    font-size: 13px;
+}
+.user_subscroption_cancel p.unsubscribe_anction a {
+    font-family: 'Roboto-Bold';
+    color: #333333;
+}
+.user_subscroption_cancel p.unsubscribe_anction a:hover {
+    text-decoration: none;
+}
+.user_subscroption_cancel p.unsubscribe_anction {
+    margin-bottom: 25px;
+    margin-right: 68px;
+}
+/*----------------------------Cancel Subscription - confirmation_end--------------------------------------*/
 
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}

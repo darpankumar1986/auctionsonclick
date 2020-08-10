@@ -138,7 +138,7 @@ define('CCAV_PAYMENT_URL','https://secure.ccavenue.com/transaction/transaction.d
 define('NEFT_STATUS_CHECK_DAYS','15');
 
 /* Payment Gateway on/off flag */
-define('IS_PAYMENT_GATEWAY_OFF',TRUE);
+define('IS_PAYMENT_GATEWAY_OFF',FALSE);
 
 
 $random = '67894567345';
