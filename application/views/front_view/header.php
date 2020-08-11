@@ -4,7 +4,16 @@
 
 
     $userid=$this->session->userdata('id');
-    $full_name =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "first_name");
+	$user_type =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "user_type");
+	if($user_type == 'owner')
+	{
+		$full_name =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "first_name");
+		$full_name .= ' '.GetTitleByField('tbl_user_registration', "id='".$userid."'", "last_name");
+	}
+	else
+	{
+		$full_name .= ' '.GetTitleByField('tbl_user_registration', "id='".$userid."'", "authorized_person");
+	}
 ?>
 <!doctype html>
 <html>
@@ -107,6 +116,7 @@
                                             <li><a href="<?php echo base_url();?>owner/myProfileEdit">Modify Profile</a></li>
                                             <li><a href="#">Change Password</a></li>
                                             <li><a href="<?php echo base_url(); ?>owner/shortlistedAuction">Shortlist</a></li>
+											<li><a href="<?php echo base_url(); ?>owner/manageSubscription">Manage Subscription</a></li>
                                             <li><a href="<?php echo base_url(); ?>registration/logout">Logout</a></li>
                                         </ul>
                                         </div></li>

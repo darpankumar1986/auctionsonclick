@@ -831,6 +831,23 @@ class Home_model extends CI_Model {
 
 		return $insert_id1;
 	}
+
+	public function get_state_bidder($bidderID) 
+    {
+		$resArr = array();
+		$this->db->where('sub.member_id', $bidderID);
+		$this->db->join('tbl_state as state','state.id = sub.sub_state_id');
+		$query = $this->db->get("tbl_subscription_participate_city as sub");
+		//echo $this->db->last_query();die;
+		if ($query->num_rows() > 0) {
+			$res = $query->result();
+			foreach($res as $row)
+			{
+				$resArr[$row->id] = $row->state_name; 
+			}
+		}
+		return $resArr;
+	}
 }
 
 ?>

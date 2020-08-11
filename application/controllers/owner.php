@@ -3522,5 +3522,21 @@ class Owner extends WS_Controller {
         echo $this->owner_model->otherShortlistedAuctionDatatable();
     }
 
+	public function manageSubscription()
+	{
+		$this->load->view('front_view/header',$data);
+		if(MOBILE_VIEW)
+		{				
+			$this->load->view('mobile/manageSubscription',$vdata);
+		}
+		else
+		{				
+			$this->load->view('owner_view/manageSubscription',$vdata);
+		}
+		
+		
+		$this->load->view('front_view/footer');
+	}
+
 }
 ?>
