@@ -141,9 +141,10 @@
                                             <tr>
                                                 <td><a href="<?php echo base_url('/superadmin/user/userlog');?>">User Login/Logout Logs</a></td>
                                                 <td><a href="<?php echo base_url('/superadmin/user/bidderegisterlog')?>">User Registration / Profile Update Logs</a></td> 
-                                                <td><a href="<?php echo base_url('/superadmin/event_log/index');?>">Logged Event Creation Logs</a></td>
+												<td><a href="<?php echo base_url('/superadmin/user/contact_us_log')?>">Contact Us Logs</a></td> 
+                                                <!--<td><a href="<?php echo base_url('/superadmin/event_log/index');?>">Logged Event Creation Logs</a></td>
                                                 <td><a href="<?php echo base_url('/superadmin/user/iagreelog');?>">Bidder Participitated Agreement Logs</a></td>
-                                                <td><a href="<?php echo base_url('/superadmin/user/bidderfinalsubmissionlog');?>">Bidder Final Submission Logs</a></td>
+                                                <td><a href="<?php echo base_url('/superadmin/user/bidderfinalsubmissionlog');?>">Bidder Final Submission Logs</a></td>-->
                                                                                               
                                                 <!--<td><a href="<?php echo base_url()?>superadmin/user/liveauctionlog">Live Auction Log</a></td> -->                                                
                                                

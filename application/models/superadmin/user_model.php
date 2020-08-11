@@ -5482,6 +5482,136 @@ class User_model extends CI_Model {
         
         return false;
     }
+
+
+	public function completeContactUsData() {		
+        //search query start//
+        $from_date = trim($_GET['from_date']);
+        $to_date = trim($_GET['to_date']);
+        $name = trim($_GET['name']);
+        $email = trim($_GET['email']);
+        $mobile = trim($_GET['mobile']);
+        
+        $this->db->select('A.*, B.topic_name');
+       
+       
+        
+        if ($from_date != '' && $to_date != '') {
+            $this->db->where('(A.in_date_time BETWEEN ' . "'" . $from_date . "'  AND '" . $to_date . "')");           
+        }
+       
+        if($email !='') {
+			$this->db->where("A.email",$email_id);
+		}
+		if ($name != '') 
+		{
+           $this->db->where("A.name",$name);
+        }
+        if ($mobile != '') 
+		{
+           $this->db->where("A.mobile",$mobile);
+        }        
+        
+        $this->db->order_by('A.contact_id DESC');
+        $this->db->join('tblmst_contact_topic as B','B.topic_id=A.topic_id','left');     
+        $query = $this->db->get('tbl_contact_us AS A');
+        
+        //echo $this->db->last_query();die;
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+    
+   public function GettotalContactUslogs() {
+        
+        //search query start//
+        $from_date = trim($_GET['from_date']);
+        $to_date = trim($_GET['to_date']);
+        $name = trim($_GET['name']);
+        $email = trim($_GET['email']);
+        $mobile = trim($_GET['mobile']);
+        
+        $this->db->select('A.*, B.topic_name');
+       
+       
+        
+        if ($from_date != '' && $to_date != '') {
+            $this->db->where('(A.in_date_time BETWEEN ' . "'" . $from_date . "'  AND '" . $to_date . "')");           
+        }
+       
+        if($email !='') {
+			$this->db->where("A.email",$email_id);
+		}
+		if ($name != '') 
+		{
+           $this->db->where("A.name",$name);
+        }
+        if ($mobile != '') 
+		{
+           $this->db->where("A.mobile",$mobile);
+        }        
+        
+        $this->db->order_by('A.contact_id DESC');
+        $this->db->join('tblmst_contact_topic as B','B.topic_id=A.topic_id','left');     
+        $query = $this->db->get('tbl_contact_us AS A');
+        //echo $this->db->last_query();die;
+        if ($query->num_rows() > 0) {
+            $data = $query->result();
+            return $data[0]->total;
+        } else {
+            return 0;
+        }
+    }
+    
+    public function contactUsLogs($start = 0, $limit = 10) {
+		//search query start//
+        $from_date = trim($_GET['from_date']);
+        $to_date = trim($_GET['to_date']);
+        $name = trim($_GET['name']);
+        $email = trim($_GET['email']);
+        $mobile = trim($_GET['mobile']);
+        
+        $this->db->select('A.*, B.topic_name');
+        $this->db->order_by('A.contact_id DESC');
+        $this->db->limit($limit, $start);
+       
+        
+        if ($from_date != '' && $to_date != '') {
+            $this->db->where('(A.in_date_time BETWEEN ' . "'" . $from_date . "'  AND '" . $to_date . "')");           
+        }
+       
+        if($email !='') {
+			$this->db->where("A.email",$email_id);
+		}
+		if ($name != '') 
+		{
+           $this->db->where("A.name",$name);
+        }
+        if ($mobile != '') 
+		{
+           $this->db->where("A.mobile",$mobile);
+        }        
+        
+        $this->db->order_by('A.contact_id DESC');
+        $this->db->join('tblmst_contact_topic as B','B.topic_id=A.topic_id','left');     
+        $query = $this->db->get('tbl_contact_us AS A');
+
+
+
+        $data = array();
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        
+        return false;
+    }
    
    }
   

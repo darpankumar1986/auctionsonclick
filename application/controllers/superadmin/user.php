@@ -4529,6 +4529,138 @@ class User extends MY_Controller {
         $this->load->view('superadmin/emd_refund_report', $data);
         $this->load->view('superadmin/footer');
     }
+
+	public function contact_us_log($page_no) {
+        if ($this->input->get('submit')) 
+        {
+            $submit = $this->input->get('submit');
+           
+            
+            if (isset($submit) and ! empty($submit)) {
+                $data['from_date'] = $this->input->get('from_date');
+                $data['to_date'] = $this->input->get('to_date');
+                $data['email_id'] = $this->input->get('email_id');
+                $data['name'] = $this->input->get('name');
+                $data['mobile'] = $this->input->get('mobile');
+               
+                
+                if ($submit == 'Download') 
+                {					 
+                    $reportData = $this->user_model->completeContactUsData();
+                   
+                   
+                    //echo '<pre>';
+                   
+                    if (!empty($reportData)) 
+                    {
+                       
+                        $this->load->library('excel');
+						//activate worksheet number 1
+						
+						$this->excel->setActiveSheetIndex(0);
+						//$this->excel->getActiveSheet()->setShowGridlines(FALSE);
+						//name the worksheet
+						$this->excel->getActiveSheet()->setTitle('Contact Us Logs');
+						
+						$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
+						$this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
+						$this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
+						$this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
+						$this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(30);
+						$this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(80);
+						$this->excel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
+						$this->excel->getActiveSheet()->getRowDimension('1')->setRowHeight(20); 
+						
+						$this->excel->getActiveSheet()->getStyle("A2:Z1000")->getFont()->setSize(10);
+						$i =1;
+						$column = 'A';
+						
+						$this->excel->getActiveSheet()->setCellValue($column.$i, 'S.No.');
+						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Name');
+						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Email Address');
+						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Mobile No.');
+						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Topic');
+						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Message');
+						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Created Date');
+						
+						$sn=1;	
+						foreach ($reportData as $row) {
+							
+							$i = ++$i;
+							$indate = date('d M Y',strtotime($row->in_date_time));
+							
+							
+							
+							$column = 'A';
+							$this->excel->getActiveSheet()->setCellValue($column.$i, $sn);
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $row->name);
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $row->email);
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $row->mobile);
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $row->topic_name);							
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $row->message);
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $indate);
+							
+							
+							$sn++;
+                        }
+                        $i = ++$i;
+						//$this->excel->getActiveSheet()->getStyle('A'.$i.':F'.$i)->applyFromArray($miestilo_SEC2);
+
+						//$this->excel->getActiveSheet()->getRowDimension('1')->setRowHeight(40);
+						
+						$filename = 'contact_us_log_'.time().'.xls'; //save our workbook as this file name
+						header('Content-Type: application/vnd.ms-excel'); //mime type
+						header('Content-Disposition: attachment;filename="' . $filename . '"'); //tell browser what's the file name
+						header('Cache-Control: max-age=0'); //no cache
+						//save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)
+						//if you want to save it as .XLSX Excel 2007 format
+						$objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');
+						//force user to download the Excel file without writing it to server's HD
+						$objWriter->save('php://output');	
+							
+					}
+						
+                 }
+            }
+        }
+
+        $data['heading'] = 'EMD Refund Report';
+        $this->load->view('superadmin/header', $data);
+        
+        $per_page = 10;
+        $total_record = $this->user_model->GettotalContactUslogs();
+        
+        $config['base_url'] = site_url() . 'superadmin/user/contact_us_log?k=2&';
+        $config['base_url'] .= http_build_query($_GET, '', "&");
+        
+        $config['total_rows'] = $total_record;
+        $config['per_page'] = $per_page;
+        $config["uri_segment"] = 4;
+        $config['cur_tag_open'] = '<li><a class="current">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['page_query_string'] = TRUE;
+        
+		$config['suffix'] = str_replace('per_page', 'k', $config['suffix']);
+        $config['suffix'] = str_replace('?', '&', $config['suffix']);
+
+        $this->pagination->initialize($config);
+        $data['pagination_links'] = $this->pagination->create_links();
+
+		$page_no = $_GET['per_page'];
+
+        if ($page_no == '')
+            $limit = 0;
+        else
+            $limit = $config["per_page"] * ($page_no - 1);
+
+        $offset = ($limit) ? $limit : 0;
+        
+
+        $array_records = $this->user_model->contactUsLogs($offset, $per_page);
+        $data['records'] = $array_records;
+        $this->load->view('superadmin/contact_us_log', $data);
+        $this->load->view('superadmin/footer');
+    }
 }
 
 ?>

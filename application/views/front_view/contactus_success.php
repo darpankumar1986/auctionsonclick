@@ -7,8 +7,8 @@
                     <div class="thankyou">
                         <h1>Thank You!</h1>
                         <img src="<?php echo base_url(); ?>assets/auctiononclick/images/big_correct_icon.png">
-                        <h3>You are successfully subscribed to AuctionsOnClick.com</h3>
-                        <p>We have sent you an email with your receipt.</p>
+                        <h3>Our representative will be getting in touch with you soon.</h3>
+                        <!--<p>We have sent you an email with your receipt.</p>-->
                     </div><!--thankyou-->
                 </div>
                    </div>
@@ -62,9 +62,9 @@
                                    <button class="btn btn-default btn-search" type="button" onclick="goForSearch1(this)">
                                         <i class="fa fa-search"></i> Search
                                    </button>
-                               </div>
-							 </form>
-							 <div class="error" id="error_txt1" style="display: block;height: 20px;padding-right: 30px;color:#f00;background-color: transparent;    margin-top: 5px;"></div>
+                               </div>							   
+                           </form>
+						   <div class="error" id="error_txt1" style="display: block;height: 20px;padding-right: 30px;color:#f00;background-color: transparent;    margin-top: 5px;"></div>
                        </div>
                    </div>
                </div>

@@ -13,10 +13,10 @@
                                 <div class="footer_about">
                                     <h4>Quick Links</h4>
                                     <ul>
-                                        <li><a href="#">Permium Services</a></li>
-                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="<?php echo base_url();?>home/premiumServices">Permium Services</a></li>
+                                        <li><a href="<?php echo base_url();?>home/about_us">About Us</a></li>
                                         <li><a href="#">FAQ</a></li>
-                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="<?php echo base_url();?>home/contact_us">Contact Us</a></li>
                                         <li><a href="#">Sitemap</a></li>
                                         <li><a href="#">Terms &amp; Conditions</a></li>
                                         <li><a href="#">Privacy-Policy</a></li>
@@ -46,7 +46,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="footer_copyright">
-                            <p>All trademarks, logos and names are properties of their respective owners. All Rights Reserved. © Copyright 2020 C1 India Private Limited.</p>
+                            <p>All trademarks, logos and names are properties of their respective owners. All Rights Reserved. &copy Copyright <?php echo date('Y');?> C1 India Private Limited.</p>
                         </div>
                     </div>
                 </div>

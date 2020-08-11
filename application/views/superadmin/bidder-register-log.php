@@ -1,10 +1,3 @@
-<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/custom/tables.js"></script>
-<link rel="stylesheet" href="<?php echo base_url()?>js/calender/jquery-ui.css">
-<script src="<?php echo base_url(); ?>js/calender/jquery-ui.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.min.js"></script>
-<link rel="stylesheet" href="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.css">
-<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/custom/forms.js"></script>
 <section class="container_12">
     <?php
      if(isset($_POST['from_date']) and !empty($_POST['start_date']))
