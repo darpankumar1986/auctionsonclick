@@ -40,8 +40,8 @@
 }
 .project-listing  .item{width: 25%;    float: left; margin-bottom:5px;}
 .project-listing .work_item{width:98%;}
-.error{  color: #ffd4c7;   position: absolute;}
-
+/*.error{  color: #ffd4c7;   position: absolute;}*/
+.error{  color: #f00;font-size:14px;font-weight:normal;}
 
 .glyphicon { margin-right:5px; }
 .thumbnail

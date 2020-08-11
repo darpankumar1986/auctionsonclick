@@ -2290,6 +2290,154 @@ h3.non_subscribe_profile {
 }
 /*----------------------------Cancel Subscription - confirmation_end--------------------------------------*/
 
+/*----------------------------About_us--------------------------------------*/
+
+.about_us_main {
+    width: 920px;
+    margin: 0 auto;
+}
+.about_heading_main {
+    padding-top: 30px;
+    text-align: center;
+    font-size: 18px;
+    color: #0078db;
+    margin-bottom: 25px;
+}
+.about_heading_main strong {
+    font-family: 'Roboto-Bold';
+}
+.about_desc p {
+    margin-bottom: 25px;
+    line-height: 25px;
+}
+.about_desc p strong {
+    font-family: 'Roboto-Bold';
+}
+.about_desc p span {
+    color: #0078db;
+}
+.about_desc p a {
+    color: #0078db;
+}
+.about_desc p a:hover {
+    text-decoration: none;
+}
+.about_box {
+    display: flex;
+    margin-bottom: 80px;
+}
+.about_box .about_box_assets_main {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    background-color: #0078db;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    border-radius: 4px;
+}
+.about_box .about_box_assets_main:last-child {
+    margin-right: 0;
+}
+.about_box .about_box_assets_main p {
+    font-family: 'Roboto-Medium';
+    text-transform: uppercase;
+    margin-bottom: 0;
+    font-size: 16px;
+    padding-top: 19px;
+}
+.about_box .about_box_assets_main h1 {
+    font-family: 'Roboto-Bold';
+    margin-top: 5px;
+    margin-bottom: 19px;
+    font-size: 48px;
+}
+.about_box .about_box_assets_main h1 img {
+    margin-bottom: 8px;
+}
+
+/*----------------------------About_us_end--------------------------------------*/
+
+/*----------------------------FAQ-----------------------------------------------*/
+
+.faq_main {
+    padding-bottom: 70px;
+    width: 950px;
+}
+.faq_main ul li h4 {
+    font-family: 'Roboto-Bold';
+    font-size: 20px;
+    color: #333333;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+.faq_main ul li p {
+    padding-left: 22px;
+    margin-bottom: 25px;
+}
+.faq_main ul li p strong {
+    font-family: 'Roboto-Bold';
+}
+
+/*----------------------------FAQ_end-----------------------------------------------*/
+
+/*-----------------------------privacy_policy--------------------------------------*/
+
+.privacy_policy {
+    width: 1000px;
+}
+.privacy_policy .privacy_policy_inner h4 {
+    font-family: 'Roboto-Bold';
+    font-size: 20px;
+    color: #333333;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+.privacy_policy .privacy_policy_inner p {
+    margin-bottom: 25px;
+    line-height: 24px;
+}
+
+/*-----------------------------privacy_policy_end--------------------------------------*/
+
+/*-----------------------------sitemap-------------------------------------------------*/
+
+.sitemap h3.premium_service {
+    text-align: center;
+}
+.sitemap_list ul.top_cities_list li {
+    width: 100%;
+    display: block;
+}
+.sitemap_list_row {
+    width: 700px;
+    margin: 0 auto;
+    padding-bottom: 70px;
+}
+.sitemap_list h4 {
+    font-family: 'Roboto-Bold';
+    color: #333333;
+}
+.sitemap_list ul.sitemap_services li a {
+    font-size: 18px;
+}
+.sitemap_list ul.sitemap_services li a:hover {
+    font-weight: bold;
+}
+.sitemap_list ul.sitemap_small {
+    margin-top: 20px;
+}
+.sitemap_list ul.sitemap_small li a {
+    font-size: 13px;
+}
+.sitemap_list ul.sitemap_small li:first-child {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/*-----------------------------sitemap_end-------------------------------------------------*/
+
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
