@@ -126,6 +126,18 @@
                             <div class="clr"></div>
                         </div>
                     </div>
+					<?php
+						$userid=$this->session->userdata('id');
+						$indate =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "indate");
+						$free_sub_expire_date = date('Y-m-d H:i:s',strtotime(FREE_SUBSCRIPTION_TIME,strtotime($indate)));
+						$free_sub_expire_date_str = strtotime($free_sub_expire_date);
+						$free_sub_flag = 0;
+						if(time() < $free_sub_expire_date_str)
+						{
+							$free_sub_flag = 1;
+						}
+
+					?>
                     <div class="table_desc">
                         <table class="table table-bordered">
                             <tbody>
@@ -133,7 +145,7 @@
                                     <td>Bank Name</td>
                                     <td><?php echo $auction_data[0]->bank_name; ?></td>
                                 </tr>
-								<?php if($auction_data[0]->isSub > 0){ ?>
+								<?php if($auction_data[0]->isSub > 0 || $free_sub_flag == 1){ ?>
 									<tr>
 										<td>Bank Branch</td>
 										<td><?php echo $auction_data[0]->branch_name; ?></td>
@@ -151,7 +163,7 @@
                                     <td>Asset Type</td>
                                     <td><?php echo $auction_data[0]->sub_category_name; ?></td>
                                 </tr>
-								<?php if($auction_data[0]->isSub > 0){ ?>
+								<?php if($auction_data[0]->isSub > 0 || $free_sub_flag == 1){ ?>
 									<tr>
 										<td>Asset Details</td>
 										<td><?php echo $auction_data[0]->PropertyDescription; ?></td>
@@ -181,7 +193,7 @@
                                     <td>EMD Submission Last Date</td>
                                     <td><?php echo date('F d',strtotime($auction_data[0]->bid_last_date)); ?><sup><?php echo date('S',strtotime($auction_data[0]->bid_last_date)); ?></sup>, <?php echo date('Y',strtotime($auction_data[0]->bid_last_date)); ?></td>
                                 </tr>
-								<?php if($auction_data[0]->isSub > 0 || 1){ ?>
+								<?php if($auction_data[0]->isSub > 0 || $free_sub_flag == 1){ ?>
 									<tr>
 										<td>Auction Start Date & Time</td>
 										<td><?php echo date('F d',strtotime($auction_data[0]->auction_start_date)); ?><sup><?php echo date('S',strtotime($auction_data[0]->auction_start_date)); ?></sup>, <?php echo date('Y',strtotime($auction_data[0]->auction_start_date)); ?></td>
@@ -211,7 +223,7 @@
 										</td>
 									</tr>
 								<?php } ?>
-								<?php if(($auction_data[0]->isSub > 0)){ ?>
+								<?php if(($auction_data[0]->isSub > 0) || $free_sub_flag == 1){ ?>
 								<tr>
                                     <td colspan="2" class="contact_desc"><p>For further assistance, please contact our sales team</p>
                                         <p><?php echo $sales_person_detail; ?>
@@ -225,7 +237,7 @@
                             </tbody>
                         </table>
                     </div>
-					<?php if(!($auction_data[0]->isSub > 0)){ ?>
+					<?php if(!($auction_data[0]->isSub > 0 || $free_sub_flag == 1)){ ?>
                     <div class="premium_section">
                         <div class="premium_section_inner">
                             <p>Become Premium member to view auction details and documents.</p>

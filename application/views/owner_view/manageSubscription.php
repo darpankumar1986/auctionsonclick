@@ -31,6 +31,7 @@
 <div class="container">
    <div class="row">
 	   <div class="col-sm-12">
+		   <script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 		   <div class="subscription_manage">
 			   <p class="subscribe_user">Hello <?php echo $full_name; ?>,</p>
 			   <h4 class="subscribe_active_user">Your Active Subscripton</h4>

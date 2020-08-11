@@ -211,6 +211,7 @@
                                             <li><a href="<?php echo base_url();?>owner/myProfileEdit">Modify Profile</a></li>
                                             <li><a href="#">Change Password</a></li>
                                             <li><a href="<?php echo base_url(); ?>owner/shortlistedAuction">Shortlist</a></li>
+											<li><a href="<?php echo base_url(); ?>owner/manageSubscription">Manage Subscription</a></li>
                                             <li><a href="<?php echo base_url(); ?>registration/logout">Logout</a></li>
                                         </ul>
                                         </div></li>
