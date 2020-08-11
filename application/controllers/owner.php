@@ -414,9 +414,8 @@ class Owner extends WS_Controller {
 
     public function myProfileEditSave() {
 		
-		//echo "<pre>"; print_r($_POST);die;
         $this->load->library('form_validation');
-
+		//echo "<pre>"; print_r($_POST);die;
         if($this->input->post('profile_type') != 'builder'){
 			//echo 'O';
 			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean');

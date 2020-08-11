@@ -532,7 +532,6 @@ class Owner_model extends CI_Model {
 			$this->db->where('member_id', $id);
 			$this->db->update('tbl_member_email_alerts', array('status'=>0));
 
-
 			foreach($email_alerts_array as $emailAlertsStateId)
 			{
 				$email_data['member_id'] = $id;
@@ -544,8 +543,7 @@ class Owner_model extends CI_Model {
 			}
 		
 		}
-		
-		
+				
 		$organisation_name = $this->input->post('organisation_name');
 		$gst_no = $this->input->post('gst_no');
 		$authorized_person = $this->input->post('authorized_person');
@@ -649,9 +647,6 @@ class Owner_model extends CI_Model {
 		$this->db->insert('tbl_log_user_registration',$data1[0]);
 		
 		
-
-
-
 		return true;
 	}
         
