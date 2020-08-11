@@ -394,44 +394,49 @@ class Owner extends WS_Controller {
         $cities = $this->bank_model->GetCity();
         $data['cities'] = $cities;
 
-        $data['heading'] = 'Edit Profile';
+        $data['heading'] = 'Modify Profile - Subscribed User';
         $response = $this->owner_model->myProfileUserData();
+        $emailAlertData = $this->owner_model->memberEmailAlertData();
+		$isPremiumMember = $this->owner_model->isPremiumMember();
         //echo '<pre>';
-        //print_r($response);
+        //print_r($emailAlertData);die;
+
         $data['row'] = $response;
+        $data['emailAlertData'] = $emailAlertData;
+        $data['isPremiumMember'] = $isPremiumMember;
         $data['controller'] = 'owner';
-        $this->load->view('common/owner_header_user');
-        //$data['breadcrumb']=$this->load->view('common/executive_breadcrumb',$data,true);
+        $this->load->view('front_view/header');
         $data['tabs'] = $this->load->view('owner_view/tabs', '', true);
-        //$data['leftPanel'] = $this->load->view('owner_view/owner_myProfileLeft', '', true);
+        
         $this->load->view('owner_view/owner_myProfileEdit', $data);
-        $this->load->view('common/footer_eauc');
+        $this->load->view('front_view/footer');
     }
 
     public function myProfileEditSave() {
-
+		
         $this->load->library('form_validation');
-        
+		//echo "<pre>"; print_r($_POST);die;
         if($this->input->post('profile_type') != 'builder'){
+			//echo 'O';
 			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('father_name', 'Father Name', 'trim|required|xss_clean');
 		}else{
-			$this->form_validation->set_rules('designation', 'Designation', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('company_name', 'Company name', 'trim|required|xss_clean');
+			//echo 'B';
+			$this->form_validation->set_rules('organisation_name', 'Company name', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('authorized_person', 'Authorized Person', 'trim|required|xss_clean');
 		}
         
-        $this->form_validation->set_rules('mobile_no', 'Mobile No', 'trim|required|numeric|xss_clean');
+        //$this->form_validation->set_rules('mobile_no', 'Mobile No', 'trim|required|numeric|xss_clean');
         
         $this->form_validation->set_rules('address1', 'Address', 'trim|required|xss_clean');
         $this->form_validation->set_rules('zip', 'Zip Code', 'trim|required|numeric|xss_clean');
         //$this->form_validation->set_rules('phone', 'Phone', 'trim|required|numeric|xss_clean');
-
+		//print_r($_POST);die;
         if ($this->form_validation->run() == FALSE) {
 
-            $this->session->set_flashdata('message_validation', "Error: Kindly fill all fields those mark with *");
+            $this->session->set_flashdata('message_validation', "Error: Kindly fill all fields");
             //echo $this->session->flashdata('message_validation');
+			//echo validation_errors();die;
             redirect('owner/myProfileEdit');
         } else {
 			
@@ -449,20 +454,8 @@ class Owner extends WS_Controller {
 						redirect('owner/myProfileEdit');
 				  }
 			}
-			if($this->input->post('father_name') != ''){
-				$checkHTMLTags=$this->owner_model->checkHTMLTags($this->input->post('father_name'));
-				if($checkHTMLTags == "1"){
-						$this->session->set_flashdata("message_validation", "Invalid HTML OR TAGS(<) CONTENT FOUND!");
-						redirect('owner/myProfileEdit');
-				  }
-			}
-			if($this->input->post('designation') != ''){
-				$checkHTMLTags=$this->owner_model->checkHTMLTags($this->input->post('designation'));
-				if($checkHTMLTags == "1"){
-						$this->session->set_flashdata("message_validation", "Invalid HTML OR TAGS(<) CONTENT FOUND!");
-						redirect('owner/myProfileEdit');
-				  }
-			}
+			
+			
 			if($this->input->post('mobile_no') != ''){
 				$checkHTMLTags=$this->owner_model->checkHTMLTags($this->input->post('mobile_no'));
 				if($checkHTMLTags == "1"){
@@ -477,13 +470,7 @@ class Owner extends WS_Controller {
 						redirect('owner/myProfileEdit');
 				  }
 			}
-			if($this->input->post('address2') != ''){
-				$checkHTMLTags=$this->owner_model->checkHTMLTags($this->input->post('address2'));
-				if($checkHTMLTags == "1"){
-						$this->session->set_flashdata("message_validation", "Invalid HTML OR TAGS(<) CONTENT FOUND!");
-						redirect('owner/myProfileEdit');
-				  }
-			}
+			
 			if($this->input->post('zip') != ''){
 				$checkHTMLTags=$this->owner_model->checkHTMLTags($this->input->post('zip'));
 				if($checkHTMLTags == "1"){
@@ -491,87 +478,44 @@ class Owner extends WS_Controller {
 						redirect('owner/myProfileEdit');
 				  }
 			}
-			if($this->input->post('pan_number') != ''){
-				$checkHTMLTags=$this->owner_model->checkHTMLTags($this->input->post('pan_number'));
+			if($this->input->post('gst_no') != ''){
+				$checkHTMLTags=$this->owner_model->checkHTMLTags($this->input->post('gst_no'));
 				if($checkHTMLTags == "1"){
 						$this->session->set_flashdata("message_validation", "Invalid HTML OR TAGS(<) CONTENT FOUND!");
 						redirect('owner/myProfileEdit');
 				  }
 			}
-			if($_FILES['broker_photo']['name']!= "")
-				{
-					$checkMultipleExtension=$this->owner_model->checkMultipleExtension($_FILES['broker_photo']['name']);
-					  if($checkMultipleExtension == 'mul')
-					  {
-							$this->session->set_flashdata("message_validation", "Invalid or multiple File Extension Used while uploading a single file!");
-							redirect('owner/myProfileEdit');
-					  }		
-				}
-				
-			if($_FILES['form16']['name']!= "")
-				{
-					$checkMultipleExtension=$this->owner_model->checkMultipleExtension($_FILES['form16']['name']);
-					  if($checkMultipleExtension == 'mul')
-					  {
-							$this->session->set_flashdata("message_validation", "Invalid or multiple File Extension Used while uploading a single file!");
-							redirect('owner/myProfileEdit');
-					  }		
-				}
-				
-				if($_FILES['broker_photo']['name']) {
-					$finfo = finfo_open(FILEINFO_MIME_TYPE);
-					$broker_photo_mime = finfo_file($finfo, $_FILES['broker_photo']['tmp_name']);					
-					finfo_close($finfo);
-					//echo (int)preg_match("/jpg|png|jpeg|gif/",$broker_photo_mime);die;
-					if(!preg_match("/jpg|png|jpeg|gif/",$broker_photo_mime))
-					{
-						$this->session->set_flashdata("message_validation", "Invalid or multiple File Extension Used while uploading a single file!");
-						redirect('owner/myProfileEdit');
-					}
-				}
-				
-				if($_FILES['company_logo']['name']){
-					$finfo = finfo_open(FILEINFO_MIME_TYPE);
-					$company_logo_mime = finfo_file($finfo, $_FILES['company_logo']['tmp_name']);
-					
-					finfo_close($finfo);
-					if(!preg_match("/jpg|png|jpeg|gif/",$company_logo_mime))
-					{
-						$this->session->set_flashdata("message_validation", "Invalid or multiple File Extension Used while uploading a single file!");
-						redirect('owner/myProfileEdit');
-					}
-				}
-				
-				if($_FILES['form16']['name']) {
-					$finfo = finfo_open(FILEINFO_MIME_TYPE);
-					$form16_mime = finfo_file($finfo, $_FILES['form16']['tmp_name']);
-					
-					finfo_close($finfo);
-					if(!preg_match("/jpg|png|jpeg|gif/",$form16_mime))
-					{
-						$this->session->set_flashdata("message_validation", "Invalid or multiple File Extension Used while uploading a single file!");
-						redirect('owner/myProfileEdit');
-					}
-				}
-				
-				$pan_form_16 = $this->input->post('pan_form-16');
-				if($pan_form_16=='form-16')
-				{
-						
-				}else{
-						 $documentName = $this->input->post('pan_number');
-						 if($documentName == '')
-						 {
-							 $this->session->set_flashdata("message_validation", "Please provide Pan Number details!");
-							redirect('owner/myProfileEdit');
-						 }
-				}
 			
-			
+			if($this->input->post('pcb') == 1)
+			{
+				$pwd = $this->input->post('password');
+				$cpwd = $this->input->post('confirm_password');
+				if($pwd == '')
+				{
+					$this->session->set_flashdata('message_validation','Password field is required'); 
+					redirect('owner/myProfileEdit');
+					exit;
+				}
+				else if(!preg_match('/[A-Z]+/', $pwd) || !preg_match('/[a-z]+/',$pwd) || !preg_match('/[\d\W]+/',$pwd) || !preg_match('/\S{8,}/',$pwd))
+				{
+					
+					$this->session->set_flashdata('message_validation','Password must contain 8 characters with 1 Upper, 1 Lower and 1 Number');
+					redirect('owner/myProfileEdit');
+					exit;
+				}
+				else if($pwd != $cpwd)
+				{
+					$this->session->set_flashdata('message_validation','Password do not match'); 
+					redirect('owner/myProfileEdit');
+					exit;
+				}
+			}	
+				
             $save = $this->owner_model->myProfileEditSaveData();
             if ($save) {
 				$this->session->set_flashdata("message_validation_1", 'Profile Updated Successfully!');
-                redirect('owner/myProfile');
+                //redirect('owner/myProfile');
+                redirect('owner/myProfileEdit');
             }
         }
     }
