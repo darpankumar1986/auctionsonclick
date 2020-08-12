@@ -2055,6 +2055,104 @@ h3.non_subscribe_profile {
 }
 /*----------------------------Manage Subscription - State Wise - Manual Renewal_end----------------------------------*/
 
+/*----------------------------Manage Subscription - Plan Change - Auto Renewal----------------------------------*/
+
+h3.subscription_plan {
+    font-family: 'Roboto-Bold';
+    text-align: left;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+.subscription_table .auto_renew_open .switch::after {
+    right: 1px;
+    left: auto;
+}
+.subscription_table .auto_renew_open .checkbox:checked + .switch::after {
+    right: 12px;
+    left: auto;
+}
+.subscription_table .auto_renew_open .switch {
+    background-color: #0078db;
+}
+.subscription_table .auto_renew_open .checkbox:checked + .switch {
+    background-color: #999999;
+}
+.plan_changed_box {
+    width: 1050px;
+    margin: 0 auto;
+}
+.plan_changed_border {
+    border: 1px solid #4ea94f;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.plan_changed {
+    border: 5px solid #dff7df;
+}
+.plan_changed .subscription_warning {
+    background-color: #ffffff;
+    border: 0;
+    margin-bottom: 0;
+    padding: 16px 40px 16px 20px;
+}
+.plan_changed .subscription_warning ul {
+    background-image: url(../images/correct_icon.png);
+    background-position: 0 6px;
+    padding-left: 33px;
+}
+.plan_changed .subscription_warning ul li.sure_cancel {
+    font-family: 'Roboto-Bold';
+    font-size: 18px;
+    color: #318532;
+}
+.plan_changed_box .subscribe_notification {
+    margin-top: 25px;
+}
+/*----------------------------Manage Subscription - Plan Change - Auto Renewal_end----------------------------------*/
+
+/*----------------------------Manage Subscription - Pan India - Auto Renewal----------------------------------*/
+
+.pan_state_tab .nav-tabs {
+    border-color: #0078db;
+}
+.pan_state_tab .login_page .login_inner_page .nav-tabs>li.active>a {
+    position: relative;
+    border-bottom: 1px solid #0078db;
+    font-family: 'Roboto-Bold';
+    font-weight: normal;
+    font-size: 14px;
+}
+.pan_state_tab .login_page .login_inner_page .nav-tabs>li>a {
+    font-size: 14px;
+    padding: 10px 35px;
+}
+.pan_state_tab .login_page .login_inner_page .nav-tabs>li.active>a:after, .pan_state_tab .login_page .login_inner_page .nav-tabs>li.active>a:before {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.pan_state_tab .login_page .login_inner_page .nav-tabs>li.active>a:after {
+    border-color: rgba(136, 183, 213, 0);
+    border-top-color: #ffffff;
+    border-width: 6px;
+    margin-left: -9px;
+}
+.pan_state_tab .login_page .login_inner_page .nav-tabs>li.active>a:before {
+    border-color: rgba(194, 225, 245, 0);
+    border-top-color: #0078db;
+    border-width: 8px;
+    margin-left: -11px;
+}
+.pan_state_tab .login_page .login_inner_page .nav-tabs>li>a:hover {
+    border-bottom: 0;
+    margin-bottom: 1px;
+}
+/*----------------------------Manage Subscription - Pan India - Auto Renewal_end----------------------------------*/
 /*----------------------------After Subscription - Thank you----------------------------------*/
 
 .thankyou {
