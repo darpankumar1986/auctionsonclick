@@ -32,6 +32,13 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 				<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/plugins/jquery.uniform.min.js"></script>
 				<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/custom/general.js"></script>
 				<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/dt_global.js"></script>
+				<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/custom/tables.js"></script>
+<link rel="stylesheet" href="<?php echo VIEWBASE; ?>js/plugins/jquery-ui-1.12.1.css">
+<script src="<?php echo VIEWBASE; ?>js/plugins/jquery-ui-1.12.1.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.css">
+<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/custom/forms.js"></script>
 				<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="<?php echo VIEWBASE; ?>js/plugins/excanvas.min.js"></script><![endif]-->
 				<!--[if IE 9]>
 					<link rel="stylesheet" media="screen" href="<?php echo VIEWBASE; ?>css/style.ie9.css"/>

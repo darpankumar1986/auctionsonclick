@@ -95,26 +95,20 @@ class Home extends MY_Controller {
 	
   
     function faqs() {
-        //$staticData = $this->home_model->getStaticContents(4);
+        $data['title'] = 'FAQ';
+		//$staticData = $this->home_model->getStaticContents(4);
         $data['staticData'] = $staticData;
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/faq', $data);   
         $this->load->view('front_view/footer');     
     }
 
-    function aboutus() {
+    function about_us() {
+		$data['title'] = 'About Us';
         $staticData = $this->home_model->getStaticContents(2);
         $data['staticData'] = $staticData;
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/about_us', $data);
-        $this->load->view('front_view/footer');
-    }
-
-    function contactus() {
-        $staticData = $this->home_model->getStaticContents(3);
-        $data['staticData'] = $staticData;
-        $this->load->view('front_view/header', $data);
-        $this->load->view('front_view/contact_us', $data);
         $this->load->view('front_view/footer');
     }
 
@@ -150,13 +144,56 @@ class Home extends MY_Controller {
         return true;
     }   
     
+
+	function contact_us() {
+		$data['title'] = 'Contact Us';
+        $getContactUsTopic = $this->home_model->getContactUsTopic();
+        $data['getContactUsTopic'] = $getContactUsTopic;
+        $this->load->view('front_view/header', $data);
+        $this->load->view('front_view/contact_us', $data);
+        $this->load->view('front_view/footer');
+    }
+	function contactUsSave()
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('name', 'Name', 'required','trim|required|xss_clean');
+		$this->form_validation->set_rules('email', 'Email ID', 'required','trim|required|xss_clean');
+		$this->form_validation->set_rules('mobile', 'Mobile Number', 'required','trim|required|numeric|xss_clean');
+		$this->form_validation->set_rules('topic_id', 'Topic', 'required','trim|required|xss_clean');
+		$this->form_validation->set_rules('message', 'message', 'required','trim|required|xss_clean');
+
+		
+		if($this->form_validation->run() == FALSE)
+		{	
+			$this->session->set_flashdata('message_validation', "Error: Kindly fill all fields");
+			redirect('home/contactus');
+			exit;
+		}
+		$save = $this->home_model->save_contactus();
+		if ($save) {
+			
+			redirect('home/contactusSuccess');
+			exit;
+		}
+	
+	}
+
+	function contactusSuccess() {
+		$data['title'] = 'Thank You!';
+		$data['subcription_plan'] = $this->home_model->getSubcriptionPlan(0);
+		$data['total_auction'] = $this->home_model->getTotalAuction();
+        $this->load->view('front_view/header', $data);
+        $this->load->view('front_view/contactus_success', $data);
+        $this->load->view('front_view/footer');
+    }
+
 	
 	function auctionDetailPopup($auctionID) {
             $data['auction_data'] = $this->home_model->aucDetailPopupData($auctionID);
             $data['uploadedDocs'] = $this->home_model->GetUploadedDocsByAuctionId($auctionID);
             $this->load->view('front_view/auction_detail_popup', $data);
         }
-
+	
 	function auctionDetail($auctionID) {
 		$data['title'] = "View Detail";
 		$data['auction_data'] = $this->home_model->aucDetailPopupData($auctionID);

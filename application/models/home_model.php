@@ -166,6 +166,15 @@ class Home_model extends CI_Model {
 
 	}
 
+	function getContactUsTopic()
+	{
+		$this->db->where('status',1);
+		$query = $this->db->get('tblmst_contact_topic');
+
+		return $query->result();
+
+	}
+
 	function getAllState()
 	{
 		$this->db->where('status IN(1)');
@@ -848,6 +857,27 @@ class Home_model extends CI_Model {
 					$insert_id1=$this->db->insert_id();
 
 		return $insert_id1;
+	}
+	
+	public function save_contactus($bidderID,$package_id) 
+	{	
+		$data = array(
+				'name'=>$this->input->post('name'),
+				'email'=>$this->input->post('email'),
+				'mobile'=>$this->input->post('mobile'),
+				'topic_id'=>$this->input->post('topic_id') ,
+				'message'=>$this->input->post('message'),
+				'in_date_time'=>date('Y-m-d H:i:s'),	
+				'status'=>1,
+				'ip'=>$_SERVER['REMOTE_ADDR']					
+		);
+
+		
+		$this->db->insert('tbl_contact_us',$data); 
+		//echo $this->db->last_query();die;
+		$insert_id=$this->db->insert_id();
+
+		return $insert_id;
 	}
 
 	public function get_state_bidder($bidderID) 

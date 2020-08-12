@@ -99,3 +99,37 @@ CREATE TABLE `tbl_member_email_alerts` (
   `created_on` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`email_alerts_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `tbl_contact_us`;
+CREATE TABLE `tbl_contact_us` (
+  `contact_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `mobile` varchar(255) NOT NULL,
+  `topic_id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `in_date_time` datetime NOT NULL,
+  `status` int(11) NOT NULL,
+  `ip` varchar(255) NOT NULL,
+  PRIMARY KEY (`contact_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `tblmst_contact_topic`;
+CREATE TABLE `tblmst_contact_topic` (
+  `topic_id` int(11) NOT NULL AUTO_INCREMENT,
+  `topic_name` varchar(255) NOT NULL,
+  `in_date_time` datetime NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`topic_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `tblmst_contact_topic` (`topic_id`, `topic_name`, `in_date_time`, `status`) VALUES
+(1,	'General Query',	'2020-08-10 16:16:55',	1),
+(2,	'Service Issue',	'2020-08-10 16:17:28',	1),
+(3,	'Email Alerts Issue',	'2020-08-10 16:18:37',	1),
+(4,	'Missed Notice',	'2020-08-10 16:19:29',	1),
+(5,	'Payment Issue',	'2020-08-10 16:19:43',	1),
+(6,	'Report Error',	'2020-08-10 16:20:16',	1),
+(7,	'Report Incorrect Data',	'2020-08-10 16:20:28',	1),
+(8,	'Business Query',	'2020-08-10 16:20:40',	1),
+(9,	'Other',	'2020-08-10 16:20:52',	1);
