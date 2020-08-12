@@ -137,10 +137,10 @@
                                         <li class="list_desc"><a href="#"><span><i class="fa fa-headphones"></i></span> Customer Service</a></li>
                                         <li><a href="<?php echo base_url();?>home/premiumServices">Premium Services</a></li>
                                         <li><a href="#">Top Cities</a></li>
-                                        <li><a href="#">Bankeauctions.com</a></li>
-                                        <li><a href="<?php echo base_url();?>home/about_us">About Us</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                        <li><a href="<?php echo base_url();?>home/contact_us">Contact US</a></li>
+                                        <li><a href="https://bankeauctions.com/" target="_blank">Bankeauctions.com</a></li>
+                                        <li><a href="<?php echo base_url();?>about-us">About Us</a></li>
+                                        <li><a href="<?php echo base_url();?>faq">FAQ</a></li>
+                                        <li><a href="<?php echo base_url();?>contact-us">Contact US</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -231,10 +231,10 @@
                                         <li class="list_desc"><a href="#"><span><i class="fa fa-headphones"></i></span> Customer Service</a></li>
                                         <li><a href="<?php echo base_url();?>home/premiumServices">Premium Services</a></li>
                                         <li><a href="#">Top Cities</a></li>
-                                        <li><a href="#">Bankeauctions.com</a></li>
-                                        <li><a href="<?php echo base_url();?>home/about_us">About Us</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                        <li><a href="<?php echo base_url();?>home/contact_us">Contact US</a></li>
+                                        <li><a href="https://bankeauctions.com/" target="_blank">Bankeauctions.com</a></li>
+                                        <li><a href="<?php echo base_url();?>about-us">About Us</a></li>
+                                        <li><a href="<?php echo base_url();?>faq">FAQ</a></li>
+                                        <li><a href="<?php echo base_url();?>contact-us">Contact US</a></li>
                                     </ul>
                                 </div>
                             </div>

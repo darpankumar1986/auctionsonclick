@@ -94,10 +94,10 @@ class Home extends MY_Controller {
 	
 	
   
-    function faqs() {
+    function faq() {
         $data['title'] = 'FAQ';
 		//$staticData = $this->home_model->getStaticContents(4);
-        $data['staticData'] = $staticData;
+        //$data['staticData'] = $staticData;
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/faq', $data);   
         $this->load->view('front_view/footer');     
@@ -113,6 +113,7 @@ class Home extends MY_Controller {
     }
 
     function privacy_policy() {
+		$data['title'] = 'Terms &amp; Conditions';
         $staticData = $this->home_model->getStaticContents(1);
         $data['staticData'] = $staticData;
         $this->load->view('front_view/header', $data);
@@ -121,11 +122,21 @@ class Home extends MY_Controller {
     }
 
     function terms_of_use() {
+		$data['title'] = 'Terms &amp; Conditions';	
         $staticData = $this->home_model->getStaticContents(5);
         $data['staticData'] = $staticData;
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/terms_of_use', $data);
         $this->load->view('front_view/footer');
+    }
+
+	function sitemap() {
+        $data['title'] = 'Sitemap';
+		//$staticData = $this->home_model->getStaticContents(4);
+        //$data['staticData'] = $staticData;
+        $this->load->view('front_view/header', $data);
+        $this->load->view('front_view/sitemap', $data);   
+        $this->load->view('front_view/footer');     
     }
 
     

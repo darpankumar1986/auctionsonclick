@@ -51,14 +51,16 @@ $route['property/subscribe'] = "property/subscribe";
 $route['property/savefavourite'] = "property/savefavourite";
 $route['property/searchcity'] = "property/searchcity";
 $route['property/(:any)'] = "property/index/$1";
-$route['about-us'] = 'home/aboutus';
-$route['contact-us'] = 'home/contactus';
+$route['contact-us'] = 'home/contact_us';
+$route['about-us'] = 'home/about_us';
+$route['faq'] = 'home/faq';
 $route['privacy-policy'] = 'home/privacy_policy';
-$route['terms-of-use'] = 'home/terms_of_use';
+$route['terms-conditions'] = 'home/terms_of_use';
+$route['sitemap'] = 'home/sitemap';
 $route['how-it-works'] = '/how_it_works';
 $route['page/(:any)'] = "home/page/$1";
 $route['auction-calender'] = '/auction_calender';
-$route['faqs'] = 'home/faqs';
+
 
 $route['extlogin'] = 'home/externallogin/$1';
 
