@@ -1,20 +1,6 @@
-<!--<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.css" type="text/css" media="screen"/>-->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/colorbox.css?rand=<?php echo CACHE_RANDOM; ?>" />
-<!--<link rel="stylesheet" href="<?php echo base_url(); ?>bankeauc/css/tables.css" />-->
 <script src="<?php echo base_url(); ?>js/jquery.colorbox.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
-<script>
-
-jQuery(document).ready(function () {
-
-    jQuery(".auction_detail_iframe").colorbox({iframe: true, width: "85%", height: "90%", onClosed: function () {
-        //jQuery(".inline_auctiondetail").click();
-        jQuery(".inline_auctiondetail");
-    }});
-
-
-});
-</script>
 <script type="text/javascript">
 var oTable = null;
     $(document).ready(function () {
@@ -22,9 +8,7 @@ var oTable = null;
 
 
             initHomeTable();
-            <?php if($_GET['search'] != ''){ ?>
-                oTable.columns(3).search('<?php echo $_GET['search']; ?>').draw();
-            <?php } ?>
+  
             setTimeout(function(){ $("#big_table_info").text(''); }, 500);
 
              $("#reservePriceMaxRange,#reservePriceMinRange").keyup(function(){
@@ -120,19 +104,19 @@ var oTable = null;
                 oTable.destroy();
                 //oTable = null
             }
-            var parent_id = $("input[name=parent_id]:checked").val();
-
+			
             var sub_id_str = '';
-            $("input[name=sub_id]:checked").each(function(){
-                var sub_id = $(this).val();
-                sub_id_str += '&sub_id[]='+sub_id;
-            });
-
-
-            var reservePriceMaxRange = $("#reservePriceMaxRange").val();
-            var reservePriceMinRange = $("#reservePriceMinRange").val();
-            var search_box = $("#search_ListID").val();
+			<?php foreach($_GET['sc'] as $sc){ ?>
+				sub_id_str += "&sub_id[]=<?php echo $sc; ?>";
+			<?php } ?>
+			var parent_id = "<?php echo $_GET['assetsTypeId']; ?>";
+            var reservePriceMaxRange = '';
+            var reservePriceMinRange = '';
+            var search_box = '';
             oTable = $('#big_table').DataTable({
+				dom: "<'row'<'col-sm-3'l><'col-sm-2'f><'col-sm-7'p>>" +
+					"<'row'<'col-sm-12'tr>>" +
+					"<'row'<'col-sm-5'i><'col-sm-7'p>>",
                 "bAutoWidth": false,
                 //"aoColumns": [{"sWidth": "5%"}, {"sWidth": "10%"}, {"sWidth": "20%"}, {"sWidth": "30%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "10%"}, {"sWidth": "10%"}],
                 "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6] } ],
@@ -177,28 +161,9 @@ var oTable = null;
                     }
                 });
 
-                var search_box = $("#search_box").val();
-                oTable.search(search_box).draw();
-
-                var search_city = $("#search_city").closest(".custom-select").find('.select-selected').html();
-
-                if(search_city == 'Select City')
-                {
-                    oTable.columns(3).search("<?php echo $_GET['search']; ?>").draw();
-                }
-                else if(search_city != 'All Cities')
-                {
-                    oTable.columns(3).search(search_city).draw();
-                }
-
-
-                var search_location = $("#search_location").closest(".custom-select").find('.select-selected').html();
-
-                if(search_location != 'Select Location' && search_location != 'All Location')
-                {
-                    oTable.columns(2).search(search_location).draw();
-                }
-
+			  <?php if($_GET['search'] != ''){ ?>
+				oTable.columns(3).search('<?php echo $_GET['search']; ?>').draw();
+			  <?php } ?>
         }
 
         function isNumberKey(evt)
@@ -328,7 +293,7 @@ var oTable = null;
                         <div class="row">
                             <div class="col-sm-9">
                                 <div class="desc_wrapper_inner">
-                                    <h3>101 Bank Auction in <?php echo ucwords($_GET['search']); ?> </h3>
+                                    <h3><?php echo (int)$totalAuction; ?> Bank Auction in <?php echo ucwords($_GET['search']); ?> </h3>
                                 </div>
                             </div>
                             <div class="col-sm-3">

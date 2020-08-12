@@ -133,7 +133,9 @@
                                         <li><a class="first_list" href="<?php echo base_url(); ?>owner/shortlistedAuction"><i class="fa fa-star"></i>Shortlist</a></li>
                                     </ul>
                                     <ul class="nav_section">
-                                        <li class="list_desc"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span> Login / Register</a></li>
+										<?php if(!($this->session->userdata('id') > 0)){ ?>
+	                                        <li class="list_desc"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span> Login / Register</a></li>
+										<?php } ?>
                                         <li class="list_desc"><a href="#"><span><i class="fa fa-headphones"></i></span> Customer Service</a></li>
                                         <li><a href="<?php echo base_url();?>home/premiumServices">Premium Services</a></li>
                                         <li><a href="#">Top Cities</a></li>
@@ -227,7 +229,9 @@
                                         <li><a class="first_list" href="<?php echo base_url(); ?>owner/shortlistedAuction"><i class="fa fa-star"></i>Shortlist</a></li>
                                     </ul>
                                     <ul class="nav_section">
-                                        <li class="list_desc"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span> Login / Register</a></li>
+										<?php if(!($this->session->userdata('id') > 0)){ ?>
+	                                        <li class="list_desc"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span> Login / Register</a></li>
+										<?php } ?>
                                         <li class="list_desc"><a href="#"><span><i class="fa fa-headphones"></i></span> Customer Service</a></li>
                                         <li><a href="<?php echo base_url();?>home/premiumServices">Premium Services</a></li>
                                         <li><a href="#">Top Cities</a></li>

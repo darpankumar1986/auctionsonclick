@@ -1321,55 +1321,12 @@ class Registration extends WS_Controller {
 								}
 						}
 					}
-					
+						
+					$res = $this->registration_model->save_step_first();
+					$this->session->set_flashdata('msg','Registration done Successfully !<br>');	
+					redirect("/registration/signup");
 							
-							//$res = $this->registration_model->save_step_first_temp();
 							
-							
-							
-							if(IS_PAYMENT_GATEWAY_OFF===TRUE)
-							{
-								$res = $this->registration_model->save_step_first();
-								$this->session->set_flashdata('msg','Registration done Successfully !<br>');	
-								redirect("/registration/signup");
-							}
-							else
-							{
-								$res = $this->registration_model->save_step_first_temp();
-								
-								$last_insert_id_payment = $this->registration_model->save_payment($res,$this->input->post('email'));
-								
-								redirect('/payment1/index?txnid='.base64_encode($last_insert_id_payment));die;
-							}
-											
-							//$this->session->set_flashdata('msg','Registration Successful !<br>');
-							$this->session->set_flashdata('msg','An Activation link has been sent to your registered email ID. Kindly click on the link to activate your account.'); //You will not be able to login in until your email address has been verified.!
-							if(isset($bankID) && $bankID!='')
-							{
-								
-								redirect('/registration/signup?bi='.$bankID.'');
-							}else{
-
-								redirect('/registration/signup');
-							}
-										   
-							/*if($res)
-							{
-								$register_as = $this->input->post('register_as');
-								if($register_as=='broker')
-								{
-									$str=base64_encode($res);
-									$url_to_be_send=urlencode($str);
-									redirect('/registration/signup/'.$url_to_be_send);
-								}
-								else
-								{
-									$this->session->set_flashdata('msg','Registration Successful !<br> A conformation email has been sent to your registered email ID.You will not be able to login in until your email address has been verified.!');
-									redirect('/registration/signup');
-								}
-											
-										   
-							} */
 				} else {
 					$this->session->set_flashdata("msg1", "Email already exist");
 					if(isset($bankID) && $bankID!='')

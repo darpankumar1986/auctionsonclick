@@ -232,6 +232,59 @@ class Home_model extends CI_Model {
                  return $this->datatables->generate();
 				 //echo $this->db->last_query();die;
     }
+
+	function getTotalCityAuction()
+    { 
+		
+               $this->db->select("a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+                ->from('tbl_auction as a')				
+				->join('tbl_category as c','c.id=a.subcategory_id','left')
+				->join('tbl_city as city','city.id=a.city','left')
+                ->where('a.status IN(1)')
+                ->where('auction_end_date >= NOW()');
+                  $this->db->order_by('a.bid_last_date','ASC');
+
+				  if($_GET['search'] != '')
+				  {
+					$this->db->where("city.city_name like '%".$_GET['search']."%'");
+				  }
+			  
+	
+				  if($_GET['search_box'] != '')
+				  {
+					$this->db->where('a.id',$_GET['search_box']);
+				  }
+
+			
+				  if($_GET['assetsTypeId'] != '')
+				  {
+					$this->db->where('a.category_id',$_GET['assetsTypeId']);
+				  }
+
+				  if(is_array($_GET['sc']) && count($_GET['sc']) > 0)
+				  {
+					$this->db->where('a.subcategory_id IN('.implode(',',$_GET['sc']).')');
+				  }
+
+
+				$reservePriceMinRange = $_GET['reservePriceMinRange'];
+				$reservePriceMaxRange = $_GET['reservePriceMaxRange'];
+				
+				if($reservePriceMinRange > 0)
+				{
+					$this->db->where('a.reserve_price >=',$reservePriceMinRange);
+					//$this->db->where('a.reserve_price <=',$reservePriceMaxRange);
+				}
+
+				if($reservePriceMaxRange > 0)
+				{
+					//$this->db->where('a.reserve_price >=',$reservePriceMinRange);
+					$this->db->where('a.reserve_price <=',$reservePriceMaxRange);
+				}
+
+				$query = $this->db->get('');
+				return $query->num_rows();   
+	}
     
     function getAllAssetsType()
     {

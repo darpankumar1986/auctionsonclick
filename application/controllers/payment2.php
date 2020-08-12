@@ -238,26 +238,18 @@ class Payment2 extends WS_Controller
 							}
 						}
 
-				
-						$this->session->set_flashdata('message','Processing Fee Paid Successfully !<br>');	
+			
+						$this->session->set_flashdata('message','Subscription Payment Paid Successfully !<br>');	
 						redirect("/home/success");
 			}else{
 					
-					$this->db->where('id', $txnidArr[0]);
-					$query  =   $this->db->get('tbl_payment');
-					$res = $query->result();
-
-					$payment_res = $res[0];
-
-					$this->session->set_flashdata('message_new','Processing Fee Payment Failure ! Please try again<br>');	
-					redirect("/owner/auction_participate/".$payment_res->auctionID);
+					$this->session->set_flashdata('message_new','Subscription Payment Failure ! Please try again<br>');	
+					redirect("/home/premiumServices");
 				
 			}	
 		}
 		else
 		{
-			//$this->session->set_flashdata('message_new','Tender Fee Payment Failure ! Please try again<br>');	
-			//redirect("/owner/auction_participate/".$actionID);
 			redirect("/registration/logout");
 		}	
 	}

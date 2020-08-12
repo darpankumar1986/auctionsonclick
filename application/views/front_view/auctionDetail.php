@@ -241,7 +241,7 @@
                     <div class="premium_section">
                         <div class="premium_section_inner">
                             <p>Become Premium member to view auction details and documents.</p>
-                            <button class="btn btn-default" type="button">Premium Services</button>
+                            <button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url();?>home/premiumServices'">Premium Services</button>
 							<?php if(!$this->session->userdata('id')){ ?>
 								<p class="subscriber_para">If you are already a subscriber</p>
 								<ul class="login_register_section">

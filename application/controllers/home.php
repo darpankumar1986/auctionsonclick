@@ -11,11 +11,6 @@ class Home extends MY_Controller {
         parent::__Construct();
         ob_start();
         $this->load->library('session');
-        $this->load->helper('log4php');
-        log_error('my_error');
-        log_info('my_info');
-        log_debug('my_debug');
-        //error_reporting(0);
         $this->load->helper('url');
         $this->load->helper('text');
         $this->load->helper('file');
@@ -24,6 +19,7 @@ class Home extends MY_Controller {
         $this->load->model('home_model');
         $this->load->model('admin/news_model');
         $this->load->model('property_model');
+		//echo $this->session->userdata('id');die;
 
     }
 
@@ -218,6 +214,7 @@ class Home extends MY_Controller {
 		$vdata['property'] = $this->home_model->getProperty();
 		
 		$vdata['data'] = $this->home_model->getAuctionCityLocation();
+		$vdata['totalAuction'] = $this->home_model->getTotalCityAuction();
 		
 		 if(MOBILE_VIEW)
 		{				
@@ -421,7 +418,7 @@ class Home extends MY_Controller {
     }
 
 	public function success()
-	{	
+	{
 		$data['title'] = 'Thank You!';
 		$data['subcription_plan'] = $this->home_model->getSubcriptionPlan(0);
 		$data['total_auction'] = $this->home_model->getTotalAuction();
