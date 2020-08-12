@@ -213,13 +213,23 @@
 									<tr>
 										<td>Documents Available</td>
 										<td> 
-											<?php foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id==0 && $doc->status == 1){ ?>
-												<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo $doc->upload_document_field_name; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } ?>
-											<?php } } ?>
+											<?php 
+											$picSrNo=1;
+											foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id==0 && $doc->status == 1){ ?>
+												<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Pic '.$picSrNo; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } ?>
+											<?php 
+												$picSrNo++;	
+											} } ?>
 											<br/>
-											<?php foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id > 0){ ?>
-												<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo $doc->upload_document_field_name; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } ?>
-											<?php } } ?>
+											<?php 
+											$dSrNo=1;
+											foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id > 0){ ?>
+												<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Doc '.$dSrNo; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } ?>
+											<?php
+												$dSrNo++;
+												} 
+											
+											} ?>
 										</td>
 									</tr>
 								<?php } ?>

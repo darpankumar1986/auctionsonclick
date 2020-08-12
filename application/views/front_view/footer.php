@@ -14,12 +14,12 @@
                                     <h4>Quick Links</h4>
                                     <ul>
                                         <li><a href="<?php echo base_url();?>home/premiumServices">Permium Services</a></li>
-                                        <li><a href="<?php echo base_url();?>home/about_us">About Us</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                        <li><a href="<?php echo base_url();?>home/contact_us">Contact Us</a></li>
-                                        <li><a href="#">Sitemap</a></li>
-                                        <li><a href="#">Terms &amp; Conditions</a></li>
-                                        <li><a href="#">Privacy-Policy</a></li>
+                                        <li><a href="<?php echo base_url();?>about-us">About Us</a></li>
+                                        <li><a href="<?php echo base_url();?>faq">FAQ</a></li>
+                                        <li><a href="<?php echo base_url();?>contact-us">Contact Us</a></li>
+                                        <li><a href="<?php echo base_url();?>sitemap">Sitemap</a></li>
+                                        <li><a href="<?php echo base_url();?>terms-conditions">Terms &amp; Conditions</a></li>
+                                        <li><a href="<?php echo base_url();?>privacy-policy">Privacy-Policy</a></li>
                                     </ul>
                                 </div>
                             </div>

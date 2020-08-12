@@ -152,10 +152,31 @@ section{float:none;}
         <tr class="odd">
             <td align="left" valign="top" class=""><strong>E-Auction Website</strong></td>
             <td td align="left" valign="top" class="" colspan="3"><?php echo $auction_detail->far; ?></td>
-			<td align="left" valign="top" class=""><strong><?php echo $uploadedDocs[0]->upload_document_field_name;?></strong></td>
+			<td align="left" valign="top" class=""><strong>
+			Documents Available</strong></td>
             <td align="left" valign="top" class=""  colspan="3">
-			<?php if(count($uploadedDocs)>0 && is_array($uploadedDocs)){ ?><a href="/public/uploads/event_auction/<?php echo $uploadedDocs[0]->file_path;?>" target="_blank">View</a>
-			<?php } else { echo 'N/A'; } ?>
+			
+			<?php if(count($uploadedDocs)>0 && is_array($uploadedDocs)){
+			
+				$picSrNo=1;
+				foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id==0 && $doc->status == 1){ ?>
+					<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Pic '.$picSrNo; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } ?>
+				<?php 
+					$picSrNo++;	
+				} } ?>
+			<br/>
+			<?php
+				$dSrNo=1;
+				foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id > 0){ ?>
+					<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Doc '.$dSrNo; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } ?>
+				<?php
+					$dSrNo++;
+					} 
+				
+				}  } else { echo 'N/A'; } ?>
+											
+			
+			
 
         </tr>
        

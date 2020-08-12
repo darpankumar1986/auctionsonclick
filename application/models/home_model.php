@@ -394,16 +394,16 @@ class Home_model extends CI_Model {
 		$bidderID = (int)$this->session->userdata('id');
 		$currentDate = date("Y-m-d H:i:s");
 
-		$this->db->select("a.*,c.name as sub_category_name,cat.name as category_name,a.reference_no as location_name,city.city_name,bank.bank_name,state.state_name,b.name as branch_name,fav.is_fav,sub.subscription_participate_city_id as isSub");               
+		$this->db->select("a.*,c.name as sub_category_name,cat.name as category_name,a.reference_no as location_name,city.city_name,bank.logopath as bank_img,bank.name as bank_name,state.state_name,b.name as branch_name,fav.is_fav,sub.subscription_participate_city_id as isSub");               
 		$this->db->from('tbl_auction as a');
 				
 		$this->db->join('tbl_category as cat','cat.id=a.category_id','left');
 		$this->db->join('tbl_category as c','c.id=a.subcategory_id','left');
 		$this->db->join('tbl_city as city','city.id=a.city','left');
 		$this->db->join('tbl_branch as b','b.id=a.branch_id','left');
-		$this->db->join('tblmst_bank as bank','bank.bank_id=a.bank_id','left');
+		$this->db->join('tbl_bank as bank','bank.id=a.bank_id','left');
 		$this->db->join('tbl_state as state','state.id=a.state','left');
-		$this->db->join('tbl_auction_bidder_fav as fav','fav.auctionID=a.id and fav.bidderID = '.$bidderID.' and fav.status = 1','left');
+		$this->db->join('tbl_auction_bidder_fav as fav','fav.auctionID=a.id and fav.bidderID = '.$bidderID,'left');
 		$this->db->join('tbl_subscription_participate_city as sub','sub.sub_state_id=a.state and sub.member_id = '.$bidderID.' and sub.sub_start_date < "'.$currentDate.'" and sub.sub_end_date > "'.$currentDate.'" and sub.sub_status = 1','left');
 		$this->db->where('a.status IN(1)');
         $this->db->where('a.id = "'.$auctionID.'"');

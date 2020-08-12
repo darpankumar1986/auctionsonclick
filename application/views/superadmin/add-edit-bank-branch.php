@@ -1,17 +1,3 @@
-<script type="text/javascript" src="<?php echo VIEWBASE ?>js/plugins/jquery.uniform.min.js"></script>
-<script type="text/javascript" src="<?php echo VIEWBASE ?>js/plugins/jquery.validate.min.js"></script>
-<script type="text/javascript" src="<?php echo VIEWBASE ?>js/custom/forms.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>js/common.js"></script>
-<script type="text/javascript" src="<?php echo VIEWBASE ?>js/plugins/tinymce/jquery.tinymce.js"></script>
-<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/plugins/jquery.tagsinput.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo VIEWBASE ?>css/plugins/jquery.tagsinput.css">
-<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/plugins/jquery.colorbox-min.js"></script>
-
-<link rel="stylesheet" href="<?php echo base_url() ?>js/calender/jquery-ui.css">
-<script src="<?php echo base_url(); ?>js/calender/jquery-ui.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ?>js/calender/jquery-ui-timepicker-addon.min.js"></script>
-<link rel="stylesheet" href="<?php echo base_url() ?>js/calender/jquery-ui-timepicker-addon.css">
-
 <script>
     jQuery(document).ready(function () {
         //Examples of how to assign the Colorbox event to elements
@@ -293,6 +279,7 @@ if (!empty($row)) {
                                     <label class="error errorfax" style="display:none;">Please enter valid fax number </label>
                                 </div>					
                             </div>
+							<?php /* ?>
                             <div class="row">
                                 <div class="lft_heading">Agreement No Date   </div>
                                 <div class="rgt_detail"> 
@@ -307,43 +294,7 @@ if (!empty($row)) {
                                     <label class="error" style="display:none;">Please enter Revenue Amount</label>
                                 </div>					
                             </div>
-<?php /* 	<p>
-  <label>Revenue Amount(Successful)<font color='red'>*</font></label>
-  <span class="field">
-  <input onkeypress="return isNumberKey(event);" maxlength="13" type="text" name="revenueamount" id="revenueamount" class="longinput" value="<?php echo $revenueamount?>" onblur="calculateTax(jQuery(this).val())" />
-  <label class="error" style="display:none;">Please enter Revenue Amount</label>
-  </span>
-  </p>
 
-  <p>
-  <label>Stax<font color='red'>*</font></label>
-  <span class="field">
-  <input readonly onkeypress="return isNumberKey(event);" type="text" name="stax" id="stax" class="longinput"  value="<?php echo $stax?>" />
-  <label class="error" style="display:none;">Please enter Stax</label>
-  </span>
-  </p>
-  <p>
-  <label>Educess<font color='red'>*</font></label>
-  <span class="field">
-  <input onkeypress="return isNumberKey(event);" type="text" name="educess"  readonly id="educess"  class="longinput" value="<?php echo $educess?>" />
-  <label class="error" style="display:none;">Please enter Educess</label>
-  </span>
-  </p>
-  <p>
-  <label>Secondary Higher Tax<font color='red'>*</font></label>
-  <span class="field">
-  <input onkeypress="return isNumberKey(event);"   type="text" name="secondaryhighertax" id="secondaryhighertax" class="longinput" readonly value="<?php echo $secondaryhighertax?>" />
-  <label class="error" style="display:none;">Please enter Secondary Higher Tax</label>
-  </span>
-  </p>
-  <p>
-  <label>Total<font color='red'>*</font></label>
-  <span class="field">
-  <input onkeypress="return isNumberKey(event);"  type="text" name="total" id="total" class="longinput" value="<?php echo $total?>" readonly />
-  <label class="error" style="display:none;">Please enter Total</label>
-  </span>
-  </p>
- */ ?>
 
                             <div class="row">
                                 <div class="lft_heading">Start Date  </div>
@@ -360,10 +311,7 @@ if (!empty($row)) {
                                 <span id="spMsg" style="color:red; font-size:11px;margin-left:310px;"></span>
                             </div>
 
-                            <!--<div class="row">
-                                <div class="lft_heading">Total Amount( For No Bid) </div>
-                                <div class="rgt_detail"><input name="" type="checkbox" checked disabled="disabled" value="" style="width:20px;"></div>
-                            </div>-->
+                            
 
                             <div class="row">
                                 <div class="lft_heading">Revenue Amount(Un Successful)  </div>
@@ -386,7 +334,7 @@ if (!empty($row)) {
                                     <label class="error" style="display:none;">Please enter Cancel/Stay Amount</label>  
                                  </div>
                             </div>
-
+							<?php */ ?>
 
                             <div class="stdformbutton row" style="text-align:center;">
                                 <a href="<?php echo base_url() . 'superadmin/home' ?>" class="button_grey">Back</a>	
