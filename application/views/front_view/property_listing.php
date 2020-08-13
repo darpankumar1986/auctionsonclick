@@ -114,9 +114,9 @@ var oTable = null;
             var reservePriceMinRange = '';
             var search_box = '';
             oTable = $('#big_table').DataTable({
-				dom: "<'row'<'col-sm-3'l><'col-sm-2'f><'col-sm-7'p>>" +
+				dom: "<'row'<'col-sm-6 top-pagination pagination_main'p>>" +
 					"<'row'<'col-sm-12'tr>>" +
-					"<'row'<'col-sm-5'i><'col-sm-7'p>>",
+					"<'row'<'col-sm-5'i><'col-sm-7 pagination_main'p>>",
                 "bAutoWidth": false,
                 //"aoColumns": [{"sWidth": "5%"}, {"sWidth": "10%"}, {"sWidth": "20%"}, {"sWidth": "30%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "10%"}, {"sWidth": "10%"}],
                 "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6] } ],
@@ -182,6 +182,8 @@ var oTable = null;
 .dataTables_info{display: none;}
 .table-responsive{overflow-x: hidden;}
 #big_table_length,.dataTables_filter,#big_table_processing{display: none;}
+
+/*
 .dataTables_paginate{float: right;}
 .dataTables_paginate .pagination{ border-radius: 0;}
 .dataTables_paginate .pagination li{ border-radius: 0 !important;}
@@ -193,6 +195,7 @@ var oTable = null;
     border-radius: 4px !important;}
 .dataTables_paginate .pagination li:hover a{cursor: pointer;}
 .pagination>li a:focus{border: 0px !important;}
+*/
 </style>
 <div class="container container_margin">
             <div class="row">
@@ -309,6 +312,23 @@ var oTable = null;
                         </div>
                     </div>
                     <div class="auction_table bank_auction_table shortlisted_table table-responsive">
+						<div class="get-alerts">
+						<button class="btn btn-default shortlist_list" type="button">
+							<i class="fa fa-bell"></i> Get Alerts
+						</button>
+						</div>
+						<div class="custom-dropdown-select">
+						   <div class="custom-select">
+							   <select>
+								   <option value="0">Newest (Default Sort)</option>
+								   <option value="1">Newest (Default Sort)-1</option>
+								   <option value="2">Newest (Default Sort)-2</option>
+								   <option value="3">Newest (Default Sort)-3</option>
+								   <option value="4">Newest (Default Sort)-4</option>
+								   <option value="5">Newest (Default Sort)-5</option>
+							   </select>
+							</div>
+					   </div>
                         <?php
                                 //set table id in table open tag
                                     $tmpl = array('table_open' => '<table id="big_table" border="1" width="100%" cellpadding="2" cellspacing="1" class="myTable auction_table_box">');
