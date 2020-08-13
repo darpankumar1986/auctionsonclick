@@ -151,3 +151,15 @@ $('button').click(function(){
     $(".chosen-select").val('').trigger("chosen:updated");
 });
 /*------------------------multiselect_dropdown_end------------------------------------------*/
+
+
+/*------------------------choose state list---------------------------------------------*/
+
+
+$(document).ready(function(){
+    $(".add_more_state").click(function(){
+        $(".all_state_list").toggle();
+    });
+});
+
+/*------------------------choose state list_end---------------------------------------------*/

@@ -1939,7 +1939,8 @@ h3.non_subscribe_profile {
 }
 .subscription_table .table-bordered>tbody>tr>td {
     border: 0;
-    padding: 4px 18px;
+    padding: 4px 30px;
+    width: 33%;
 }
 .subscription_manage .subscribe_user {
     font-size: 16px;
@@ -1958,11 +1959,18 @@ h3.non_subscribe_profile {
 }
 .subscription_table .plan_desc .common_date {
     font-size: 14px;
-    margin-bottom: 18px;
+    margin-bottom: 8px;
 }
 .subscription_table .plan_desc .common_date span {
     font-family: 'Roboto-Bold';
     color: #0078db;
+}
+.subscription_table .plan_desc .renew_btn {
+    background-color: #c45500;
+    color: #ffffff;
+    padding: 6px 20px;
+    margin-bottom: 12px;
+    font-size: 13px;
 }
 .subscription_table .plan_desc h4.other_desc_subscribe {
     font-size: 13px;
@@ -2003,15 +2011,29 @@ h3.non_subscribe_profile {
 }
 .subscribe_notification {
     display: flex;
-    margin-top: 30px;
     margin-bottom: 60px;
 }
+.manage_sub_downgrade {
+    margin-bottom: 0;
+}
 .subscribe_notification .subscribe_notification_inner {
-    flex: 1;
+    flex: 0 0 60%;
 }
 .subscribe_notification .cancel_subscription {
     flex: 1;
     text-align: right;
+    margin-top: 0;
+}
+.subscribe_notification .reming_subscribe {
+    flex: 0 0 60%;
+}
+.subscribe_notification .reming_subscribe p {
+    font-size: 13px;
+}
+.subscribe_notification .reming_subscribe p:first-child {
+    color: #0078db;
+    margin-bottom: 5px;
+    font-size: 14px;
 }
 .subscribe_notification_inner p:first-child {
     color: #318532;
@@ -2019,7 +2041,6 @@ h3.non_subscribe_profile {
     display: block;
     text-align: left;
     padding-left: 24px;
-    margin-top: 10px;
     background-image: url(../images/correct_icon.png);
     background-repeat: no-repeat;
     background-position: 0 2px;
@@ -2035,11 +2056,12 @@ h3.non_subscribe_profile {
     text-decoration: none;
 }
 .cancel_subscription .btn {
-    background-color: #e71c28;
+    background-color: #333333;
     color: #fff;
+    padding: 8px 21px;
 }
 .cancel_subscription .btn:hover {
-    background-color: #d8111d;
+    background-color: #439b44;
 }
 
 /*----------------------------Manage Subscription - Plan Change - Auto Renewal_end------------------------------*/
@@ -2051,7 +2073,149 @@ h3.non_subscribe_profile {
     color: #c45500;
     font-size: 12px;
     width: 255px;
-    margin-top: -13px;
+    margin-top: -6px;
+}
+.pan_state_tab .active_state_wise_plan {
+
+}
+.state_wise_tab .subscription_box .sub_price > div {
+    line-height: normal;
+}
+.state_wise_tab .subscription_box .sub_price h4.states_desc {
+    margin-top: 0;
+    padding-bottom: 33px;
+}
+.state_wise_tab .subscription_box .sub_price p.additional_desc {
+    color: #333333;
+}
+.state_wise_tab .subscription_box h4.states_desc:after {
+    top: 17px;
+    left: 37%;
+}
+.state_wise_tab .subscription_box .sub_price .state_price span.rupees {
+    font-size: 24px;
+}
+.state_wise_tab .subscription_box .checklist_state {
+    margin-bottom: 75px;
+}
+.state_chosen h4 {
+    font-size: 14px;
+    color: #333333;
+}
+.state_chosen {
+    margin-top: 30px;
+}
+.state_chosen p.subscribe_address {
+    font-size: 16px;
+    color: #318532 !important;
+    margin-bottom: 62px;
+}
+.state_wise_tab .state_chosen_wrapper p.add_more_state span {
+    font-size: 18px;
+    color: #666666;
+}
+.state_wise_tab .state_chosen_wrapper p.add_more_state span i {
+    font-weight: bold;
+}
+.state_wise_tab .state_chosen_wrapper p.selected_states {
+    color: #666666;
+}
+.state_wise_tab .state_chosen_wrapper p.selected_states span {
+    color: #333333;
+    margin-top: 0;
+}
+.state_chosen_wrapper {
+    padding-left: 10%;
+}
+.hide_list p.add_more_state {
+    color: #0078db;
+    margin-bottom: 0;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    margin-right: 13px;
+}
+.hide_list {
+    position: relative;
+}
+.hide_list .all_state_list {
+    display: none;
+    position: absolute;
+    right: -10px;
+    top:-130px;
+    width: 86%;
+    height: 315px;
+    background-color: #ffffff;
+    border: 1px solid #0078db;
+    z-index: 9;
+}
+.all_state_list_inner {
+    position: relative;
+    height: 100%;
+    padding: 10px;
+}
+.all_state_list_inner:after, .all_state_list_inner:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.all_state_list_inner:after {
+    border-color: rgba(136, 183, 213, 0);
+    border-right-color: #ffffff;
+    border-width: 7px;
+    margin-top: -23px;
+}
+.all_state_list_inner:before {
+    border-color: rgba(194, 225, 245, 0);
+    border-right-color: #0078db;
+    border-width: 8px;
+    margin-top: -24px;
+}
+.all_state_list_inner ul li {
+    display: inline-block;
+    width: 24%;
+}
+.updated_list {
+    margin-top: 0;
+    margin: 0px;
+    padding: 0;
+}
+.updated_list:before {
+    border-top: 0;
+}
+.updated_list .container-checkbox {
+    font-family: 'Roboto-Regular';
+    font-size: 13px;
+}
+.updated_list .container-checkbox .checkmark {
+    height: 14px;
+    width: 14px;
+    top: 1px;
+}
+.updated_list .container-checkbox .checkmark:after {
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border-width: 0 2px 2px 0;
+}
+.confirm_btn {
+    text-align: right;
+}
+.confirm_btn .btn {
+    background-color: #0078db;
+    color: #ffffff;
+    outline: 0;
+    font-size: 13px;
+    margin-right: 30px;
+    margin-top: 8px;
+    padding: 9px 25px;
 }
 /*----------------------------Manage Subscription - State Wise - Manual Renewal_end----------------------------------*/
 
@@ -2061,7 +2225,7 @@ h3.subscription_plan {
     font-family: 'Roboto-Bold';
     text-align: left;
     font-size: 16px;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 .subscription_table .auto_renew_open .switch::after {
     right: 1px;
@@ -2111,9 +2275,91 @@ h3.subscription_plan {
 /*----------------------------Manage Subscription - Plan Change - Auto Renewal_end----------------------------------*/
 
 /*----------------------------Manage Subscription - Pan India - Auto Renewal----------------------------------*/
-
+.pan_state_tab .pan_subscription_tab .row .col-sm-4 {
+    padding-right: 0;
+}
+.pan_state_tab .pan_subscription_tab .row {
+    width: 1000px;
+    margin: 0 auto;
+}
+.pan_state_tab .subscription_box .sub_price span.rupees {
+    font-size: 48px;
+}
+.pan_state_tab .subscription_box {
+    padding: 6px 35px;
+    border-radius: 4px;
+}
+.pan_state_tab .subscription_box .sub_price span img.white_rupees {
+    display: none;
+}
+.pan_state_tab .current_plan .subscription_box {
+    background-color: #f3f3f3;
+}
+.pan_state_tab .current_plan p {
+    color: #666666;
+    text-align: center;
+    margin-top: 5px;
+}
+.pan_state_tab .current_membership p {
+    font-size: 13px;
+    text-align: center;
+    margin-top: 15px;
+}
+.pan_state_tab .Active_membership {
+    text-align: center;
+    margin-top: 16px;
+}
+.pan_state_tab .Active_membership p {
+    font-size: 13px;
+    margin-bottom: 0;
+}
+.pan_state_tab .Active_membership p span {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.pan_state_tab .Active_membership p.amount_due {
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.pan_state_tab .Active_membership p.amount_due span {
+    padding: 0;
+    font-family: 'Roboto-Bold';
+    font-size: 16px;
+    color: #0078db;
+}
+.pan_state_tab .Active_membership .pay_now {
+    background-color: #4ea94f;
+    color: #ffffff;
+    font-size: 13px;
+    padding: 9px 64px;
+    outline: 0;
+}
+.pan_state_tab .active_plan .subscription_box {
+    background-color: #0078db;
+}
+.pan_state_tab .active_plan .subscription_box .sub_price h4 {
+    color: #ffffff;
+}
+.pan_state_tab .active_plan .subscription_box .sub_price span.rupees {
+    color: #ffffff;
+}
+.pan_state_tab .active_plan .subscription_box .sub_price span img {
+    display: none;
+}.pan_state_tab .active_plan .subscription_box .sub_price span img.white_rupees {
+    display: inline-block;
+}
+.subscription_box .sub_price h4 {
+    margin-top: 10px;
+}
+.subscription_box .sub_price > div {
+    line-height: 45px;
+}
 .pan_state_tab .nav-tabs {
     border-color: #0078db;
+}
+.pan_state_tab .pan_subscription {
+    margin-top: 0;
 }
 .pan_state_tab .login_page .login_inner_page .nav-tabs>li.active>a {
     position: relative;
@@ -2153,6 +2399,18 @@ h3.subscription_plan {
     margin-bottom: 1px;
 }
 /*----------------------------Manage Subscription - Pan India - Auto Renewal_end----------------------------------*/
+
+/*----------------------------Manage Subscription_new--------------------------------------------*/
+
+
+
+
+
+
+
+
+/*----------------------------Manage Subscription_new--------------------------------------------*/
+
 /*----------------------------After Subscription - Thank you----------------------------------*/
 
 .thankyou {
