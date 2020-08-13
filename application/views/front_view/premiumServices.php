@@ -63,9 +63,12 @@
                                                         <li>Email Support</li>
                                                     </ul>
                                                 </div>
-												<?php if($this->session->userdata('id') > 0){ ?>	
+												<?php if($this->session->userdata('id') > 0){ ?>
+													<?php $currentpackage = $this->home_model->getCurrentPackage($this->session->userdata('id')); ?>
+													<?php if(!($currentpackage->subscription_participate_id > 0)){ ?>
 													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[0]->package_id; ?>" />
 													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[0]->package_id; ?>">Upgrade Now</button>
+													<?php } ?>
 												<?php }else{ ?>
 													<a href="<?php echo base_url(); ?>home/login?action=premium"><button class="btn btn-default upgrade_btn" type="button">Login to Subscribe</button></a>
 												<?php } ?>
@@ -89,8 +92,11 @@
                                                     </ul>
                                                 </div>
                                                 <?php if($this->session->userdata('id') > 0){ ?>	
-													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[1]->package_id; ?>" />
-													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[1]->package_id; ?>">Upgrade Now</button>
+													<?php $currentpackage = $this->home_model->getCurrentPackage($this->session->userdata('id')); ?>
+													<?php if(!($currentpackage->subscription_participate_id > 0)){ ?>
+														<input type="hidden" name="package_id" value="<?php echo $subcription_plan[1]->package_id; ?>" />
+														<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[1]->package_id; ?>">Upgrade Now</button>
+													<?php } ?>
 												<?php }else{ ?>
 													<a href="<?php echo base_url(); ?>home/login?action=premium"><button class="btn btn-default upgrade_btn" type="button">Login to Subscribe</button></a>
 												<?php } ?>
@@ -114,8 +120,11 @@
                                                     </ul>
                                                 </div>
                                                 <?php if($this->session->userdata('id') > 0){ ?>	
+													<?php $currentpackage = $this->home_model->getCurrentPackage($this->session->userdata('id')); ?>
+													<?php if(!($currentpackage->subscription_participate_id > 0)){ ?>
 													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[2]->package_id; ?>" />
 													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[2]->package_id; ?>">Upgrade Now</button>
+													<?php } ?>
 												<?php }else{ ?>
 													<a href="<?php echo base_url(); ?>home/login?action=premium"><button class="btn btn-default upgrade_btn" type="button">Login to Subscribe</button></a>
 												<?php } ?>
@@ -157,9 +166,12 @@
                                                         <li>Email Support</li>
                                                     </ul>
                                                 </div>
-												<?php if($this->session->userdata('id') > 0){ ?>	
+												<?php if($this->session->userdata('id') > 0){ ?>
+													<?php $currentpackage = $this->home_model->getCurrentPackage($this->session->userdata('id')); ?>
+													<?php if(!($currentpackage->subscription_participate_id > 0)){ ?>
 													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[3]->package_id; ?>" />
 													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[3]->package_id; ?>">Upgrade Now</button>
+													<?php } ?>
 												<?php }else{ ?>
 													<a href="<?php echo base_url(); ?>home/login?action=premium"><button class="btn btn-default upgrade_btn" type="button">Login to Subscribe</button></a>
 												<?php } ?>
@@ -197,9 +209,12 @@
                                                         <li>Email Support</li>
                                                     </ul>
                                                 </div>
-                                                <?php if($this->session->userdata('id') > 0){ ?>	
-													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[4]->package_id; ?>" />
-													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[4]->package_id; ?>">Upgrade Now</button>
+                                                <?php if($this->session->userdata('id') > 0){ ?>
+													<?php $currentpackage = $this->home_model->getCurrentPackage($this->session->userdata('id')); ?>
+													<?php if(!($currentpackage->subscription_participate_id > 0)){ ?>
+														<input type="hidden" name="package_id" value="<?php echo $subcription_plan[4]->package_id; ?>" />
+														<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[4]->package_id; ?>">Upgrade Now</button>
+													<?php } ?>
 												<?php }else{ ?>
 													<a href="<?php echo base_url(); ?>home/login?action=premium"><button class="btn btn-default upgrade_btn" type="button">Login to Subscribe</button></a>
 												<?php } ?>
@@ -237,9 +252,12 @@
                                                         <li>Email Support</li>
                                                     </ul>
                                                 </div>
-                                                <?php if($this->session->userdata('id') > 0){ ?>	
-													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[5]->package_id; ?>" />
-													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[5]->package_id; ?>">Upgrade Now</button>
+                                                <?php if($this->session->userdata('id') > 0){ ?>
+													<?php $currentpackage = $this->home_model->getCurrentPackage($this->session->userdata('id')); ?>
+													<?php if(!($currentpackage->subscription_participate_id > 0)){ ?>
+														<input type="hidden" name="package_id" value="<?php echo $subcription_plan[5]->package_id; ?>" />
+														<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[5]->package_id; ?>">Upgrade Now</button>
+													<?php } ?>
 												<?php }else{ ?>
 													<a href="<?php echo base_url(); ?>home/login?action=premium"><button class="btn btn-default upgrade_btn" type="button">Login to Subscribe</button></a>
 												<?php } ?>
