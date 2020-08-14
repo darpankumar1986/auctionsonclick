@@ -89,18 +89,22 @@
             <div id="main" class="header-top">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <div class="web-logo">
                                 <a href="#"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/Logo.png"></a>
                             </div><!--web-logo-->
                         </div>
-                        <div class="col-sm-9">
-                            <div class="alert_notification">
-                                <ul>
-                                    <li><a href="<?php echo base_url(); ?>owner/shortlistedAuction"><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/star_icon.png"></span>Shortlist</a></li>
-                                    <li><a href="#"><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/alarm_icon.png"></span>Set Alerts</a></li>
-                                </ul>
-                            </div>
+						<div class="col-sm-4">
+                           <div class="premium_main">
+                               <div class="premium_services login">
+                                   <ul>
+                                       <li><a href="login.html">premium services</a></li>
+                                       <li><a href="login.html">Advanced Search</a></li>
+                                   </ul>
+                               </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-6">
                             <div class="login">
                                 <ul>
                                     <li class="customer_info"><div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span><i class="fa fa-headphones"></i></span> Customer Service</button>
@@ -123,24 +127,22 @@
                                         </ul>
                                         </div></li>
 									<?php }else{ ?>
-                                    <li><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span>Login / Register</a></li>
+                                    <li class="login_register"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span>Login / Register</a></li>
 									<?php } ?>
 									
                                     <li><a href="#"><span class="cret-1" onclick="openNav()"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/menu_icon.png"></span></a></li>
                                 </ul>
                                 <div id="mySidenav" class="sidenav">
                                     <button type="button" class="closebtn" onclick="closeNav()">&times;</button>
-                                    <ul class="notification_alert">
-                                        <li><a class="first_list" href="#"><i class="fa fa-bell-o"></i>Set Alerts</a></li>
-                                        <li><a class="first_list" href="<?php echo base_url(); ?>owner/shortlistedAuction"><i class="fa fa-star"></i>Shortlist</a></li>
-                                    </ul>
                                     <ul class="nav_section">
 										<?php if(!($this->session->userdata('id') > 0)){ ?>
 	                                        <li class="list_desc"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span> Login / Register</a></li>
 										<?php } ?>
                                         <li class="list_desc"><a href="#"><span><i class="fa fa-headphones"></i></span> Customer Service</a></li>
                                         <li><a href="<?php echo base_url();?>home/premiumServices">Premium Services</a></li>
+                                        <li><a href="<?php echo base_url();?>home/advanced_search">Advanced Search</a></li>
                                         <li><a href="#">Top Cities</a></li>
+										<li><a href="#">Top Banks</a></li>
                                         <li><a href="https://bankeauctions.com/" target="_blank">Bankeauctions.com</a></li>
                                         <li><a href="<?php echo base_url();?>about-us">About Us</a></li>
                                         <li><a href="<?php echo base_url();?>faq">FAQ</a></li>
@@ -159,45 +161,22 @@
             <div id="main" class="header-top">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <div class="web-logo">
                                 <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/Logo.png"></a>
                             </div><!--web-logo-->
                         </div>
-                        <div class="col-sm-5">
-                            <div class="form-wrap">
-                                <form class="form_desc">
-                                    <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select
-                                            <span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											<?php $parentCat = $this->home_model->getAllCategory(0,true); ?>
-											<?php foreach($parentCat as $key => $parCat){ ?>
-												<li class="dropdown-header">
-													<input type="radio" id="test<?php echo $key; ?>" class="s_parent_id" s-data-parent-id="<?php echo $parCat->id;?>" name="parentCat" value="<?php echo $parCat->id;?>" <?php echo ($parCat->id == $_GET['assetsTypeId'])?'checked="checked"':''; ?> />
-													<label for="test<?php echo $key; ?>">All <?php echo $parCat->name; ?></label>
-												</li>
-												<?php $Cats = $this->home_model->getAllCategory($parCat->id); ?>
-												<?php foreach($Cats as $cat){ ?>
-		                                             <li><label class="checkbox-inline"><input type="checkbox" s-data-parent="<?php echo $parCat->id;?>" name="s_sub_id" value="<?php echo $cat->id;?>" <?php echo (in_array($cat->id,$_GET['sc']))?'checked="checked"':''; ?> /><?php echo $cat->name; ?></label></li>
-												<?php } ?>
-											<?php } ?>
-                                        </ul>
-                                    </div>
-                                    <div class="input-group">
-                                        <input type="text" id="txt-search" class="form-control" placeholder="Type City" value="<?php echo $_GET['search'];?>">
-                                        <div class="input-group-btn search_btn">
-                                            <button class="btn btn-default" type="button" onclick="goForSearch(this)">
-                                                <i class="fa fa-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-									<div class="error" id="error_txt" style="display: block;height: 20px;padding-right: 30px;color: rgb(251 189 189);    background-color: transparent;    margin-top: 42px;    margin-left: 148px;;"></div>
-                                </form>
-                            </div>
+						<div class="col-sm-4">
+                           <div class="premium_main">
+                               <div class="premium_services login">
+                                   <ul>
+                                       <li><a href="login.html">premium services</a></li>
+                                       <li><a href="login.html">Advanced Search</a></li>
+                                   </ul>
+                               </div>
+                           </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="login">
                                 <ul>
                                     <li class="customer_info"><div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span><i class="fa fa-headphones"></i></span> Customer Service</button>
@@ -229,17 +208,16 @@
                                 </ul>
                                 <div id="mySidenav" class="sidenav">
                                     <button type="button" class="closebtn" onclick="closeNav()">&times;</button>
-                                    <ul class="notification_alert">
-                                        <li><a class="first_list" href="#"><i class="fa fa-bell-o"></i>Set Alerts</a></li>
-                                        <li><a class="first_list" href="<?php echo base_url(); ?>owner/shortlistedAuction"><i class="fa fa-star"></i>Shortlist</a></li>
-                                    </ul>
+                                    
                                     <ul class="nav_section">
 										<?php if(!($this->session->userdata('id') > 0)){ ?>
 	                                        <li class="list_desc"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span> Login / Register</a></li>
 										<?php } ?>
                                         <li class="list_desc"><a href="#"><span><i class="fa fa-headphones"></i></span> Customer Service</a></li>
                                         <li><a href="<?php echo base_url();?>home/premiumServices">Premium Services</a></li>
+                                        <li><a href="<?php echo base_url();?>home/advanced_search">Advanced Search</a></li>
                                         <li><a href="#">Top Cities</a></li>
+										<li><a href="#">Top Banks</a></li>
                                         <li><a href="https://bankeauctions.com/" target="_blank">Bankeauctions.com</a></li>
                                         <li><a href="<?php echo base_url();?>about-us">About Us</a></li>
                                         <li><a href="<?php echo base_url();?>faq">FAQ</a></li>

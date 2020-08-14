@@ -57,7 +57,7 @@ section{float:none;}
         <tr class="even">                  
             <td align="left" valign="top" class="" width="25%"><strong>Auction No. </strong></td>
             <td align="left" valign="top" class=""  colspan="3" width="25%"><?php echo $auction_detail->id; ?></td>
-            <td align="left" valign="top" class="" width="25%"><strong>Institution Name</strong></td>
+            <td align="left" valign="top" class="" width="25%"><strong>Bank Name</strong></td>
             <td align="left" valign="top" class=""  colspan="3" width="25%">
             <?php
                 echo GetTitleByField('tbl_bank', "id='".$auction_detail->bank_id."'" ,'name');
@@ -70,7 +70,7 @@ section{float:none;}
             <td align="left" valign="top" class=""  colspan="3"> <?php
                 echo GetTitleByField('tbl_branch', "id='".$auction_detail->branch_id."'" ,'name');
             ?></td>
-			<td align="left" valign="top" class=""><strong>Auction Type</strong></td>
+			<td align="left" valign="top" class=""><strong>Assets Category</strong></td>
             <td align="left" valign="top" class="" colspan="3"><?php
                 echo GetTitleByField('tbl_category', "id='".$auction_detail->category_id."'" ,'name');
             ?></td></td>
@@ -79,7 +79,7 @@ section{float:none;}
        
         <tr class="even">
             
-			<td align="left" valign="top" class=""><strong>Sub Type</strong></td>
+			<td align="left" valign="top" class=""><strong>Assets Type</strong></td>
             <td align="left" valign="top" class=""  colspan="3">
             <?php
             echo GetTitleByField('tbl_category', "id='".$auction_detail->subcategory_id."'" ,'name');
@@ -89,15 +89,22 @@ section{float:none;}
             <td align="left" valign="top" class="" colspan="3"><?php echo strtoupper($auction_detail->PropertyDescription);?></td>
             
         </tr>
-
-        <tr class="odd">
+		<tr class="odd">
+            <td align="left" valign="top" class=""><strong>Auction Type</strong></td>
+            <td td align="left" valign="top" class="" colspan="3"><?php echo ($auction_detail->event_type=='drt')?'DRT':'Sarfaesi';?></td>
+			<td align="left" valign="top" class=""><strong>Contact Details</strong></td>
+            <td align="left" valign="top" class=""  colspan="3">
+                <?php echo $auction_detail->contact_person_details_1; ?>
+            </td>
+        </tr>
+        <tr class="even">
             <td align="left" valign="top" class=""><strong>Borrower Name </strong></td>
             <td align="left" valign="top" class=""  colspan="3"><?php echo $auction_detail->borrower_name?></td> 
 			<td align="left" valign="top" class=""><strong>Location </strong></td>
             <td align="left" valign="top" class=""  colspan="3"><?php echo $auction_detail->reference_no?></td> 
         </tr>
 
-		<tr class="even">
+		<tr class="odd">
             <td align="left" valign="top" class=""><strong>City</strong></td>
             <td align="left" valign="top" class="" colspan="3"><?php
                 echo GetTitleByField('tbl_city', "id='".$auction_detail->city."'" ,'city_name');
@@ -108,7 +115,7 @@ section{float:none;}
             ?></td>
         </tr>
         
-        <tr class="odd">
+        <tr class="even">
             
 			<td align="left" valign="top" class=""><strong>Country</strong></td>
             <td align="left" valign="top" class="" colspan="3"><?php
@@ -119,7 +126,7 @@ section{float:none;}
             </td>
         </tr>
         
-        <tr class="even">
+        <tr class="odd">
             <td align="left" valign="top" class=""><strong>EMD Amount</strong></td>
             <td align="left" valign="top" class=""  colspan="3"><?php echo $auction_detail->emd_amt;?>
             </td>
@@ -129,7 +136,7 @@ section{float:none;}
             </td>
         </tr>
        
-        <tr class="odd">
+        <tr class="even">
             
             <td align="left" valign="top" class=""><strong>Auction Start date</strong></td>
             <td align="left" valign="top" class=""  colspan="3">
@@ -140,7 +147,7 @@ section{float:none;}
                 <?php echo date("d-m-Y H:i",strtotime($auction_detail->auction_end_date));?>
             </td>
         </tr>
-        <tr class="even">
+        <tr class="odd">
              
             <td align="left" valign="top" class=""><strong>How to Reach</strong></td>
             <td td align="left" valign="top" class="" colspan="3"><a target="_blank" href="<?php echo base_url().'admin/home/viewGoogleMap/'. $auction_detail->id;?>">View</a></td>
@@ -149,7 +156,7 @@ section{float:none;}
                 <?php echo $auction_detail->service_no; ?>
             </td>
         </tr>
-        <tr class="odd">
+		<tr class="even">
             <td align="left" valign="top" class=""><strong>E-Auction Website</strong></td>
             <td td align="left" valign="top" class="" colspan="3"><?php echo $auction_detail->far; ?></td>
 			<td align="left" valign="top" class=""><strong>
@@ -174,12 +181,9 @@ section{float:none;}
 					} 
 				
 				}  } else { echo 'N/A'; } ?>
-											
 			
-			
-
         </tr>
-       
+		
     </tbody>
 	 
 	</table>

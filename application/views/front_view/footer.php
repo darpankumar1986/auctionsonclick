@@ -120,61 +120,31 @@ function checkSearch()
 
 }
 
-function goForSearch1(str)
-{
-    $("#error_txt1").html('');
-
-    $("#error_txt1").hide();
-    var searchText = $("#txt-search1").val();
-
-    var bank = $("#bank").closest('.custom-select').find('.select-selected').html();
-
-    if(searchText.trim() == '')
-    {
-        $("#error_txt1").show();
-        $("#error_txt1").html('Please enter keyword for your search');
-        return false;
-    }
-    else
-    {
-        var assetsTypeId = $('.dropdown-header input[name=parentCat]').val();
-
-        var sub_id_str = '';
-        $("input[name=s_sub_id]:checked").each(function(){
-            var sub_id = $(this).val();
-            sub_id_str += '&sc[]='+sub_id;
-        });
-
-        var bank_text = '';
-        if(bank != '' && bank != 'Select Bank' && bank != 'All Cities')
-        {
-            bank_text = "&bank="+bank;
-        }
-
-        window.location='<?php echo base_url();?>propertylisting?search='+searchText+'&assetsTypeId='+assetsTypeId+sub_id_str+bank_text;
-    }
-}
-
 
 function goAdvancedSearch(str)
 {
     $("#error_txt1").html('');
 
     $("#error_txt1").hide();
-    var search_box = $("#search_box").val();
+    var search_box = $("#search_box").val().trim();
+	var search_city = $("#search_city").val().trim();
+	var search_location = $("#search_location").val().trim();
+	var borrower_name = $("#borrower_name").val().trim();
+	var bank = $("#bank option:selected").val().trim();
+	var auction_start_date = $("#auction_start_date").val().trim();
+	var auction_end_date = $("#auction_end_date").val().trim();
+	var reservePriceMaxRange = $("#reservePriceMaxRange").val().trim();
+	var reservePriceMinRange = $("#reservePriceMinRange").val().trim();
 
-
-
-    var bank = $("#bank option:selected").val();
     //alert(bank);
-    /*
-    if(search_box.trim() == '')
+    
+    if(search_box == '' && search_city == '' && search_location == '' && borrower_name == '' && bank == '' && auction_start_date == '' && auction_end_date == '' && reservePriceMaxRange == '' && reservePriceMinRange == '')
     {
         $("#error_txt1").show();
-        $("#error_txt1").html('Please enter keyword for your search');
+        $("#error_txt1").html('Please select any one filter for your search');
         return false;
     }
-    else*/
+    else
     {
         var parent_id = $('.dropdown-header input[name=parent_id]:checked').val();
 
@@ -184,20 +154,16 @@ function goAdvancedSearch(str)
             sub_id_str += '&sc[]='+sub_id;
         });
 
-
-        var search_city = $("#search_city").val();
         if(search_city !='')
         {
             search_city = "&search_city="+search_city;
         }
 
-        var borrower_name = $("#borrower_name").val();
         if(borrower_name !='')
         {
             borrower_name = "&borrower_name="+borrower_name;
         }
 
-        var search_location = $("#search_location").val();
         if(search_location !='')
         {
             search_location = "&search_location="+search_location;
@@ -209,25 +175,21 @@ function goAdvancedSearch(str)
             bank_text = "&bank="+bank;
         }
 
-        var auction_start_date = $("#auction_start_date").val();
         if(auction_start_date !='')
         {
             auction_start_date = "&auction_start_date="+auction_start_date;
         }
 
-        var auction_end_date = $("#auction_end_date").val();
         if(auction_end_date !='')
         {
             auction_end_date = "&auction_end_date="+auction_end_date;
         }
-
-        var reservePriceMaxRange = $("#reservePriceMaxRange").val();
+      
         if(reservePriceMaxRange !='')
         {
             reservePriceMaxRange = "&reservePriceMaxRange="+reservePriceMaxRange;
         }
-
-        var reservePriceMinRange = $("#reservePriceMinRange").val();
+        
         if(reservePriceMinRange !='')
         {
             reservePriceMinRange = "&reservePriceMinRange="+reservePriceMinRange;
@@ -243,7 +205,7 @@ function goForSearch(str)
     //var searchBy = $("#searchby").val();
     $("#error_txt").hide();
     var searchText = $("#txt-search").val();
-
+	var bank = $("#bank option:selected").val();
     if(searchText.trim() == '')
     {
         $("#error_txt").show();
@@ -252,15 +214,20 @@ function goForSearch(str)
     }
     else
     {
-        var assetsTypeId = $('.dropdown-header input[name=parentCat]').val();
-
+        var assetsTypeId = $('.dropdown-header input[name=parentCat]:checked').val();
         var sub_id_str = '';
         $("input[name=s_sub_id]:checked").each(function(){
             var sub_id = $(this).val();
             sub_id_str += '&sc[]='+sub_id;
         });
 
-        window.location='<?php echo base_url();?>propertylisting?search='+searchText+'&assetsTypeId='+assetsTypeId+sub_id_str;
+		var bank_text = '';
+		if(bank != '' && bank != 'Select Bank')
+		{
+			bank_text = "&bank="+bank;
+		}
+
+        window.location='<?php echo base_url();?>propertylisting?search_city='+searchText+'&parent_id='+assetsTypeId+sub_id_str+bank_text;
     }
 }
 
@@ -310,7 +277,30 @@ $(document).ready(function(){
     });
 });
 </script>
-
+<script>
+	$(document).ready(function(){
+		$( ".item-suggest" ).autocomplete({
+		  minLength: 0,
+		  source: function (request, response) {			
+				$.ajax({
+					dataType: "json",
+					type : 'Get',
+					url: '<?php echo base_url();?>home/getCity?q='+request.term,
+					success: function(data) { 
+						
+						response(data);
+					},
+					error: function(data) {
+						$('input.suggest-user').removeClass('ui-autocomplete-loading');  
+					}
+				});
+			},
+			select: function(event, ui){
+				console.log([ui.item.value]);
+			}
+		});
+	});
+</script>
 
 </body>
 </html>

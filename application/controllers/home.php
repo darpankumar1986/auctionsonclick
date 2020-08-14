@@ -225,7 +225,7 @@ class Home extends MY_Controller {
 		$vdata['property'] = $this->home_model->getProperty();
 		
 		$vdata['data'] = $this->home_model->getAuctionCityLocation();
-		$vdata['totalAuction'] = $this->home_model->getTotalCityAuction();
+		$vdata['totalAuction'] = $this->home_model->getTotalAdvancedSearchAuction();
 		
 		 if(MOBILE_VIEW)
 		{				

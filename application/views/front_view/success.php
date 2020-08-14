@@ -1,4 +1,5 @@
 	<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+	<script src="<?php echo base_url();?>js/jquery-ui-1.12.1.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
 	<div class="container-fluid container_margin">
             <div class="row">
                <div class="container">
@@ -69,27 +70,4 @@
                    </div>
                </div>
            </div>
-		   <script>
-			$(document).ready(function(){
-				$( ".item-suggest" ).autocomplete({
-				  minLength: 0,
-				  source: function (request, response) {			
-						$.ajax({
-							dataType: "json",
-							type : 'Get',
-							url: '<?php echo base_url();?>home/getCity?q='+request.term,
-							success: function(data) { 
-								
-								response(data);
-							},
-							error: function(data) {
-								$('input.suggest-user').removeClass('ui-autocomplete-loading');  
-							}
-						});
-					},
-					select: function(event, ui){
-						console.log([ui.item.value]);
-					}
-				});
-			});
-		   </script>
+		   

@@ -150,6 +150,14 @@
 										<td>Bank Branch</td>
 										<td><?php echo $auction_data[0]->branch_name; ?></td>
 									</tr>
+									<tr>
+										<td>Contact Details</td>
+										<td><?php echo $auction_data[0]->contact_person_details_1; ?></td>
+									</tr>
+									<tr>
+										<td>Auction Type</td>
+										<td><?php echo ($auction_data[0]->event_type=='drt')?'DRT':'Sarfaesi';?> Auction</td>
+									</tr>
 										<tr>
 										<td>Borrower Name</td>
 										<td><?php echo $auction_data[0]->borrower_name; ?></td>
@@ -234,12 +242,12 @@
 									</tr>
 								<?php } ?>
 								<?php if(($auction_data[0]->isSub > 0) || $free_sub_flag == 1){ ?>
-								<tr>
+								<!--<tr>
                                     <td colspan="2" class="contact_desc"><p>For further assistance, please contact our sales team</p>
                                         <p><?php echo $sales_person_detail; ?>
 										</p>
                                     </td>
-                                </tr>
+                                </tr>-->
                                 <tr>
                                     <td colspan="2" class="residential_btn"><button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url(); ?>propertylisting?search=<?php echo $auction_data[0]->city_name; ?>&assetsTypeId=1'">View more residential plot in <?php echo $auction_data[0]->city_name; ?> <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button></td>
                                 </tr>

@@ -1,177 +1,177 @@
+<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/colorbox.css?rand=<?php echo CACHE_RANDOM; ?>" />
-<script src="<?php echo base_url(); ?>js/jquery.colorbox.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+<script src="<?php echo base_url();?>js/jquery-ui-1.12.1.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.css?rand=<?php echo CACHE_RANDOM; ?>">
+<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+
 <script type="text/javascript">
+
 var oTable = null;
     $(document).ready(function () {
-        //$("#big_table thead tr th").eq(0).addClass("hidetd");
+		//$("#big_table thead tr th").eq(0).addClass("hidetd");
+	
+
+			initHomeTable();
+
+			$(document).on("click",".select-items",function(){
+				var dataSortValue = '';
+				var isDataSort = $(this).closest('.custom-select').find('select').hasClass('dataSort');
+				if(isDataSort)
+				{
+					var selected_text_sort = $(this).find('.same-as-selected').html();
+					
+					if(selected_text_sort == 'Newest (Default Sort)')
+					{
+						dataSortValue = 1;
+					}
+					if(selected_text_sort == 'Price (High to Low)')
+					{
+						dataSortValue = 2;
+					}
+					if(selected_text_sort == 'Price (Low to High)')
+					{
+						dataSortValue = 3;
+					}
+					//alert(selected_text_sort);
+					
+				initHomeTable();
+				//setTimeout(function(){ $("#big_table_info").text(''); }, 500);
+				}
+			});
+			$(".dropdown-header input[name=parent_id]").change(function(){
+				var parent = $(this).val();
+				
+				$(".parent_id").each(function(){
+					var parent_id = $(this).val();
+					if(parent != parent_id)
+					{
+						$("input[data-parent="+parent_id+"]").prop('checked',false);
+					}
+				});
+				$("input[data-parent-id]").prop('checked',false);
+				$("input[data-parent-id="+parent+"]").prop('checked',true);
+
+				//initHomeTable();
+				setTimeout(function(){ $("#big_table_info").text(''); }, 500);
 
 
-            initHomeTable();
+			});
 
-            setTimeout(function(){ $("#big_table_info").text(''); }, 500);
+			$("input[name=sub_id]").change(function(){
+				var parent_id = $(this).attr('data-parent');
 
-             $("#reservePriceMaxRange,#reservePriceMinRange").keyup(function(){
-                    initHomeTable();
-                    setTimeout(function(){ $("#big_table_info").text(''); }, 500);
-            });
+				$(".parent_id").each(function(){
+					var parent = $(this).val();
 
-            $("#search_box").on('keyup change', function () {
-                var search_box = $(this).val();
+					if(parent != parent_id)
+					{
+						$("input[data-parent="+parent+"]").prop('checked',false);
+						$("input[data-parent-id="+parent+"]").prop('checked',false);
+					}
+				});
 
-                oTable.search(search_box).draw();
-            });
+				$("input[data-parent-id="+parent_id+"]").prop('checked',true);
 
-             $("#search_ListID").on('keyup change', function () {
-                //var search_box = $(this).val();
-                //oTable.columns(0).search(search_box).draw();
-
-                initHomeTable();
-                setTimeout(function(){ $("#big_table_info").text(''); }, 500);
-            });
-            $(document).on("click",".select-items",function(){
-                var isCity = $(this).closest('.custom-select').find('select').hasClass('search_city');
-                if(isCity)
-                {
-                    var selected_text = $(this).find('.same-as-selected').html();
-
-                    if(selected_text == 'All Cities')
-                    {
-                        oTable.columns(3).search('').draw();
-                    }
-                    else
-                    {
-                        oTable.columns(3).search(selected_text).draw();
-                    }
-                }
-                else
-                {
-                    var selected_text = $(this).find('.same-as-selected').html();
-                    if(selected_text == 'All Location')
-                    {
-                        oTable.columns(2).search('').draw();
-                    }
-                    else
-                    {
-                        oTable.columns(2).search(selected_text).draw();
-                    }
-                }
-            });
-
-            $("input[name=parent_id]").change(function(){
-                var parent = $(this).val();
-
-                $(".parent_id").each(function(){
-                    var parent_id = $(this).val();
-                    if(parent != parent_id)
-                    {
-                        $("input[data-parent="+parent_id+"]").prop('checked',false);
-                    }
-                });
-                $("input[data-parent-id]").prop('checked',false);
-                $("input[data-parent-id="+parent+"]").prop('checked',true);
-
-                initHomeTable();
-                setTimeout(function(){ $("#big_table_info").text(''); }, 500);
-
-
-            });
-
-            $("input[name=sub_id]").change(function(){
-                var parent_id = $(this).attr('data-parent');
-
-                $(".parent_id").each(function(){
-                    var parent = $(this).val();
-
-                    if(parent != parent_id)
-                    {
-                        $("input[data-parent="+parent+"]").prop('checked',false);
-                        $("input[data-parent-id="+parent+"]").prop('checked',false);
-                    }
-                });
-
-                $("input[data-parent-id="+parent_id+"]").prop('checked',true);
-
-                initHomeTable();
-                setTimeout(function(){ $("#big_table_info").text(''); }, 500);
-            });
+				//initHomeTable();
+				setTimeout(function(){ $("#big_table_info").text(''); }, 500);
+			});
         });
 
-        function initHomeTable()
-        {
-            if(oTable)
-            {
-                oTable.destroy();
-                //oTable = null
-            }
 
-            var sub_id_str = '';
-            <?php foreach($_GET['sc'] as $sc){ ?>
-                sub_id_str += "&sub_id[]=<?php echo $sc; ?>";
-            <?php } ?>
-            var parent_id = "<?php echo $_GET['assetsTypeId']; ?>";
-            var reservePriceMaxRange = '';
-            var reservePriceMinRange = '';
-            var search_box = '';
-            oTable = $('#big_table').DataTable({
-                dom: "<'row'<'col-sm-6 top-pagination pagination_main'p>>" +
+		function initHomeTable()
+		{
+			if(oTable)
+			{
+				oTable.destroy();
+				//oTable = null
+			}
+			
+
+			//var dataSort = $("#dataSort").val();
+			var  dataSortValue = $(".select-items").closest('.custom-select').find('select option:selected').val();	
+			if(dataSortValue !='')
+			{
+				dataSortValue = "&dataSortValue="+dataSortValue;
+			}
+
+			
+			var bank_text = "&bank=<?php echo $_GET['bank'];?>";
+			var search_city = "&search_city=<?php echo $_GET['search_city'];?>";
+			var parent_id = "&parent_id=<?php echo $_GET['parent_id'];?>";
+			var sub_id_str = '';
+			<?php
+				if(is_array($_GET['sc'])){
+				foreach($_GET['sc'] as $sub_cat)
+				{?>
+					sub_id_str += '&sc[]='+<?php echo $sub_cat; ?>;
+			<?php	
+					} }
+			?>
+			var  dataSortValue = $(".select-items").closest('.custom-select').find('select option:selected').val();	
+			if(dataSortValue !='')
+			{
+				dataSortValue = "&dataSortValue="+dataSortValue;
+			}
+
+			oTable = $('#big_table').DataTable({
+				dom: "<'row'<'col-sm-6 top-pagination pagination_main'p>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-5'i><'col-sm-7 pagination_main'p>>",
-                "bAutoWidth": false,
-                //"aoColumns": [{"sWidth": "5%"}, {"sWidth": "10%"}, {"sWidth": "20%"}, {"sWidth": "30%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "10%"}, {"sWidth": "10%"}],
-                "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 5] } ],
-                "bProcessing": true,
-                "bServerSide": true,
-                "sAjaxSource": '<?php echo base_url(); ?>home/liveAuctionDatatableHome/?reservePriceMaxRange='+reservePriceMaxRange+"&reservePriceMinRange="+reservePriceMinRange+"&search_box="+search_box+"&parent_id="+parent_id+sub_id_str,
-                "sPaginationType": "full_numbers",
-                "iDisplayStart ": 10,
-                "oLanguage": {
-                    "sProcessing": "<img src='<?php echo base_url(); ?>assets/images/ajax-loader_dark.gif'>"
-                },
-                "fnInitComplete": function () {
-                   /* $('#big_table_paginate').addClass('oneTemp');
-                    $('#big_table_info').addClass('oneTemp');
-                    $('.oneTemp').wrapAll('<div class="tableFooter">');
-                    $('select[name="big_table_length"]').insertAfter('#big_table_length > label');*/
-                },
-                'fnServerData': function (sSource, aoData, fnCallback){
-                    $.ajax({    'dataType': 'json',
-                                'type': 'POST',
-                                'url': sSource,
-                                'data': aoData,
-                                'success': fnCallback
-                            });
-                },
-                "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+				"bAutoWidth": false,
+				//"aoColumns": [{"sWidth": "5%"}, {"sWidth": "10%"}, {"sWidth": "20%"}, {"sWidth": "30%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "10%"}, {"sWidth": "10%"}],
+				"aoColumnDefs": [ { "bSortable": false, "aTargets": [ 5] } ], 
+				"bProcessing": true,
+				"bServerSide": true,
+				"sAjaxSource": '<?php echo base_url(); ?>home/advancedSearchDatatable/?parent_id='+parent_id+sub_id_str+search_city+bank_text+dataSortValue,
+				"sPaginationType": "full_numbers",
+				"iDisplayStart ": 1,
+				"oLanguage": {
+					"sProcessing": "<img src='<?php echo base_url(); ?>assets/images/ajax-loader_dark.gif'>"
+				},
+				"fnInitComplete": function () {
+				   /* $('#big_table_paginate').addClass('oneTemp');
+					$('#big_table_info').addClass('oneTemp');
+					$('.oneTemp').wrapAll('<div class="tableFooter">');
+					$('select[name="big_table_length"]').insertAfter('#big_table_length > label');*/
+				},
+				'fnServerData': function (sSource, aoData, fnCallback){
+					$.ajax({    'dataType': 'json',
+								'type': 'POST',
+								'url': sSource,
+								'data': aoData,
+								'success': fnCallback
+							});
+				},
+				"fnRowCallback": function (nRow, aData, iDisplayIndex) {
+								
+									 
+						   
+					  $('td:eq(5)', nRow).addClass('button-img');
+					  $('td:eq(4)', nRow).html('₹'+aData[4]);
 
+					  
+					  $('td:eq(5)', nRow).html('<a class="corrigendum_iframe" href="<?php echo base_url(); ?>home/auctionDetail/' + aData[5] + '"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/view_button.png" title="View Auction" class="edit1"></a>'); /* auctionDetailPopup */
+					  	
+					return nRow;
+					}
+				});
 
+				
 
-                      $('td:eq(5)', nRow).addClass('button-img');
-                      $('td:eq(4)', nRow).html('₹'+aData[4]);
+		}
 
+		function isNumberKey(evt)
+		{
+			var charCode = (evt.which) ? evt.which : event.keyCode;
+			console.log(charCode);
+			if (charCode != 46 && charCode != 45 && charCode > 31
+					&& (charCode < 48 || charCode > 57))
+				return false;
 
-                      $('td:eq(5)', nRow).html('<a class="corrigendum_iframe" href="<?php echo base_url(); ?>home/auctionDetail/' + aData[5] + '"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/view_button.png" title="View Auction" class="edit1"></a>'); 
-
-                    return nRow;
-                    }
-                });
-
-              <?php if($_GET['search'] != ''){ ?>
-                oTable.columns(2).search('<?php echo $_GET['search']; ?>').draw();
-              <?php } ?>
-        }
-
-        function isNumberKey(evt)
-        {
-            var charCode = (evt.which) ? evt.which : event.keyCode;
-            console.log(charCode);
-            if (charCode != 46 && charCode != 45 && charCode > 31
-                    && (charCode < 48 || charCode > 57))
-                return false;
-
-            return true;
-        }
-
+			return true;
+		}
+        
 </script>
 <style>
 .dataTables_info{display: none;}
@@ -197,10 +197,10 @@ var oTable = null;
                 <div class="col-sm-12">
                     <div class="breadcrumb_main">
                         <ol class="breadcrumb">
-                            <li><a href="#">Home</a></li>
-                            <li class="active"><?php echo ucwords($_GET['search']); ?> Auctions</li>
+                            <li><a href="<?php echo base_url();?>">Home</a></li>
+                            <li class="active"><?php echo ucwords($_GET['search_city']); ?> Auctions</li>
                         </ol>
-                        <h3>Bank Auctions in <?php echo ucwords($_GET['search']); ?></h3>
+                        <h3>Bank Auctions in <?php echo ucwords($_GET['search_city']); ?></h3>
                     </div><!--breadcrumb_main-->
                 </div>
             </div><!--row-->
@@ -291,7 +291,7 @@ var oTable = null;
                         <div class="row">
                             <div class="col-sm-9">
                                 <div class="desc_wrapper_inner">
-                                    <h3><?php echo (int)$totalAuction; ?> Bank Auction in <?php echo ucwords($_GET['search']); ?> </h3>
+                                    <h3><?php echo (int)$totalAuction; ?> Bank Auction in <?php echo ucwords($_GET['search_city']); ?> </h3>
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -315,13 +315,13 @@ var oTable = null;
                         <div class="property_dropdown_listing">
                         <div class="custom-dropdown-select">
                            <div class="custom-select">
-                               <select>
-                                   <option value="0">Newest (Default Sort)</option>
-                                   <option value="1">Newest (Default Sort)</option>
-                                   <option value="2">Price (High to Low)</option>
-                                   <option value="3">Price (Low to High)</option>
-                               </select>
-                            </div>
+							<select name="dataSort" id="dataSort" class="dataSort">
+								<option value="">Sort</option>
+								<option value="1">Newest (Default Sort)</option>
+								<option value="2">Price (High to Low)</option>
+								<option value="3">Price (Low to High)</option>
+							</select>
+						</div>
                        </div>
                         </div>
                         <?php
