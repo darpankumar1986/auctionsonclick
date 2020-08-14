@@ -67,6 +67,9 @@
 													<?php $currentpackage = $this->home_model->getCurrentPackage($this->session->userdata('id')); ?>
 													<?php if(!($currentpackage->subscription_participate_id > 0)){ ?>
 													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[0]->package_id; ?>" />
+													
+										<input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[0]->city_per_cost; ?>" />
+										<input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[0]->package_city; ?>" />
 													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[0]->package_id; ?>">Upgrade Now</button>
 													<?php } ?>
 												<?php }else{ ?>
@@ -95,6 +98,9 @@
 													<?php $currentpackage = $this->home_model->getCurrentPackage($this->session->userdata('id')); ?>
 													<?php if(!($currentpackage->subscription_participate_id > 0)){ ?>
 														<input type="hidden" name="package_id" value="<?php echo $subcription_plan[1]->package_id; ?>" />
+														
+										<input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[1]->city_per_cost; ?>" />
+										<input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[1]->package_city; ?>" />
 														<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[1]->package_id; ?>">Upgrade Now</button>
 													<?php } ?>
 												<?php }else{ ?>
@@ -123,6 +129,9 @@
 													<?php $currentpackage = $this->home_model->getCurrentPackage($this->session->userdata('id')); ?>
 													<?php if(!($currentpackage->subscription_participate_id > 0)){ ?>
 													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[2]->package_id; ?>" />
+													
+										<input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[2]->city_per_cost; ?>" />
+										<input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[2]->package_city; ?>" />
 													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[2]->package_id; ?>">Upgrade Now</button>
 													<?php } ?>
 												<?php }else{ ?>
@@ -170,6 +179,9 @@
 													<?php $currentpackage = $this->home_model->getCurrentPackage($this->session->userdata('id')); ?>
 													<?php if(!($currentpackage->subscription_participate_id > 0)){ ?>
 													<input type="hidden" name="package_id" value="<?php echo $subcription_plan[3]->package_id; ?>" />
+													
+										<input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[3]->city_per_cost; ?>" />
+										<input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[3]->package_city; ?>" />
 													<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[3]->package_id; ?>">Upgrade Now</button>
 													<?php } ?>
 												<?php }else{ ?>
@@ -212,7 +224,9 @@
                                                 <?php if($this->session->userdata('id') > 0){ ?>
 													<?php $currentpackage = $this->home_model->getCurrentPackage($this->session->userdata('id')); ?>
 													<?php if(!($currentpackage->subscription_participate_id > 0)){ ?>
-														<input type="hidden" name="package_id" value="<?php echo $subcription_plan[4]->package_id; ?>" />
+														<input type="hidden" name="package_id" value="<?php echo $subcription_plan[4]->package_id; ?>" />						
+										<input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[4]->city_per_cost; ?>" />
+										<input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[4]->package_city; ?>" />
 														<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[4]->package_id; ?>">Upgrade Now</button>
 													<?php } ?>
 												<?php }else{ ?>
@@ -256,6 +270,8 @@
 													<?php $currentpackage = $this->home_model->getCurrentPackage($this->session->userdata('id')); ?>
 													<?php if(!($currentpackage->subscription_participate_id > 0)){ ?>
 														<input type="hidden" name="package_id" value="<?php echo $subcription_plan[5]->package_id; ?>" />
+										<input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[5]->city_per_cost; ?>" />
+										<input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[5]->package_city; ?>" />
 														<button class="btn btn-default upgrade_btn sec-package" type="button" data-id="<?php echo $subcription_plan[5]->package_id; ?>">Upgrade Now</button>
 													<?php } ?>
 												<?php }else{ ?>

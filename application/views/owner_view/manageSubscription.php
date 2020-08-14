@@ -100,7 +100,7 @@ $(document).ready(function(){
 			$(this).addClass('active_plan');
 		
 
-			if($(this).closest('.packageplan').parent().hasClass('subscription_disable'))
+			if($(this).closest('.packageplan').parent().hasClass('subscription_disable') || $(this).closest('.packageplan').hasClass('subscription_disable'))
 			{
 				$(".subscription_disable_text").show();
 				$(".subscription_text").hide();
@@ -123,14 +123,49 @@ $(document).ready(function(){
 			var plan_amount = $(".packageplan.active_plan").find('.plan_amount').val();
 			var due_cost = plan_amount - remaining_amount;
 			var package_id = $(".packageplan.active_plan").find('.package_id').val();
+			var package_city = $(".packageplan.active_plan").find('.package_city').val();
+			var city_per_cost = $(".packageplan.active_plan").find('.city_per_cost').val();
 
-			window.location = '?package_id='+package_id+'&due_cost='+due_cost;
+			if(package_id > 3)
+			{
+				var selected_checkbox = $(".packageplan.active_plan").find('[type=checkbox]:checked').length;
+				if(selected_checkbox == package_city)
+				{
+					var state = '';
+					$(".packageplan.active_plan").find('[type=checkbox]:checked').each(function(){
+						var val = $(this).val();
+						state += '&state[]='+val;
+					});
+					window.location = '?package_id='+package_id+'&due_cost='+due_cost+state;
+				}
+				else
+				{
+					alert('Please select '+package_city+' states!');
+				}
+			}
+			else
+			{
+				window.location = '?package_id='+package_id+'&due_cost='+due_cost;
+			}
+
+			
 	});
 
 	$(".login_inner_page .nav-tabs a").click(function(){
 		$(".subscription_disable_text").hide();
 		$(".subscription_text").hide();
 		$(".packageplan").removeClass('active_plan');
+	});
+});
+
+$(document).ready(function(){
+	$(".checkbox-state").change(function(){
+		var checkbox_length = $(this).closest('.dropdown-menu').find('[type=checkbox]:checked').length;
+		if(checkbox_length > 2)
+		{
+			alert('Please choose only 2 states!');
+			$(this).prop('checked',false);
+		}
 	});
 });
 </script>
@@ -223,13 +258,13 @@ $(document).ready(function(){
 				<div class="login_page pan_subscription">
 					<div class="login_inner_page">
 						<ul class="nav nav-tabs">
-							<li class="active"><a data-toggle="tab" href="#PAN_India">PAN India</a></li>
-							<li><a data-toggle="tab" href="#State_Wise">State Wise</a></li>
+							<li class="<?php echo ($package_id < 4 )?'active':''; ?>" ><a data-toggle="tab" href="#PAN_India">PAN India</a></li>
+							<li class="<?php echo ($package_id > 3 )?'active':''; ?>" ><a data-toggle="tab" href="#State_Wise">State Wise</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="tab-content pan_subscription_tab">
-					<div id="PAN_India" class="tab-pane fade in active">
+					<div id="PAN_India" class="tab-pane fade <?php echo ($package_id < 4 )?'in active':''; ?>" >
 						<div class="row">
 							<div class="col-sm-4 subscription<?php echo $package1; ?>">
 								<div class="<?php  echo $currentplan1; ?> packageplan">
@@ -285,10 +320,10 @@ $(document).ready(function(){
 						</div>
 						
 					</div>
-					<div id="State_Wise" class="tab-pane fade state_wise_tab">
+					<div id="State_Wise" class="tab-pane fade state_wise_tab <?php echo ($package_id > 3 )?'in active':''; ?>">
 						<div class="row">
-							<div class="col-sm-4 subscription<?php echo $package4; ?>">
-							   <div class="current_plan active_state_wise_plan">
+							<div class="col-sm-4 subscription<?php echo $package4; ?>  <?php  echo $currentplan4; ?> packageplan">
+							   <div class="">
 								<div class="subscription_box">
 									<div class="sub_price">
 										<h4>3 Months</h4>
@@ -298,39 +333,41 @@ $(document).ready(function(){
 										<div class="state_price"><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_small_sm.png"></span><span class="rupees">100</span><span class="small_state">/state</span>
 
 			
-												<input type="hidden" class="plan_amount" name="text" value="<?php echo $packagelist[2]->package_amount; ?>" />
-												<input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[2]->package_id; ?>" />
+												<input type="hidden" class="plan_amount" name="text" value="<?php echo $packagelist[3]->package_amount; ?>" />
+												<input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[3]->package_id; ?>" />
+												<input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[3]->city_per_cost; ?>" />
+												<input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[3]->package_city; ?>" />
 
-
-											<div class="plan_desc state_chosen">
-												<?php $state_bidder = $this->home_model->get_state_bidder($userid);?>
-												<h4 class="other_desc_subscribe">States Chosen</h4>
-												<p class="subscribe_address"><?php echo implode(", ",$state_bidder); ?></p>
+											<?php  if($currentplan4 != ''){ ?>
+												<div class="plan_desc state_chosen">
+													<?php $state_bidder = $this->home_model->get_state_bidder($userid);?>
+													<h4 class="other_desc_subscribe">States Chosen</h4>
+													<p class="subscribe_address"><?php echo implode(", ",$state_bidder); ?></p>
+												</div>
+											<?php } ?>
+										</div>
+									</div>
+									<?php  if($currentplan4 == ''){ ?>
+										<div class="checklist_state">
+											<div class="dropdown">
+												<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Select States
+													<span class="caret"></span></button>
+												<ul class="dropdown-menu">
+													<?php $statelist = $this->home_model->getAllState(); ?>
+																<?php foreach($statelist as $state){ ?>
+																	<li><label class="checkbox-inline"><input type="checkbox" class="checkbox-state" value="<?php echo $state->id; ?>"><?php echo $state->state_name; ?></label></li>
+																<?php } ?>
+												</ul>
 											</div>
 										</div>
-									</div>
-<!--
-									<div class="checklist_state">
-										<div class="dropdown">
-											<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Select States
-												<span class="caret"></span></button>
-											<ul class="dropdown-menu">
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Andaman and Nicobar Islands</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Andhra Pradesh</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Arunachal Pradesh</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Assam</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Bihar</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Chandigarh</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Chhattisgarh</label></li>
-											</ul>
-										</div>
-									</div>
--->
+									<?php } ?>
 								</div><!--subscription_box-->
-								   <p>current plan</p>
+								  <?php if($currentplan4 != ''){ ?>
+										<p>Current Plan</p>
+									<?php } ?>
 								</div>
 							</div>
-							<div class="col-sm-4 subscription<?php echo $package5; ?>">
+							<div class="col-sm-4 subscription<?php echo $package5; ?> <?php  echo $currentplan5; ?> packageplan">
 								<div class="subscription_box">
 									<div class="sub_price">
 										<h4>6 Months</h4>
@@ -338,25 +375,40 @@ $(document).ready(function(){
 										<h4 class="states_desc">For any two states</h4>
 										<p class="additional_desc">Get additional state for just</p>
 										<div class="state_price"><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_small_sm.png"></span><span class="rupees">200</span><span class="small_state">/state</span></div>
+
+										<input type="hidden" class="plan_amount" name="text" value="<?php echo $packagelist[4]->package_amount; ?>" />
+										<input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[4]->package_id; ?>" />
+										<input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[4]->city_per_cost; ?>" />
+										<input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[4]->package_city; ?>" />
+
+										<?php  if($currentplan5 != ''){ ?>
+										<div class="plan_desc state_chosen">
+											<?php $state_bidder = $this->home_model->get_state_bidder($userid);?>
+											<h4 class="other_desc_subscribe">States Chosen</h4>
+											<p class="subscribe_address"><?php echo implode(", ",$state_bidder); ?></p>
+										</div>
+										<?php } ?>
 									</div>
+									<?php  if($currentplan5 == ''){ ?>
 									<div class="checklist_state">
 										<div class="dropdown">
 											<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Select States
 												<span class="caret"></span></button>
 											<ul class="dropdown-menu">
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Andaman and Nicobar Islands</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Andhra Pradesh</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Arunachal Pradesh</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Assam</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Bihar</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Chandigarh</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Chhattisgarh</label></li>
+												<?php $statelist = $this->home_model->getAllState(); ?>
+															<?php foreach($statelist as $state){ ?>
+	                                                            <li><label class="checkbox-inline"><input type="checkbox" class="checkbox-state" value="<?php echo $state->id; ?>"><?php echo $state->state_name; ?></label></li>
+															<?php } ?>
 											</ul>
 										</div>
 									</div>
+									<?php } ?>
 								</div><!--subscription_box-->
+								<?php if($currentplan5 != ''){ ?>
+										<p>Current Plan</p>
+									<?php } ?>
 							</div>
-							<div class="col-sm-4 subscription<?php echo $package6; ?>">
+							<div class="col-sm-4 subscription<?php echo $package6; ?> <?php  echo $currentplan6; ?> packageplan">
 								<div class="subscription_box">
 									<div class="sub_price">
 										<h4>12 Months</h4>
@@ -364,26 +416,41 @@ $(document).ready(function(){
 										<h4 class="states_desc">For any two states</h4>
 										<p class="additional_desc">Get additional state for just</p>
 										<div class="state_price"><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_small_sm.png"></span><span class="rupees">400</span><span class="small_state">/state</span></div>
-									</div>
-									<div class="checklist_state">
-										<div class="dropdown">
-											<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Select States
-												<span class="caret"></span></button>
-											<ul class="dropdown-menu">
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Andaman and Nicobar Islands</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Andhra Pradesh</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Arunachal Pradesh</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Assam</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Bihar</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Chandigarh</label></li>
-												<li><label class="checkbox-inline"><input type="checkbox" value="">Chhattisgarh</label></li>
-											</ul>
+
+										<input type="hidden" class="plan_amount" name="text" value="<?php echo $packagelist[5]->package_amount; ?>" />
+										<input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[5]->package_id; ?>" />
+										<input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[5]->city_per_cost; ?>" />
+										<input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[5]->package_city; ?>" />
+
+										<?php  if($currentplan6 != ''){ ?>
+										<div class="plan_desc state_chosen">
+											<?php $state_bidder = $this->home_model->get_state_bidder($userid);?>
+											<h4 class="other_desc_subscribe">States Chosen</h4>
+											<p class="subscribe_address"><?php echo implode(", ",$state_bidder); ?></p>
 										</div>
+										<?php } ?>
 									</div>
+									<?php  if($currentplan6 == ''){ ?>
+										<div class="checklist_state">
+											<div class="dropdown">
+												<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Select States
+													<span class="caret"></span></button>
+												<ul class="dropdown-menu">
+													<?php $statelist = $this->home_model->getAllState(); ?>
+																<?php foreach($statelist as $state){ ?>
+																	<li><label class="checkbox-inline"><input type="checkbox" class="checkbox-state" value="<?php echo $state->id; ?>"><?php echo $state->state_name; ?></label></li>
+																<?php } ?>
+												</ul>
+											</div>
+										</div>
+									<?php } ?>
 								</div><!--subscription_box-->
+								<?php if($currentplan6 != ''){ ?>
+										<p>Current Plan</p>
+									<?php } ?>
 							</div>
 						</div>
-						<div class="row">
+						<?php /* ?><div class="row">
 							<div class="col-sm-12">
 								<div class="state_chosen_wrapper">
 								   <div class="hide_list">
@@ -690,7 +757,7 @@ $(document).ready(function(){
 									<p class="selected_states">Chosen States: <span>Gujarat, Kerala</span></p>
 								</div>
 							</div>
-						</div>						
+						</div>	<?php */ ?>					
 					</div>
 				</div>
 			</div><!--pan_state_tab-->

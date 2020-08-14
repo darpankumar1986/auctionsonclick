@@ -1138,9 +1138,11 @@ class Home_model extends CI_Model {
 
 	public function get_state_bidder($bidderID) 
     {
+		$curSub = $this->getCurrentPackage($bidderID);
+
 		$resArr = array();
-		$this->db->where('sub.member_id', $bidderID);
-		$this->db->join('tbl_state as state','state.id = sub.sub_state_id');
+		$this->db->where('sub.subscription_participate_id',$curSub->subscription_participate_id);
+		$this->db->join('tbl_state as state','state.id=sub.sub_state_id');
 		$query = $this->db->get("tbl_subscription_participate_city as sub");
 		//echo $this->db->last_query();die;
 		if ($query->num_rows() > 0) {
