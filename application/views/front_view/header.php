@@ -33,7 +33,7 @@
       <meta name="audience" content="All"/>
 	 
 	<link rel="icon" href="<?php echo base_url();?>favicon.ico?rand=<?php echo CACHE_RANDOM; ?>">	
-	<link href="<?php echo base_url(); ?>assets/auctiononclick/css/jquery-ui.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url(); ?>assets/auctiononclick/css/jquery-ui-1.12.1.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet" type="text/css" />
 	<link href="<?php echo base_url();?>assets/front_view/css/flexslider.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet" type="text/css" />
 	<link href="<?php echo base_url();?>assets/front_view/css/owl.carousel.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
 	<!--<link href="<?php echo base_url();?>assets/front_view/css/style.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet" type="text/css" />-->
@@ -46,7 +46,7 @@
 	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<!--[if IE]><html class="ie" lang="en"> <![endif]-->
 	<script src="<?php echo base_url(); ?>assets/auctiononclick/js/jquery-3.2.0.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
-
+	
 	<script src="<?php echo base_url();?>assets/front_view/js/jquery.nicescroll.min.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url();?>assets/front_view/js/superfish.min.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url();?>assets/front_view/js/jquery.flexslider-min.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
@@ -56,6 +56,7 @@
 	<script src="<?php echo base_url();?>js/core-min.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url();?>js/sha256-min.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url();?>js/validation.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
+	
 	<!--<script src="<?php echo base_url(); ?>bankeauc/js/promise.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 	<script src="<?php echo base_url(); ?>bankeauc/js/sweetalert.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
     <script src="<?php echo base_url(); ?>bankeauc/js/sweetalert.core.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
@@ -67,6 +68,7 @@
     <link href="<?php echo base_url(); ?>assets/auctiononclick/css/font-awesome.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/auctiononclick/css/chosen.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/auctiononclick/css/style.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
+	
 	
 		<?php
 			if(isset($_GET['track'])){$track=$_GET['track'];}else{$track='';}

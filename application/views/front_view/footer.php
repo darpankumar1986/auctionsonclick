@@ -58,7 +58,7 @@
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
     <!--<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>-->
 
-	<script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js"></script>
+	<!--<script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js"></script>-->
 	<script src="<?php echo base_url(); ?>assets/auctiononclick/js/chosen.jquery.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
     <script src="<?php echo base_url(); ?>assets/auctiononclick/js/myscript.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 
@@ -118,6 +118,86 @@ function goForSearch1(str)
 }
 
 
+function goAdvancedSearch(str)
+{
+	$("#error_txt1").html('');
+
+	$("#error_txt1").hide();
+	var search_box = $("#search_box").val();
+	
+
+
+	var bank = $("#bank option:selected").val();
+	//alert(bank);
+	/*
+	if(search_box.trim() == '')
+	{
+		$("#error_txt1").show();
+		$("#error_txt1").html('Please enter keyword for your search');
+		return false;
+	}
+	else*/
+	{
+		var parent_id = $('.dropdown-header input[name=parent_id]:checked').val();
+
+		var sub_id_str = '';
+		$("input[name=sub_id]:checked").each(function(){
+			var sub_id = $(this).val();
+			sub_id_str += '&sc[]='+sub_id;
+		});
+
+		
+		var search_city = $("#search_city").val();
+		if(search_city !='')
+		{
+			search_city = "&search_city="+search_city;
+		}
+		
+		var borrower_name = $("#borrower_name").val();
+		if(borrower_name !='')
+		{
+			borrower_name = "&borrower_name="+borrower_name;
+		}
+
+		var search_location = $("#search_location").val();
+		if(search_location !='')
+		{
+			search_location = "&search_location="+search_location;
+		}
+
+		var bank_text = '';
+		if(bank != '' && bank != 'Select Bank' && bank != 'All Cities')
+		{
+			bank_text = "&bank="+bank;
+		}
+
+		var auction_start_date = $("#auction_start_date").val();
+		if(auction_start_date !='')
+		{
+			auction_start_date = "&auction_start_date="+auction_start_date;
+		}
+
+		var auction_end_date = $("#auction_end_date").val();
+		if(auction_end_date !='')
+		{
+			auction_end_date = "&auction_end_date="+auction_end_date;
+		}
+
+		var reservePriceMaxRange = $("#reservePriceMaxRange").val();
+		if(reservePriceMaxRange !='')
+		{
+			reservePriceMaxRange = "&reservePriceMaxRange="+reservePriceMaxRange;
+		}
+
+		var reservePriceMinRange = $("#reservePriceMinRange").val();
+		if(reservePriceMinRange !='')
+		{
+			reservePriceMinRange = "&reservePriceMinRange="+reservePriceMinRange;
+		}
+		
+		window.location='<?php echo base_url();?>home/advanced_search?search='+search_box+'&parent_id='+parent_id+sub_id_str+search_city+bank_text+borrower_name+search_location+auction_start_date+auction_end_date+reservePriceMinRange+reservePriceMaxRange;
+	}
+}
 
 function goForSearch(str)
 {
