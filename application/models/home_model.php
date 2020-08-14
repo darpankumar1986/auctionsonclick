@@ -1088,9 +1088,26 @@ class Home_model extends CI_Model {
 			$query = $this->db->get("tbl_user_registration");
 			$bidder = $query->row();
 
-			if($package_type == 1 && $_GET['due_cost'] > 0)
+			if($package_type == 1 && $_GET['due_cost'] > 0) // upgrade
 			{
 				$package->package_amount = $_GET['due_cost'];
+			}
+
+			if($package_type == 2)
+			{
+				$curSub = $this->getCurrentPackage($bidderID);
+				$getState = $this->get_state_bidder($bidderID);
+				$state = '';
+				foreach($getState as $key => $s)
+				{
+					if($state != '')
+					{
+						$state .= ',';
+					}
+					$state .= $key;
+				}
+
+				$package->package_amount = $curSub->package_amount;
 			}
 
 			$indate=date('Y-m-d H:i:s');
