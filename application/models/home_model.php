@@ -149,7 +149,7 @@ class Home_model extends CI_Model {
 	function getTotalAuction()
 	{
 		$this->db->where('a.status IN(1)');
-		$this->db->where('auction_end_date >= NOW()');
+		$this->db->where('bid_last_date >= NOW()');
 
 		$query = $this->db->get('tbl_auction as a');
 
@@ -194,7 +194,7 @@ class Home_model extends CI_Model {
 				->join('tbl_city as city','city.id=a.city','left')
 				 ->join('tbl_bank as bank','bank.id=a.bank_id','left')
                 ->where('a.status IN(1)')
-                ->where('auction_end_date >= NOW()');
+                ->where('bid_last_date >= NOW()');
                   $this->db->order_by('a.bid_last_date','ASC');
 			  
 	
@@ -237,12 +237,12 @@ class Home_model extends CI_Model {
 	function getTotalCityAuction()
     { 
 		
-               $this->db->select("a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+               $this->db->select("a.id",false)
                 ->from('tbl_auction as a')				
 				->join('tbl_category as c','c.id=a.subcategory_id','left')
 				->join('tbl_city as city','city.id=a.city','left')
                 ->where('a.status IN(1)')
-                ->where('auction_end_date >= NOW()');
+                ->where('bid_last_date >= NOW()');
                   $this->db->order_by('a.bid_last_date','ASC');
 
 				  if($_GET['search'] != '')
@@ -292,43 +292,63 @@ class Home_model extends CI_Model {
     {           		
 		
 			$_POST['sColumns'] = "a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id";
-               $this->datatables->select("a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+               $this->datatables->select("a.id,IFNULL(c.name,'Others'),a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
                 ->from('tbl_auction as a')				
 				->join('tbl_category as c','c.id=a.subcategory_id','left')
 				->join('tbl_city as city','city.id=a.city','left')
 				->join('tbl_bank as bank','bank.id=a.bank_id','left')
                 ->where('a.status IN(1)')
                 ->where('bid_last_date >= NOW()');
-                  $this->db->order_by('a.bid_last_date','ASC');
-			  
-				  if($_GET['search_city'] != '')
-				  {
+
+				/************Sorting Start*********/
+				if($_GET['dataSortValue']==1)
+				{
+					$this->db->order_by('a.bid_last_date','DESC');
+				}
+				if($_GET['dataSortValue']==2)
+				{	
+					$this->db->order_by('a.reserve_price','DESC');
+				}
+				if($_GET['dataSortValue']==3)
+				{	
+					$this->db->order_by('a.reserve_price','ASC');
+				}
+				/************Sorting End*********/
+
+
+				if($_GET['search_city'] != '')
+				{
 					$this->db->where("city.city_name like '%".$_GET['search_city']."%'");
-				  }
-			  
-	
-				  if($_GET['search_box'] != '')
-				  {
-					$this->db->where('a.PropertyDescription',$_GET['search_box']);
-				  }
+				}
+				
 
-				  if($_GET['borrower_name'] != '')
-				  {
+				if($_GET['search'] != '')
+				{
+					$this->db->where("a.PropertyDescription like '%".$_GET['search']."%'");
+				}
+
+				if($_GET['borrower_name'] != '')
+				{
 					$this->db->where('a.borrower_name',$_GET['borrower_name']);
-				  }
-				  
+				}
 
-				  if($_GET['bank'] != '')
-				  {
+				if($_GET['search_location'] != '')
+				{
+					$this->db->where('a.reference_no',$_GET['search_location']);
+				}
+
+
+				if($_GET['bank'] != '')
+				{
 					$this->db->where('a.bank_id',$_GET['bank']);
-				  }
+				}
 
-				  
 
-				  if(is_array($_GET['sc']) && count($_GET['sc']) > 0)
-				  {
+
+				if(is_array($_GET['sc']) && count($_GET['sc']) > 0)
+				{
 					$this->db->where('a.subcategory_id IN('.implode(',',$_GET['sc']).')');
-				  }
+				}
 
 
 				$reservePriceMinRange = $_GET['reservePriceMinRange'];
@@ -377,7 +397,7 @@ class Home_model extends CI_Model {
 	function getTotalAdvancedSearchAuction()
     { 
 		
-               $this->db->select("a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+               $this->db->select("a.id",false)
                 ->from('tbl_auction as a')				
 				->join('tbl_category as c','c.id=a.subcategory_id','left')
 				->join('tbl_city as city','city.id=a.city','left')
@@ -386,20 +406,25 @@ class Home_model extends CI_Model {
                 ->where('bid_last_date >= NOW()');
                   $this->db->order_by('a.bid_last_date','ASC');
 
-				  if($_GET['search'] != '')
+				  if($_GET['search_city'] != '')
 				  {
-					$this->db->where("city.city_name like '%".$_GET['search']."%'");
+					$this->db->where("city.city_name like '%".$_GET['search_city']."%'");
 				  }
 			  
 	
-				  if($_GET['search_box'] != '')
+				  if($_GET['search'] != '')
 				  {
-					$this->db->where('a.PropertyDescription',$_GET['search_box']);
+					$this->db->where("a.PropertyDescription like '%".$_GET['search']."%'");
 				  }
 					
 				  if($_GET['borrower_name'] != '')
 				  {
 					$this->db->where('a.borrower_name',$_GET['borrower_name']);
+				  }
+
+				  if($_GET['search_location'] != '')
+				  {
+					$this->db->where('a.reference_no',$_GET['search_location']);
 				  }
 					
 				  if($_GET['bank'] != '')
@@ -671,7 +696,7 @@ class Home_model extends CI_Model {
 		
 		$this->db->where('productID != 0');
 		if($type=='upcoming'){
-		$this->db->where('auction_end_date >= NOW()');
+		$this->db->where('bid_last_date >= NOW()');
 		$this->db->where('status', 1);
 		}
 		if($type=='past'){
@@ -1005,7 +1030,7 @@ class Home_model extends CI_Model {
 		->from('tbl_auction as a')	
 		->join('tbl_city as city','city.id=a.city','left')
 		->where('a.status IN(1)')
-		->where('auction_end_date >= NOW()');
+		->where('bid_last_date >= NOW()');
 
 		$query = $this->db->get('');
 
