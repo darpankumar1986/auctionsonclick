@@ -147,7 +147,10 @@ function goAdvancedSearch(str)
     else
     {
         var parent_id = $('.dropdown-header input[name=parent_id]:checked').val();
-
+		if(typeof(parent_id) == 'undefined')
+		{
+			parent_id ='';
+		}
         var sub_id_str = '';
         $("input[name=sub_id]:checked").each(function(){
             var sub_id = $(this).val();

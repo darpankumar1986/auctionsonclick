@@ -98,8 +98,8 @@
                            <div class="premium_main">
                                <div class="premium_services login">
                                    <ul>
-                                       <li><a href="login.html">premium services</a></li>
-                                       <li><a href="login.html">Advanced Search</a></li>
+                                       <li><a href="<?php echo base_url();?>home/premiumServices">premium services</a></li>
+                                       <li><a href="<?php echo base_url();?>home/advanced_search">Advanced Search</a></li>
                                    </ul>
                                </div>
                            </div>
@@ -169,9 +169,9 @@
 						<div class="col-sm-4">
                            <div class="premium_main">
                                <div class="premium_services login">
-                                   <ul>
-                                       <li><a href="login.html">premium services</a></li>
-                                       <li><a href="login.html">Advanced Search</a></li>
+                                    <ul>
+                                       <li><a href="<?php echo base_url();?>home/premiumServices">premium services</a></li>
+                                       <li><a href="<?php echo base_url();?>home/advanced_search">Advanced Search</a></li>
                                    </ul>
                                </div>
                            </div>

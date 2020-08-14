@@ -379,15 +379,11 @@ class Home_model extends CI_Model {
 					$this->db->where('a.auction_end_date <=',$auction_end_date.' 23:59:59');
 				}
 
-			  if($_GET['parent_id'] != '' && $_GET['parent_id'] != 'undefined')
+			  if($_GET['parent_id'] != '')
 			  {
 				$this->db->where('a.category_id',$_GET['parent_id']);
 			  }
-			  else
-			  {
-				 $cat = '1,2,3';
-				 $this->db->where('a.category_id IN('.$cat.')');
-			  }
+			 
 	
                  return $this->datatables->generate();
 				 //echo $this->db->last_query();die;
@@ -468,15 +464,11 @@ class Home_model extends CI_Model {
 					$this->db->where('a.auction_end_date <=',$auction_end_date.' 23:59:59');
 				}
 
-				if($_GET['parent_id'] != '' && $_GET['parent_id'] != 'undefined')
+				if($_GET['parent_id'] != '')
 				{
 					$this->db->where('a.category_id',$_GET['parent_id']);
 				}
-				else
-				{
-					$cat = '1,2,3';
-					$this->db->where('a.category_id IN('.$cat.')');
-				}
+				
 
 				$query = $this->db->get('');
 				//echo $this->db->last_query();die;

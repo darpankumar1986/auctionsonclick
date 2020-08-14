@@ -144,7 +144,10 @@ var oTable = null;
 				//oTable = null
 			}
 			var parent_id = $('.dropdown-header input[name=parent_id]:checked').val();
-
+			if(typeof(parent_id) == 'undefined')
+			{
+				parent_id ='';
+			}
 			var sub_id_str = '';
 			$("input[name=sub_id]:checked").each(function(){
 				var sub_id = $(this).val();
@@ -292,7 +295,7 @@ var oTable = null;
 		<div class="col-sm-12">
 			<div class="breadcrumb_main">
 				<ol class="breadcrumb">
-					<li><a href="#">Home</a></li>
+					<li><a href="<?php echo base_url(); ?>">Home</a></li>
 					<li class="active">Advanced Search</li>
 				</ol>
 <!--                        <h3>Bank Auctions in Amritsar</h3>-->
