@@ -209,16 +209,20 @@ class Payment2 extends WS_Controller
 							
 						}
 
-						if($package_type == 2 && strtotime($row->package_end_date) > time()) // renew
+						if($package_type == 2 && strtotime($row->package_end_date) < time()) // renew
 						{
 							$row = $this->home_model->getCurrentPackage($bidderID);
 							$startDate = date('Y-m-d H:i:s',strtotime($row->package_end_date));
+
+
 							$endDate = date('Y-m-d H:i:s',strtotime("+".$package->sub_month." months",strtotime($startDate)));
+							//$endDate = date('Y-m-d H:i:s',strtotime("+3 days",strtotime($startDate)));
 						}
 						else
 						{
 							$startDate = date('Y-m-d H:i:s');
 							$endDate = date('Y-m-d H:i:s',strtotime("+".$package->sub_month." months"));
+							//$endDate = date('Y-m-d H:i:s',strtotime("+3 days"));
 						}
 
 						$participated_data = array(
@@ -258,11 +262,11 @@ class Payment2 extends WS_Controller
 
 			
 						$this->session->set_flashdata('message','Subscription Payment Paid Successfully !<br>');	
-						redirect("/home/success");
+						redirect("home/success");
 			}else{
 					
 					$this->session->set_flashdata('message_new','Subscription Payment Failure ! Please try again<br>');	
-					redirect("/home/premiumServices");
+					redirect("home/premiumServices");
 				
 			}	
 		}
