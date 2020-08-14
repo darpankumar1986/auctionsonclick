@@ -213,8 +213,17 @@ class Payment2 extends WS_Controller
 							
 						}
 
-						$startDate = date('Y-m-d H:i:s');
-						$endDate = date('Y-m-d H:i:s',strtotime("+".$package->sub_month." months"));
+						if($package_type == 2 && strtotime($row->package_end_date) > time()) // renew
+						{
+							$row = $this->home_model->getCurrentPackage($bidderID);
+							$startDate = date('Y-m-d H:i:s',strtotime($row->package_end_date));
+							$endDate = date('Y-m-d H:i:s',strtotime("+".$package->sub_month." months",strtotime($startDate)));
+						}
+						else
+						{
+							$startDate = date('Y-m-d H:i:s');
+							$endDate = date('Y-m-d H:i:s',strtotime("+".$package->sub_month." months"));
+						}
 
 						$participated_data = array(
 						'member_id'=>$bidderID,

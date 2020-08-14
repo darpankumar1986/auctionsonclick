@@ -3472,7 +3472,15 @@ class Owner extends WS_Controller {
 		{
 	
 				$bidderID = $this->session->userdata('id');
-				$last_insert_id_payment = $this->home_model->save_payment($bidderID,$_GET['package_id'],1);
+
+				if($_GET['package_type'] == 2)
+				{
+					$last_insert_id_payment = $this->home_model->save_payment($bidderID,$_GET['package_id'],2); // renew 
+				}
+				else
+				{
+					$last_insert_id_payment = $this->home_model->save_payment($bidderID,$_GET['package_id'],1); // upgrade
+				}
 				
 				redirect('/payment2/index?txnid='.base64_encode($last_insert_id_payment));die;
 			
