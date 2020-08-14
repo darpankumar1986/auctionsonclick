@@ -7,10 +7,6 @@ class Payment2 extends WS_Controller
 		parent::__Construct();
 		ob_start();
 		$this->load->library('session');
-		$this->load->helper('log4php');
-		log_error('my_error');
-		log_info('my_info');
-		log_debug('my_debug');
 		error_reporting(0);
 		$this->load->helper('url');
 		$this->load->library('Datatables');
