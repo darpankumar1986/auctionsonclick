@@ -62,12 +62,11 @@ body{
 .fixed-header {
     background-color: #005ca8;
 }
-.header-top {
-    padding-bottom: 5px;
-}
 .web-logo {
-    padding-top: 25px;
+    padding-top: 17px;
+    padding-bottom: 15px;
     padding-left: 20px;
+    text-align: center;
 }
 .alert_notification {
     text-align: right;
@@ -86,6 +85,9 @@ body{
 .alert_notification ul li a span {
     margin-right: 5px;
 }
+.premium_main .premium_services {
+    text-align: left;
+}
 .login {
     text-align: right;
     padding-right: 20px;
@@ -93,12 +95,25 @@ body{
 }
 .login ul > li {
     display: inline-block;
-    padding-top: 15px;
+    padding-top: 32px;
+}
+.premium_services.login ul > li:first-child > a {
+    padding-left: 0;
+}
+.premium_services.login ul > li > a {
+    font-size: 13px;
 }
 .login ul > li > a {
     color: #ffffff;
-    padding: 15px 10px;
+    display: inline-block;
+    padding: 13px 24px;
     text-transform: uppercase;
+    font-size: 14px;
+}
+.login ul > li.login_register > a {
+    background-color: #fff;
+    color: #000;
+    border-radius: 4px;
 }
 .login ul > li > a:hover {
     text-decoration: none;
@@ -193,7 +208,7 @@ body{
     background-color: #fff;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 40px;
 }
 .sidenav ul li a {
     color: #333333;
@@ -218,7 +233,7 @@ body{
     position: absolute;
     top: 0;
     right: 25px;
-    font-size: 36px;
+    font-size: 34px;
     margin-left: 50px;
     background-color: transparent;
     border: 0;
@@ -265,6 +280,7 @@ body{
 .sidenav ul.nav_section li a {
     padding: 15px 22px;
     text-transform: none;
+    display: block;
 }
 .sidenav ul.nav_section li a span i {
     color: #9a9a9a;
@@ -272,8 +288,15 @@ body{
 .sidenav ul.nav_section li a:hover span i {
     color: #ffffff;
 }
+.sidenav ul.nav_section li.list_desc a:hover {
+    background-color: #ffffff;
+    color: #0078db;
+}
+.sidenav ul.nav_section li.list_desc a:hover span i {
+    color: #0078db;
+}
 .sidenav ul.nav_section li a:hover {
-    background-color: #5e23dc;
+    background-color: #0078db;
     color: #fff;
 }
 .sidenav ul.nav_section li.list_desc {
@@ -311,7 +334,7 @@ body{
     color: #fff;
     text-align: center;
     font-weight: normal;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 .form-wrap .form_desc {
     display: flex;
@@ -388,6 +411,29 @@ body{
     margin-right: 5px;
     font-weight: normal;
 }
+.home_form_wrap.form-wrap {
+    min-width: 840px;
+}
+.home_form_wrap.form-wrap .form_desc {
+    border: 20px solid #ffffff;
+}
+.home_form_wrap.form_wrap_anction_search .custom-dropdown-select {
+    background-color: #ffffff;
+    border-left: 1px solid #cccccc;
+}
+.home_form_wrap.form_wrap_anction_search .dropdown {
+    flex: 0 0 18%;
+    border-left: 1px solid #cccccc;
+}
+.home_form_wrap.form_wrap_anction_search .search_btn_section {
+    flex: 0 0 18%;
+}
+.home_form_wrap.form-wrap .form_desc .btn-default.dropdown-toggle {
+    border: 0;
+}
+.home_form_wrap.form_wrap_anction_search .custom-dropdown-select .select-selected {
+    border: 0;
+}
 /*---------------------------Radio-box----------------------------------------*/
 .form-wrap .form_desc .dropdown-menu .dropdown-header label {
     margin-bottom: 0;
@@ -418,7 +464,7 @@ body{
     top: 0;
     width: 12px;
     height: 12px;
-    border: 1px solid #000;
+    border: 1px solid #acacac;
     border-radius: 100%;
     background: #fff;
 }
@@ -427,7 +473,7 @@ body{
     content: '';
     width: 6px;
     height: 6px;
-    background: #5e23dc;
+    background: #0078db;
     position: absolute;
     top: 3px;
     left: 3px;
@@ -660,6 +706,7 @@ h3.auction_heading {
 }
 .custom_form .floating-input:focus , .custom_form .floating-select:focus {
     outline:none;
+    box-shadow: none;
 }
 
 .custom_form label.custom_label {
