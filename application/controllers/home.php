@@ -40,8 +40,8 @@ class Home extends MY_Controller {
     public function liveAuctionDatatableHome() {
         echo $this->home_model->liveAuctionDatatableHome();
     }
-
-    public function checkdsclogin() {
+	
+	public function checkdsclogin() {
         echo $this->home_model->checkdsclogin();
     }
 
@@ -397,19 +397,9 @@ class Home extends MY_Controller {
 
 		if($_GET['package_id'] > 0)
 		{
-			if(IS_PAYMENT_GATEWAY_OFF===TRUE)
-			{
-				$res = $this->registration_model->save_step_first();
-				$this->session->set_flashdata('msg','Registration done Successfully !<br>');	
-				redirect("/registration/signup");
-			}
-			else
-			{
-				$bidderID = $this->session->userdata('id');
-				$last_insert_id_payment = $this->home_model->save_payment($bidderID,$_GET['package_id']);
-				
-				redirect('/payment2/index?txnid='.base64_encode($last_insert_id_payment));die;
-			}
+			$bidderID = $this->session->userdata('id');
+			$last_insert_id_payment = $this->home_model->save_payment($bidderID,$_GET['package_id']);				
+			redirect('/payment2/index?txnid='.base64_encode($last_insert_id_payment));die;
 		}
 
 		
@@ -468,6 +458,28 @@ class Home extends MY_Controller {
 		}
 		echo json_encode($data);
 	}
+	
+	
+	public function advancedSearchDatatable() {
+        echo $this->home_model->advancedSearchDatatable();
+    }
+
+	public function advanced_search()
+	{
+		$data['title'] = 'Advanced Search';
+		$data['totalAuction'] = $this->home_model->getTotalAdvancedSearchAuction();
+        $this->load->view('front_view/header', $data);
+        if(MOBILE_VIEW)
+		{			
+			$this->load->view('mobile/home', $data);
+		}
+		else
+		{		
+			$this->load->view('front_view/advanced_search', $data);
+		}
+        
+        $this->load->view('front_view/footer');
+    }
 }
 
 ?>

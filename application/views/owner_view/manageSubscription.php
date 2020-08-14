@@ -13,6 +13,8 @@
 	
 	$currentpackage = $this->home_model->getCurrentPackage($userid);
 
+	$totalActivePackage = $this->home_model->getTotalActivePackage($userid);
+
 	$package_id = $currentpackage->package_id;
 	$package_amount = $currentpackage->package_amount;
 	$package_start_date = $currentpackage->package_start_date;
@@ -55,6 +57,31 @@
 		$package6 = "_disable";
 		$currentplan3 = "current_plan";
 	}
+
+	if($package_id == 4)
+	{
+		//$package4 = "_disable";
+		//$package5 = "_disable";
+		//$package6 = "_disable";
+		$currentplan4 = "current_plan";
+	}
+
+	if($package_id == 5)
+	{
+		$package1 = "_disable";
+		$package4 = "_disable";
+		$currentplan5 = "current_plan";
+	}
+
+	if($package_id == 6)
+	{
+		$package1 = "_disable";
+		$package2 = "_disable";
+		$package4 = "_disable";
+		$package5 = "_disable";
+		$currentplan6 = "current_plan";
+	}
+
 
 ?>
 <style>
@@ -99,6 +126,12 @@ $(document).ready(function(){
 
 			window.location = '?package_id='+package_id+'&due_cost='+due_cost;
 	});
+
+	$(".login_inner_page .nav-tabs a").click(function(){
+		$(".subscription_disable_text").hide();
+		$(".subscription_text").hide();
+		$(".packageplan").removeClass('active_plan');
+	});
 });
 </script>
 
@@ -125,7 +158,7 @@ $(document).ready(function(){
 						   <tr>
 							   <td>
 								   <div class="plan_desc">
-									   <h4><?php echo ($package_id > 3)?'State Wise (Any 3 States)':'PAN India'; ?></h4>
+									   <h4><?php echo ($package_id > 3)?'State Wise (Any 2 States)':'PAN India'; ?></h4>
 									   <p class="common_date"><?php echo $package[0]->sub_month;?> Months Plan</p>
 									   <?php if($package_id > 3){ $state_bidder = $this->home_model->get_state_bidder($userid);?>
 										   <h4 class="other_desc_subscribe">States Chosen</h4>
@@ -146,6 +179,9 @@ $(document).ready(function(){
 								   <div class="plan_desc">
 									   <h4 class="other_desc_subscribe">Renewal</h4>
 									   <p class="common_date"><?php echo date('F dS, Y',strtotime($package_end_date) + 86400); ?> at ₹<span><?php echo $package_amount; ?>.00</span></p>
+									   <?php if($totalActivePackage == 1 && ((strtotime($package_end_date)) - 259200) < time()) { ?>
+										   <button type="button" class="btn search_btn_new renew_btn" onclick="window.location = '?package_id=<?php echo $package_id;?>&package_type=2'">Renew Now</button>
+									   <?php } ?>
 								   </div>
 							   </td>
 							  
@@ -159,7 +195,7 @@ $(document).ready(function(){
    <div class="row">
 		<div class="col-sm-12">
 			<div class="subscribe_notification manage_sub_downgrade">
-				<?php if((strtotime($package_end_date)) - 259200 < time()) { ?>
+				 <?php if($totalActivePackage == 1 && ((strtotime($package_end_date)) - 259200) < time()) { ?>
 					<div class="reming_subscribe">
 						<p>Remind me about subscription renewal</p>
 						<p>Receive an email or SMS reminder 3 days before your renewal date</p>
@@ -200,8 +236,8 @@ $(document).ready(function(){
 									<div class="subscription_box">
 										<div class="sub_price">
 											<h4>3 Months</h4>
-											<div><span><img src="images/rupees_medium.png">
-												<img class="white_rupees" src="images/rupees_medium_white.png"></span><span class="rupees"><?php echo $packagelist[0]->package_amount; ?></span></div>
+											<div><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_medium.png">
+												<img class="white_rupees" src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_medium_white.png"></span><span class="rupees"><?php echo $packagelist[0]->package_amount; ?></span></div>
 											<input type="hidden" class="plan_amount" name="text" value="<?php echo $packagelist[0]->package_amount; ?>" />
 											<input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[0]->package_id; ?>" />
 										</div>
@@ -216,8 +252,8 @@ $(document).ready(function(){
 									<div class="subscription_box">
 										<div class="sub_price">
 											<h4>6 Months</h4>
-											<div><span><img src="images/rupees_medium.png">
-												<img class="white_rupees" src="images/rupees_medium_white.png">
+											<div><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_medium.png">
+												<img class="white_rupees" src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_medium_white.png">
 												</span><span class="rupees"><?php echo $packagelist[1]->package_amount; ?></span></div>
 											<input type="hidden" class="plan_amount" name="text" value="<?php echo $packagelist[1]->package_amount; ?>" />
 											<input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[1]->package_id; ?>" />
@@ -233,8 +269,8 @@ $(document).ready(function(){
 									<div class="subscription_box">
 										<div class="sub_price">
 											<h4>12 Months</h4>
-											<div><span><img src="images/rupees_medium.png">
-												<img class="white_rupees" src="images/rupees_medium_white.png">
+											<div><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_medium.png">
+												<img class="white_rupees" src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_medium_white.png">
 												</span><span class="rupees"><?php echo $packagelist[2]->package_amount; ?></span></div>
 												<input type="hidden" class="plan_amount" name="text" value="<?php echo $packagelist[2]->package_amount; ?>" />
 												<input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[2]->package_id; ?>" />
@@ -247,23 +283,7 @@ $(document).ready(function(){
 								
 							</div>
 						</div>
-						<div class="row subscription_disable_text" style="display: none;">
-							<div class="col-sm-12">
-								<div class="current_membership">
-									<p>Your current membership will continue until <?php echo date('F dS, Y',strtotime($package_end_date) + 86400); ?> after which you can change your plan.</p>
-								</div>
-							</div>
-						</div>
-						<div class="row subscription_text" style="display: none;">
-							<div class="col-sm-12">
-								<div class="Active_membership">
-									<p>Your current membership is for <?php echo $package[0]->sub_month;?> months, your consumed days and amount will be adjusted to this new subscription.</p>
-									<p><span>Amount paid for 3 months: ₹<?php echo $package_amount; ?>.00</span> | <span>Days consumed: <?php echo $consumed_day; ?> days</span> | <span>New renewal date: <?php echo date('F dS, Y',strtotime($package_end_date) + 86400); ?></span></p>
-									<p class="amount_due">Amount due : ₹<span id="due_cost">2500</span> </p>
-									<button type="button" class="btn search_btn_new pay_now">Pay Now</button>
-								</div>
-							</div>
-						</div>
+						
 					</div>
 					<div id="State_Wise" class="tab-pane fade state_wise_tab">
 						<div class="row">
@@ -272,13 +292,20 @@ $(document).ready(function(){
 								<div class="subscription_box">
 									<div class="sub_price">
 										<h4>3 Months</h4>
-										<div><span><img src="images/rupees_medium.png"></span><span class="rupees">1500</span></div>
+										<div><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_medium.png"></span><span class="rupees"><?php echo $packagelist[3]->package_amount; ?></span></div>
 										<h4 class="states_desc">For any two states</h4>
 										<p class="additional_desc">Get additional state for just</p>
-										<div class="state_price"><span><img src="images/rupees_small_sm.png"></span><span class="rupees">100</span><span class="small_state">/state</span>
+										<div class="state_price"><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_small_sm.png"></span><span class="rupees">100</span><span class="small_state">/state</span>
+
+			
+												<input type="hidden" class="plan_amount" name="text" value="<?php echo $packagelist[2]->package_amount; ?>" />
+												<input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[2]->package_id; ?>" />
+
+
 											<div class="plan_desc state_chosen">
+												<?php $state_bidder = $this->home_model->get_state_bidder($userid);?>
 												<h4 class="other_desc_subscribe">States Chosen</h4>
-												<p class="subscribe_address">Haryana, West Bengal, Punjab </p>
+												<p class="subscribe_address"><?php echo implode(", ",$state_bidder); ?></p>
 											</div>
 										</div>
 									</div>
@@ -307,10 +334,10 @@ $(document).ready(function(){
 								<div class="subscription_box">
 									<div class="sub_price">
 										<h4>6 Months</h4>
-										<div><span><img src="images/rupees_medium.png"></span><span class="rupees">2500</span></div>
+										<div><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_medium.png"></span><span class="rupees">2500</span></div>
 										<h4 class="states_desc">For any two states</h4>
 										<p class="additional_desc">Get additional state for just</p>
-										<div class="state_price"><span><img src="images/rupees_small_sm.png"></span><span class="rupees">200</span><span class="small_state">/state</span></div>
+										<div class="state_price"><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_small_sm.png"></span><span class="rupees">200</span><span class="small_state">/state</span></div>
 									</div>
 									<div class="checklist_state">
 										<div class="dropdown">
@@ -333,10 +360,10 @@ $(document).ready(function(){
 								<div class="subscription_box">
 									<div class="sub_price">
 										<h4>12 Months</h4>
-										<div><span><img src="images/rupees.png"></span><span class="rupees">4000</span></div>
+										<div><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees.png"></span><span class="rupees">4000</span></div>
 										<h4 class="states_desc">For any two states</h4>
 										<p class="additional_desc">Get additional state for just</p>
-										<div class="state_price"><span><img src="images/rupees_small_sm.png"></span><span class="rupees">400</span><span class="small_state">/state</span></div>
+										<div class="state_price"><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_small_sm.png"></span><span class="rupees">400</span><span class="small_state">/state</span></div>
 									</div>
 									<div class="checklist_state">
 										<div class="dropdown">
@@ -663,21 +690,37 @@ $(document).ready(function(){
 									<p class="selected_states">Chosen States: <span>Gujarat, Kerala</span></p>
 								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="Active_membership">
-									<p>Your current membership is for 3 months, you have added 2 new states to your existing subscription.</p>
-									<p><span>Amount paid for 3 months: ₹2000</span> | <span>Days consumed: 45 days</span> | <span>Days left: 45 days</span></p>
-									<p class="amount_due">Amount due : ₹<span>100</span> </p>
-									<button type="button" class="btn search_btn_new pay_now">Pay Now</button>
-								</div>
-							</div>
-						</div>
+						</div>						
 					</div>
 				</div>
 			</div><!--pan_state_tab-->
+
+			<div class="pan_state_tab">
+				<div class="row subscription_disable_text" style="display: none;">
+					<div class="col-sm-12">
+						<div class="current_membership">
+							<p>Your current membership will continue until <?php echo date('F dS, Y',strtotime($package_end_date) + 86400); ?> after which you can change your plan.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row subscription_text" style="display: none;">
+					<div class="col-sm-12">
+						<div class="Active_membership">
+							<p>Your current membership is for <?php echo $package[0]->sub_month;?> months, your consumed days and amount will be adjusted to this new subscription.</p>
+							<p><span>Amount paid for 3 months: ₹<?php echo $package_amount; ?>.00</span> | <span>Days consumed: <?php echo $consumed_day; ?> days</span> | <span>New renewal date: <?php echo date('F dS, Y',strtotime($package_end_date) + 86400); ?></span></p>
+							<p class="amount_due">Amount due : ₹<span id="due_cost">2500</span> </p>
+							<button type="button" class="btn search_btn_new pay_now">Pay Now</button>
+						</div>
+					</div>
+				</div>
+				<div class="extra_bottom_space"></div>
+			</div>
+
 		</div>
 	</div>
 
 </div><!--container-->
+<style>
+	.pan_subscription_tab{margin-bottom: 0px;}
+	.extra_bottom_space{margin-bottom: 80px;}
+</style>

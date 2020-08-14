@@ -276,9 +276,9 @@
 			$(document).ready(function(){
 				$(".checkbox-state").change(function(){
 					var checkbox_length = $(this).closest('.dropdown-menu').find('[type=checkbox]:checked').length;
-					if(checkbox_length > 3)
+					if(checkbox_length > 2)
 					{
-						alert('Please choose only 3 states!');
+						alert('Please choose only 2 states!');
 						$(this).prop('checked',false);
 					}
 				});
@@ -288,7 +288,7 @@
 					if(data_id > 3)
 					{
 						var selected_checkbox = $(this).closest('.subscription_box').find('[type=checkbox]:checked').length;
-						if(selected_checkbox == 3)
+						if(selected_checkbox == 2)
 						{
 							var state = '';
 							$(this).closest('.subscription_box').find('[type=checkbox]:checked').each(function(){
@@ -299,7 +299,7 @@
 						}
 						else
 						{
-							alert('Please select 3 states!');
+							alert('Please select 2 states!');
 						}
 					}
 					else

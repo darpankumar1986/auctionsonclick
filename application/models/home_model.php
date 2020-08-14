@@ -287,6 +287,177 @@ class Home_model extends CI_Model {
 				return $query->num_rows();   
 	}
     
+
+	function advancedSearchDatatable($bankIdbyshortname='')
+    {           		
+		
+			$_POST['sColumns'] = "a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id";
+               $this->datatables->select("a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+                ->from('tbl_auction as a')				
+				->join('tbl_category as c','c.id=a.subcategory_id','left')
+				->join('tbl_city as city','city.id=a.city','left')
+				->join('tbl_bank as bank','bank.id=a.bank_id','left')
+                ->where('a.status IN(1)')
+                ->where('bid_last_date >= NOW()');
+                  $this->db->order_by('a.bid_last_date','ASC');
+			  
+				  if($_GET['search_city'] != '')
+				  {
+					$this->db->where("city.city_name like '%".$_GET['search_city']."%'");
+				  }
+			  
+	
+				  if($_GET['search_box'] != '')
+				  {
+					$this->db->where('a.PropertyDescription',$_GET['search_box']);
+				  }
+
+				  if($_GET['borrower_name'] != '')
+				  {
+					$this->db->where('a.borrower_name',$_GET['borrower_name']);
+				  }
+				  
+
+				  if($_GET['bank'] != '')
+				  {
+					$this->db->where('a.bank_id',$_GET['bank']);
+				  }
+
+				  
+
+				  if(is_array($_GET['sc']) && count($_GET['sc']) > 0)
+				  {
+					$this->db->where('a.subcategory_id IN('.implode(',',$_GET['sc']).')');
+				  }
+
+
+				$reservePriceMinRange = $_GET['reservePriceMinRange'];
+				$reservePriceMaxRange = $_GET['reservePriceMaxRange'];
+				
+				if($reservePriceMinRange > 0)
+				{
+					$this->db->where('a.reserve_price >=',$reservePriceMinRange);
+					//$this->db->where('a.reserve_price <=',$reservePriceMaxRange);
+				}
+
+				if($reservePriceMaxRange > 0)
+				{
+					//$this->db->where('a.reserve_price >=',$reservePriceMinRange);
+					$this->db->where('a.reserve_price <=',$reservePriceMaxRange);
+				}
+
+				$auction_start_date = $_GET['auction_start_date'];
+				$auction_end_date = $_GET['auction_end_date'];
+				
+				if($auction_start_date != '')
+				{
+					$this->db->where('a.auction_start_date >=',$auction_start_date.' 00:00:00');
+				}
+
+				if($auction_end_date != '')
+				{
+					$this->db->where('a.auction_end_date <=',$auction_end_date.' 23:59:59');
+				}
+
+			  if($_GET['parent_id'] != '' && $_GET['parent_id'] != 'undefined')
+			  {
+				$this->db->where('a.category_id',$_GET['parent_id']);
+			  }
+			  else
+			  {
+				 $cat = '1,2,3';
+				 $this->db->where('a.category_id IN('.$cat.')');
+			  }
+	
+                 return $this->datatables->generate();
+				 //echo $this->db->last_query();die;
+    }
+
+
+	function getTotalAdvancedSearchAuction()
+    { 
+		
+               $this->db->select("a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+                ->from('tbl_auction as a')				
+				->join('tbl_category as c','c.id=a.subcategory_id','left')
+				->join('tbl_city as city','city.id=a.city','left')
+				->join('tbl_bank as bank','bank.id=a.bank_id','left')
+                ->where('a.status IN(1)')
+                ->where('bid_last_date >= NOW()');
+                  $this->db->order_by('a.bid_last_date','ASC');
+
+				  if($_GET['search'] != '')
+				  {
+					$this->db->where("city.city_name like '%".$_GET['search']."%'");
+				  }
+			  
+	
+				  if($_GET['search_box'] != '')
+				  {
+					$this->db->where('a.PropertyDescription',$_GET['search_box']);
+				  }
+					
+				  if($_GET['borrower_name'] != '')
+				  {
+					$this->db->where('a.borrower_name',$_GET['borrower_name']);
+				  }
+					
+				  if($_GET['bank'] != '')
+				  {
+					$this->db->where('a.bank_id',$_GET['bank']);
+				  }
+
+				  
+				  if(is_array($_GET['sc']) && count($_GET['sc']) > 0)
+				  {
+					$this->db->where('a.subcategory_id IN('.implode(',',$_GET['sc']).')');
+				  }
+
+
+				$reservePriceMinRange = $_GET['reservePriceMinRange'];
+				$reservePriceMaxRange = $_GET['reservePriceMaxRange'];
+				
+				if($reservePriceMinRange > 0)
+				{
+					$this->db->where('a.reserve_price >=',$reservePriceMinRange);
+					//$this->db->where('a.reserve_price <=',$reservePriceMaxRange);
+				}
+
+				if($reservePriceMaxRange > 0)
+				{
+					//$this->db->where('a.reserve_price >=',$reservePriceMinRange);
+					$this->db->where('a.reserve_price <=',$reservePriceMaxRange);
+				}
+
+
+				$auction_start_date = $_GET['auction_start_date'];
+				$auction_end_date = $_GET['auction_end_date'];
+				
+				if($auction_start_date != '')
+				{
+					$this->db->where('a.auction_start_date >=',$auction_start_date.' 00:00:00');
+				}
+
+				if($auction_end_date != '')
+				{
+					$this->db->where('a.auction_end_date <=',$auction_end_date.' 23:59:59');
+				}
+
+				if($_GET['parent_id'] != '' && $_GET['parent_id'] != 'undefined')
+				{
+					$this->db->where('a.category_id',$_GET['parent_id']);
+				}
+				else
+				{
+					$cat = '1,2,3';
+					$this->db->where('a.category_id IN('.$cat.')');
+				}
+
+				$query = $this->db->get('');
+				//echo $this->db->last_query();die;
+				return $query->num_rows();   
+	}
+
     function getAllAssetsType()
     {
 		$this->db->where('status',1);
@@ -966,6 +1137,17 @@ class Home_model extends CI_Model {
 		$this->db->order_by('subscription_participate_id');
 		$row_query = $this->db->get('tbl_subscription_participate');
 		return $row_query->row();
+	}
+
+	public function getTotalActivePackage($bidderID)
+	{
+		$this->db->where('member_id',$bidderID);
+		$this->db->where('subscription_status',1);
+		$this->db->where('package_end_date > now()');
+		//$this->db->where('package_start_date < now()');
+		$this->db->order_by('subscription_participate_id');
+		$row_query = $this->db->get('tbl_subscription_participate');
+		return $row_query->num_rows();
 	}
 }
 
