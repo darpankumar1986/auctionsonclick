@@ -187,11 +187,12 @@ class Home_model extends CI_Model {
     function liveAuctionDatatableHome($bankIdbyshortname='')
     {           		
 		
-			$_POST['sColumns'] = "a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id";
-               $this->datatables->select("a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+			$_POST['sColumns'] = "bank.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id";
+               $this->datatables->select("bank.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id",false)
                 ->from('tbl_auction as a')				
 				->join('tbl_category as c','c.id=a.subcategory_id','left')
 				->join('tbl_city as city','city.id=a.city','left')
+				 ->join('tbl_bank as bank','bank.id=a.bank_id','left')
                 ->where('a.status IN(1)')
                 ->where('auction_end_date >= NOW()');
                   $this->db->order_by('a.bid_last_date','ASC');
@@ -876,7 +877,7 @@ class Home_model extends CI_Model {
 		return $resArr;
 	}
 
-	public function save_payment($bidderID,$package_id) 
+	public function save_payment($bidderID,$package_id,$package_type=0) 
       {	
 			$state = '';
 			if(is_array($_GET['state']))
@@ -891,6 +892,11 @@ class Home_model extends CI_Model {
 			$query = $this->db->get("tbl_user_registration");
 			$bidder = $query->row();
 
+			if($package_type == 1 && $_GET['due_cost'] > 0)
+			{
+				$package->package_amount = $_GET['due_cost'];
+			}
+
 			$indate=date('Y-m-d H:i:s');
                
 			$data = array('bidderID'=>$bidderID ,
@@ -902,6 +908,7 @@ class Home_model extends CI_Model {
 					'payu_amount'=>$package->package_amount,					
 					'payu_email'=>$bidder->email_id,
 					'state'=>$state,
+					'package_type'=>$package_type,
 					);
 
 			
@@ -948,6 +955,17 @@ class Home_model extends CI_Model {
 			}
 		}
 		return $resArr;
+	}
+
+	public function getCurrentPackage($bidderID)
+	{
+		$this->db->where('member_id',$bidderID);
+		$this->db->where('subscription_status',1);
+		$this->db->where('package_end_date > now()');
+		$this->db->where('package_start_date < now()');
+		$this->db->order_by('subscription_participate_id');
+		$row_query = $this->db->get('tbl_subscription_participate');
+		return $row_query->row();
 	}
 }
 

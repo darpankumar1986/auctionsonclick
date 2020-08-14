@@ -199,3 +199,8 @@ DROP `auction_resume_time`,
 DROP `auction_bidding_activity_status`,
 DROP `is_invoice_generated`,
 DROP `is_payment_recived`;
+
+----------------neeraj ------------------------
+
+ALTER TABLE `tbl_subscription_package` ADD `per_day_cost` DECIMAL(15,5) NULL AFTER `package_city`;
+ALTER TABLE `tbl_payment` ADD `package_type` INT NOT NULL DEFAULT '0' AFTER `state`, ADD INDEX (`package_type`);

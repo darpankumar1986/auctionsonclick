@@ -188,6 +188,7 @@ class Payment2 extends WS_Controller
 						$bidderID = $payment_res->bidderID;
 						$package_id = $payment_res->auctionID;
 						$state_str = $payment_res->state;
+						$package_type = $payment_res->package_type;
 
 						$stateArr = array();
 						if($state_str != '')
@@ -199,6 +200,18 @@ class Payment2 extends WS_Controller
 						$this->db->where('package_id', $package_id);
 						$query = $this->db->get("tbl_subscription_package");
 						$package = $query->row();
+
+						if($package_type == 1) // Previous Subscrition Expired
+						{
+							$row = $this->home_model->getCurrentPackage($bidderID);
+							
+							$this->db->where('subscription_participate_id', $row->subscription_participate_id);
+							$this->db->update("tbl_subscription_participate",array('package_end_date'=>date('Y-m-d H:i:s')));
+
+							$this->db->where('subscription_participate_id', $row->subscription_participate_id);
+							$this->db->update("tbl_subscription_participate_city",array('sub_end_date'=>date('Y-m-d H:i:s')));
+							
+						}
 
 						$startDate = date('Y-m-d H:i:s');
 						$endDate = date('Y-m-d H:i:s',strtotime("+".$package->sub_month." months"));
@@ -344,8 +357,16 @@ class Payment2 extends WS_Controller
 				$this->db->where('control_number',$controlNumber);
 				$this->db->update('tbl_jda_payment_log',$rData);	
 
-				$this->session->set_flashdata('message_new','Subcription Payment Failure ! Please try again<br>');	
-				redirect("/home/premiumServices/");
+				if($res1[0]->package_type == 1)
+				{
+					$this->session->set_flashdata('message_new','Subcription Payment Failure ! Please try again<br>');	
+					redirect("/owner/manageSubscription");
+				}
+				else
+				{
+					$this->session->set_flashdata('message_new','Subcription Payment Failure ! Please try again<br>');	
+					redirect("/home/premiumServices/");
+				}
 		}
 		else
 		{

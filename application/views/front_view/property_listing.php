@@ -8,7 +8,7 @@ var oTable = null;
 
 
             initHomeTable();
-  
+
             setTimeout(function(){ $("#big_table_info").text(''); }, 500);
 
              $("#reservePriceMaxRange,#reservePriceMinRange").keyup(function(){
@@ -104,22 +104,22 @@ var oTable = null;
                 oTable.destroy();
                 //oTable = null
             }
-			
+
             var sub_id_str = '';
-			<?php foreach($_GET['sc'] as $sc){ ?>
-				sub_id_str += "&sub_id[]=<?php echo $sc; ?>";
-			<?php } ?>
-			var parent_id = "<?php echo $_GET['assetsTypeId']; ?>";
+            <?php foreach($_GET['sc'] as $sc){ ?>
+                sub_id_str += "&sub_id[]=<?php echo $sc; ?>";
+            <?php } ?>
+            var parent_id = "<?php echo $_GET['assetsTypeId']; ?>";
             var reservePriceMaxRange = '';
             var reservePriceMinRange = '';
             var search_box = '';
             oTable = $('#big_table').DataTable({
-				dom: "<'row'<'col-sm-6 top-pagination pagination_main'p>>" +
-					"<'row'<'col-sm-12'tr>>" +
-					"<'row'<'col-sm-5'i><'col-sm-7 pagination_main'p>>",
+                dom: "<'row'<'col-sm-6 top-pagination pagination_main'p>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7 pagination_main'p>>",
                 "bAutoWidth": false,
                 //"aoColumns": [{"sWidth": "5%"}, {"sWidth": "10%"}, {"sWidth": "20%"}, {"sWidth": "30%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "10%"}, {"sWidth": "10%"}],
-                "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6] } ],
+                "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 5] } ],
                 "bProcessing": true,
                 "bServerSide": true,
                 "sAjaxSource": '<?php echo base_url(); ?>home/liveAuctionDatatableHome/?reservePriceMaxRange='+reservePriceMaxRange+"&reservePriceMinRange="+reservePriceMinRange+"&search_box="+search_box+"&parent_id="+parent_id+sub_id_str,
@@ -146,24 +146,19 @@ var oTable = null;
 
 
 
-                      $('td:eq(6)', nRow).addClass('button-img');
-                      $('td:eq(5)', nRow).html('₹'+aData[5]);
+                      $('td:eq(5)', nRow).addClass('button-img');
+                      $('td:eq(4)', nRow).html('₹'+aData[4]);
 
 
-                      $('td:eq(6)', nRow).html('<a class="corrigendum_iframe" href="<?php echo base_url(); ?>home/auctionDetail/' + aData[6] + '"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/view_button.png" title="View Auction" class="edit1"></a>'); /* auctionDetailPopup */
-
-                      /*setTimeout(function(){
-                            $(".corrigendum_iframe").colorbox({iframe:true, width:"65%", height:"80%",onClosed:function(){  }});
-                            $(".corrigendum_iframe").addClass("cboxElement");
-                        },1000);*/
+                      $('td:eq(5)', nRow).html('<a class="corrigendum_iframe" href="<?php echo base_url(); ?>home/auctionDetail/' + aData[5] + '"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/view_button.png" title="View Auction" class="edit1"></a>'); 
 
                     return nRow;
                     }
                 });
 
-			  <?php if($_GET['search'] != ''){ ?>
-				oTable.columns(3).search('<?php echo $_GET['search']; ?>').draw();
-			  <?php } ?>
+              <?php if($_GET['search'] != ''){ ?>
+                oTable.columns(2).search('<?php echo $_GET['search']; ?>').draw();
+              <?php } ?>
         }
 
         function isNumberKey(evt)
@@ -213,7 +208,7 @@ var oTable = null;
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <div class="form_wrap_anction_search form-wrap">
+            <div class="form_wrap_anction_search form-wrap form_dropdown_border">
                 <form class="form_desc">
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Category
@@ -311,29 +306,29 @@ var oTable = null;
                             </div>
                         </div>
                     </div>
-                    <div class="auction_table bank_auction_table shortlisted_table table-responsive">
-						<div class="get-alerts">
-						<button class="btn btn-default shortlist_list" type="button">
-							<i class="fa fa-bell"></i> Get Alerts
-						</button>
-						</div>
-						<div class="custom-dropdown-select">
-						   <div class="custom-select">
-							   <select>
-								   <option value="0">Newest (Default Sort)</option>
-								   <option value="1">Newest (Default Sort)-1</option>
-								   <option value="2">Newest (Default Sort)-2</option>
-								   <option value="3">Newest (Default Sort)-3</option>
-								   <option value="4">Newest (Default Sort)-4</option>
-								   <option value="5">Newest (Default Sort)-5</option>
-							   </select>
-							</div>
-					   </div>
+                    <div class="auction_table auction_table_border bank_auction_table shortlisted_table table-responsive">
+                        <div class="get-alerts">
+                        <button class="btn btn-default" type="button">
+                            <i class="fa fa-bell"></i> Get Alerts
+                        </button>
+                        </div>
+                        <div class="property_dropdown_listing">
+                        <div class="custom-dropdown-select">
+                           <div class="custom-select">
+                               <select>
+                                   <option value="0">Newest (Default Sort)</option>
+                                   <option value="1">Newest (Default Sort)</option>
+                                   <option value="2">Price (High to Low)</option>
+                                   <option value="3">Price (Low to High)</option>
+                               </select>
+                            </div>
+                       </div>
+                        </div>
                         <?php
                                 //set table id in table open tag
                                     $tmpl = array('table_open' => '<table id="big_table" border="1" width="100%" cellpadding="2" cellspacing="1" class="myTable auction_table_box">');
                                     $this->table->set_template($tmpl);
-                                    $this->table->set_heading('List ID', 'Property Type','Location','City','EMD Submission Last Date','Reserve Price','View Details');
+                                    $this->table->set_heading('Bank Name', 'Asset Details','City','EMD Submission Last Date','Reserve Price','View Details');
                                     echo $this->table->generate();
                                 ?>
 

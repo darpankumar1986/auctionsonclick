@@ -3468,6 +3468,18 @@ class Owner extends WS_Controller {
 
 	public function manageSubscription()
 	{
+		if($_GET['package_id'] > 0)
+		{
+	
+				$bidderID = $this->session->userdata('id');
+				$last_insert_id_payment = $this->home_model->save_payment($bidderID,$_GET['package_id'],1);
+				
+				redirect('/payment2/index?txnid='.base64_encode($last_insert_id_payment));die;
+			
+		}
+
+		
+		$data['title'] = 'Manage Subscription';
 		$this->load->view('front_view/header',$data);
 		if(MOBILE_VIEW)
 		{				

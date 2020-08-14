@@ -1121,7 +1121,48 @@ button.login_btn {
     color: #ffffff;
     border-radius: 4px;
 }
-
+.top-pagination {
+    float: right;
+}
+.get-alerts {
+    float: left;
+    width: 160px;
+}
+.property_dropdown_listing {
+    float: left;
+    width: 260px;
+    margin-top: 15px;
+}
+.get-alerts .btn-default {
+    background-color: #0078db;
+    color: #fff;
+    font-family: 'Roboto-Regular';
+    font-size: 13px;
+    border: 0;
+    padding: 10px 22px;
+    margin-top: 15px;
+    margin-left: 19px;
+}
+.get-alerts .btn-default i {
+    padding-right: 5px;
+}
+.get-alerts .btn-default:hover, .get-alerts .btn-default:focus, .get-alerts .btn-default:active, .get-alerts .btn-default:active:hover {
+    background-color: #005ca8;
+    outline: 0;
+}
+.auction_table_border {
+    border: 1px solid #cccccc;
+}
+.bank_auction_row .top-pagination .pagination {
+    margin: 16px 5px 16px 0;
+}
+.auction-main-wrapper .form_wrap_anction_search.form_dropdown_border .dropdown-toggle {
+    border: 0 !important;
+    height: 48px !important;
+}
+.form_wrap_anction_search.form_dropdown_border .dropdown {
+    border: 1px solid #cccccc;
+}
 /*----------------------------Property_Listing_page_end---------------------------------------*/
 
 /*----------------------------View Detail - Before Login & Subscription------------------------*/
