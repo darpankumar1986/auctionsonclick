@@ -431,6 +431,24 @@ body{
 .home_form_wrap.form-wrap .form_desc .btn-default.dropdown-toggle {
     border: 0;
 }
+.home_form_wrap.form-wrap .form_desc .btn-default:focus{
+	box-shadow:none;
+}
+.custom-select1 input[type="text"]::-webkit-input-placeholder { /* Chrome */
+   color: #333333;
+}
+
+.custom-select1 input[type="text"]:-ms-input-placeholder { /* IE 10+ */
+   color: #333333;
+}
+	
+.custom-select1 input[type="text"]::-moz-placeholder { /* Firefox 19+ */
+   color: #333333;
+}
+	
+.custom-select1 input[type="text"]:-moz-placeholder { /* Firefox 4 - 18 */
+   color: #333333;
+}
 .home_form_wrap.form_wrap_anction_search .custom-dropdown-select .select-selected {
     border: 0;
 }
@@ -636,8 +654,8 @@ h3.auction_heading {
     color: #5e23dc;
 }
 .auction-main-wrapper .login {
-    padding-top: 20px;
-    margin-bottom: 18px;
+    /*padding-top: 20px;
+    margin-bottom: 18px;*/
 }
 .auction-main-wrapper .container_margin {
     margin-top: 90px;
@@ -937,7 +955,7 @@ button.login_btn {
 
 .custom-dropdown-select .select-items {
     overflow-y: auto;
-    height: 300px;
+    max-height: 300px;
 }
 .custom-dropdown-select .select-selected {
     border: 1px solid #ccc;

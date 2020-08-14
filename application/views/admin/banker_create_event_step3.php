@@ -92,7 +92,7 @@ $other_city=$auctionData->other_city;
 						<input type="hidden" value="<?php echo $userID;?>" name="first_opener"/>
 						<input type="hidden" value="<?php if($utype =='approver') echo $userID;?>" name="second_opener"/> <!--Added by aziz -->
 					  <div class="plain row">
-						  <div class="lft_heading">Institution Name<span class="red">*</span></div>
+						  <div class="lft_heading">Bank Name<span class="red">*</span></div>
 
 						<div class="rgt_detail">
 							<select name="bank_id" id="bank_id"  class="select">
@@ -138,8 +138,23 @@ $other_city=$auctionData->other_city;
 								</div>
 							</div>
 					  
+					   <div class="row">
+						<div class="lft_heading">Auction Type <span class="red">*</span></div>
+						<div class="rgt_detail">
+						  <select class="select" name="event_type" id="event_type">
+							<option value="drt" <?php echo ($auctionData->event_type=='drt')?'selected="selected"':''; ?> >DRT</option>
+							<option value="sarfaesi" <?php echo ($auctionData->event_type=='sarfaesi' || $auctionData->event_type=='')?'selected="selected"':''; ?> >Sarfaesi</option>
+							</select>
+
+						  <div class="tooltips">
+							<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
+							<span>You may choose the most suitable Auction Type.</span>
+							</div>
+						</div>
+					  </div>
+
 					  <div class="row">
-						<div class="lft_heading">Type <span class="red">*</span></div>
+						<div class="lft_heading">Assets Category <span class="red">*</span></div>
 						<div class="rgt_detail">
 						  <select class="select" name="category_id" id="category_id">
 							<option value="">---Select---</option>
@@ -157,7 +172,7 @@ $other_city=$auctionData->other_city;
 					  </div>
 					  
 					  <div class="row" id="subCategoryType" <?php if($auctionData->category_id==1 || $auctionData->category_id==2){ echo 'style="display:block;"';} else{echo 'style="display:none;"';}?>>
-							<div class="lft_heading">Sub Type <span class="red"> *</span></div>
+							<div class="lft_heading">Assets Type <span class="red"> *</span></div>
 							<div class="rgt_detail">
 								<select name="sub_category_id" id="sub_category_id" class="select">
 								  <option value="">---Select---</option>
@@ -172,7 +187,16 @@ $other_city=$auctionData->other_city;
 								</div>
 							</div>
 						</div>
-						
+					  <div class="row">
+							<div class="lft_heading">Contact Details <span class="red">*</span></div>
+							<div class="rgt_detail">							
+							<textarea id="contact_person_details_1" name="contact_person_details_1" ><?php echo $auctionData->contact_person_details_1; ?></textarea>
+							<div class="tooltips">
+								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
+								<span>Contact Person Details</span>
+							</div>
+							</div>
+						</div>	
 					  <div class="row">
 						<div class="lft_heading">Description <span class="red"> *</span></div>
 						<div class="rgt_detail">
@@ -880,17 +904,8 @@ $other_city=$auctionData->other_city;
 								</div>
 							</div>							
 						</div>
-						<!--
-						<div class="row">
-							<div class="lft_heading">1st Contact Person Details <span class="red">*</span> </div>
-							<div class="rgt_detail">							
-							<textarea id="contact_person_details_1" name="contact_person_details_1" ><?php echo $auctionData->contact_person_details_1; ?></textarea>
-							<div class="tooltips">
-								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-								<span>The number of auto extensions may be restricted by this option. e.g if one wants to have auto extension only 3 times then write ‘3‘ in this field. For indefinite extensions please keep this field blank.</span>
-							</div>
-							</div>
-						</div>-->
+						
+						
 					<!--	
 					<div class="row">
 							<div class="lft_heading">2nd Contact Person Details</div>
@@ -1009,12 +1024,12 @@ $other_city=$auctionData->other_city;
 								} ?>
 							</div>
 						</fieldset>
-						<div class="row">
+						<!--<div class="row">
 							<div class="lft_heading">Sales Person Details</div>
 							<div class="rgt_detail">
 								<div id="sales_person"><?php echo $sales_person_detail; ?></div>	 
 							</div>
-						</div>
+						</div>-->
 						<!--					
 						<div class="row">
 							<div class="lft_heading">Any Documents Pertinent To The Auction<span class="red">*</span> </div>
@@ -1544,7 +1559,7 @@ jQuery(".numericonly_1").keydown(function (e) {
 		{
 			var city_id = jQuery('#city_id').val();
 			jQuery('#city').load('/admin/home/getCityDropDown/' + state_id + '/' + city_id);
-			jQuery('#sales_person').load('/admin/home/getSalesPerson/' + state_id);
+			//jQuery('#sales_person').load('/admin/home/getSalesPerson/' + state_id);
 		}
 
 	});
@@ -1953,7 +1968,7 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
     if (btn == "save")
     {
         if (jQuery('#bank_id').val() == '') {
-            jQuery('#spMsg').append("<li>Please Select Institution. </li>");
+            jQuery('#spMsg').append("<li>Please Select Bank. </li>");
             flag = 1;
         }
 		if (jQuery('#branch_id').val() == '') {
@@ -1961,7 +1976,7 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
             flag = 1;
         }
         if (jQuery('#category_id').val() == '') {
-            jQuery('#spMsg').append("<li>Please Select Type. </li>");
+            jQuery('#spMsg').append("<li>Please Select Assets Category. </li>");
             flag = 1;
         }
 		
@@ -2061,7 +2076,7 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
     {
         //alert(body);
         if (jQuery('#bank_id').val() == '') {
-            jQuery('#spMsg').append("<li>Please Select Institution. </li>");
+            jQuery('#spMsg').append("<li>Please Select Bank. </li>");
             flag = 1;
         }
 		if (jQuery('#branch_id').val() == '') {
@@ -2069,7 +2084,16 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
             flag = 1;
         }
         if (jQuery('#category_id').val() == '') {
-            jQuery('#spMsg').append("<li>Please Select Type. </li>");
+            jQuery('#spMsg').append("<li>Please Select Assets Category. </li>");
+            flag = 1;
+        }
+		if ((jQuery('#category_id').val() == 1 || jQuery('#category_id').val() ==2) && jQuery('#sub_category_id').val() == '') {
+            jQuery('#spMsg').append("<li>Please Select Assets Type. </li>");
+            flag = 1;
+        }
+
+		if (jQuery('#contact_person_details_1').val() == '') {
+            jQuery('#spMsg').append("<li>Please Enter Contact Details. </li>");
             flag = 1;
         }
 		

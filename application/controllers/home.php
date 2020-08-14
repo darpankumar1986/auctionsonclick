@@ -179,22 +179,13 @@ class Home extends MY_Controller {
 		$save = $this->home_model->save_contactus();
 		if ($save) {
 			
-			redirect('home/contactusSuccess');
+			
+			redirect('home/success?cs=1');
 			exit;
 		}
 	
 	}
 
-	function contactusSuccess() {
-		$data['title'] = 'Thank You!';
-		$data['subcription_plan'] = $this->home_model->getSubcriptionPlan(0);
-		$data['total_auction'] = $this->home_model->getTotalAuction();
-        $this->load->view('front_view/header', $data);
-        $this->load->view('front_view/contactus_success', $data);
-        $this->load->view('front_view/footer');
-    }
-
-	
 	function auctionDetailPopup($auctionID) {
             $data['auction_data'] = $this->home_model->aucDetailPopupData($auctionID);
             $data['uploadedDocs'] = $this->home_model->GetUploadedDocsByAuctionId($auctionID);
@@ -225,7 +216,7 @@ class Home extends MY_Controller {
 		$vdata['property'] = $this->home_model->getProperty();
 		
 		$vdata['data'] = $this->home_model->getAuctionCityLocation();
-		$vdata['totalAuction'] = $this->home_model->getTotalCityAuction();
+		$vdata['totalAuction'] = $this->home_model->getTotalAdvancedSearchAuction();
 		
 		 if(MOBILE_VIEW)
 		{				

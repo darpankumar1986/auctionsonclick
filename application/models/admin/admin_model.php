@@ -298,6 +298,7 @@ class Admin_model extends CI_Model {
 		$area		 	  		    =	 $this->input->post('area');
 		$area_unit_id	 			=	 $this->input->post('area_unit_id');
 		$event_title 				=	 $this->input->post('event_title');
+		$event_type 				=	 $this->input->post('event_type');
 		$category_id 				=	 $this->input->post('category_id');
 		$sub_category_id			=	 $this->input->post('sub_category_id');
 		$vehicle_type 				=	 $this->input->post('vehicle_type');
@@ -484,7 +485,7 @@ class Admin_model extends CI_Model {
 		
 		$data 	= array(
 			//'productID'=>$productID,
-			'event_type'=>'',
+			'event_type'=>$event_type,
 			'account_type_id'=>$account,
 			//'auto_bid_cut_off'=>$auto_bid_cut_off,
 			'reference_no'=>$reference_no,
@@ -558,8 +559,8 @@ class Admin_model extends CI_Model {
 			'contact_person_details_2'=>$contact_person_details_2,
 			'approvalStatus'=>$approvalStatus,
 			'approverComments'=>$approverComments,
-			'PropertyDescription'=>$propertyDescription,
-			'sales_person_id'=>($sales_person_id!='')?$sales_person_id:0			
+			'PropertyDescription'=>$propertyDescription
+			//'sales_person_id'=>($sales_person_id!='')?$sales_person_id:0			
 		);
 		
 		/*

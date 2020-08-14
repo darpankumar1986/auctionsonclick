@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.css" type="text/css" media="screen"/>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/front_view/js/jquery-ui.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url();?>js/jquery-ui-1.12.1.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/colorbox.css" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>bankeauc/css/tables.css" />
 <script src="<?php echo base_url(); ?>js/jquery.colorbox.js"></script>
@@ -10,7 +10,7 @@
 		<div class="banner-section">
 			<div class="banner-img">
 				<div class="banner-text">
-						<div class="form-wrap">
+						<div class="home_form_wrap form_wrap_anction_search form-wrap">
 							<h3>Find your best property &amp; Vehicles here</h3>
 							<p>Buy properties &amp; Vehicles at more than 25% discount</p>
 							<form class="form_desc">
@@ -32,17 +32,29 @@
 									</ul>
 									<input type="hidden" name="assetsTypeId" id="assetsTypeId" value="0"/>
 								</div>
-								<div class="input-group">
-									<input type="hidden" id="txt-category">  
-									<input type="text" id="txt-search" class="form-control searchres" name="x" onKeyPress="enterpressalert(event)" placeholder="Type City" value="<?php echo $_GET['search'];?>">
-									<div class="input-group-btn search_btn">
-										<button class="btn btn-default searhcbtn" type="button" onclick="goForSearch(this)">
-											<i class="fa fa-search"></i> Auctions
-										</button>
-									</div>
-								</div>
-								<div class="error" id="error_txt" style="margin-top: 50px;background-color: #00000073;display: block;height: 20px;padding-right: 30px;color: #e41b1b;margin-left: 148px;"></div>
+								<div class="custom-dropdown-select1">
+                                   <div class="custom-select1">
+										<input type="text" id="txt-search" class="form-control item-suggest btn-default dropdown-toggle select-selected" name="x" placeholder="Type City" value="" style="border-left: 1px solid #ccc;">
+                                   </div>
+                               </div>
+							   <?php $allbank = $this->home_model->getAllBank(); ?>
+                               <div class="custom-dropdown-select">
+                                   <div class="custom-select">
+                                       <select name="bank" id="bank">
+                                           <option value="">Select Bank</option>
+										   <?php foreach($allbank as $bank){ ?>
+	                                           <option value="<?php echo $bank->id; ?>"><?php echo $bank->name; ?></option>
+										   <?php } ?>
+                                       </select>
+                                   </div>
+                               </div>
+							   <div class="search_btn_section">
+                                   <button class="btn btn-default btn-search searhcbtn" type="button" onclick="goForSearch(this)">
+                                        <i class="fa fa-search"></i> Search
+                                   </button>
+                               </div>
 							</form>
+							<div class="error" id="error_txt" style="margin-top:0;background-color: #00000073;display: block;height: 20px;padding-right: 30px;color: #e41b1b;margin-left:0;"></div>
 						</div>
 				</div><!--banner-text-->
 			</div><!--banner-img-->

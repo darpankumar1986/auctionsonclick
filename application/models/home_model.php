@@ -291,8 +291,8 @@ class Home_model extends CI_Model {
 	function advancedSearchDatatable($bankIdbyshortname='')
     {           		
 		
-			$_POST['sColumns'] = "a.id,c.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id";
-               $this->datatables->select("a.id,IFNULL(c.name,'Others'),a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+			$_POST['sColumns'] = "bank.name,a.reference_no,c.name,city.city_name,a.bid_last_date,a.reserve_price,a.id";
+               $this->datatables->select("bank.name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
                 ->from('tbl_auction as a')				
 				->join('tbl_category as c','c.id=a.subcategory_id','left')
 				->join('tbl_city as city','city.id=a.city','left')
