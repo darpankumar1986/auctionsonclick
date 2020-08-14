@@ -8,8 +8,14 @@
                     <div class="thankyou">
                         <h1>Thank You!</h1>
                         <img src="<?php echo base_url(); ?>assets/auctiononclick/images/big_correct_icon.png">
-                        <h3>You are successfully subscribed to AuctionsOnClick.com</h3>
+                        
+						<?php if($_GET['cs']==1) {?>
+						<h3>Our representative will be getting in touch with you soon.</h3>
+                        <!--<p>We have sent you an email with your receipt.</p>-->
+						<?php }else{ ?>
+						<h3>You are successfully subscribed to AuctionsOnClick.com</h3>
                         <p>We have sent you an email with your receipt.</p>
+						<?php } ?>
                     </div><!--thankyou-->
                 </div>
                    </div>
@@ -42,7 +48,7 @@
                                <div class="custom-dropdown-select1">
                                    <div class="custom-select1">
 				
-										<input type="text" id="txt-search1" class="form-control item-suggest btn-default dropdown-toggle" name="x" placeholder="Type City" value="" style="border-left: 0px solid #ccc;">
+										<input type="text" id="txt-search" class="form-control item-suggest btn-default dropdown-toggle" name="x" placeholder="Type City" value="" style="border-left: 0px solid #ccc;">
 
                                     
                                    </div>
@@ -52,7 +58,6 @@
                                    <div class="custom-select">
                                        <select name="bank" id="bank">
                                            <option value="">Select Bank</option>
-                                           <option value="">All Cities</option>
 										   <?php foreach($allbank as $bank){ ?>
 	                                           <option value="<?php echo $bank->id; ?>"><?php echo $bank->name; ?></option>
 										   <?php } ?>
@@ -60,12 +65,12 @@
                                    </div>
                                </div>
                                <div class="search_btn_section">
-                                   <button class="btn btn-default btn-search" type="button" onclick="goForSearch1(this)">
+                                   <button class="btn btn-default btn-search" type="button" onclick="goForSearch(this)">
                                         <i class="fa fa-search"></i> Search
                                    </button>
                                </div>
 							 </form>
-							 <div class="error" id="error_txt1" style="display: block;height: 20px;padding-right: 30px;color:#f00;background-color: transparent;    margin-top: 5px;"></div>
+							 <div class="error" id="error_txt" style="display: block;height: 20px;padding-right: 30px;color:#f00;background-color: transparent;    margin-top: 5px;"></div>
                        </div>
                    </div>
                </div>

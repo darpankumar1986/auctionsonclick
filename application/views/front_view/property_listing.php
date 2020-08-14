@@ -14,30 +14,8 @@ var oTable = null;
 
 			initHomeTable();
 
-			$(document).on("click",".select-items",function(){
-				var dataSortValue = '';
-				var isDataSort = $(this).closest('.custom-select').find('select').hasClass('dataSort');
-				if(isDataSort)
-				{
-					var selected_text_sort = $(this).find('.same-as-selected').html();
-					
-					if(selected_text_sort == 'Newest (Default Sort)')
-					{
-						dataSortValue = 1;
-					}
-					if(selected_text_sort == 'Price (High to Low)')
-					{
-						dataSortValue = 2;
-					}
-					if(selected_text_sort == 'Price (Low to High)')
-					{
-						dataSortValue = 3;
-					}
-					//alert(selected_text_sort);
-					
+			$(document).on("click",".sort-data .select-items",function(){
 				initHomeTable();
-				//setTimeout(function(){ $("#big_table_info").text(''); }, 500);
-				}
 			});
 			$(".dropdown-header input[name=parent_id]").change(function(){
 				var parent = $(this).val();
@@ -89,10 +67,30 @@ var oTable = null;
 			
 
 			//var dataSort = $("#dataSort").val();
-			var  dataSortValue = $(".select-items").closest('.custom-select').find('select option:selected').val();	
-			if(dataSortValue !='')
+			var dataSortValue = '';
+			var isDataSort = $('.sort-data').find('select').hasClass('dataSort');
+			if(isDataSort)
 			{
-				dataSortValue = "&dataSortValue="+dataSortValue;
+				var selected_text_sort = $('.sort-data').find('.same-as-selected').html();
+				
+				if(selected_text_sort == 'Newest (Default Sort)')
+				{
+					dataSortValue = 1;
+				}
+				if(selected_text_sort == 'Price (High to Low)')
+				{
+					dataSortValue = 2;
+				}
+				if(selected_text_sort == 'Price (Low to High)')
+				{
+					dataSortValue = 3;
+				}
+				
+				if(dataSortValue !='')
+				{
+					dataSortValue = "&dataSortValue="+dataSortValue;
+				}
+			
 			}
 
 			
@@ -108,11 +106,7 @@ var oTable = null;
 			<?php	
 					} }
 			?>
-			var  dataSortValue = $(".select-items").closest('.custom-select').find('select option:selected').val();	
-			if(dataSortValue !='')
-			{
-				dataSortValue = "&dataSortValue="+dataSortValue;
-			}
+			
 
 			oTable = $('#big_table').DataTable({
 				dom: "<'row'<'col-sm-6 top-pagination pagination_main'p>>" +
@@ -210,67 +204,47 @@ var oTable = null;
         <div class="col-sm-12">
             <div class="form_wrap_anction_search form-wrap form_dropdown_border">
                 <form class="form_desc">
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Category
-                            <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-header"><input type="radio" id="test1" name="radio-group" checked>
-                                <label for="test1">All Properties</label></li>
-                            <li><label class="checkbox-inline"><input type="checkbox" value="">Land</label></li>
-                            <li><label class="checkbox-inline"><input type="checkbox" value="">Residential</label></li>
-                            <li><label class="checkbox-inline"><input type="checkbox" value="">Commercial</label></li>
-                            <li class="dropdown-header"><input type="radio" id="test2" name="radio-group">
-                                <label for="test2">All Vehicles</label></li>
-                            <li><label class="checkbox-inline"><input type="checkbox" value="">Personal</label></li>
-                            <li><label class="checkbox-inline"><input type="checkbox" value="">Commercial</label></li>
-                            <li class="dropdown-header"><input type="radio" id="test3" name="radio-group">
-                                <label for="test3">Others</label></li>
-                        </ul>
-                    </div>
-                    <div class="custom-dropdown-select">
-                        <div class="custom-select">
-                            <select>
-                                <option value="0">Select City</option>
-                                <option value="1">All Cities</option>
-                                <option value="2">Agra</option>
-                                <option value="3">Ahmedabad</option>
-                                <option value="4">Delhi</option>
-                                <option value="5">UP</option>
-                                <option value="6">Goa</option>
-                                <option value="7">Kerla</option>
-                                <option value="8">Ahmedabad</option>
-                                <option value="9">Delhi</option>
-                                <option value="10">UP</option>
-                                <option value="11">Goa</option>
-                                <option value="12">Kerla</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="custom-dropdown-select">
-                        <div class="custom-select">
-                            <select>
-                                <option value="0">Select Bank</option>
-                                <option value="1">All Cities</option>
-                                <option value="2">Agra</option>
-                                <option value="3">Ahmedabad</option>
-                                <option value="4">Delhi</option>
-                                <option value="5">UP</option>
-                                <option value="6">Goa</option>
-                                <option value="7">Kerla</option>
-                                <option value="8">Ahmedabad</option>
-                                <option value="9">Delhi</option>
-                                <option value="10">UP</option>
-                                <option value="11">Goa</option>
-                                <option value="12">Kerla</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="search_btn_section">
-                        <button class="btn btn-default btn-search" type="Search">
-                            <i class="fa fa-search"></i> Search
-                        </button>
-                    </div>
-                </form>
+								<div class="dropdown">
+									<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select
+										<span class="caret"></span></button>
+									<ul class="dropdown-menu assetsType">
+										<?php $parentCat = $this->home_model->getAllCategory(0); ?>
+											<?php foreach($parentCat as $key => $parCat){ ?>
+                                            <li class="dropdown-header">
+											<input type="radio" id="test<?php echo $key; ?>" class="s_parent_id" s-data-parent-id="<?php echo $parCat->id;?>" name="parentCat" value="<?php echo $parCat->id;?>">
+                                                <label for="test<?php echo $key; ?>">All <?php echo $parCat->name; ?></label></li>
+												<?php $Cats = $this->home_model->getAllCategory($parCat->id); ?>
+												<?php foreach($Cats as $cat){ ?>
+		                                            <li><label class="checkbox-inline"><input type="checkbox" s-data-parent="<?php echo $parCat->id;?>" name="s_sub_id" value="<?php echo $cat->id;?>"><?php echo $cat->name; ?></label></li>
+												<?php } ?>
+                                           
+											<?php } ?>                                            
+									</ul>
+									<input type="hidden" name="assetsTypeId" id="assetsTypeId" value="0"/>
+								</div>
+								<div class="custom-dropdown-select1">
+                                   <div class="custom-select1">
+										<input type="text" id="txt-search" class="form-control item-suggest btn-default dropdown-toggle select-selected" name="x" placeholder="Type City" value="" style="border: 1px solid #ccc !important;">
+                                   </div>
+                               </div>
+							   <?php $allbank = $this->home_model->getAllBank(); ?>
+                               <div class="custom-dropdown-select">
+                                   <div class="custom-select">
+                                       <select name="bank" id="bank">
+                                           <option value="">Select Bank</option>
+										   <?php foreach($allbank as $bank){ ?>
+	                                           <option value="<?php echo $bank->id; ?>"><?php echo $bank->name; ?></option>
+										   <?php } ?>
+                                       </select>
+                                   </div>
+                               </div>
+							   <div class="search_btn_section">
+                                   <button class="btn btn-default btn-search searhcbtn" type="button" onclick="goForSearch(this)">
+                                        <i class="fa fa-search"></i> Search
+                                   </button>
+                               </div>
+							</form>
+							<div class="error" id="error_txt" style="margin-top:0;display: none;height: 20px;padding-right: 30px;color: #e41b1b;margin-left:0;"></div>
             </div>
         </div>
     </div>
@@ -314,7 +288,7 @@ var oTable = null;
                         </div>
                         <div class="property_dropdown_listing">
                         <div class="custom-dropdown-select">
-                           <div class="custom-select">
+                           <div class="custom-select sort-data">
 							<select name="dataSort" id="dataSort" class="dataSort">
 								<option value="">Sort</option>
 								<option value="1">Newest (Default Sort)</option>
