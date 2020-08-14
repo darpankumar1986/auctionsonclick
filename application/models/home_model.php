@@ -1138,6 +1138,17 @@ class Home_model extends CI_Model {
 		$row_query = $this->db->get('tbl_subscription_participate');
 		return $row_query->row();
 	}
+
+	public function getTotalActivePackage($bidderID)
+	{
+		$this->db->where('member_id',$bidderID);
+		$this->db->where('subscription_status',1);
+		$this->db->where('package_end_date > now()');
+		//$this->db->where('package_start_date < now()');
+		$this->db->order_by('subscription_participate_id');
+		$row_query = $this->db->get('tbl_subscription_participate');
+		return $row_query->num_rows();
+	}
 }
 
 ?>

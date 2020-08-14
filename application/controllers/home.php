@@ -397,19 +397,9 @@ class Home extends MY_Controller {
 
 		if($_GET['package_id'] > 0)
 		{
-			if(IS_PAYMENT_GATEWAY_OFF===TRUE)
-			{
-				$res = $this->registration_model->save_step_first();
-				$this->session->set_flashdata('msg','Registration done Successfully !<br>');	
-				redirect("/registration/signup");
-			}
-			else
-			{
-				$bidderID = $this->session->userdata('id');
-				$last_insert_id_payment = $this->home_model->save_payment($bidderID,$_GET['package_id']);
-				
-				redirect('/payment2/index?txnid='.base64_encode($last_insert_id_payment));die;
-			}
+			$bidderID = $this->session->userdata('id');
+			$last_insert_id_payment = $this->home_model->save_payment($bidderID,$_GET['package_id']);				
+			redirect('/payment2/index?txnid='.base64_encode($last_insert_id_payment));die;
 		}
 
 		
