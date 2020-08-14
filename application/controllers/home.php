@@ -40,8 +40,8 @@ class Home extends MY_Controller {
     public function liveAuctionDatatableHome() {
         echo $this->home_model->liveAuctionDatatableHome();
     }
-
-    public function checkdsclogin() {
+	
+	public function checkdsclogin() {
         echo $this->home_model->checkdsclogin();
     }
 
@@ -468,6 +468,28 @@ class Home extends MY_Controller {
 		}
 		echo json_encode($data);
 	}
+	
+	
+	public function advancedSearchDatatable() {
+        echo $this->home_model->advancedSearchDatatable();
+    }
+
+	public function advanced_search()
+	{
+		$data['title'] = 'Advanced Search';
+		$data['totalAuction'] = $this->home_model->getTotalAdvancedSearchAuction();
+        $this->load->view('front_view/header', $data);
+        if(MOBILE_VIEW)
+		{			
+			$this->load->view('mobile/home', $data);
+		}
+		else
+		{		
+			$this->load->view('front_view/advanced_search', $data);
+		}
+        
+        $this->load->view('front_view/footer');
+    }
 }
 
 ?>
