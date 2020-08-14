@@ -2,10 +2,48 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="footer_about">
+                       <!-- <div class="footer_about">
                             <h4>About Us</h4>
                             <p>AuctionsOnClick.com is the only website in India that lists all the properties that are for sale through bank auctions. We list all the properties that are scheduled to be auctioned by various banks across India. Many people are interested in buying properties through bank auctions as they come at relatively cheaper prices compared to the market rates but are unable to do so for the lack of enough information on them. Foreclosureindia.com bridges this gap between the investors and the banks and financial institutions by providing an internet platform for them. AuctionsOnClick.com is committed to providing a win-win situation for both the buyers and the banks.</p>
-                        </div><!--footer_about-->
+                        </div> --><!--footer_about-->
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="footer_about">
+                                    <h4>Top 10 Cities</h4>
+                                    <ul>
+                                        <li><a href="#">Mumbai (874)</a></li>
+                                        <li><a href="#">Surat (564)</a></li>
+                                        <li><a href="#">Chennai (523)</a></li>
+                                        <li><a href="#">New Delhi (498)</a></li>
+                                        <li><a href="#">Pune (424)</a></li>
+                                        <li><a href="#">Bangalore (423)</a></li>
+                                        <li><a href="#">Ludhiana (383)</a></li>
+                                        <li><a href="#">Ahmedabad (332)</a></li>
+                                        <li><a href="#">Nagpur (300)</a></li>
+                                        <li><a href="#">Guntur (287)</a></li>
+                                        <li class="view_cities"><a href="#">View all Cities <span class="cities_icon"><i class="fa fa-angle-right"></i></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="footer_about">
+                                    <h4>Top 10 Banks</h4>
+                                    <ul>
+                                        <li><a href="#">Bank of Baroda</a></li>
+                                        <li><a href="#">State Bank of India</a></li>
+                                        <li><a href="#">Union Bank of India</a></li>
+                                        <li><a href="#">Punjab National Bank</a></li>
+                                        <li><a href="#">Canara Bank</a></li>
+                                        <li><a href="#">Corporation Bank</a></li>
+                                        <li><a href="#">Bank of India</a></li>
+                                        <li><a href="#">Indian Overseas Bank</a></li>
+                                        <li><a href="#">Central Bank of India</a></li>
+                                        <li><a href="#">Syndicate Bank</a></li>
+                                        <li class="view_cities"><a href="#">View all Banks <span class="cities_icon"><i class="fa fa-angle-right"></i></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="row">
@@ -58,218 +96,218 @@
 <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
     <!--<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>-->
 
-	<!--<script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js"></script>-->
-	<script src="<?php echo base_url(); ?>assets/auctiononclick/js/chosen.jquery.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+    <!--<script src="<?php echo base_url(); ?>assets/js/jquery-ui.min.js"></script>-->
+    <script src="<?php echo base_url(); ?>assets/auctiononclick/js/chosen.jquery.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
     <script src="<?php echo base_url(); ?>assets/auctiononclick/js/myscript.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 
-	<script>
+    <script>
 
 checkSearch();
 function enterpressalert(e)
 {
-	var code = (e.keyCode ? e.keyCode : e.which);
-	if(code == 13) 
-	{
-		goForSearch();
-	}
+    var code = (e.keyCode ? e.keyCode : e.which);
+    if(code == 13)
+    {
+        goForSearch();
+    }
 }
 
 function checkSearch()
 {
-		$('#srch-category').html('Products');
-		var searchBy = $("#searchby").val(1);
-	
-	
+        $('#srch-category').html('Products');
+        var searchBy = $("#searchby").val(1);
+
+
 }
 
 function goForSearch1(str)
 {
-	$("#error_txt1").html('');
+    $("#error_txt1").html('');
 
-	$("#error_txt1").hide();
-	var searchText = $("#txt-search1").val();
+    $("#error_txt1").hide();
+    var searchText = $("#txt-search1").val();
 
-	var bank = $("#bank").closest('.custom-select').find('.select-selected').html();
-	
-	if(searchText.trim() == '')
-	{
-		$("#error_txt1").show();
-		$("#error_txt1").html('Please enter keyword for your search');
-		return false;
-	}
-	else
-	{
-		var assetsTypeId = $('.dropdown-header input[name=parentCat]').val();
+    var bank = $("#bank").closest('.custom-select').find('.select-selected').html();
 
-		var sub_id_str = '';
-		$("input[name=s_sub_id]:checked").each(function(){
-			var sub_id = $(this).val();
-			sub_id_str += '&sc[]='+sub_id;
-		});
+    if(searchText.trim() == '')
+    {
+        $("#error_txt1").show();
+        $("#error_txt1").html('Please enter keyword for your search');
+        return false;
+    }
+    else
+    {
+        var assetsTypeId = $('.dropdown-header input[name=parentCat]').val();
 
-		var bank_text = '';
-		if(bank != '' && bank != 'Select Bank' && bank != 'All Cities')
-		{
-			bank_text = "&bank="+bank;
-		}
-		
-		window.location='<?php echo base_url();?>propertylisting?search='+searchText+'&assetsTypeId='+assetsTypeId+sub_id_str+bank_text;
-	}
+        var sub_id_str = '';
+        $("input[name=s_sub_id]:checked").each(function(){
+            var sub_id = $(this).val();
+            sub_id_str += '&sc[]='+sub_id;
+        });
+
+        var bank_text = '';
+        if(bank != '' && bank != 'Select Bank' && bank != 'All Cities')
+        {
+            bank_text = "&bank="+bank;
+        }
+
+        window.location='<?php echo base_url();?>propertylisting?search='+searchText+'&assetsTypeId='+assetsTypeId+sub_id_str+bank_text;
+    }
 }
 
 
 function goAdvancedSearch(str)
 {
-	$("#error_txt1").html('');
+    $("#error_txt1").html('');
 
-	$("#error_txt1").hide();
-	var search_box = $("#search_box").val();
-	
+    $("#error_txt1").hide();
+    var search_box = $("#search_box").val();
 
 
-	var bank = $("#bank option:selected").val();
-	//alert(bank);
-	/*
-	if(search_box.trim() == '')
-	{
-		$("#error_txt1").show();
-		$("#error_txt1").html('Please enter keyword for your search');
-		return false;
-	}
-	else*/
-	{
-		var parent_id = $('.dropdown-header input[name=parent_id]:checked').val();
 
-		var sub_id_str = '';
-		$("input[name=sub_id]:checked").each(function(){
-			var sub_id = $(this).val();
-			sub_id_str += '&sc[]='+sub_id;
-		});
+    var bank = $("#bank option:selected").val();
+    //alert(bank);
+    /*
+    if(search_box.trim() == '')
+    {
+        $("#error_txt1").show();
+        $("#error_txt1").html('Please enter keyword for your search');
+        return false;
+    }
+    else*/
+    {
+        var parent_id = $('.dropdown-header input[name=parent_id]:checked').val();
 
-		
-		var search_city = $("#search_city").val();
-		if(search_city !='')
-		{
-			search_city = "&search_city="+search_city;
-		}
-		
-		var borrower_name = $("#borrower_name").val();
-		if(borrower_name !='')
-		{
-			borrower_name = "&borrower_name="+borrower_name;
-		}
+        var sub_id_str = '';
+        $("input[name=sub_id]:checked").each(function(){
+            var sub_id = $(this).val();
+            sub_id_str += '&sc[]='+sub_id;
+        });
 
-		var search_location = $("#search_location").val();
-		if(search_location !='')
-		{
-			search_location = "&search_location="+search_location;
-		}
 
-		var bank_text = '';
-		if(bank != '' && bank != 'Select Bank' && bank != 'All Cities')
-		{
-			bank_text = "&bank="+bank;
-		}
+        var search_city = $("#search_city").val();
+        if(search_city !='')
+        {
+            search_city = "&search_city="+search_city;
+        }
 
-		var auction_start_date = $("#auction_start_date").val();
-		if(auction_start_date !='')
-		{
-			auction_start_date = "&auction_start_date="+auction_start_date;
-		}
+        var borrower_name = $("#borrower_name").val();
+        if(borrower_name !='')
+        {
+            borrower_name = "&borrower_name="+borrower_name;
+        }
 
-		var auction_end_date = $("#auction_end_date").val();
-		if(auction_end_date !='')
-		{
-			auction_end_date = "&auction_end_date="+auction_end_date;
-		}
+        var search_location = $("#search_location").val();
+        if(search_location !='')
+        {
+            search_location = "&search_location="+search_location;
+        }
 
-		var reservePriceMaxRange = $("#reservePriceMaxRange").val();
-		if(reservePriceMaxRange !='')
-		{
-			reservePriceMaxRange = "&reservePriceMaxRange="+reservePriceMaxRange;
-		}
+        var bank_text = '';
+        if(bank != '' && bank != 'Select Bank' && bank != 'All Cities')
+        {
+            bank_text = "&bank="+bank;
+        }
 
-		var reservePriceMinRange = $("#reservePriceMinRange").val();
-		if(reservePriceMinRange !='')
-		{
-			reservePriceMinRange = "&reservePriceMinRange="+reservePriceMinRange;
-		}
-		
-		window.location='<?php echo base_url();?>home/advanced_search?search='+search_box+'&parent_id='+parent_id+sub_id_str+search_city+bank_text+borrower_name+search_location+auction_start_date+auction_end_date+reservePriceMinRange+reservePriceMaxRange;
-	}
+        var auction_start_date = $("#auction_start_date").val();
+        if(auction_start_date !='')
+        {
+            auction_start_date = "&auction_start_date="+auction_start_date;
+        }
+
+        var auction_end_date = $("#auction_end_date").val();
+        if(auction_end_date !='')
+        {
+            auction_end_date = "&auction_end_date="+auction_end_date;
+        }
+
+        var reservePriceMaxRange = $("#reservePriceMaxRange").val();
+        if(reservePriceMaxRange !='')
+        {
+            reservePriceMaxRange = "&reservePriceMaxRange="+reservePriceMaxRange;
+        }
+
+        var reservePriceMinRange = $("#reservePriceMinRange").val();
+        if(reservePriceMinRange !='')
+        {
+            reservePriceMinRange = "&reservePriceMinRange="+reservePriceMinRange;
+        }
+
+        window.location='<?php echo base_url();?>home/advanced_search?search='+search_box+'&parent_id='+parent_id+sub_id_str+search_city+bank_text+borrower_name+search_location+auction_start_date+auction_end_date+reservePriceMinRange+reservePriceMaxRange;
+    }
 }
 
 function goForSearch(str)
 {
-	$("#error_txt").html('');
-	//var searchBy = $("#searchby").val();
-	$("#error_txt").hide();
-	var searchText = $("#txt-search").val();
-	
-	if(searchText.trim() == '')
-	{
-		$("#error_txt").show();
-		$("#error_txt").html('Please enter keyword for your search');
-		return false;
-	}
-	else
-	{
-		var assetsTypeId = $('.dropdown-header input[name=parentCat]').val();
+    $("#error_txt").html('');
+    //var searchBy = $("#searchby").val();
+    $("#error_txt").hide();
+    var searchText = $("#txt-search").val();
 
-		var sub_id_str = '';
-		$("input[name=s_sub_id]:checked").each(function(){
-			var sub_id = $(this).val();
-			sub_id_str += '&sc[]='+sub_id;
-		});
-		
-		window.location='<?php echo base_url();?>propertylisting?search='+searchText+'&assetsTypeId='+assetsTypeId+sub_id_str;
-	}
+    if(searchText.trim() == '')
+    {
+        $("#error_txt").show();
+        $("#error_txt").html('Please enter keyword for your search');
+        return false;
+    }
+    else
+    {
+        var assetsTypeId = $('.dropdown-header input[name=parentCat]').val();
+
+        var sub_id_str = '';
+        $("input[name=s_sub_id]:checked").each(function(){
+            var sub_id = $(this).val();
+            sub_id_str += '&sc[]='+sub_id;
+        });
+
+        window.location='<?php echo base_url();?>propertylisting?search='+searchText+'&assetsTypeId='+assetsTypeId+sub_id_str;
+    }
 }
-	
-	
+
+
 $(document).on('keypress','#txt-search',function(){
-	$("#error_txt").hide();
+    $("#error_txt").hide();
 });
 
 $(document).on('click','.assetsType li',function(){
-	//alert();
-	var assetsTypeId = $(this).attr('data-id');
-	if(assetsTypeId != '' && typeof(assetsTypeId) !== 'undefined')
-	{
-		$('#assetsTypeId').val(assetsTypeId);
-	}
-	
+    //alert();
+    var assetsTypeId = $(this).attr('data-id');
+    if(assetsTypeId != '' && typeof(assetsTypeId) !== 'undefined')
+    {
+        $('#assetsTypeId').val(assetsTypeId);
+    }
+
 });
 $(document).ready(function(){
-	$("input[name=parentCat]").change(function(){
-		var parent = $(this).val();
-		
-		$(".s_parent_id").each(function(){
-			var parent_id = $(this).val();
-			if(parent != parent_id)
-			{
-				$("input[s-data-parent="+parent_id+"]").prop('checked',false);
-			}
-		});
-		$("input[s-data-parent-id]").prop('checked',false);
-		$("input[s-data-parent-id="+parent+"]").prop('checked',true);
-	});
+    $("input[name=parentCat]").change(function(){
+        var parent = $(this).val();
 
-	$("input[name=s_sub_id]").change(function(){
-		var parent_id = $(this).attr('s-data-parent');
+        $(".s_parent_id").each(function(){
+            var parent_id = $(this).val();
+            if(parent != parent_id)
+            {
+                $("input[s-data-parent="+parent_id+"]").prop('checked',false);
+            }
+        });
+        $("input[s-data-parent-id]").prop('checked',false);
+        $("input[s-data-parent-id="+parent+"]").prop('checked',true);
+    });
 
-		$(".s_parent_id").each(function(){
-			var parent = $(this).val();
+    $("input[name=s_sub_id]").change(function(){
+        var parent_id = $(this).attr('s-data-parent');
 
-			if(parent != parent_id)
-			{
-				$("input[s-data-parent="+parent+"]").prop('checked',false);
-				$("input[s-data-parent-id="+parent+"]").prop('checked',false);
-			}
-		});
+        $(".s_parent_id").each(function(){
+            var parent = $(this).val();
 
-		$("input[s-data-parent-id="+parent_id+"]").prop('checked',true);
-	});
+            if(parent != parent_id)
+            {
+                $("input[s-data-parent="+parent+"]").prop('checked',false);
+                $("input[s-data-parent-id="+parent+"]").prop('checked',false);
+            }
+        });
+
+        $("input[s-data-parent-id="+parent_id+"]").prop('checked',true);
+    });
 });
 </script>
 
