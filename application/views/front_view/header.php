@@ -56,7 +56,7 @@
 	<script src="<?php echo base_url();?>js/core-min.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url();?>js/sha256-min.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url();?>js/validation.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
-	
+	<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 	<!--<script src="<?php echo base_url(); ?>bankeauc/js/promise.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 	<script src="<?php echo base_url(); ?>bankeauc/js/sweetalert.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
     <script src="<?php echo base_url(); ?>bankeauc/js/sweetalert.core.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
@@ -142,7 +142,7 @@
                                         <li><a href="<?php echo base_url();?>home/premiumServices">Premium Services</a></li>
                                         <li><a href="<?php echo base_url();?>home/advanced_search">Advanced Search</a></li>
                                         <li><a href="#">Top Cities</a></li>
-										<li><a href="#">Top Banks</a></li>
+										<li><a href="<?php echo base_url()?>home/top_banks">Top Banks</a></li>
                                         <li><a href="https://bankeauctions.com/" target="_blank">Bankeauctions.com</a></li>
                                         <li><a href="<?php echo base_url();?>about-us">About Us</a></li>
                                         <li><a href="<?php echo base_url();?>faq">FAQ</a></li>
@@ -217,7 +217,7 @@
                                         <li><a href="<?php echo base_url();?>home/premiumServices">Premium Services</a></li>
                                         <li><a href="<?php echo base_url();?>home/advanced_search">Advanced Search</a></li>
                                         <li><a href="#">Top Cities</a></li>
-										<li><a href="#">Top Banks</a></li>
+										<li><a href="<?php echo base_url()?>home/top_banks">Top Banks</a></li>
                                         <li><a href="https://bankeauctions.com/" target="_blank">Bankeauctions.com</a></li>
                                         <li><a href="<?php echo base_url();?>about-us">About Us</a></li>
                                         <li><a href="<?php echo base_url();?>faq">FAQ</a></li>

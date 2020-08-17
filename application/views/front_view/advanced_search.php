@@ -56,7 +56,6 @@
 
 
 ?>
-<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <script src="<?php echo base_url();?>js/jquery-ui-1.12.1.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
@@ -317,7 +316,7 @@ var oTable = null;
                 <div class="error" id="error_txt1" style="display: block;padding-right: 30px;margin-top: 5px;"></div>
             </div>
         </div>
-	</div>
+
     <div class="row advanced_search_row">
         <div class="col-sm-6">
             <form class="custom_form register_form custom_search_form">
@@ -478,3 +477,4 @@ var oTable = null;
 
     });
 </script>
+</div>

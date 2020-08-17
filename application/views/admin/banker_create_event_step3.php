@@ -142,8 +142,10 @@ $other_city=$auctionData->other_city;
 						<div class="lft_heading">Auction Type <span class="red">*</span></div>
 						<div class="rgt_detail">
 						  <select class="select" name="event_type" id="event_type">
-							<option value="drt" <?php echo ($auctionData->event_type=='drt')?'selected="selected"':''; ?> >DRT</option>
-							<option value="sarfaesi" <?php echo ($auctionData->event_type=='sarfaesi' || $auctionData->event_type=='')?'selected="selected"':''; ?> >Sarfaesi</option>
+							<option value="sarfaesi" <?php echo ($auctionData->event_type=='sarfaesi' || $auctionData->event_type=='')?'selected="selected"':''; ?> >Sarfaesi Auction</option>
+							<option value="liquidation" <?php echo ($auctionData->event_type=='liquidation')?'selected="selected"':''; ?> >Liquidation Auction</option>
+							<option value="government" <?php echo ($auctionData->event_type=='government')?'selected="selected"':''; ?> >Government Auction</option>
+							<option value="other" <?php echo ($auctionData->event_type=='other')?'selected="selected"':''; ?> >Other Auction</option>
 							</select>
 
 						  <div class="tooltips">

@@ -82,7 +82,7 @@ section{float:none;}
 			<td align="left" valign="top" class=""><strong>Assets Type</strong></td>
             <td align="left" valign="top" class=""  colspan="3">
             <?php
-            echo GetTitleByField('tbl_category', "id='".$auction_detail->subcategory_id."'" ,'name');
+            echo ($auction_detail->subcategory_id > 0)?GetTitleByField('tbl_category', "id='".$auction_detail->subcategory_id."'" ,'name'):'N/A';
             ?>
             </td>
             <td align="left" valign="top" class=""><strong>Description</strong></td>
@@ -91,7 +91,26 @@ section{float:none;}
         </tr>
 		<tr class="odd">
             <td align="left" valign="top" class=""><strong>Auction Type</strong></td>
-            <td td align="left" valign="top" class="" colspan="3"><?php echo ($auction_detail->event_type=='drt')?'DRT':'Sarfaesi';?></td>
+            <td td align="left" valign="top" class="" colspan="3">
+			<?php 
+				if($auction_detail->event_type=='sarfaesi')
+				{
+					echo 'Sarfaesi Auction';
+				}
+				else if($auction_detail->event_type=='liquidation')
+				{
+					echo 'Liquidation Auction';
+				}
+				else if($auction_detail->event_type=='government')
+				{
+					echo 'Government Auction';
+				}
+				else 
+				{
+					echo 'Other Auction';
+				}
+
+			?></td>
 			<td align="left" valign="top" class=""><strong>Contact Details</strong></td>
             <td align="left" valign="top" class=""  colspan="3">
                 <?php echo $auction_detail->contact_person_details_1; ?>

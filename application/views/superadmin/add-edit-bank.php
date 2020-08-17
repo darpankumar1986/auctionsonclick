@@ -50,9 +50,9 @@ if($row){
 </style>
 <section class="body_main1">
 		<div class="row">		
-			<a href="<?php echo base_url().'superadmin/bank'?>" class="button_grey"> Organization List</a>
+			<a href="<?php echo base_url().'superadmin/bank'?>" class="button_grey"> Bank List</a>
 		</div>
-		<div class="box-head">Create Organization</div>
+		<div class="box-head">Create Bank</div>
 		<div class="centercontent">
 			<div class="pageheader">
 				<span class="pagedesc"><div style="color:red"><?php echo validation_errors(); ?></div></span>

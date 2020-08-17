@@ -1,4 +1,3 @@
-		<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 		<div class="container-fluid container_margin">
             <div class="row row_bg">
                <div class="container">
