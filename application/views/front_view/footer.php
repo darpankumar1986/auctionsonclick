@@ -218,6 +218,10 @@ function goForSearch(str)
     else
     {
         var assetsTypeId = $('.dropdown-header input[name=parentCat]:checked').val();
+		if(typeof(assetsTypeId) == 'undefined')
+		{
+			assetsTypeId ='';
+		}
         var sub_id_str = '';
         $("input[name=s_sub_id]:checked").each(function(){
             var sub_id = $(this).val();

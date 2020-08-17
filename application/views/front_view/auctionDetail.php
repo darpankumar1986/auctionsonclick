@@ -156,7 +156,25 @@
 									</tr>
 									<tr>
 										<td>Auction Type</td>
-										<td><?php echo ($auction_data[0]->event_type=='drt')?'DRT':'Sarfaesi';?> Auction</td>
+										<td>
+											<?php if($auction_data[0]->event_type=='sarfaesi')
+												{
+													echo 'Sarfaesi Auction';
+												}
+												else if($auction_data[0]->event_type=='liquidation')
+												{
+													echo 'Liquidation Auction';
+												}
+												else if($auction_data[0]->event_type=='government')
+												{
+													echo 'Government Auction';
+												}
+												else 
+												{
+													echo 'Other Auction';
+												}
+											 ?>
+										</td>
 									</tr>
 										<tr>
 										<td>Borrower Name</td>
@@ -169,7 +187,7 @@
 								<?php } ?>
                                 <tr>
                                     <td>Asset Type</td>
-                                    <td><?php echo $auction_data[0]->sub_category_name; ?></td>
+                                    <td><?php echo ($auction_data[0]->sub_category_name)?$auction_data[0]->sub_category_name:'N/A'; ?></td>
                                 </tr>
 								<?php if($auction_data[0]->isSub > 0 || $free_sub_flag == 1){ ?>
 									<tr>

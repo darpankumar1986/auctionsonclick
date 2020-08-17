@@ -29,13 +29,13 @@
 	<div class="centercontent tables">
 		<div class="pageheader notab">
 			<div class="row">						
-				<a href="/superadmin/bank/addedit" class="button_grey">Create Organization</a>
+				<a href="/superadmin/bank/addedit" class="button_grey">Create Bank</a>
 			</div>
 			<?php if( $this->session->flashdata('message')) {?>
 				<span class="success_msg"><img src="<?php echo VIEWBASE; ?>images/icon_checkmark_small.png" class="success_tick">
 				<?php echo $this->session->flashdata('message'); ?></span>		
 			<?php } ?>
-			<div class="box-head">Organization List</div>
+			<div class="box-head">Bank List</div>
 			<?php /* ?>
 			<h1 class="pagetitle"><span style="float:left"><?php echo $heading; ?></span><span style="float:right"><a href="/superadmin/bank/addedit"  class="b_green"><strong>Add New Bank</strong></a>	</span></h1>
 			<?php */ ?>
@@ -79,7 +79,7 @@
 						<thead>
 							<tr>
 								<th class="head0" style='width: 5%;'>ID</th>
-								<th class="head1" style='width: 35%;'>Organization Name</th>
+								<th class="head1" style='width: 35%;'>Bank Name</th>
 								<th class="head0" style='width: 5%;'>Status</th>
 								<!--<th class="head1" style='width: 5%;'> <input type="checkbox" id="selecctall1"/></th>-->
 								<th class="head0" style='width: 25%;'>Bank URL</th>

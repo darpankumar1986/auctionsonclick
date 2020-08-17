@@ -1,3 +1,9 @@
+<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+<script src="<?php echo base_url();?>js/jquery-ui-1.12.1.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.css?rand=<?php echo CACHE_RANDOM; ?>">
+<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <script type="text/javascript" src="<?php echo base_url();?>application/views/admin/js/plugins/jquery.uniform.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application/views/admin/js/plugins/jquery.validate.min.js"></script>
 <style>
@@ -176,9 +182,10 @@ if($row){
                                 <label class="custom_label">Mobile Number</label>
                             </div>
                             <div class="floating-label">
-                                <input class="floating-input html_found" name="city" id="city" value="<?php echo trim($city_id) ?>" type="text" placeholder=" ">
-                                <label class="custom_label">City</label>
+                                <input type="text" class="floating-input form-control item-suggest dropdown-toggle" placeholder=" " name="city" id="city" value="<?php echo trim($city_id) ?>" />
+								<label class="custom_label">City</label>
                             </div>
+							</div>
                             <div class="floating-label">
 								<select class="floating-select" name="state" id="state" onclick="this.setAttribute('value', this.value);" value="">
                                     <option value="">Select State</option>
