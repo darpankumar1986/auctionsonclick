@@ -29,17 +29,23 @@
                                 <div class="footer_about">
                                     <h4>Top 10 Banks</h4>
                                     <ul>
-                                        <li><a href="#">Bank of Baroda</a></li>
-                                        <li><a href="#">State Bank of India</a></li>
-                                        <li><a href="#">Union Bank of India</a></li>
-                                        <li><a href="#">Punjab National Bank</a></li>
-                                        <li><a href="#">Canara Bank</a></li>
-                                        <li><a href="#">Corporation Bank</a></li>
-                                        <li><a href="#">Bank of India</a></li>
-                                        <li><a href="#">Indian Overseas Bank</a></li>
-                                        <li><a href="#">Central Bank of India</a></li>
-                                        <li><a href="#">Syndicate Bank</a></li>
-                                        <li class="view_cities"><a href="#">View all Banks <span class="cities_icon"><i class="fa fa-angle-right"></i></span></a></li>
+										<?php 
+										  $top_banks = $this->home_model->getAllBank();	
+										  $cnt = 1;
+										  if(is_array($top_banks) && count($top_banks)>0)
+										  {
+											foreach ($top_banks as $bank)
+											  {
+												if($cnt<=10)
+												  {
+										  ?>
+												<li><a href="<?php echo base_url();?>propertylisting?bank=<?php echo $bank->id; ?>"><?php echo $bank->name; ?></a></li>
+										  <?php 
+												  }
+											  }
+										  }
+										  ?>
+                                        <li class="view_cities"><a href="<?php echo base_url()?>home/top_banks">View all Banks <span class="cities_icon"><i class="fa fa-angle-right"></i></span></a></li>
                                     </ul>
                                 </div>
                             </div>
