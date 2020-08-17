@@ -49,6 +49,10 @@ body{
     font-weight: 400;
     color: #333333;
 }
+.error {
+    font-size: 13px;
+    color: red;
+}
 .auction-main {
     position: relative;
 }
@@ -432,7 +436,7 @@ body{
     border: 0;
 }
 .home_form_wrap.form-wrap .form_desc .btn-default:focus{
-	box-shadow:none;
+    box-shadow:none;
 }
 .custom-select1 input[type="text"]::-webkit-input-placeholder { /* Chrome */
    color: #333333;
@@ -441,11 +445,11 @@ body{
 .custom-select1 input[type="text"]:-ms-input-placeholder { /* IE 10+ */
    color: #333333;
 }
-	
+
 .custom-select1 input[type="text"]::-moz-placeholder { /* Firefox 19+ */
    color: #333333;
 }
-	
+
 .custom-select1 input[type="text"]:-moz-placeholder { /* Firefox 4 - 18 */
    color: #333333;
 }
@@ -658,7 +662,7 @@ h3.auction_heading {
     margin-bottom: 18px;*/
 }
 .auction-main-wrapper .container_margin {
-    margin-top: 90px;
+    margin-top: 89px;
 }
 .login_page {
     margin-top: 30px;
@@ -796,14 +800,14 @@ a.forget {
 }
 button.login_btn {
     width: 100%;
-    background-color: #5e23dc;
+    background-color: #005ca8;
     color: #ffffff;
     font-family: 'Roboto-Bold';
     padding: 17px 12px;
     margin-top: 15px;
 }
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default:active:hover {
-    background-color: #5e23dc;
+    background-color: #005ca8;
     color: #ffffff;
     outline: 0;
 }
@@ -1227,7 +1231,7 @@ button.login_btn {
 .auction_table_border {
     border: 1px solid #cccccc;
 }
-.bank_auction_row .top-pagination .pagination {
+.bank_auction_row .pagination_main .pagination {
     margin: 16px 5px 16px 0;
 }
 .auction-main-wrapper .form_wrap_anction_search.form_dropdown_border .dropdown-toggle {
@@ -1250,7 +1254,19 @@ button.login_btn {
     padding: 20px 0;
 }
 .form_wrap_anction_search .dropdown {
+    flex: 0 0 24%;
+}
+.form_wrap_anction_search .custom-dropdown-select1 {
     flex: 1;
+}
+.auction-main-wrapper .form_wrap_anction_search .custom-dropdown-select1 .form-control {
+    border-top: 1px solid #ccc !important;
+    border-bottom: 1px solid #ccc !important;
+    border-right: 1px solid #ccc !important;
+    height: 50px !important;
+}
+.auction-main-wrapper .form_wrap_anction_search .custom-dropdown-select1 .form-control:focus {
+    box-shadow: none;
 }
 .form_wrap_anction_search .custom-dropdown-select {
     flex: 1;
@@ -1738,13 +1754,62 @@ h3.premium_service span .fa-star {
 /*----------------------------View Detail - After Subscription_end----------------------*/
 
 /*----------------------------Advanced Search-------------------------------------------*/
-
+input.hasDatepicker {
+    background-image: url(../images/calendar.png) !important;
+    background-position: 97% 15px !important;
+}
+.ui-widget.ui-widget-content {
+    border: 1px solid #cccccc;
+}
+.ui-menu .ui-menu-item-wrapper {
+    padding: 7px 16px;
+    font-family: 'Roboto-Regular';
+    font-size: 13px;
+    color: #666666;
+}
+.ui-menu .ui-menu-item-wrapper:hover {
+    background-color: #f0f0f0;
+    color: #333333;
+    border: 1px solid #ccc;
+}
 .advanced_search_row {
     width: 1000px;
     margin: 0 auto;
 }
 .custom_search_form {
-    margin-top: 25px;
+    margin-top: 8px;
+}
+.custom_search_form .btn-default {
+    width: 100%;
+    text-align: left;
+    border-radius: 0;
+    height: 55px;
+}
+.custom_search_form .btn-default:hover, .custom_search_form .btn-default:focus {
+    background-color: #ffffff;
+    color: #333333;
+    border: 1px solid #ccc !important;
+}
+.custom_search_form .btn-default.active, .btn-default:active, .custom_search_form .open>.dropdown-toggle.btn-default {
+    background-color: #ffffff;
+    border-color: #cccccc;
+}
+.custom_search_form .btn .caret {
+    right: 20px;
+    position: absolute;
+    top: 26px;
+}
+.custom_search_form .dropdown-menu {
+    margin-top: -1px;
+    border-radius: 0;
+    width: 100%;
+    border-color: #cccccc;
+}
+.custom_search_form .dropdown-menu li {
+    padding: 0 40px;
+}
+.custom_search_form .dropdown-menu li.dropdown-header {
+    padding: 4px 20px;
 }
 .custom_search_form .floating-input, .floating-select {
     border-radius: 0

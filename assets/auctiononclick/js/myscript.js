@@ -19,7 +19,11 @@ function openNav() {
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
-
+$('body').on('click', function(){
+    if( parseInt( $('#mySidenav').css('width') ) > 0 ){
+        closeNav();
+    }
+});
 
 //---------------------accordion--------------------------------------//
 
