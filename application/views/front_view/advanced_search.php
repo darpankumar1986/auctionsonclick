@@ -316,7 +316,7 @@ var oTable = null;
                 <div class="error" id="error_txt1" style="display: block;padding-right: 30px;margin-top: 5px;"></div>
             </div>
         </div>
-	</div>
+
     <div class="row advanced_search_row">
         <div class="col-sm-6">
             <form class="custom_form register_form custom_search_form">
@@ -477,3 +477,4 @@ var oTable = null;
 
     });
 </script>
+</div>

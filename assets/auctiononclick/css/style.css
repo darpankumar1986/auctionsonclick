@@ -752,7 +752,7 @@ h3.auction_heading {
 }
 
 
-.custom_form .floating-select:focus ~ label.custom_label , .custom_form .floating-select:not([value=""]):valid ~ label.custom_label {
+.custom_form .floating-select:focus ~ label.custom_label, .custom_form .floating-select:not([value=""]):valid ~ label.custom_label {
     top: 2px;
     left: 16px;
     font-size:11px;
