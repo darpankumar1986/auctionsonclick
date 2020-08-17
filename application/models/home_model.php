@@ -1083,7 +1083,7 @@ class Home_model extends CI_Model {
 			if($package_type == 1 && $_GET['due_cost'] > 0) // upgrade
 			{
 				$package->package_amount = $_GET['due_cost'];
-			}
+			}			
 
 			if($package_type == 2)
 			{
@@ -1100,6 +1100,11 @@ class Home_model extends CI_Model {
 				}
 
 				$package->package_amount = $curSub->package_amount;
+			}
+
+			if($package_type == 3 && $_GET['due_cost'] > 0) // add more state
+			{
+				$package->package_amount = $_GET['due_cost'];
 			}
 
 			$indate=date('Y-m-d H:i:s');
@@ -1168,8 +1173,8 @@ class Home_model extends CI_Model {
 	{
 		$this->db->where('member_id',$bidderID);
 		$this->db->where('subscription_status',1);
-		$this->db->where('package_end_date > now()');
-		$this->db->where('package_start_date < now()');
+		$this->db->where('package_end_date >= now()');
+		$this->db->where('package_start_date <= now()');
 		$this->db->order_by('subscription_participate_id');
 		$row_query = $this->db->get('tbl_subscription_participate');
 		return $row_query->row();
@@ -1184,6 +1189,21 @@ class Home_model extends CI_Model {
 		$this->db->order_by('subscription_participate_id');
 		$row_query = $this->db->get('tbl_subscription_participate');
 		return $row_query->num_rows();
+	}
+
+	public function getTrackLogout($msg='')
+	{
+		$class = $this->router->fetch_class();
+		$method = $this->router->fetch_method();
+
+		if($class == "payment2" || $method == 'success')
+		{
+			$userid = $this->session->userdata('id');
+			if(!($userid > 0))
+			{
+				echo $msg;die;
+			}
+		}
 	}
 }
 

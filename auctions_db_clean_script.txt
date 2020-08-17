@@ -95,3 +95,7 @@ TRUNCATE `tbl_user_registration_temp`;
 TRUNCATE `tbl_user_registration_vendor`;
 TRUNCATE `tbl_user_search_detail`;
 TRUNCATE `tbl_webpage`;
+TRUNCATE `tbl_subscription_log`;
+TRUNCATE `tbl_subscription_participate`;
+TRUNCATE `tbl_subscription_participate_city`;
+TRUNCATE `tbl_subscription_state_log`;

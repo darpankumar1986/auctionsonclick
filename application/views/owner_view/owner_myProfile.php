@@ -1,3 +1,4 @@
+<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap-3.3.2.min.js"></script>
 <style>
 @media screen and (max-width: 750px){
 .box-head {

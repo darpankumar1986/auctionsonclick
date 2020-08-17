@@ -13,32 +13,28 @@ class Owner extends WS_Controller {
         ob_start();
         ob_clean();
         $this->load->library('session');
-        $this->load->helper('log4php');
-        log_error('my_error');
-        log_info('my_info');
-        log_debug('my_debug');
         //error_reporting(0);
         $this->load->helper('url');
         $this->load->library('Datatables');
         $this->load->library('table');
         $this->load->database();
-        $this->load->model('property_model');
+        //$this->load->model('property_model');
         $this->load->helper(array('form'));
         $this->load->library("pagination");
-        $this->load->model('banker_model');
+        //$this->load->model('banker_model');
         
         $this->load->model('admin/bank_model');
-        $this->load->model('helpdesk_executive_model');
-        $this->load->model('admin/dynamic_form_model');
+        //$this->load->model('helpdesk_executive_model');
+        //$this->load->model('admin/dynamic_form_model');
         $this->load->model('owner_model');
         $this->load->model('banker_model');
-        $this->load->model('bidder_model');
+        //$this->load->model('bidder_model');
        // $this->load->model('admin/attribute_group_model');
-        $this->load->model('product_image_model');
-        $this->load->model('product_video_model');
+        //$this->load->model('product_image_model');
+        //$this->load->model('product_video_model');
         $this->load->helper('file');
         $this->load->model('home_model');
-        $this->load->model('product_detail_model');
+        //$this->load->model('product_detail_model');
        
        
         
@@ -3473,7 +3469,12 @@ class Owner extends WS_Controller {
 	
 				$bidderID = $this->session->userdata('id');
 
-				if($_GET['package_type'] == 2)
+
+				if($_GET['package_type'] == 3) // add more state
+				{ 
+					$last_insert_id_payment = $this->home_model->save_payment($bidderID,$_GET['package_id'],3); // add more state
+				}
+				else if($_GET['package_type'] == 2) // renew
 				{
 					$last_insert_id_payment = $this->home_model->save_payment($bidderID,$_GET['package_id'],2); // renew 
 				}

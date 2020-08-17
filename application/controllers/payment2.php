@@ -7,7 +7,7 @@ class Payment2 extends WS_Controller
 		parent::__Construct();
 		ob_start();
 		$this->load->library('session');
-		error_reporting(0);
+		//error_reporting(0);
 		$this->load->helper('url');
 		$this->load->library('Datatables');
         $this->load->library('table');
@@ -185,6 +185,7 @@ class Payment2 extends WS_Controller
 						$package_id = $payment_res->auctionID;
 						$state_str = $payment_res->state;
 						$package_type = $payment_res->package_type;
+						$paid_amount = $payment_res->payu_amount;
 
 						$stateArr = array();
 						if($state_str != '')
@@ -206,44 +207,89 @@ class Payment2 extends WS_Controller
 
 							$this->db->where('subscription_participate_id', $row->subscription_participate_id);
 							$this->db->update("tbl_subscription_participate_city",array('sub_end_date'=>date('Y-m-d H:i:s')));
+
+							/* credit amount */
+							$log_data = array(
+								'subscription_participate_id'=>$row->subscription_participate_id,
+								'member_id'=>$bidderID,
+								'payment_id'=>0,
+								'amount'=>$package->package_amount-$paid_amount,
+								'remarks' =>'Upgrade - Add Credit',
+								'status' => 1,
+								'indate' => date("Y-m-d H:i:s")
+							);
+							$this->db->insert('tbl_subscription_log',$log_data);
+
+							
 							
 						}
 
-						if($package_type == 2 && strtotime($row->package_end_date) < time()) // renew
+						if($package_type == 3) // add more state
+						{
+							$row = $this->home_model->getCurrentPackage($bidderID);
+							$startDate = $row->package_end_date;
+							$endDate = $row->package_end_date;
+
+							$this->db->where('subscription_participate_id', $row->subscription_participate_id);
+							$this->db->update("tbl_subscription_participate",array('package_amount'=>$row->package_amount+$paid_amount));					
+
+							$subscription_participate_id = $row->subscription_participate_id;
+							$remarks = "State - Add State";
+						}
+						else if($package_type == 2 && strtotime($row->package_end_date) < time()) // renew
 						{
 							$row = $this->home_model->getCurrentPackage($bidderID);
 							$startDate = date('Y-m-d H:i:s',strtotime($row->package_end_date));
 
 
 							$endDate = date('Y-m-d H:i:s',strtotime("+".$package->sub_month." months",strtotime($startDate)));
-							//$endDate = date('Y-m-d H:i:s',strtotime("+3 days",strtotime($startDate)));
+							//$endDate = date('Y-m-d H:i:s',strtotime("+3 days",strtotime($startDate)));							
+							$remarks = "Renew - Add Package";
 						}
 						else
 						{
 							$startDate = date('Y-m-d H:i:s');
 							$endDate = date('Y-m-d H:i:s',strtotime("+".$package->sub_month." months"));
 							//$endDate = date('Y-m-d H:i:s',strtotime("+3 days"));
+
+							
+							$remarks = "New - Add Package";
+						
+							if($package_type == 2 && strtotime($row->package_end_date) > time())
+							{
+								$remarks = "Renew after expired - Add Package";
+							}
+							else if($package_type == 1)
+							{
+								$remarks = "Upgrade - Add Package";
+							}
+
 						}
 
-						$participated_data = array(
-						'member_id'=>$bidderID,
-						'package_id'=>$package_id,
-						'package_amount'=>$package->package_amount,
-						'package_start_date' => $startDate,
-						'package_end_date' => $endDate,
-						'subscription_status' => 1,
-						'subscription_created_on' => date("Y-m-d H:i:s")
-						);
+						if($package_type != 3)
+						{
+							$participated_data = array(
+							'member_id'=>$bidderID,
+							'package_id'=>$package_id,
+							'package_amount'=>$package->package_amount,
+							'package_start_date' => $startDate,
+							'package_end_date' => $endDate,
+							'subscription_status' => 1,
+							'subscription_created_on' => date("Y-m-d H:i:s")
+							);
 
-						$this->db->insert('tbl_subscription_participate',$participated_data);
-						$subscription_participate_id = $this->db->insert_id();
+							$this->db->insert('tbl_subscription_participate',$participated_data);
+							$subscription_participate_id = $this->db->insert_id();
+						}
 
+						$stateLogArr = array();
 						$this->db->where('status', 1);
 						$query = $this->db->get("tbl_state");
 						foreach($query->result() as $state)
 						{
 							if(($package->package_city == "0" && $package_id < 4) || in_array($state->id,$stateArr))
 							{
+								$stateLogArr[] = $state->id;
 								$participated_city_data = array(
 									'subscription_participate_id'=>$subscription_participate_id,
 									'member_id'=>$bidderID,
@@ -260,8 +306,75 @@ class Payment2 extends WS_Controller
 							}
 						}
 
-			
+						
+						if($package_type == 3) // State - Add state
+						{
+							$package->package_amount = $paid_amount;
+						}
+						
+
+						/* debit amount */
+						$log_data = array(
+							'subscription_participate_id'=>$subscription_participate_id,
+							'member_id'=>$bidderID,
+							'payment_id'=>0,
+							'amount'=>-1*$package->package_amount,
+							'remarks' => $remarks,
+							'status' => 1,
+							'indate' => date("Y-m-d H:i:s")
+						);
+						$this->db->insert('tbl_subscription_log',$log_data);
+
+						/* credit amount */
+						$log_data = array(
+							'subscription_participate_id'=>$subscription_participate_id,
+							'member_id'=>$bidderID,
+							'payment_id'=>$txnidArr[0],
+							'amount'=>$paid_amount,
+							'remarks' =>'Payment - Paid Successfully',
+							'status' => 1,
+							'indate' => date("Y-m-d H:i:s")
+						);
+						$this->db->insert('tbl_subscription_log',$log_data);
+						$subscription_log_id = $this->db->insert_id();
+
+
+
+						/* add state log */
+						if(is_array($stateLogArr))
+						{
+							foreach($stateLogArr as $state_id)
+							{
+								$log_data = array(
+									'subscription_log_id'=>$subscription_log_id,
+									'member_id'=>$bidderID,
+									'payment_id'=>$txnidArr[0],
+									'subscription_participate_id'=>$subscription_participate_id,
+									'sub_state_id'=>$state_id
+								);
+								$this->db->insert('tbl_subscription_state_log',$log_data);
+							}
+						}
+
 						$this->session->set_flashdata('message','Subscription Payment Paid Successfully !<br>');	
+
+						/* login after payment */
+						$this->db->where('id', $bidderID);
+						$row_query = $this->db->get('tbl_user_registration');
+						$row = $row_query->result();
+
+						$this->session->set_userdata('id', $row[0]->id);
+						$this->session->set_userdata('full_name', $row[0]->first_name);	
+						$this->session->set_userdata('user_type', trim($row[0]->user_type));
+						$rand = rand(10000000000,99999999999);
+						$this->session->set_userdata('session_id_user',$rand);
+						$this->session->set_userdata('table_session', 'registration_tb');
+
+						$setarray=array('user_sess_val'=> $rand);
+				        $this->db->where('id',$row[0]->id);
+		                $this->db->update('tbl_user_registration',$setarray);
+						/* end login after payment */
+
 						redirect("home/success");
 			}else{
 					
@@ -272,7 +385,7 @@ class Payment2 extends WS_Controller
 		}
 		else
 		{
-			redirect("/registration/logout");
+			//redirect("/registration/logout");
 		}	
 	}
 
@@ -366,7 +479,7 @@ class Payment2 extends WS_Controller
 				$this->db->where('control_number',$controlNumber);
 				$this->db->update('tbl_jda_payment_log',$rData);	
 
-				if($res1[0]->package_type == 1)
+				if($res1[0]->package_type > 0)
 				{
 					$this->session->set_flashdata('message_new','Subcription Payment Failure ! Please try again<br>');	
 					redirect("/owner/manageSubscription");
@@ -381,7 +494,7 @@ class Payment2 extends WS_Controller
 		{
 			//$this->session->set_flashdata('message_new','Tender Fee Payment Failure ! Please try again<br>');	
 			//redirect("/owner/auction_participate/".$actionID);
-			redirect("/registration/logout");
+			//redirect("/registration/logout");
 		}
 		
 	}

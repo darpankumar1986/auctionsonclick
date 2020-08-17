@@ -6,10 +6,7 @@ if (!defined('BASEPATH'))
 class Home extends MY_Controller {
 
     public function __Construct() {
-        header_remove("X-Powered-By");
-
         parent::__Construct();
-        ob_start();
         $this->load->library('session');
         $this->load->helper('url');
         $this->load->helper('text');
@@ -17,10 +14,6 @@ class Home extends MY_Controller {
         $this->load->library('Datatables');
         $this->load->library('table');
         $this->load->model('home_model');
-        $this->load->model('admin/news_model');
-        $this->load->model('property_model');
-		//echo $this->session->userdata('id');die;
-
     }
 
     function page($slug) {
@@ -411,9 +404,11 @@ class Home extends MY_Controller {
 
 	public function success()
 	{
+
 		$data['title'] = 'Thank You!';
 		$data['subcription_plan'] = $this->home_model->getSubcriptionPlan(0);
 		$data['total_auction'] = $this->home_model->getTotalAuction();
+
         $this->load->view('front_view/header', $data);
         if(MOBILE_VIEW)
 		{			

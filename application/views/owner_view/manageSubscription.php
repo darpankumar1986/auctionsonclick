@@ -8,7 +8,7 @@
 	}
 	else
 	{
-		$full_name .= ' '.GetTitleByField('tbl_user_registration', "id='".$userid."' and subscription_status = 1", "authorized_person");
+		$full_name .= ' '.GetTitleByField('tbl_user_registration', "id='".$userid."'", "authorized_person");
 	}
 	
 	$currentpackage = $this->home_model->getCurrentPackage($userid);
@@ -104,6 +104,7 @@ $(document).ready(function(){
 			{
 				$(".subscription_disable_text").show();
 				$(".subscription_text").hide();
+				$(".statewise_text").hide();
 			}
 			else
 			{
@@ -115,11 +116,12 @@ $(document).ready(function(){
 
 				$(".subscription_disable_text").hide();
 				$(".subscription_text").show();
+				$(".statewise_text").hide();
 			}
 		}
 	});
 
-	$(".pay_now").click(function(){
+	$(".pay_now.upgrade_plan").click(function(){
 			var plan_amount = $(".packageplan.active_plan").find('.plan_amount').val();
 			var due_cost = plan_amount - remaining_amount;
 			var package_id = $(".packageplan.active_plan").find('.package_id').val();
@@ -155,10 +157,9 @@ $(document).ready(function(){
 		$(".subscription_disable_text").hide();
 		$(".subscription_text").hide();
 		$(".packageplan").removeClass('active_plan');
+		$(".statewise_text").hide();
 	});
-});
 
-$(document).ready(function(){
 	$(".checkbox-state").change(function(){
 		var checkbox_length = $(this).closest('.dropdown-menu').find('[type=checkbox]:checked').length;
 		if(checkbox_length > 2)
@@ -166,6 +167,61 @@ $(document).ready(function(){
 			alert('Please choose only 2 states!');
 			$(this).prop('checked',false);
 		}
+	});
+
+	
+});
+
+$(document).ready(function(){
+	
+
+	$(".confirm_btn").click(function(){
+		var selected_state = '';
+		var add_state_count = 0;
+		$(".all_state_list input[type=checkbox]:checked").each(function(){
+			var state_name = $(this).attr('data-name');
+			if(selected_state != '')
+			{
+				selected_state += ', ';
+			}
+			selected_state += state_name;
+
+			add_state_count += 1;
+		});
+		if(add_state_count > 0)
+		{
+			$(".selected_states span").html(selected_state);
+			$(".selected_states").show();
+			$(".all_state_list").hide();
+
+			$(".subscription_disable_text").hide();
+			$(".subscription_text").hide();
+			$(".packageplan").removeClass('active_plan');
+			$(".statewise_text").show();
+			$("#add_state_count").html(add_state_count);
+			$("#due_cost_state").html(add_state_count*<?php echo $package[0]->city_per_cost; ?>);
+		}
+		else
+		{
+			$(".all_state_list").hide();
+			$(".selected_states").hide();
+			$(".statewise_text").hide();
+			$(".packageplan").removeClass('active_plan');
+		}
+	});
+
+	$(".pay_now.add_state").click(function(){
+		var state = '';
+		var add_state_count = 0;
+		$(".all_state_list input[type=checkbox]:checked").each(function(){
+			var state_id = $(this).val();
+			state += '&state[]='+state_id;
+			add_state_count += 1;
+		});
+
+		var due_cost = add_state_count*<?php echo $package[0]->city_per_cost; ?>;
+
+		window.location = '?package_id=<?php echo $package[0]->package_id; ?>&package_type=3&due_cost='+due_cost+state;
 	});
 });
 </script>
@@ -205,8 +261,8 @@ $(document).ready(function(){
 								   <div class="plan_desc">
 									   <h4 class="other_desc_subscribe">Subscribed on</h4>
 									   <p class="common_date"><?php echo date('F dS, Y',strtotime($package_start_date)); ?> at ₹<span><?php echo $package_amount; ?>.00</span></p>
-									   <?php if($package_id > 3 && false){ ?>
-										   <p class="subscribe_charges">Subscription charges ₹1500.00 + 1 additional State charges ₹100.00</p>
+									   <?php if($package_id > 3 && count($state_bidder) > 2){ ?>
+										   <p class="subscribe_charges">Subscription charges ₹<?php echo $package[0]->package_amount; ?>.00 + <?php echo count($state_bidder)-2; ?> additional State charges ₹<?php echo round($package[0]->city_per_cost,2); ?></p>
 									   <?php } ?>
 								   </div>
 							   </td>
@@ -450,7 +506,7 @@ $(document).ready(function(){
 									<?php } ?>
 							</div>
 						</div>
-						<?php /* ?><div class="row">
+						<div class="row">
 							<div class="col-sm-12">
 								<div class="state_chosen_wrapper">
 								   <div class="hide_list">
@@ -459,294 +515,19 @@ $(document).ready(function(){
 									   <div class="all_state_list">
 										   <div class="all_state_list_inner">
 											   <ul>
-												   <li>
-													  <div class="update_password updated_list">
-													   <label class="container-checkbox">Andaman &amp; Nicobar
-														   <input type="checkbox">
-														   <span class="checkmark"></span>
-													   </label>
-													   </div>
-													</li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Bihar
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Delhi
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Himachal Pradesh
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Kerala
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Maharashtra
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Nagaland
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Rajasthan
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Tripura
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Andhra Pradesh
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Chandigarh
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Goa
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Jammu and Kashmir
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Ladakh
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Manipur
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Odisha
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Sikkim
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Uttar Pradesh
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Arunachal Pradesh
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Chhattisgarh
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Gujarat
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Jharkhand
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Lakshadweep
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Meghalaya
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Puducherry
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Tamil Nadu
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Uttarakhand
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Assam
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Dadra & Nagar Haveli and Daman & Diu
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Haryana
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Karnataka
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Madhya Pradesh
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Mizoram
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Punjab
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">Telangana
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
-												   <li>
-													   <div class="update_password updated_list">
-														   <label class="container-checkbox">West Bengal
-															   <input type="checkbox">
-															   <span class="checkmark"></span>
-														   </label>
-													   </div>
-												   </li>
+												   <?php $statelist = $this->home_model->getAllState(); ?>
+												   <?php foreach($statelist as $state){ ?>
+														<?php if(!in_array($state->state_name,$state_bidder)){ ?>
+														   <li>
+															  <div class="update_password updated_list">
+															   <label class="container-checkbox"><?php echo $state->state_name; ?>
+																   <input type="checkbox" class="checkbox-state" value="<?php echo $state->id; ?>" data-name="<?php echo $state->state_name; ?>">
+																   <span class="checkmark"></span>
+															   </label>
+															   </div>
+															</li>
+														<?php } ?>
+													<?php } ?>
 											   </ul>
 											   <div class="confirm_btn">
 												   <button type="button" class="btn search_btn_new">Confirm</button>
@@ -754,10 +535,10 @@ $(document).ready(function(){
 										   </div><!--all_state_list_inner-->
 									   </div><!--all_state_list-->
 									</div><!--hide_list-->
-									<p class="selected_states">Chosen States: <span>Gujarat, Kerala</span></p>
+									<p class="selected_states" style="display: none;">Chosen States: <span></span></p>
 								</div>
 							</div>
-						</div>	<?php */ ?>					
+						</div>					
 					</div>
 				</div>
 			</div><!--pan_state_tab-->
@@ -774,9 +555,19 @@ $(document).ready(function(){
 					<div class="col-sm-12">
 						<div class="Active_membership">
 							<p>Your current membership is for <?php echo $package[0]->sub_month;?> months, your consumed days and amount will be adjusted to this new subscription.</p>
-							<p><span>Amount paid for 3 months: ₹<?php echo $package_amount; ?>.00</span> | <span>Days consumed: <?php echo $consumed_day; ?> days</span> | <span>New renewal date: <?php echo date('F dS, Y',strtotime($package_end_date) + 86400); ?></span></p>
+							<p><span>Amount paid for <?php echo $package[0]->sub_month;?> months: ₹<?php echo $package_amount; ?>.00</span> | <span>Days consumed: <?php echo $consumed_day; ?> days</span> | <span>New renewal date: <?php echo date('F dS, Y',strtotime($package_end_date) + 86400); ?></span></p>
 							<p class="amount_due">Amount due : ₹<span id="due_cost">2500</span> </p>
-							<button type="button" class="btn search_btn_new pay_now">Pay Now</button>
+							<button type="button" class="btn search_btn_new pay_now upgrade_plan">Pay Now</button>
+						</div>
+					</div>
+				</div>
+				<div class="row statewise_text" style="display: none;">
+					<div class="col-sm-12">
+						<div class="Active_membership">
+							<p>Your current membership is for <?php echo $package[0]->sub_month;?> months, you have added<span id="add_state_count"></span>new states to your existing subscription.</p>
+							<p><span>Amount paid for <?php echo $package[0]->sub_month;?> months: ₹<?php echo $package_amount; ?>.00</span> | <span>Days consumed: <?php echo $consumed_day; ?> days</span> | <span>New renewal date: <?php echo date('F dS, Y',strtotime($package_end_date) + 86400); ?></span></p>
+							<p class="amount_due">Amount due : ₹<span id="due_cost_state">2500</span> </p>
+							<button type="button" class="btn search_btn_new pay_now add_state">Pay Now</button>
 						</div>
 					</div>
 				</div>
