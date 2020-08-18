@@ -429,7 +429,7 @@ class Home extends MY_Controller {
 			$searchtext = $_GET['q'];
 			$searchtext = trim(str_replace("'","''",$searchtext));
 			
-			$this->db->where("city_name LIKE '%".$searchtext."%'");
+			$this->db->where("city_name LIKE '".$searchtext."%'");
 		}
 
 		$this->db->where('status IN(1)');

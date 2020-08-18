@@ -203,10 +203,10 @@ class Payment2 extends WS_Controller
 							$row = $this->home_model->getCurrentPackage($bidderID);
 							
 							$this->db->where('subscription_participate_id', $row->subscription_participate_id);
-							$this->db->update("tbl_subscription_participate",array('package_end_date'=>date('Y-m-d H:i:s')));
+							$this->db->update("tbl_subscription_participate",array('package_end_date'=>date('Y-m-d H:i:00')));
 
 							$this->db->where('subscription_participate_id', $row->subscription_participate_id);
-							$this->db->update("tbl_subscription_participate_city",array('sub_end_date'=>date('Y-m-d H:i:s')));
+							$this->db->update("tbl_subscription_participate_city",array('sub_end_date'=>date('Y-m-d H:i:00')));
 
 							/* credit amount */
 							$log_data = array(
@@ -227,7 +227,7 @@ class Payment2 extends WS_Controller
 						if($package_type == 3) // add more state
 						{
 							$row = $this->home_model->getCurrentPackage($bidderID);
-							$startDate = $row->package_end_date;
+							$startDate = $row->package_start_date;
 							$endDate = $row->package_end_date;
 
 							$this->db->where('subscription_participate_id', $row->subscription_participate_id);
@@ -239,18 +239,19 @@ class Payment2 extends WS_Controller
 						else if($package_type == 2 && strtotime($row->package_end_date) < time()) // renew
 						{
 							$row = $this->home_model->getCurrentPackage($bidderID);
-							$startDate = date('Y-m-d H:i:s',strtotime($row->package_end_date));
+							$startDate = date('Y-m-d 00:00:00',strtotime($row->package_end_date) + 10);
 
 
-							$endDate = date('Y-m-d H:i:s',strtotime("+".$package->sub_month." months",strtotime($startDate)));
-							//$endDate = date('Y-m-d H:i:s',strtotime("+3 days",strtotime($startDate)));							
+							$endDate = date('Y-m-d 23:59:59',strtotime("+".$package->sub_month." months",strtotime($startDate)-86400));
+							//$endDate = date('Y-m-d 23:59:59',strtotime("+3 days",strtotime($startDate)));							
 							$remarks = "Renew - Add Package";
+							$package->package_amount = $paid_amount;
 						}
 						else
 						{
-							$startDate = date('Y-m-d H:i:s');
-							$endDate = date('Y-m-d H:i:s',strtotime("+".$package->sub_month." months"));
-							//$endDate = date('Y-m-d H:i:s',strtotime("+3 days"));
+							$startDate = date('Y-m-d 00:00:00');
+							$endDate = date('Y-m-d 23:59:59',strtotime("+".$package->sub_month." months")-86400);
+							//$endDate = date('Y-m-d 23:59:59',strtotime("+3 days"));
 
 							
 							$remarks = "New - Add Package";
@@ -465,7 +466,25 @@ class Payment2 extends WS_Controller
 				$this->db->where('bidderID',$bidderID);
 				$this->db->where('auctionID',$auctionID);
 				$this->db->update('tbl_auction_participate',$dataAP);	
-				$insertedid_id	=1;		
+				$insertedid_id	=1;	
+				
+
+				/* login after payment */
+					$this->db->where('id', $bidderID);
+					$row_query = $this->db->get('tbl_user_registration');
+					$row = $row_query->result();
+
+					$this->session->set_userdata('id', $row[0]->id);
+					$this->session->set_userdata('full_name', $row[0]->first_name);	
+					$this->session->set_userdata('user_type', trim($row[0]->user_type));
+					$rand = rand(10000000000,99999999999);
+					$this->session->set_userdata('session_id_user',$rand);
+					$this->session->set_userdata('table_session', 'registration_tb');
+
+					$setarray=array('user_sess_val'=> $rand);
+					$this->db->where('id',$row[0]->id);
+					$this->db->update('tbl_user_registration',$setarray);
+				/* end login after payment */
 			
 					
 			

@@ -593,12 +593,13 @@ class Home_model extends CI_Model {
 		$this->db->join('tbl_bank as bank','bank.id=a.bank_id','left');
 		$this->db->join('tbl_state as state','state.id=a.state','left');
 		$this->db->join('tbl_auction_bidder_fav as fav','fav.auctionID=a.id and fav.bidderID = '.$bidderID,'left');
-		$this->db->join('tbl_subscription_participate_city as sub','sub.sub_state_id=a.state and sub.member_id = '.$bidderID.' and sub.sub_start_date < "'.$currentDate.'" and sub.sub_end_date > "'.$currentDate.'" and sub.sub_status = 1','left');
+		$this->db->join('tbl_subscription_participate_city as sub','sub.sub_state_id=a.state and sub.member_id = '.$bidderID.' and sub.sub_start_date <= NOW() and sub.sub_end_date >= NOW() and sub.sub_status = 1','left');
 		$this->db->where('a.status IN(1)');
         $this->db->where('a.id = "'.$auctionID.'"');
 		$this->db->where('a.bid_last_date >= NOW()');
          //       $this->db->where('a.auction_end_date >= NOW()');
 		$query = $this->db->get();
+		//echo $this->db->last_query();die;
 		if ($query->num_rows() > 0) {				
 			foreach ($query->result() as $row) {	
 				$aData[] = $row;				
@@ -1085,10 +1086,10 @@ class Home_model extends CI_Model {
 				$package->package_amount = $_GET['due_cost'];
 			}			
 
-			if($package_type == 2)
+			if($package_type == 2) // renew
 			{
 				$curSub = $this->getCurrentPackage($bidderID);
-				$getState = $this->get_state_bidder($bidderID);
+				$getState = $this->get_state_bidder($curSub->subscription_participate_id);
 				$state = '';
 				foreach($getState as $key => $s)
 				{
@@ -1150,12 +1151,12 @@ class Home_model extends CI_Model {
 		return $insert_id;
 	}
 
-	public function get_state_bidder($bidderID) 
+	public function get_state_bidder($subscription_participate_id) 
     {
 		$curSub = $this->getCurrentPackage($bidderID);
 
 		$resArr = array();
-		$this->db->where('sub.subscription_participate_id',$curSub->subscription_participate_id);
+		$this->db->where('sub.subscription_participate_id',$subscription_participate_id);
 		$this->db->join('tbl_state as state','state.id=sub.sub_state_id');
 		$query = $this->db->get("tbl_subscription_participate_city as sub");
 		//echo $this->db->last_query();die;
@@ -1167,6 +1168,17 @@ class Home_model extends CI_Model {
 			}
 		}
 		return $resArr;
+	}
+
+	public function getLastPackage($bidderID)
+	{
+		$this->db->where('member_id',$bidderID);
+		$this->db->where('subscription_status',1);
+		//$this->db->where('package_end_date >= now()');
+		//$this->db->where('package_start_date <= now()');
+		$this->db->order_by('subscription_participate_id','DESC');
+		$row_query = $this->db->get('tbl_subscription_participate');
+		return $row_query->row();
 	}
 
 	public function getCurrentPackage($bidderID)

@@ -11,7 +11,7 @@
 		$full_name .= ' '.GetTitleByField('tbl_user_registration', "id='".$userid."'", "authorized_person");
 	}
 	
-	$currentpackage = $this->home_model->getCurrentPackage($userid);
+	$currentpackage = $this->home_model->getLastPackage($userid);
 
 	$totalActivePackage = $this->home_model->getTotalActivePackage($userid);
 
@@ -28,7 +28,16 @@
 	$tilldate = time(); 
 	$diff = $tilldate - $start_date_str; 
 	$consumed_day = ceil($diff/84600);
-	$consumed_amount = ceil($package[0]->per_day_cost*$consumed_day);
+
+	$package_start_date_str = strtotime($package_start_date); 
+	$package_end_date_str = strtotime($package_end_date); 
+	$pdiff = $package_end_date_str - $package_start_date_str; 
+	$total_package_day = floor($pdiff/84600);
+	$per_day_cost = round($package_amount/$total_package_day,4);
+
+	//$consumed_amount = ceil($package[0]->per_day_cost*$consumed_day);
+
+	$consumed_amount = ceil($per_day_cost*$consumed_day);
 	$remaining_amount = $package_amount - $consumed_amount;
 
 	if($package_id == 1)
@@ -251,7 +260,7 @@ $(document).ready(function(){
 								   <div class="plan_desc">
 									   <h4><?php echo ($package_id > 3)?'State Wise (Any 2 States)':'PAN India'; ?></h4>
 									   <p class="common_date"><?php echo $package[0]->sub_month;?> Months Plan</p>
-									   <?php if($package_id > 3){ $state_bidder = $this->home_model->get_state_bidder($userid);?>
+									   <?php if($package_id > 3){ $state_bidder = $this->home_model->get_state_bidder($currentpackage->subscription_participate_id);?>
 										   <h4 class="other_desc_subscribe">States Chosen</h4>
 										   <p class="subscribe_address"><?php echo implode(", ",$state_bidder); ?></p>
 									   <?php } ?>
@@ -262,7 +271,7 @@ $(document).ready(function(){
 									   <h4 class="other_desc_subscribe">Subscribed on</h4>
 									   <p class="common_date"><?php echo date('F dS, Y',strtotime($package_start_date)); ?> at ₹<span><?php echo $package_amount; ?>.00</span></p>
 									   <?php if($package_id > 3 && count($state_bidder) > 2){ ?>
-										   <p class="subscribe_charges">Subscription charges ₹<?php echo $package[0]->package_amount; ?>.00 + <?php echo count($state_bidder)-2; ?> additional State charges ₹<?php echo round($package[0]->city_per_cost,2); ?></p>
+										   <p class="subscribe_charges">Subscription charges ₹<?php echo $package[0]->package_amount; ?>.00 + <?php echo count($state_bidder)-2; ?> additional State charges ₹<?php echo $package_amount - $package[0]->package_amount; ?>.00</p>
 									   <?php } ?>
 								   </div>
 							   </td>
@@ -270,8 +279,12 @@ $(document).ready(function(){
 								   <div class="plan_desc">
 									   <h4 class="other_desc_subscribe">Renewal</h4>
 									   <p class="common_date"><?php echo date('F dS, Y',strtotime($package_end_date) + 86400); ?> at ₹<span><?php echo $package_amount; ?>.00</span></p>
-									   <?php if($totalActivePackage == 1 && ((strtotime($package_end_date)) - 259200) < time()) { ?>
-										   <button type="button" class="btn search_btn_new renew_btn" onclick="window.location = '?package_id=<?php echo $package_id;?>&package_type=2'">Renew Now</button>
+									   <?php if(((strtotime($package_end_date)) - 259200) < time()) { ?>
+										   <?php if(strtotime($package_end_date) < time()) { ?>
+												<button type="button" class="btn search_btn_new renew_btn" onclick="window.location = '<?php echo base_url(); ?>home/premiumServices'">Renew Now</button>
+										   <?php }else{ ?>
+												<button type="button" class="btn search_btn_new renew_btn" onclick="window.location = '?package_id=<?php echo $package_id;?>&package_type=2'">Renew Now</button>
+										   <?php } ?>
 									   <?php } ?>
 								   </div>
 							   </td>
@@ -286,7 +299,7 @@ $(document).ready(function(){
    <div class="row">
 		<div class="col-sm-12">
 			<div class="subscribe_notification manage_sub_downgrade">
-				 <?php if($totalActivePackage == 1 && ((strtotime($package_end_date)) - 259200) < time()) { ?>
+				 <?php /* if($totalActivePackage == 1 && ((strtotime($package_end_date)) - 259200) < time()) { ?>
 					<div class="reming_subscribe">
 						<p>Remind me about subscription renewal</p>
 						<p>Receive an email or SMS reminder 3 days before your renewal date</p>
@@ -296,13 +309,14 @@ $(document).ready(function(){
 						 <p>A reminder email/SMS for your subscription renewal will be sent to you on <?php echo date('F dS, Y',strtotime($package_end_date) - 259200); ?>.</p>
 						<p class="reminder_off"><a href="#">Turn off reminder email/SMS</a></p>
 					</div>
-				<?php } ?>
+				<?php } */ ?>
 				
 
-
-				<div class="cancel_subscription">
-					<button type="button" class="btn search_btn_new" id="upgrade_subscription">Upgrade Subscription</button>
-				</div>
+				<?php if(strtotime($package_end_date) > time()) { ?>
+					<div class="cancel_subscription">
+						<button type="button" class="btn search_btn_new" id="upgrade_subscription">Upgrade Subscription</button>
+					</div>
+				<?php } ?>
 			</div>
 		</div>
 	</div>
@@ -396,7 +410,7 @@ $(document).ready(function(){
 
 											<?php  if($currentplan4 != ''){ ?>
 												<div class="plan_desc state_chosen">
-													<?php $state_bidder = $this->home_model->get_state_bidder($userid);?>
+													<?php $state_bidder = $this->home_model->get_state_bidder($currentpackage->subscription_participate_id);?>
 													<h4 class="other_desc_subscribe">States Chosen</h4>
 													<p class="subscribe_address"><?php echo implode(", ",$state_bidder); ?></p>
 												</div>
@@ -439,7 +453,7 @@ $(document).ready(function(){
 
 										<?php  if($currentplan5 != ''){ ?>
 										<div class="plan_desc state_chosen">
-											<?php $state_bidder = $this->home_model->get_state_bidder($userid);?>
+											<?php $state_bidder = $this->home_model->get_state_bidder($currentpackage->subscription_participate_id);?>
 											<h4 class="other_desc_subscribe">States Chosen</h4>
 											<p class="subscribe_address"><?php echo implode(", ",$state_bidder); ?></p>
 										</div>
@@ -480,7 +494,7 @@ $(document).ready(function(){
 
 										<?php  if($currentplan6 != ''){ ?>
 										<div class="plan_desc state_chosen">
-											<?php $state_bidder = $this->home_model->get_state_bidder($userid);?>
+											<?php $state_bidder = $this->home_model->get_state_bidder($currentpackage->subscription_participate_id);?>
 											<h4 class="other_desc_subscribe">States Chosen</h4>
 											<p class="subscribe_address"><?php echo implode(", ",$state_bidder); ?></p>
 										</div>
@@ -506,6 +520,7 @@ $(document).ready(function(){
 									<?php } ?>
 							</div>
 						</div>
+						<?php if($package_id > 3 ){ ?>
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="state_chosen_wrapper">
@@ -538,7 +553,8 @@ $(document).ready(function(){
 									<p class="selected_states" style="display: none;">Chosen States: <span></span></p>
 								</div>
 							</div>
-						</div>					
+						</div>
+						<?php } ?>
 					</div>
 				</div>
 			</div><!--pan_state_tab-->
