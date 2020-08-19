@@ -51,7 +51,7 @@ body{
 }
 .error {
     font-size: 13px;
-    color: red;
+    color: #e71c28;
 }
 .auction-main {
     position: relative;
@@ -2157,6 +2157,9 @@ h3.non_subscribe_profile {
     color: #666666;
     font-weight: normal;
 }
+.subscription_table .plan_desc h4.red_color {
+    color: #e71c28;
+}
 .subscription_table .table-bordered>tbody>tr>td.auto_renew {
     padding-right: 0;
 }
@@ -2639,24 +2642,34 @@ h3.subscription_plan {
 
 /*----------------------------Contact_us----------------------------------*/
 
+.contact_us_form {
+    margin-top: 25px;
+}
 .contact_us_form .advanced_search_btn {
     text-align: left;
 }
 .contact_us_address {
     margin-left: 90px;
 }
+.contact_us_office .contact_us_logo {
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
 .contact_us_office h3 {
     font-family: 'Roboto-Bold';
     color: #333333;
+    margin-top: 25px;
     margin-bottom: 20px;
 }
 .contact_us_office p {
     line-height: 19px;
+    margin-left: 34px;
 }
 .sales_enquery_section h4 {
     font-family: 'Roboto-Bold';
     color: #333333;
-    margin-top: 40px;
+    margin-top: 30px;
+    margin-left: 34px;
 }
 .sales_enquery_section p {
     margin-top: 20px;
@@ -2667,7 +2680,13 @@ h3.subscription_plan {
 .sales_enquery_section p.enquiry a:hover {
     text-decoration: none;
 }
+.contact_us_address span.contact_us_icons {
+    margin-right: 15px;
+    vertical-align: top;
+}
+.contact_us_address span.contact_us_icons img {
 
+}
 /*----------------------------Contact_us_end----------------------------------*/
 
 /*----------------------------Top Cities--------------------------------------*/
