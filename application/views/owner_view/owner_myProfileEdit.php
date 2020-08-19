@@ -276,8 +276,8 @@ if($row){
                         <select name="email_alerts[]" data-placeholder="Recieve Email Alerts for:" multiple class="chosen-select" tabindex="8">
                             <option value=""></option>
 							<?php
-								foreach($states as $state_record){?>
-								<option value="<?php echo $state_record->id; ?>" <?php echo (in_array($state_record->id, $emailAerts))?'selected':''; ?>><?php echo $state_record->state_name; ?></option>
+								foreach($cities as $city_record){?>
+								<option value="<?php echo $city_record->id; ?>" <?php echo (in_array($city_record->id, $emailAerts))?'selected':''; ?>><?php echo $city_record->city_name; ?></option>
 							<?php }?>
 
                         </select>

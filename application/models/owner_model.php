@@ -488,7 +488,7 @@ class Owner_model extends CI_Model {
 			$data = array();
 			if ($query->num_rows() > 0){                    
 				foreach ($query->result_array() as $row) {
-					$row1[$row['alerts_type']][] = $row['state_id'];
+					$row1[$row['alerts_type']][] = $row['city_id'];
 					
 				}
 				$data = $row1;
@@ -532,11 +532,11 @@ class Owner_model extends CI_Model {
 			$this->db->where('member_id', $id);
 			$this->db->update('tbl_member_email_alerts', array('status'=>0));
 
-			foreach($email_alerts_array as $emailAlertsStateId)
+			foreach($email_alerts_array as $emailAlertsCityId)
 			{
 				$email_data['member_id'] = $id;
 				$email_data['alerts_type'] = $this->input->post('alert_type');
-				$email_data['state_id'] = $emailAlertsStateId;				
+				$email_data['city_id'] = $emailAlertsCityId;				
 				$email_data['status'] = 1;				
 				$email_data['created_on'] = date('Y-m-d H:i:s');				
 				$this->db->insert('tbl_member_email_alerts',$email_data);
