@@ -17,7 +17,7 @@
         $parent_id=$_GET['parent_id'];
     }
 
-    if(isset($_GET['sc']) and !empty($_GET['sc']))
+    /*if(isset($_GET['sc']) and !empty($_GET['sc']))
     {
         $subCatArray = array();
         foreach($_GET['sc'] as $sub_cat)
@@ -25,7 +25,7 @@
             $subCatArray[] = $sub_cat;
         }
     }
-    /*
+    
     echo 'etst';
     print_r($subCatArray);die;
     */
@@ -257,18 +257,6 @@ var oTable = null;
 
 
         }
-
-        function isNumberKey(evt)
-        {
-            var charCode = (evt.which) ? evt.which : event.keyCode;
-            console.log(charCode);
-            if (charCode != 46 && charCode != 45 && charCode > 31
-                    && (charCode < 48 || charCode > 57))
-                return false;
-
-            return true;
-        }
-
 </script>
 <style>
 .dataTables_info{display: none;}
@@ -350,7 +338,7 @@ var oTable = null;
                         <label class="custom_label">Auction Start Date</label>
                     </div>
                     <div class="floating-label">
-                        <input class="floating-input" name="reservePriceMinRange" id="reservePriceMinRange" type="text" placeholder=" " value="<?php echo $reservePriceMinRange; ?>">
+                        <input class="floating-input numericonly" name="reservePriceMinRange" id="reservePriceMinRange" type="text" placeholder=" " value="<?php echo $reservePriceMinRange; ?>">
                         <label class="custom_label">Minimum Reserve Price</label>
                     </div>
                 </div>
@@ -371,7 +359,7 @@ var oTable = null;
                                             <label for="test<?php echo $key; ?>">All <?php echo $parCat->name; ?></label></li>
                                             <?php $Cats = $this->home_model->getAllCategory($parCat->id); ?>
                                             <?php foreach($Cats as $cat){ ?>
-                                                <li><label class="checkbox-inline"><input type="checkbox" data-parent="<?php echo $parCat->id;?>" name="sub_id" value="<?php echo $cat->id;?>" <?php if(in_array($cat->id,$subCatArray)){ echo 'checked="checked"'; } ?>><?php echo $cat->name; ?></label></li>
+                                                <li><label class="checkbox-inline"><input type="checkbox" data-parent="<?php echo $parCat->id;?>" name="sub_id" value="<?php echo $cat->id;?>" <?php if(in_array($cat->id,$_GET['sc'])){ echo 'checked="checked"'; } ?>><?php echo $cat->name; ?></label></li>
                                             <?php } ?>
 
                                         <?php } ?>
@@ -391,7 +379,7 @@ var oTable = null;
                         <label class="custom_label">Auction End Date</label>
                     </div>
                     <div class="floating-label">
-                        <input class="floating-input" name="reservePriceMaxRange" id="reservePriceMaxRange" type="text" placeholder=" " value="<?php echo $reservePriceMaxRange; ?>">
+                        <input class="floating-input numericonly" name="reservePriceMaxRange" id="reservePriceMaxRange" type="text" placeholder=" " value="<?php echo $reservePriceMaxRange; ?>">
                         <label class="custom_label">Maximum Reserve Price</label>
                     </div>
                 </div>
@@ -476,5 +464,21 @@ var oTable = null;
 
 
     });
+	jQuery('.numericonly').keypress(function(event) {
+		  if ((event.which != 46 || jQuery(this).val().indexOf('.') != -1) &&
+			((event.which < 48 || event.which > 57) &&
+			  (event.which != 0 && event.which != 8))) {
+			event.preventDefault();
+		  }
+
+		  var text = jQuery(this).val();
+
+		  if ((text.indexOf('.') != -1) &&
+			(text.substring(text.indexOf('.')).length > 2) &&
+			(event.which != 0 && event.which != 8) &&
+			(jQuery(this)[0].selectionStart >= text.length - 2)) {
+			event.preventDefault();
+		  }
+	});
 </script>
 </div>

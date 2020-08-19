@@ -483,6 +483,22 @@ class Home extends MY_Controller {
         
         $this->load->view('front_view/footer');
     }
+	public function top_cities()
+	{
+		$data['title'] = 'Top Cities';
+		$data['top_cities'] = $this->home_model->getTopCities();
+        $this->load->view('front_view/header', $data);
+        if(MOBILE_VIEW)
+		{			
+			$this->load->view('mobile/home', $data);
+		}
+		else
+		{		
+			$this->load->view('front_view/top_cities', $data);
+		}
+        
+        $this->load->view('front_view/footer');
+    }
 }
 
 ?>

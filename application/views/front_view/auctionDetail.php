@@ -1,4 +1,8 @@
-    <script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.css" type="text/css" media="screen"/>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url();?>js/jquery-ui-1.12.1.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
+<link rel="stylesheet" href="<?php echo base_url(); ?>bankeauc/css/tables.css" />
+<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
     <div class="container-fluid container_margin">
             <div class="row row_bg">
                <div class="container">
@@ -6,7 +10,7 @@
                     <div class="breadcrumb_main">
                         <ol class="breadcrumb">
                             <li><a href="<?php echo base_url(); ?>">Home</a></li>
-                            <li><a href="<?php echo base_url(); ?>propertylisting?search=<?php echo $auction_data[0]->city_name; ?>&assetsTypeId=1"><?php echo $auction_data[0]->city_name; ?> Auctions</a></li>
+                            <li><a href="<?php echo base_url(); ?>propertylisting?search_city=<?php echo $auction_data[0]->city_name; ?>&parent_id=1"><?php echo $auction_data[0]->city_name; ?> Auctions</a></li>
                             <li class="active"><?php echo $auction_data[0]->bank_name; ?></li>
                         </ol>
                     </div><!--breadcrumb_main-->
@@ -19,67 +23,47 @@
                    <div class="col-sm-12">
                        <div class="form_wrap_anction_search form-wrap form_dropdown_border">
                            <form class="form_desc">
-                               <div class="dropdown">
-                                   <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Category
-                                       <span class="caret"></span></button>
-                                   <ul class="dropdown-menu">
-                                       <li class="dropdown-header"><input type="radio" id="test1" name="radio-group" checked>
-                                           <label for="test1">All Properties</label></li>
-                                       <li><label class="checkbox-inline"><input type="checkbox" value="">Land</label></li>
-                                       <li><label class="checkbox-inline"><input type="checkbox" value="">Residential</label></li>
-                                       <li><label class="checkbox-inline"><input type="checkbox" value="">Commercial</label></li>
-                                       <li class="dropdown-header"><input type="radio" id="test2" name="radio-group">
-                                           <label for="test2">All Vehicles</label></li>
-                                       <li><label class="checkbox-inline"><input type="checkbox" value="">Personal</label></li>
-                                       <li><label class="checkbox-inline"><input type="checkbox" value="">Commercial</label></li>
-                                       <li class="dropdown-header"><input type="radio" id="test3" name="radio-group">
-                                           <label for="test3">Others</label></li>
-                                   </ul>
-                               </div>
-                               <div class="custom-dropdown-select">
-                                   <div class="custom-select">
-                                       <select>
-                                           <option value="0">Select City</option>
-                                           <option value="1">All Cities</option>
-                                           <option value="2">Agra</option>
-                                           <option value="3">Ahmedabad</option>
-                                           <option value="4">Delhi</option>
-                                           <option value="5">UP</option>
-                                           <option value="6">Goa</option>
-                                           <option value="7">Kerla</option>
-                                           <option value="8">Ahmedabad</option>
-                                           <option value="9">Delhi</option>
-                                           <option value="10">UP</option>
-                                           <option value="11">Goa</option>
-                                           <option value="12">Kerla</option>
-                                       </select>
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select
+                                        <span class="caret"></span></button>
+                                    <ul class="dropdown-menu assetsType">
+                                        <?php $parentCat = $this->home_model->getAllCategory(0); ?>
+                                            <?php foreach($parentCat as $key => $parCat){ ?>
+                                            <li class="dropdown-header">
+                                            <input type="radio" id="test<?php echo $key; ?>" class="s_parent_id" s-data-parent-id="<?php echo $parCat->id;?>" name="parentCat" value="<?php echo $parCat->id;?>">
+                                                <label for="test<?php echo $key; ?>">All <?php echo $parCat->name; ?></label></li>
+                                                <?php $Cats = $this->home_model->getAllCategory($parCat->id); ?>
+                                                <?php foreach($Cats as $cat){ ?>
+                                                    <li><label class="checkbox-inline"><input type="checkbox" s-data-parent="<?php echo $parCat->id;?>" name="s_sub_id" value="<?php echo $cat->id;?>"><?php echo $cat->name; ?></label></li>
+                                                <?php } ?>
+
+                                            <?php } ?>
+                                    </ul>
+                                    <input type="hidden" name="assetsTypeId" id="assetsTypeId" value="0"/>
+                                </div>
+                                <div class="custom-dropdown-select1">
+                                   <div class="custom-select1">
+                                        <input type="text" id="txt-search" class="form-control item-suggest btn-default dropdown-toggle select-selected" name="x" placeholder="Type City" value="">
                                    </div>
                                </div>
+                               <?php $allbank = $this->home_model->getAllBank(); ?>
                                <div class="custom-dropdown-select">
                                    <div class="custom-select">
-                                       <select>
-                                           <option value="0">Select Bank</option>
-                                           <option value="1">All Cities</option>
-                                           <option value="2">Agra</option>
-                                           <option value="3">Ahmedabad</option>
-                                           <option value="4">Delhi</option>
-                                           <option value="5">UP</option>
-                                           <option value="6">Goa</option>
-                                           <option value="7">Kerla</option>
-                                           <option value="8">Ahmedabad</option>
-                                           <option value="9">Delhi</option>
-                                           <option value="10">UP</option>
-                                           <option value="11">Goa</option>
-                                           <option value="12">Kerla</option>
+                                       <select name="bank" id="bank">
+                                           <option value="">Select Bank</option>
+                                           <?php foreach($allbank as $bank){ ?>
+                                               <option value="<?php echo $bank->id; ?>"><?php echo $bank->name; ?></option>
+                                           <?php } ?>
                                        </select>
                                    </div>
                                </div>
                                <div class="search_btn_section">
-                                   <button class="btn btn-default btn-search" type="Search">
+                                   <button class="btn btn-default btn-search searhcbtn" type="button" onclick="goForSearch(this)">
                                         <i class="fa fa-search"></i> Search
                                    </button>
                                </div>
-                           </form>
+                            </form>
+                            <div class="error" id="error_txt" style="margin-top:0;display: none;height: 20px;padding-right: 30px;color: #e41b1b;margin-left:0;"></div>
                        </div>
                    </div>
                </div>
@@ -185,28 +169,6 @@
 										<td><?php echo $auction_data[0]->category_name; ?></td>
 									</tr>
 								<?php } ?>
-                                <?php if($auction_data[0]->isSub > 0 || $free_sub_flag == 1){ ?>
-                                    <tr>
-                                        <td>Bank Branch</td>
-                                        <td><?php echo $auction_data[0]->branch_name; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Contact Details</td>
-                                        <td><?php echo $auction_data[0]->contact_person_details_1; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Auction Type</td>
-                                        <td><?php echo ($auction_data[0]->event_type=='drt')?'DRT':'Sarfaesi';?> Auction</td>
-                                    </tr>
-                                        <tr>
-                                        <td>Borrower Name</td>
-                                        <td><?php echo $auction_data[0]->borrower_name; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Asset Category</td>
-                                        <td><?php echo $auction_data[0]->category_name; ?></td>
-                                    </tr>
-                                <?php } ?>
                                 <tr>
                                     <td>Asset Type</td>
                                     <td><?php echo ($auction_data[0]->sub_category_name)?$auction_data[0]->sub_category_name:'N/A'; ?></td>
@@ -218,7 +180,7 @@
                                     </tr>
                                 <?php } ?>
                                 <tr>
-                                    <td>Asset Location</td>
+                                    <td>Assets Location</td>
                                     <td><?php echo $auction_data[0]->location_name; ?></td>
                                 </tr>
                                 <tr>
@@ -262,22 +224,30 @@
                                         <td>Documents Available</td>
                                         <td>
                                             <?php
-                                            $picSrNo=1;
-                                            foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id==0 && $doc->status == 1){ ?>
-                                                <a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Pic '.$picSrNo; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } ?>
-                                            <?php
-                                                $picSrNo++;
-                                            } } ?>
-                                            <br/>
-                                            <?php
-                                            $dSrNo=1;
-                                            foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id > 0){ ?>
-                                                <a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Doc '.$dSrNo; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } ?>
-                                            <?php
-                                                $dSrNo++;
-                                                }
+											if(is_array($uploadedDocs) && count($uploadedDocs)>0)
+											{
+												$dSrNo=1;
+												foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id > 0){ ?>
+													<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Doc '.$dSrNo; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } 											$dSrNo++;
+													}
 
-                                            } ?>
+												}
+												 ?>
+												<br/>
+												<?php
+												$picSrNo=1;
+												foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id==0 && $doc->status == 1){ ?>
+													<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Pic '.$picSrNo; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } ?>
+												<?php
+													$picSrNo++;
+												} }
+												
+											}
+											else
+											{
+												echo 'N/A';
+											}
+												?>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -289,7 +259,7 @@
                                     </td>
                                 </tr>-->
                                 <tr>
-                                    <td colspan="2" class="residential_btn"><button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url(); ?>propertylisting?search=<?php echo $auction_data[0]->city_name; ?>&assetsTypeId=1'">View more residential plot in <?php echo $auction_data[0]->city_name; ?> <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button></td>
+                                    <td colspan="2" class="residential_btn"><button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url(); ?>propertylisting?search_city=<?php echo $auction_data[0]->city_name; ?>&parent_id=<?php echo $auction_data[0]->category_id; ?>'">View more residential plot in <?php echo $auction_data[0]->city_name; ?> <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>

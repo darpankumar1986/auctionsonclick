@@ -157,6 +157,35 @@ class Home_model extends CI_Model {
 
 	}
 
+	function getTopCities()
+    { 
+		
+               $this->db->select("city.*",false)
+                ->from('tbl_auction as a')				
+				->join('tbl_city as city','city.id=a.city','left')
+                ->where('a.status IN(1)')
+                ->where('bid_last_date >= NOW()');
+                $this->db->order_by('a.bid_last_date','ASC');
+				$query = $this->db->get('');
+				
+				$data= array();
+				foreach($query->result()as $row)
+				{
+					if(isset($data[$row->city_name]))
+					{
+						$data[$row->city_name] +=1; 
+					}	
+					else
+					{
+						$data[$row->city_name] = 1;
+					}
+					
+					/*shorting data according to the auctions*/
+					arsort($data);
+				}
+				return $data;
+	}
+	
 	function getAllBank()
 	{
 		$this->db->where('status IN(1)');

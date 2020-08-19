@@ -141,8 +141,8 @@
                                         <li class="list_desc"><a href="#"><span><i class="fa fa-headphones"></i></span> Customer Service</a></li>
                                         <li><a href="<?php echo base_url();?>home/premiumServices">Premium Services</a></li>
                                         <li><a href="<?php echo base_url();?>home/advanced_search">Advanced Search</a></li>
-                                        <li><a href="#">Top Cities</a></li>
-										<li><a href="<?php echo base_url()?>home/top_banks">Top Banks</a></li>
+                                        <li><a href="<?php echo base_url();?>home/top_cities">Top Cities</a></li>
+										<li><a href="<?php echo base_url();?>home/top_banks">Top Banks</a></li>
                                         <li><a href="https://bankeauctions.com/" target="_blank">Bankeauctions.com</a></li>
                                         <li><a href="<?php echo base_url();?>about-us">About Us</a></li>
                                         <li><a href="<?php echo base_url();?>faq">FAQ</a></li>
@@ -216,8 +216,8 @@
                                         <li class="list_desc"><a href="#"><span><i class="fa fa-headphones"></i></span> Customer Service</a></li>
                                         <li><a href="<?php echo base_url();?>home/premiumServices">Premium Services</a></li>
                                         <li><a href="<?php echo base_url();?>home/advanced_search">Advanced Search</a></li>
-                                        <li><a href="#">Top Cities</a></li>
-										<li><a href="<?php echo base_url()?>home/top_banks">Top Banks</a></li>
+                                        <li><a href="<?php echo base_url();?>home/top_cities">Top Cities</a></li>
+										<li><a href="<?php echo base_url();?>home/top_banks">Top Banks</a></li>
                                         <li><a href="https://bankeauctions.com/" target="_blank">Bankeauctions.com</a></li>
                                         <li><a href="<?php echo base_url();?>about-us">About Us</a></li>
                                         <li><a href="<?php echo base_url();?>faq">FAQ</a></li>

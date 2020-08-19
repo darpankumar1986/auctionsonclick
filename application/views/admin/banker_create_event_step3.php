@@ -224,7 +224,7 @@ $other_city=$auctionData->other_city;
 					 <div class="row">
 							<div class="lft_heading">Location <span class="red">*</span></div>
 							<div class="rgt_detail">
-								<input name="reference_no" id="reference_no" type="text" maxlength="40" value="<?php echo $auctionData->reference_no; echo isset($_POST['reference_no']) ? $_POST['reference_no'] : ''?>"  class="input alphanumeric html_found">
+								<input name="reference_no" id="reference_no" type="text" value="<?php echo $auctionData->reference_no; echo isset($_POST['reference_no']) ? $_POST['reference_no'] : ''?>"  class="input alphanumeric html_found">
 								<div class="tooltips">
 									<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
 									<span></span>

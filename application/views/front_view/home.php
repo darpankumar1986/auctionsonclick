@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/colorbox.css" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>bankeauc/css/tables.css" />
 <script src="<?php echo base_url(); ?>js/jquery.colorbox.js"></script>
-
+<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <div class="container-fluid">
 	<div class="row">
 		<div class="banner-section">

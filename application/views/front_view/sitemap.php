@@ -36,9 +36,9 @@
                        <div class="top_cities_wrap_list sitemap_list">
                            <h4>Quick Links</h4>
                            <ul class="top_cities_list">
-                               <li><a href="#">Advanced Search</a></li>
-                               <li><a href="#">Top Cities</a></li>
-                               <li><a href="#">Top Banks</a></li>
+                               <li><a href="<?php echo base_url();?>home/advanced_search">Advanced Search</a></li>
+                               <li><a href="<?php echo base_url();?>home/top_cities">Top Cities</a></li>
+                               <li><a href="<?php echo base_url();?>home/top_banks">Top Banks</a></li>
                                <li><a href="<?php echo base_url();?>faq">FAQ</a></li>
                                <li><a href="<?php echo base_url();?>contact-us">Contact Us</a></li>
                            </ul>

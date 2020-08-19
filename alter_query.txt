@@ -359,3 +359,6 @@ CREATE TABLE IF NOT EXISTS `tbl_subscription_state_log` (
   KEY `subscription_participate_id` (`subscription_participate_id`),
   KEY `sub_state_id` (`sub_state_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-------------------Dheeraj--------------------------
+ALTER TABLE `tbl_member_email_alerts` CHANGE `state_id` `city_id` int(11) NOT NULL AFTER `alerts_type`;

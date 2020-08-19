@@ -11,17 +11,25 @@
                                 <div class="footer_about">
                                     <h4>Top 10 Cities</h4>
                                     <ul>
-                                        <li><a href="#">Mumbai (874)</a></li>
-                                        <li><a href="#">Surat (564)</a></li>
-                                        <li><a href="#">Chennai (523)</a></li>
-                                        <li><a href="#">New Delhi (498)</a></li>
-                                        <li><a href="#">Pune (424)</a></li>
-                                        <li><a href="#">Bangalore (423)</a></li>
-                                        <li><a href="#">Ludhiana (383)</a></li>
-                                        <li><a href="#">Ahmedabad (332)</a></li>
-                                        <li><a href="#">Nagpur (300)</a></li>
-                                        <li><a href="#">Guntur (287)</a></li>
-                                        <li class="view_cities"><a href="#">View all Cities <span class="cities_icon"><i class="fa fa-angle-right"></i></span></a></li>
+                                       <?php 
+									   	  $top_cities = $this->home_model->getTopCities();	
+										  $cnt = 1; 	
+										  //echo "<pre>";print_r($top_cities);die;
+
+										  if(is_array($top_cities) && count($top_cities)>0)
+										  {
+											if($cnt<=10)
+											{
+												foreach ($top_cities as $key =>$city)
+												  {
+										  ?>
+													<li><a href="<?php echo base_url();?>propertylisting?search_city=<?php echo $key; ?>"><?php echo $key.' ('.$city.')'; ?></a></li>
+										  <?php 
+												  }
+											}
+										  }
+										  ?>
+                                        <li class="view_cities"><a href="<?php echo base_url()?>home/top_cities">View all Cities <span class="cities_icon"><i class="fa fa-angle-right"></i></span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -141,10 +149,15 @@ function goAdvancedSearch(str)
 	var auction_end_date = $("#auction_end_date").val().trim();
 	var reservePriceMaxRange = $("#reservePriceMaxRange").val().trim();
 	var reservePriceMinRange = $("#reservePriceMinRange").val().trim();
+	var parent_id = $('.dropdown-header input[name=parent_id]:checked').val();
+	if(typeof(parent_id) == 'undefined')
+	{
+		parent_id ='';
+	}
 
     //alert(bank);
     
-    if(search_box == '' && search_city == '' && search_location == '' && borrower_name == '' && bank == '' && auction_start_date == '' && auction_end_date == '' && reservePriceMaxRange == '' && reservePriceMinRange == '')
+    if(search_box == '' && search_city == '' && search_location == '' && borrower_name == '' && bank == '' && auction_start_date == '' && auction_end_date == '' && reservePriceMaxRange == '' && reservePriceMinRange == '' && parent_id == '')
     {
         $("#error_txt1").show();
         $("#error_txt1").html('Please select any one filter for your search');
@@ -152,11 +165,7 @@ function goAdvancedSearch(str)
     }
     else
     {
-        var parent_id = $('.dropdown-header input[name=parent_id]:checked').val();
-		if(typeof(parent_id) == 'undefined')
-		{
-			parent_id ='';
-		}
+        
         var sub_id_str = '';
         $("input[name=sub_id]:checked").each(function(){
             var sub_id = $(this).val();

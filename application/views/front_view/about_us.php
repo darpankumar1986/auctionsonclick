@@ -16,7 +16,7 @@
            <div class="container-fluid">
                <div class="row ad_row_width">
                    <div class="col-sm-12">
-                       <h3 class="premium_service">About AuctionsOnClick.com</h3>
+                       <h3 class="premium_service">About AuctionOnClick.com</h3>
                    </div>
                </div>
            </div>
@@ -25,10 +25,10 @@
                 <div class="col-sm-12">
                     <div class="about_us_main">
                         <div class="about_heading_main">
-                            <p><strong>AuctionsOnClick</strong> is India’s largest online marketplace for all kinds of bank auction assets.<br/> From residential and commercial properties to two, three and four wheeler vehicles,<br/> you will find some of the most lucrative auction deals on <strong>AuctionsOnClick.com.</strong></p>
+                            <p><strong>AuctionOnClick</strong> is India’s largest online marketplace for all kinds of bank auction assets.<br/> From residential and commercial properties to two, three and four wheeler vehicles,<br/> you will find some of the most lucrative auction deals on <strong>AuctionOnClick.com.</strong></p>
                         </div>
                         <div class="about_desc">
-                            <p>Our vast network of Banks and Asset Reconstruction Companies (ARCs) spread across the country gives you the advantage of choosing a property anywhere in India. For your convenience, we list properties city-wise as well as under the Banks auctioning it. Looking for an auction property has never been this easy. Now you can seamlessly browse and transact through <strong>AuctionsOnClick.com</strong> and focus on what’s important for you i.e. striking a great deal!</p>
+                            <p>Our vast network of Banks and Asset Reconstruction Companies (ARCs) spread across the country gives you the advantage of choosing a property anywhere in India. For your convenience, we list properties city-wise as well as under the Banks auctioning it. Looking for an auction property has never been this easy. Now you can seamlessly browse and transact through <strong>AuctionOnClick.com</strong> and focus on what’s important for you i.e. striking a great deal!</p>
                             <p>Our objective is to bring to the potential buyer great investment opportunities through legitimate auction sources and consolidate the large unorganised market for Non-Performing Assets (NPAs) and distressed properties under one single roof.</p>
                             <p><a href="#"><span>Click here </span></a>to look for a deal that’s right for you.</p>
                             <div class="about_box">
