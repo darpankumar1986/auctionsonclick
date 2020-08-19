@@ -276,9 +276,14 @@ $(document).ready(function(){
                                </td>
                                <td>
                                    <div class="plan_desc">
-                                       <h4 class="other_desc_subscribe">Renewal</h4>
-<!--                                       <h4 class="other_desc_subscribe red_color" id="expired_text">Subscription expired on</h4>-->
-                                       <p class="common_date"><?php echo date('F dS, Y',strtotime($package_end_date) + 86400); ?> at ₹<span><?php echo $package_amount; ?>.00</span></p>
+										<?php if(strtotime($package_end_date) < time()) { ?>
+											<h4 class="other_desc_subscribe red_color" id="expired_text">Subscription expired on</h4>
+											<p class="common_date"><?php echo date('F dS, Y',strtotime($package_end_date)); ?> at ₹<span><?php echo $package_amount; ?>.00</span></p>
+										 <?php }else{ ?>
+											<h4 class="other_desc_subscribe">Renewal</h4>
+											<p class="common_date"><?php echo date('F dS, Y',strtotime($package_end_date) + 86400); ?> at ₹<span><?php echo $package_amount; ?>.00</span></p>
+										<?php } ?>
+                                       
                                        <?php if(((strtotime($package_end_date)) - 259200) < time()) { ?>
                                            <?php if(strtotime($package_end_date) < time()) { ?>
                                                 <button type="button" class="btn search_btn_new renew_btn" onclick="window.location = '<?php echo base_url(); ?>home/premiumServices'">Renew Now</button>
