@@ -396,7 +396,7 @@ class Registration_model extends CI_Model {
 				//echo $this->db->last_query();
 				//die;
 				
-				//$this->registrationVerificationMail($insert_id);
+				$this->registrationVerificationMail($insert_id);
 				//$this->sendSMS($insert_id);
 				
 				//$this->session->set_userdata('id', $insert_id);			
@@ -405,6 +405,29 @@ class Registration_model extends CI_Model {
 			}
 			
 			return $insert_id;
+	}
+
+	public function registrationVerificationMail($user_id)
+	{
+		$this->db->where('id',$user_id);							
+		$row_query = $this->db->get('tbl_user_registration');
+
+		if($row = $row_query->row())
+		{
+			$data['first_name'] = $row->first_name;
+			$email = $row->email_id;
+			$subject = "Registration!";
+			$data['Logo'] = $this->load->view('email/Logo', $data, true); // render the view into HTML
+			$data['Logo_2'] = $this->load->view('email/Logo_2', $data, true); // render the view into HTML
+			$body = $this->load->view('email/registration', $data, true); // render the view into HTML
+							
+			if($email !='')
+			{
+				$this->load->library('Email_new','email');
+				$email_obj = new email_new();
+				$email_obj->sendMailToUser(array($email),$subject,$body);  
+			}
+		}
 	}
 	
 	public function save_step_first_temp() 

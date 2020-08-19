@@ -15,14 +15,10 @@ class Registration extends WS_Controller {
 		$this->load->helper(array('form'));		
 		$this->load->model('registration_model');
 		$this->load->model('home_model');
-                $this->load->model('admin/user_model');
+		$this->load->model('admin/user_model');
 		$this->load->model('admin/bank_model');
-		$this->load->model('admin/news_model');
-		$this->load->library('facebook/fb','fb');
-		
-		/*$this->load->library('Email_new','email');
-		$email = new email_new();
-		$email->sendMailToUser(array('neeraj.jain@c1india.com'),'test','hi');*/		
+
+		//$this->registration_model->registrationVerificationMail(17);
 		
 	}
 	
@@ -1323,6 +1319,7 @@ class Registration extends WS_Controller {
 					}
 						
 					$res = $this->registration_model->save_step_first();
+
 					$this->session->set_flashdata('msg','Registration done Successfully !<br>');	
 					redirect("/registration/signup");
 							
@@ -1728,12 +1725,28 @@ class Registration extends WS_Controller {
 	public function sendEmailCode()
 	{
 		$email = $this->input->post('email');		
+		$first_name = $this->input->post('first_name');
+		$authorised_person = $this->input->post('authorised_person');
+
+		if($first_name != '')
+		{
+			$data['first_name'] = $first_name;
+		}
+		else
+		{
+			$data['first_name'] = $authorised_person;
+		}
+
 		$randNumber=rand(100000,999999);
-		//$randNumber = 111111;
+		$randNumber = 111111;
 		$this->session->set_userdata('emailVerificationCode', $randNumber);
-		$this->session->set_userdata('email', $email);
-		$body = "Code: ".$randNumber;
+		$this->session->set_userdata('email', $email);		
 		$subject = "Verification Code!";
+		$data['code'] = $randNumber;
+
+		$data['Logo'] = $this->load->view('email/Logo', $data, true); // render the view into HTML
+		$data['Logo_2'] = $this->load->view('email/Logo_2', $data, true); // render the view into HTML
+		$body = $this->load->view('email/sendEmailCode', $data, true); // render the view into HTML
                         
                         if($email !=''){
 							$this->load->library('Email_new','email');

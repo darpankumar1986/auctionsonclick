@@ -538,6 +538,8 @@ $('.alphanumericemail').bind('keypress', function (event) {
 
 				jQuery(".email_send_code,.email_resend").click(function(){
 					var email = $("#email").val();
+					var first_name = $("#first_name").val();
+					var authorised_person = $("#authorised_person").val();
 					if(email == '')
 					{
 						$(".field-signupform-email").html('Please enter email id.');
@@ -551,7 +553,7 @@ $('.alphanumericemail').bind('keypress', function (event) {
 						jQuery.ajax({
 							url: '<?php echo base_url(); ?>registration/sendEmailCode',
 							type: 'POST',
-							data: 'email=' + email,
+							data: 'email=' + email + '&first_name=' +first_name+ '&authorised_person=' +authorised_person,
 							success: function (data) {
 							   
 
