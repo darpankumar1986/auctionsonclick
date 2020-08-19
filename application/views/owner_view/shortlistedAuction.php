@@ -1,20 +1,9 @@
-<!--<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.css" type="text/css" media="screen"/>-->
+<!--<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.css" type="text/css" media="s-creen"/>-->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
-<link rel="stylesheet" href="<?php echo base_url(); ?>css/colorbox.css?rand=<?php echo CACHE_RANDOM; ?>" />
-<!--<link rel="stylesheet" href="<?php echo base_url(); ?>bankeauc/css/tables.css" />-->
-<script src="<?php echo base_url(); ?>js/jquery.colorbox.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
-<script>
-
-jQuery(document).ready(function () {
-
-	jQuery(".auction_detail_iframe").colorbox({iframe: true, width: "85%", height: "90%", onClosed: function () {
-		//jQuery(".inline_auctiondetail").click();
-		jQuery(".inline_auctiondetail");
-	}});
-
-	
-});
-</script>
+<script src="<?php echo base_url();?>js/jquery-ui-1.12.1.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.css?rand=<?php echo CACHE_RANDOM; ?>">
+<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <script type="text/javascript">
     $(document).ready(function () {
 		//$("#big_table thead tr th").eq(0).addClass("hidetd");
