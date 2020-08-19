@@ -1,3 +1,4 @@
+<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <script type="text/javascript">
 			$(document).ready(function(){
 				$('.error1').css('display','none');
