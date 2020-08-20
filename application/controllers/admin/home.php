@@ -176,7 +176,7 @@ class Home extends CI_Controller {
         $zoneArr = $this->bank_model->GetZoneData();
         $approverArr = $this->bank_model->getApproverData();
         if ($eid != '') {
-            $prows = $this->helpdesk_executive_model->GetProductDetailByeventID($eid); // New Add from createEventAuction
+            //$prows = $this->helpdesk_executive_model->GetProductDetailByeventID($eid); // New Add from createEventAuction
         }
 
 		
@@ -601,8 +601,8 @@ class Home extends CI_Controller {
 						$this->db->insert('tbl_log_auction',$datalog);
 					}
 					// Add/Update data in elastic search engine
-					$this->load->model('elastic_model');		
-					$res = $this->elastic_model->property($insertedid_id);
+					//$this->load->model('elastic_model');		
+					//$res = $this->elastic_model->property($insertedid_id);
 					
 					$msg = "Auction has been published successfully.";
 					$this->session->set_flashdata('message', $msg);

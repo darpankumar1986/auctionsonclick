@@ -68,7 +68,8 @@ if($row){
 <div class="container-fluid container_margin">
    <div class="row ad_row_width">
 		<?php 
-		//echo (int)$isPremiumMember;die;
+		$userid=$this->session->userdata('id');
+		 $isPremiumMember = $this->home_model->getTotalActivePackage($userid);
 		if(!$isPremiumMember) {?>
 		<div class="container">
 			  <div class="row advanced_search_row row_padding">
@@ -263,10 +264,12 @@ if($row){
                         </label>
                     </div>
                     <div class="email_alerts">
+						<?php if($isPremiumMember > 0) {?>
                         <label class="container-radio">Daily Email Alerts
                             <input type="radio" <?php echo ($alert_type==1)?'checked="checked"':''; ?> name="alert_type" value="1">
                             <span class="checkmark"></span>
                         </label>
+						<?php } ?>
                         <label class="container-radio">Weekly Email Alerts
                             <input type="radio" <?php echo ($alert_type==2)?'checked="checked"':''; ?> name="alert_type" value="2">
                             <span class="checkmark"></span>

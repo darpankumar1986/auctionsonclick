@@ -1,3 +1,4 @@
+
 <?php 
 	$controller_name = $this->router->fetch_class(); // class = controller
 	$method = $this->router->fetch_method();
@@ -56,6 +57,8 @@
 	<script src="<?php echo base_url();?>js/core-min.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url();?>js/sha256-min.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
 	<script src="<?php echo base_url();?>js/validation.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
+	<script src="<?php echo base_url(); ?>bankeauc/js/sweetalert.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+	<script src="<?php echo base_url(); ?>bankeauc/js/sweetalert.core.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 	<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 	<!--<script src="<?php echo base_url(); ?>bankeauc/js/promise.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 	<script src="<?php echo base_url(); ?>bankeauc/js/sweetalert.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
@@ -63,6 +66,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bankeauc/css/sweetalert.css?rand=<?php echo CACHE_RANDOM; ?>">-->
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bankeauc/css/sweetalert.css?rand=<?php echo CACHE_RANDOM; ?>">
     <link href="<?php echo base_url(); ?>assets/auctiononclick/css/bootstrap.min.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?rand=<?php echo CACHE_RANDOM; ?>">-->
     <link href="<?php echo base_url(); ?>assets/auctiononclick/css/font-awesome.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
@@ -122,7 +126,10 @@
                                             <li><a href="<?php echo base_url();?>owner/myProfileEdit">Modify Profile</a></li>
                                             <li><a href="#">Change Password</a></li>
                                             <li><a href="<?php echo base_url(); ?>owner/shortlistedAuction">Shortlist</a></li>
-											<li><a href="<?php echo base_url(); ?>owner/manageSubscription">Manage Subscription</a></li>
+											<?php $currentpackage = $this->home_model->getLastPackage($this->session->userdata('id')); ?>
+											<?php if($currentpackage->subscription_participate_id > 0){ ?>
+												<li><a href="<?php echo base_url(); ?>owner/manageSubscription">Manage Subscription</a></li>
+											<?php } ?>
                                             <li><a href="<?php echo base_url(); ?>registration/logout">Logout</a></li>
                                         </ul>
                                         </div></li>

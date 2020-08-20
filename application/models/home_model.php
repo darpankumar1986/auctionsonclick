@@ -28,26 +28,7 @@ class Home_model extends CI_Model {
     }
     
     
-    function eventList()
-    {
-		$this->db->select('id,category,title');
-		$this->db->where('status', 1);
-		$this->db->where('category', 'event');
-		$this->db->order_by('priority','asc');
-		$this->db->limit(29);
-		$this->db->from("tbl_news_blog");
-		$query = $this->db->get();
-		
-		if($query->num_rows() > 0){
-			$data=array();
-            foreach ($query->result() as $row){
-			$data[]=$row;
-			}
-			return $data;
-		}
-		return false;
-	
-    }
+    
     
     function getProductById($id='')
     {
@@ -587,6 +568,57 @@ class Home_model extends CI_Model {
 							}
 		return true;
 	}
+
+	public function addtoalert(){
+		
+		$city = $this->input->post('city');
+
+		
+		//$this->db->where('city_name', $city);
+		$this->db->where("city_name like '%".$city."%'");
+		$this->db->where('status', 1);		
+		$query = $this->db->get('tbl_city'); 
+		$cityRow = $query->result();
+
+      	if ($query->num_rows() > 0) 
+		{
+			$member_id = $this->session->userdata('id');
+			$this->db->where('member_id', $member_id);
+			$this->db->where('city_id', $cityRow[0]->id);
+			$this->db->where('status', 1);
+			$emailAlertQry = $this->db->get('tbl_member_email_alerts');
+			if($emailAlertQry->num_rows()<=0)
+			{
+				$this->db->where('member_id', $member_id);
+				$this->db->where('status', 1);
+				$this->db->order_by('email_alerts_id', "DESC");
+				$this->db->limit(1);
+				$eAlertQry = $this->db->get('tbl_member_email_alerts');
+				$eAlertRow = $eAlertQry->result();
+				$alerts_type = $eAlertRow[0]->alerts_type;
+				
+				$alertData['member_id'] = $member_id;
+				$alertData['alerts_type'] = ($alerts_type!='')?$alerts_type:1;
+				$alertData['city_id'] = $cityRow[0]->id;
+				$alertData['status'] = 1;
+				$alertData['created_on'] = date('Y-m-d H:i:s');
+				$this->db->insert('tbl_member_email_alerts',$alertData);
+				$res='1';
+				
+			}
+			else
+			{
+				$res='2';
+			}
+			
+		}
+		else
+		{
+			$res='0';
+		}
+		
+		return $res;
+	}
     
     public function getSalesPerson($state_id) {
 		
@@ -820,34 +852,7 @@ class Home_model extends CI_Model {
 	
     }
 
-	function getStaticContents($id) {
-		$this->db->where('webpage_id',$id);
-        $this->db->from("tbl_webpage");
-        $query = $this->db->get();
-        if ($query->num_rows() > 0) {
-            //$data = array();
-            foreach ($query->result() as $row) {
-               
-                $data = $row;
-            }
-            return $data;
-        }
-        return false;
-    }
 	
-	function getStaticContentsBySlug($slug) {
-		$this->db->where('slug',$slug);
-        $this->db->from("tbl_webpage");
-        $query = $this->db->get();
-        if ($query->num_rows() > 0) {
-            //$data = array();
-            foreach ($query->result() as $row) {
-                $data = $row;
-            }
-            return $data;
-        }
-        return false;
-    }
     
     function getBankIdByShortname($slug) {
 		$this->db->where('shortName',$slug);
@@ -892,72 +897,8 @@ class Home_model extends CI_Model {
         return false;
     }
     
-    function getHomeBreakingNewsDetails() {
-		$this->db->where('category','home');
-		$this->db->where('status','1');
-		$this->db->where('bank_id','0');
-        $this->db->from("tbl_news_blog");
-        $query = $this->db->get();
-        if ($query->num_rows() > 0) {
-            //$data = array();
-            foreach ($query->result() as $row) {
-                $data = $row->title;
-            }
-            return $data;
-        }
-        return false;
-    }
     
-    function getHomeHeaderBanner($bankId = '') {
-		
-		if($bankId > '0')
-		{
-			$category = 'bank_header';
-		}else{
-			$category = 'home_header';
-		}
-		
-		
-		$this->db->where('category',$category);
-		$this->db->where('status','1');
-		$this->db->where('bank_id',$bankId);
-        $this->db->from("tbl_news_blog");
-        $query = $this->db->get();
-        if ($query->num_rows() > 0) {
-            //$data = array();
-            foreach ($query->result() as $row) {
-                $data[] = $row;
-            }
-            return $data;
-        }
-        return false;
-    }
     
-    function getHomeSlider($bankId = '') {
-		
-		if($bankId > '0')
-		{
-			$category = 'bank_slider';
-		}else{
-			$category = 'home_slider';
-		}
-		
-		
-		$this->db->where('category',$category);
-		$this->db->where('status','1');
-		$this->db->where('bank_id',$bankId);
-		$this->db->order_by('priority','asc');
-        $this->db->from("tbl_news_blog");
-        $query = $this->db->get();
-        if ($query->num_rows() > 0) {
-            //$data = array();
-            foreach ($query->result() as $row) {
-                $data[] = $row;
-            }
-            return $data;
-        }
-        return false;
-    }
     
     public function GetUploadedDocsByAuctionId($aId)
 	{

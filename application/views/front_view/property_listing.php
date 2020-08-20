@@ -204,7 +204,7 @@ var oTable = null;
             <div class="form_wrap_anction_search form-wrap form_dropdown_border">
                 <form class="form_desc">
                                 <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Category
                                         <span class="caret"></span></button>
                                     <ul class="dropdown-menu assetsType">
                                         <?php $parentCat = $this->home_model->getAllCategory(0); ?>
@@ -252,7 +252,7 @@ var oTable = null;
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="adblock">
-                            <img src="<?php echo base_url(); ?>assets/auctiononclick/images/ad_space.png">
+                            <img src="<?php echo base_url(); ?>assets/auctiononclick/images/ad_space_insurance.png">
                         </div><!--adblock-->
                     </div>
                 </div><!--row-->
@@ -281,7 +281,7 @@ var oTable = null;
                     </div>
                     <div class="auction_table auction_table_border bank_auction_table shortlisted_table table-responsive">
                         <div class="get-alerts">
-                        <button class="btn btn-default" type="button">
+                        <button class="btn btn-default" type="button" onclick="addtoalert('<?php echo $_GET['search_city']; ?>')">
                             <i class="fa fa-bell"></i> Get Alerts
                         </button>
                         </div>
@@ -319,8 +319,48 @@ var oTable = null;
             <div class="row">
                 <div class="col-sm-12">
                     <div class="adblock">
-                        <img src="<?php echo base_url(); ?>assets/auctiononclick/images/ad_space.png">
+                        <img src="<?php echo base_url(); ?>assets/auctiononclick/images/ad_space_insurance_bottom.png">
                     </div><!--adblock-->
                 </div>
             </div><!--row-->
         </div><!--container-fluid-->
+<script>
+
+ function addtoalert(city)
+{
+	//alert(city);
+	if (city) 
+	{
+
+		jQuery.ajax({
+			url: '/home/addtoalert',
+			type: 'POST',
+			data: {
+				city: city
+			},
+			success: function (response) {
+				//console.log(response);
+				if(response=='1')
+				{
+					//alert('Thank you for subscribing email alert for the '+city);
+					swal('', 'Thank you for subscribing email alert for the '+city, 'success');
+				}
+				if(response=='2')
+				{
+					//alert('You have already subscribed email alert for the '+city);
+					//var msg = 'You have already subscribed email alert for the '+city;
+					swal('', 'You have already subscribed email alert for the '+city, 'warning');
+				}
+				if(response=='0')
+				{
+					//alert('Invaild City');
+					swal('Oops!', 'Invaild City', 'error');
+				}
+				//var rand = Math.random() * 10000000000000000;
+				//location.href = "?rand=" + rand;
+			}
+		});
+	}
+
+}
+</script>
