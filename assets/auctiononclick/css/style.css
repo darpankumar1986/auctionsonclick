@@ -750,7 +750,18 @@ h3.auction_heading {
     font-size:11px;
     color:#acacac;
 }
+.custom_form .floating-input:focus ~ label.custom_label, .custom_form .floating-input:not(:-ms-input-placeholder) ~ label.custom_label {
+    top: 2px;
+    font-size:11px;
+    color:#acacac;
+}
+.custom_form .floating-input::-ms-clear {
+    display: none;
+}
 
+select::-ms-expand {
+    display: none;
+}
 
 .custom_form .floating-select:focus ~ label.custom_label, .custom_form .floating-select:not([value=""]):valid ~ label.custom_label {
     top: 2px;
@@ -758,12 +769,13 @@ h3.auction_heading {
     font-size:11px;
     color:#acacac;
 }
-.custom_form label.custom_label:focus, .custom_form label.custom_label:active {
+.custom_form label.defalult_floating {
     top: 2px;
     left: 16px;
     font-size:11px;
     color:#acacac;
 }
+
 /* active state */
 .custom_form .floating-input:focus ~ .bar:before, .custom_form .floating-input:focus ~ .bar:after, .custom_form .floating-select:focus ~ .bar:before, .custom_form .floating-select:focus ~ .bar:after {
     width:50%;

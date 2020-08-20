@@ -25,7 +25,7 @@
             $subCatArray[] = $sub_cat;
         }
     }
-    
+
     echo 'etst';
     print_r($subCatArray);die;
     */
@@ -325,12 +325,12 @@ var oTable = null;
                         <?php $allbank = $this->home_model->getAllBank(); ?>
                                <select name="bank" id="bank" class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
                                    <option value=""></option>
-                                   <?php foreach($allbank as $bank){ ?>
+                                   <?php foreach($allbank as $bank){  ?>
                                        <option value="<?php echo $bank->id; ?>" <?php echo ($bank->id==$bank_ID)?'selected="selected"':'';?> ><?php echo $bank->name; ?></option>
                                    <?php } ?>
                                </select>
                         <span class="highlight"></span>
-                        <label class="custom_label">Bank Name</label>
+                        <label class="custom_label <?php echo ($bank_ID > 0)?'defalult_floating':''; ?>">Bank Name</label>
                         <span class="eye_icon down_icon"><i class="fa fa-chevron-down"></i></span>
                     </div>
                     <div class="floating-label">
@@ -464,21 +464,21 @@ var oTable = null;
 
 
     });
-	jQuery('.numericonly').keypress(function(event) {
-		  if ((event.which != 46 || jQuery(this).val().indexOf('.') != -1) &&
-			((event.which < 48 || event.which > 57) &&
-			  (event.which != 0 && event.which != 8))) {
-			event.preventDefault();
-		  }
+    jQuery('.numericonly').keypress(function(event) {
+          if ((event.which != 46 || jQuery(this).val().indexOf('.') != -1) &&
+            ((event.which < 48 || event.which > 57) &&
+              (event.which != 0 && event.which != 8))) {
+            event.preventDefault();
+          }
 
-		  var text = jQuery(this).val();
+          var text = jQuery(this).val();
 
-		  if ((text.indexOf('.') != -1) &&
-			(text.substring(text.indexOf('.')).length > 2) &&
-			(event.which != 0 && event.which != 8) &&
-			(jQuery(this)[0].selectionStart >= text.length - 2)) {
-			event.preventDefault();
-		  }
-	});
+          if ((text.indexOf('.') != -1) &&
+            (text.substring(text.indexOf('.')).length > 2) &&
+            (event.which != 0 && event.which != 8) &&
+            (jQuery(this)[0].selectionStart >= text.length - 2)) {
+            event.preventDefault();
+          }
+    });
 </script>
 </div>
