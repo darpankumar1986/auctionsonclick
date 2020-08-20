@@ -204,7 +204,7 @@ var oTable = null;
             <div class="form_wrap_anction_search form-wrap form_dropdown_border">
                 <form class="form_desc">
                                 <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Category
                                         <span class="caret"></span></button>
                                     <ul class="dropdown-menu assetsType">
                                         <?php $parentCat = $this->home_model->getAllCategory(0); ?>
