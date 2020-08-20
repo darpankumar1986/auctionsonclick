@@ -758,7 +758,12 @@ h3.auction_heading {
     font-size:11px;
     color:#acacac;
 }
-
+.custom_form label.custom_label:focus, .custom_form label.custom_label:active {
+    top: 2px;
+    left: 16px;
+    font-size:11px;
+    color:#acacac;
+}
 /* active state */
 .custom_form .floating-input:focus ~ .bar:before, .custom_form .floating-input:focus ~ .bar:after, .custom_form .floating-select:focus ~ .bar:before, .custom_form .floating-select:focus ~ .bar:after {
     width:50%;
@@ -771,7 +776,7 @@ h3.auction_heading {
     display: block;
     line-height: 34px;
     text-align: center;
-    pointer-events: none;
+    cursor: pointer;
     color: #cccccc;
 }
 .custom_form .floating-textarea {
