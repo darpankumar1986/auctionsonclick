@@ -39,9 +39,7 @@ define('AUCTION_EXTENDED_TIME_BEFORE_AUCTION_END',		'5');
 define('BIDDER_AUCTION_END_MESSAGE_TIME','10'); // time in second
 
 define('JDA_TITLE','Property Auctions :: Auction'); // time in second
-//define('BRAND_NAME','Development Authority');
-define('BRAND_NAME','AuctionsOnClick');
-//echo $_SERVER['HTTP_HOST'];
+define('BRAND_NAME','AuctionOnClick.com');
 if($_SERVER['HTTP_HOST'] == 'propertyauctions.com' || $_SERVER['HTTP_HOST'] == 'www.propertyauctions.com' || $_SERVER['HTTP_HOST'] == 'property.easyauctions.in:8080'|| $_SERVER['HTTP_HOST'] =='125.63.68.28:8080' || $_SERVER['HTTP_HOST'] =='192.168.10.122:8080' || $_SERVER['HTTP_HOST'] == 'propertyauctions.c1india.com') // && false
 {
 	define('LOCAL_URL', true);

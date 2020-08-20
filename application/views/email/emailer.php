@@ -81,10 +81,10 @@
 											<?php foreach($auctionList as $auction){ ?>
                                             <tr>
                                                 <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: left;"><?php echo $auction->bank_name; ?></td>
-                                                <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: left;">Commercial Property in <?php echo $reference_no; ?></td>
+                                                <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: left;"><?php echo $auction->subCategory;?> <?php echo $auction->parentCategory;?> in <?php echo $auction->reference_no; ?></td>
                                                 <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: left;"><?php echo date('Y-m-d',strtotime($auction->bid_last_date)); ?></td>
-                                                <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: right;">₹<?php echo $auction->reserve_price; ?></td>
-                                                <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: center;"><img src="<?php echo $view_button; ?>"></td>
+                                                <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: right;">&#8377;<?php echo $auction->reserve_price; ?></td>
+                                                <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: center;"><a href="<?php echo base_url(); ?>home/auctionDetail/<?php echo $auction->listID; ?>" target="_blank"><img src="<?php echo $view_button; ?>"></a></td>
                                             </tr>  
 											<?php } ?>
                                         </tbody>
@@ -109,7 +109,7 @@
                                         <tbody>
                                             <tr>
                                                 <td align="center" bgcolor="#0078db" style="border:none;-webkit-border-radius: 5px; -moz-border-radius: 5px;border-radius:4px;cursor:auto;padding:11px 20px;background:#0078db;" valign="middle">
-                                                    <a href="#" style="color:#ffffff;font-family:sans-serif;font-size:13px;font-weight:600;line-height:120%;Margin:0;text-decoration:none;text-transform:none;" target="_blank">
+                                                    <a href="<?php echo base_url(); ?>propertylisting?search_city=<?php echo $city_name; ?>&parent_id=" style="color:#ffffff;font-family:sans-serif;font-size:13px;font-weight:600;line-height:120%;Margin:0;text-decoration:none;text-transform:none;" target="_blank">
                                                         View more Auction
                                                     </a>
                                                 </td>
@@ -140,7 +140,7 @@
                             <tr>
                                 <td style="font-family: sans-serif;color: #666666;font-size: 11px;text-align: center;">
                                     <p style="margin:0;">All trademarks, logos and names are properties of their respective owners.</p>
-                                    <p style="margin-top: 2px;">All Rights Reserved. © Copyright 2020 AuctionOnClick.</p>
+                                    <p style="margin-top: 2px;">All Rights Reserved. &#169; Copyright <?php echo date('Y');?> AuctionOnClick.</p>
                                 </td>
                             </tr>
                         </tbody>

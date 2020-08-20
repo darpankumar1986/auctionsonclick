@@ -17,6 +17,7 @@ class Cron extends WS_Controller
 	public function sendAuctionMail()
 	{
 		$template = array();
+		$templateAuctionCount = array();
 
 		$this->db->where('a.status',1);
 		$this->db->where('c.status',1);
@@ -27,9 +28,10 @@ class Cron extends WS_Controller
 		$row_query = $this->db->get('tbl_member_email_alerts as a');
 		foreach($row_query->result() as $row)
 		{
-			$this->db->select("bank.name as bank_name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+			$this->db->select("bank.name as bank_name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID,c.name as subCategory,p.name as parentCategory",false)
 			->from('tbl_auction as a')				
-			->join('tbl_category as c','c.id=a.subcategory_id','left')
+			->join('tbl_category as c','c.id=a.category_id','left')
+			->join('tbl_category as p','p.id=a.subcategory_id','left')
 			->join('tbl_city as city','city.id=a.city','left')
 			->join('tbl_bank as bank','bank.id=a.bank_id','left')
 			->where('a.city',$row->city_id)
@@ -48,12 +50,13 @@ class Cron extends WS_Controller
 				$html = $this->load->view('email/emailer', $data, true); // render the view into HTML
 
 				$template[$row->city_id] = $html;
+				$templateAuctionCount[$row->city_id] = $auctionList->num_rows();
 			}
 		}
 
 		if(count($template) > 0)
 		{
-			$this->db->select("a.city_id,r.email_id",false);
+			$this->db->select("a.city_id,r.email_id,c.city_name,r.id",false);
 			$this->db->where('a.status',1);
 			$this->db->where('c.status',1);
 			$this->db->where('a.alerts_type IN(1,2)');
@@ -64,19 +67,79 @@ class Cron extends WS_Controller
 			$row_query = $this->db->get('tbl_member_email_alerts as a');
 			foreach($row_query->result() as $row)
 			{
+				$subject = (int)$templateAuctionCount[$row->city_id]." New Auction property in ".$row->city_name;
 				$data = array(
+								"member_id"=>$row->id,
 								"email"=>$row->email_id,
-								"subject"=>'Emailer',
+								"subject"=>$subject,
 								"message"=>$template[$row->city_id],
-								//"attachment"=>'',
-								//"cc_email"=>'',
+								"email_type"=>1,
 								"indate"=>date('Y-m-d H:i:s')
 							);
 				$this->db->insert('tbl_email_log',$data);
+			}
+		}
 
-				//$this->load->library('Email_new','email');
-				//$email_obj = new email_new();
-				//$email_obj->sendMailToUser(array('neeraj.jain@c1india.com'),'Emailer',$template[$row->city_id]); 
+		$this->sendMail();
+	}
+
+	public function sendReminderMail()
+	{
+		$before3DayDate = date('Y-m-d H:i:s',strtotime('+4 days'));
+		$before2DayDate = date('Y-m-d H:i:s',strtotime('+3 days'));
+
+		$this->db->where("p.package_end_date <= '".$before3DayDate."'");
+		$this->db->where("p.package_end_date >= '".$before2DayDate."'");
+
+		$this->db->where('p.subscription_status',1);
+		$this->db->where('p.package_end_date >= now()');
+		$this->db->where('p.package_start_date <= now()');
+		$this->db->order_by('p.subscription_participate_id');
+		$this->db->join('tbl_user_registration as r','r.id = p.member_id');
+		$row_query = $this->db->get('tbl_subscription_participate as p');
+		foreach($row_query->result() as $row)
+		{
+			$data['first_name'] = $row->first_name;
+			$data['package_end_date'] = $row->package_end_date;
+			$data['Logo_2'] = $this->load->view('email/Logo_2', $data, true); // render the view into HTML
+			$html = $this->load->view('email/reminder', $data, true); // render the view into HTML
+
+
+			$subject = 'AuctionOnClick –Your subscription will expire in 3 days';
+			$data = array(
+							"member_id"=>$row->id,
+							"email"=>$row->email_id,
+							"subject"=>$subject,
+							"message"=>$html,
+							"email_type"=>2,
+							"indate"=>date('Y-m-d H:i:s')
+						);
+			$this->db->insert('tbl_email_log',$data);
+		}
+
+		$this->sendMail();
+	}
+
+	public function sendMail()
+	{
+		$this->db->where('status',1);
+		$this->db->where('is_sent',0);
+		$row_query = $this->db->get('tbl_email_log');
+		foreach($row_query->result() as $row)
+		{
+			$this->db->where('email_id',$row->email_id);
+			$this->db->where('status',1);
+			$this->db->where('is_sent',0);
+			$query = $this->db->get('tbl_email_log');
+
+			if($query->num_rows() > 0)
+			{
+				$this->load->library('Email_new','email');
+				$email_obj = new email_new();
+				$email_obj->sendMailToUser(array($row->email),$row->subject,$row->message); 
+
+				$this->db->where('email_id',$row->email_id);
+				$this->db->update('tbl_email_log',array("is_sent"=>1));
 			}
 		}
 	}

@@ -25,13 +25,14 @@
     <tbody>
         <tr>
             <td>
-                <table width="780" align="center" cellpadding="0" cellspacing="0" style="padding: 13px 0px;">
+                <table width="780" height="90" align="center" cellpadding="0" cellspacing="0" style="padding: 13px 0px;">
                     <tbody>
                         <tr>
                             <td>
                                 <table>
                                     <tbody>
                                         <tr>
+                                            <td width="5%">&nbsp;</td>
                                             <td>
                                                 <img alt="Logo" src="<?php echo $Logo; ?>" border="0" style="display:block; vertical-align:top;">
                                             </td>
@@ -46,7 +47,7 @@
         </tr>
     </tbody>
 </table>
-<table width="860" height="3" align="center" cellpadding="0" cellspacing="0">
+<table width="860" height="17" align="center" cellpadding="0" cellspacing="0">
     <tbody><tr>
         <td style="border-top: 3px solid #fba510">
         </td>
@@ -61,9 +62,10 @@
                     <tbody>
                         <tr>
                             <td>
-                                <table width="80%" align="center" cellpadding="0" cellspacing="0">
+                                <table align="center" cellpadding="0" cellspacing="0">
                                     <tbody>
                                         <tr>
+                                            <td width="5%">&nbsp;</td>
                                             <td width="30%">
                                                 <img src="<?php echo $Logo_2; ?>">
                                             </td>
@@ -98,6 +100,12 @@
 </table>
 
 
+      <table width="860" height="3" align="center" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+                <td>&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
     <table width="860" height="1" align="center" cellpadding="0" cellspacing="0">
         <tbody><tr>
             <td style="border-top: 1px solid #ccc;">
@@ -105,7 +113,7 @@
             </tr>
         </tbody>
     </table>
-    <table bgcolor="#ffffff" align="center" width="860" border="0" cellpadding="0" cellspacing="0">
+   <table bgcolor="#ffffff" align="center" width="860" border="0" cellpadding="0" cellspacing="0">
         <tbody>
             <tr>
                 <td>
@@ -114,7 +122,7 @@
                             <tr>
                                 <td style="font-family: sans-serif;color: #666666;font-size: 11px;text-align: center;">
                                     <p style="margin:0;">All trademarks, logos and names are properties of their respective owners.</p>
-                                    <p style="margin-top: 2px;">All Rights Reserved. © Copyright <?php echo date('Y');?> AuctionOnClick.</p>
+                                    <p style="margin-top: 2px;">All Rights Reserved. &#169; Copyright <?php echo date('Y');?> AuctionOnClick.</p>
                                 </td>
                             </tr>
                         </tbody>
@@ -123,7 +131,7 @@
             </tr>
         </tbody>
     </table>
-    <table bgcolor="#ffffff" align="center" width="860" border="0" cellpadding="0" cellspacing="0">
+   <table bgcolor="#ffffff" align="center" width="860" border="0" cellpadding="0" cellspacing="0">
         <tbody>
             <tr>
                 <td>
@@ -152,7 +160,7 @@
                         <tbody>
                             <tr>
                                 <td style="font-family: sans-serif;color: #333333;font-size: 13px;text-align: center;">
-                                    <p style="margin:0;">If you do not wish to receive such emails, <a href="<?php echo base_url();?>" style="text-decoration: none;color: #0078db;">Unsubscribe here</a></p>
+                                    <p style="margin:0;">If you do not wish to receive such emails, <a href="#" style="text-decoration: none;color: #0078db;">Unsubscribe here</a></p>
                                 </td>
                             </tr>
                         </tbody>

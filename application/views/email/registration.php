@@ -121,7 +121,7 @@
                             <tr>
                                 <td style="font-family: sans-serif;color: #666666;font-size: 11px;text-align: center;">
                                     <p style="margin:0;">All trademarks, logos and names are properties of their respective owners.</p>
-                                    <p style="margin-top: 2px;">All Rights Reserved. © Copyright 2020 AuctionOnClick.</p>
+                                    <p style="margin-top: 2px;">All Rights Reserved. &#169; Copyright <?php echo date('Y');?> AuctionOnClick.</p>
                                 </td>
                             </tr>
                         </tbody>

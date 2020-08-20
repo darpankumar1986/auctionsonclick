@@ -416,7 +416,7 @@ class Registration_model extends CI_Model {
 		{
 			$data['first_name'] = $row->first_name;
 			$email = $row->email_id;
-			$subject = "Registration!";
+			$subject = "AuctionOnClick - Signup";
 			$data['Logo'] = $this->load->view('email/Logo', $data, true); // render the view into HTML
 			$data['Logo_2'] = $this->load->view('email/Logo_2', $data, true); // render the view into HTML
 			$body = $this->load->view('email/registration', $data, true); // render the view into HTML

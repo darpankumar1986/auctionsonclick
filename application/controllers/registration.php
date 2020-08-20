@@ -1687,15 +1687,34 @@ class Registration extends WS_Controller {
 
 	public function sendMobileCode()
 	{
-		$mobileNo = $this->input->post('mobile');		
+		$mobileNo = $this->input->post('mobile');
+		$first_name = $this->input->post('first_name');
+		$authorised_person = $this->input->post('authorised_person');
+
+		if($first_name != '')
+		{
+			$data['first_name'] = $first_name;
+		}
+		else if($authorised_person != '')
+		{
+			$data['first_name'] = $authorised_person;
+		}
+		else
+		{
+			$data['first_name'] = 'User';
+		}
+
 		$randNumber=rand(100000,999999);
 		$randNumber = 111111;
 		$this->session->set_userdata('mobileVerificationCode', $randNumber);
 		$this->session->set_userdata('mobileNo', $mobileNo);
 
+
+		$smsText = "Dear ".$data['first_name'].", ".$randNumber." is your one time password to continue with your registration. Valid for 10 minutes.";
+
 		$smsData = array( 
                             'mobile' => $mobileNo,
-                            'SMSMessage' => "Verification code is ".$randNumber
+                            'SMSMessage' => $smsText
                         );
                         
                         if($mobileNo !=''){
@@ -1732,16 +1751,20 @@ class Registration extends WS_Controller {
 		{
 			$data['first_name'] = $first_name;
 		}
-		else
+		else if($authorised_person != '')
 		{
 			$data['first_name'] = $authorised_person;
+		}
+		else
+		{
+			$data['first_name'] = 'User';
 		}
 
 		$randNumber=rand(100000,999999);
 		$randNumber = 111111;
 		$this->session->set_userdata('emailVerificationCode', $randNumber);
 		$this->session->set_userdata('email', $email);		
-		$subject = "Verification Code!";
+		$subject = "AuctionOnClick - Signup OTP";
 		$data['code'] = $randNumber;
 
 		$data['Logo'] = $this->load->view('email/Logo', $data, true); // render the view into HTML
