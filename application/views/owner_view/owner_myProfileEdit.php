@@ -68,7 +68,8 @@ if($row){
 <div class="container-fluid container_margin">
    <div class="row ad_row_width">
 		<?php 
-		//echo (int)$isPremiumMember;die;
+		$userid=$this->session->userdata('id');
+		 $isPremiumMember = $this->home_model->getTotalActivePackage($userid);
 		if(!$isPremiumMember) {?>
 		<div class="container">
 			  <div class="row advanced_search_row row_padding">
