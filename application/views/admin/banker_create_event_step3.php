@@ -19,7 +19,7 @@ if($drt_user != 'drt')
 }
 
 $drt_id	=	$erows->drt_id;
-$closeBidderAuctionRows=$this->admin_model->getAllCloseAuctionBidder($auctionID);
+
 $eventid='';
 $city=$auctionData->city;
 $state=$auctionData->state;
@@ -814,38 +814,7 @@ $other_city=$auctionData->other_city;
 					  
 					  
 					  
-					  <dl class="plain" id="show_bidder" <?php if($auctionData->is_closed=='1') { echo $bchk='style="display:block;"';}else{echo $bchk='style="display:none;"';}?> >
-						<dt class="required">
-						  <label>Bidders</label>
-						</dt>
-						<dd> 
-						<?php// print_r($closeBidderAuctionRows);?>
-					<select name="bidders_list[]"  id="bidders_list"  class="select-text" multiple>
-						   <option value="">Select Bidders</option>
-						   <?php
-						   
-							
-								foreach($biddersrow as $bidder_row){ 
-								if(count($closeBidderAuctionRows)>0)
-								{
-									
-									if(in_array($bidder_row->id,$closeBidderAuctionRows)){
-										$docsel='selected';	
-									}else{
-										$docsel='';		
-									}
-								}
-								
-									
-								?>
-								<option <?php echo $docsel; ?> value="<?php echo  $bidder_row->id ; ?>" > <?php echo ucfirst($bidder_row->bidder_name); ?> (<?php echo ucfirst($bidder_row->email_id); ?>)</option>
-							<?php } ?>
-							
-					</select>
-								
-						  <span class="help-icon" title="Close auction Bidders"></span>
-						</dd>
-					  </dl>
+					 
 					  <!--
 					  <div class="row">
 							<div class="lft_heading">Bid Increment value <span class="red">*</span></div>

@@ -264,21 +264,6 @@ class Admin_model extends CI_Model {
         return true;
     }
     
-    function getAllCloseAuctionBidder($auctionID){
-		//echo $auctionID;die;
-		$query=$this->db->query("SELECT * from tbl_closed_auction_bidder where auctionID='".$auctionID."'");
-		//echo $this->db->last_query();
-		if ($query->num_rows() > 0) {
-			
-			foreach ($query->result() as $row) {
-						$data[] = $row->bidderID;
-					}
-		}else{
-			$data = 0;	
-		}
-		return $data;
-	}
-	
 	function saveeventdata(){ 
   
 		//ini_set("display_errors", "1");
@@ -800,7 +785,7 @@ class Admin_model extends CI_Model {
 		$type 			     =	($this->input->post('subcategory_id'))?$this->input->post('subcategory_id'):0;
 		$category 		     =  ($this->input->post('category_id'))?$this->input->post('category_id'):0;
 		$product_type_val    =  GetTitleByField('tbl_category', "id=".$category."", 'name');
-		$records		     =	$this->GetRecordByCategory($type,$is_auction='auction',$is_bank='bank',$is_sell='sell');
+		$records		     =	//$this->GetRecordByCategory($type,$is_auction='auction',$is_bank='bank',$is_sell='sell');
 		$description 	     =	$this->input->post('description');		
         $product_subtype_val =  GetTitleByField('tbl_category', "id=".$type."", 'name');
         

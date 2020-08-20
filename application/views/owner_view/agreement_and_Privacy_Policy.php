@@ -1,3 +1,0 @@
-<h2>Agreement and Privacy Policy</h2>
-<br>
-Data will coming soon........................

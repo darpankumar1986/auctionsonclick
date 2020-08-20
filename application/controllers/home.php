@@ -17,8 +17,8 @@ class Home extends MY_Controller {
     }
 
     function page($slug) {
-        $staticData = $this->home_model->getStaticContentsBySlug($slug);
-        $data['staticData'] = $staticData;
+        
+        
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/about_us', $data);
         $this->load->view('front_view/footer');
@@ -45,17 +45,9 @@ class Home extends MY_Controller {
 		*/
         $data = array();
         $bankData = $this->home_model->bankList();
-        $eventData = $this->home_model->eventList();
-        $homebreakingNews = $this->home_model->getHomeBreakingNewsDetails();
         $data['homebreakingNews'] = $homebreakingNews;
 	
-        $headerbankId = '0';
-        $homeHeaderBanner = $this->home_model->getHomeHeaderBanner($headerbankId);
-        $data['homeHeaderBanner'] = $homeHeaderBanner;
-
-        $sliderbankId = '0';
-        $homeSliderBanner = $this->home_model->getHomeSlider($sliderbankId);
-        $data['homeSliderBanner'] = $homeSliderBanner;
+        
 
 
         $data['controller'] = 'home';
@@ -85,8 +77,8 @@ class Home extends MY_Controller {
   
     function faq() {
         $data['title'] = 'FAQ';
-		//$staticData = $this->home_model->getStaticContents(4);
-        //$data['staticData'] = $staticData;
+		//
+        //
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/faq', $data);   
         $this->load->view('front_view/footer');     
@@ -94,8 +86,7 @@ class Home extends MY_Controller {
 
     function about_us() {
 		$data['title'] = 'About Us';
-        $staticData = $this->home_model->getStaticContents(2);
-        $data['staticData'] = $staticData;
+                
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/about_us', $data);
         $this->load->view('front_view/footer');
@@ -103,8 +94,8 @@ class Home extends MY_Controller {
 
     function privacy_policy() {
 		$data['title'] = 'Terms &amp; Conditions';
-        $staticData = $this->home_model->getStaticContents(1);
-        $data['staticData'] = $staticData;
+        
+        
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/privecy-policy', $data);
         $this->load->view('front_view/footer');
@@ -112,8 +103,8 @@ class Home extends MY_Controller {
 
     function terms_of_use() {
 		$data['title'] = 'Terms &amp; Conditions';	
-        $staticData = $this->home_model->getStaticContents(5);
-        $data['staticData'] = $staticData;
+
+        
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/terms_of_use', $data);
         $this->load->view('front_view/footer');
@@ -121,8 +112,8 @@ class Home extends MY_Controller {
 
 	function sitemap() {
         $data['title'] = 'Sitemap';
-		//$staticData = $this->home_model->getStaticContents(4);
-        //$data['staticData'] = $staticData;
+		//
+        //
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/sitemap', $data);   
         $this->load->view('front_view/footer');     
@@ -375,6 +366,11 @@ class Home extends MY_Controller {
 	public function liveupcomingauciton_event_add() {
        $save = $this->home_model->liveupcomingauciton_event_add_save();
         
+    }
+
+	public function addtoalert() {
+       $save = $this->home_model->addtoalert();
+       echo $save; 
     }
 
 	public function premiumServices() {

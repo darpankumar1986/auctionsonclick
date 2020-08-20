@@ -142,7 +142,7 @@ class Registration extends WS_Controller {
 		$data['cities'] 		=	 $cities;
 		$data['bank']			=	 $this->bank_model->GetMstBank();	
 		
-		$staticData=$this->home_model->getStaticContents(2);
+
 		$data['staticData']=$staticData;
 		$id=base64_decode(urldecode($encoded_str));
 		$data['id']=$id;
@@ -544,7 +544,7 @@ class Registration extends WS_Controller {
 					
 				}
             }
-			$staticData=$this->home_model->getStaticContents(2);
+	
 			$data['staticData']=$staticData;
 			$this->load->view('front_view/header',$data);
 		
@@ -653,7 +653,7 @@ class Registration extends WS_Controller {
 					
 				}
             }
-			$staticData=$this->home_model->getStaticContents(2);
+	
 			$data['staticData']=$staticData;
 			$this->load->view('front_view/header',$data);
 		
@@ -774,7 +774,7 @@ class Registration extends WS_Controller {
 			 $data['error_msg']="Invalid username and password";
              $this->session->set_flashdata('error_msg', $data['error_msg']);	
 
-			$staticData=$this->home_model->getStaticContents(2);
+	
 			$data['staticData']=$staticData;
 			$this->load->view('front_view/header',$data);
 		
@@ -888,7 +888,7 @@ class Registration extends WS_Controller {
 		if($this->session->userdata('id')){
 			redirect("registration/redirectDashboard");
 		}
-			$staticData=$this->home_model->getStaticContents(2);
+	
 			$data['staticData']=$staticData;
 			$this->load->view('front_view/header',$data);
 			$this->load->view('banker_login', $data);	
@@ -896,7 +896,7 @@ class Registration extends WS_Controller {
 	}
 	
 	public function forgot_password(){
-		$staticData=$this->home_model->getStaticContents(2);
+
 		$data['staticData']=$staticData;
 		$this->load->view('front_view/header',$data);
 		
@@ -1000,7 +1000,7 @@ class Registration extends WS_Controller {
 		$this->session->unset_userdata('user_type');
 		$this->session->unset_userdata('bank_id');
 		$this->session->unset_userdata('branch_id');		
-		$this->fb->facebookLogout();
+		//$this->fb->facebookLogout();
 		
 		$date_of_expiry = time() + 60 ;
 		setcookie( "csrf_cookie_name", "", $date_of_expiry, "/" ) ;
@@ -1357,7 +1357,7 @@ class Registration extends WS_Controller {
 	
 	public function save_next()
 	{
-		$staticData=$this->home_model->getStaticContents(2);
+
 		$data['staticData']=$staticData;
 		$this->load->view('front_view/header',$data);
 		
@@ -1391,7 +1391,7 @@ class Registration extends WS_Controller {
 		if($data['user_data'][0]->status!=5)
 			redirect('/registration/redirectDashboard');
 		
-		$staticData=$this->home_model->getStaticContents(2);
+
 			$data['staticData']=$staticData;
 			$this->load->view('front_view/header',$data);
 
