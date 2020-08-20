@@ -191,7 +191,7 @@ class Owner extends WS_Controller {
         $data['controller'] = 'owner';
         $this->load->view('common/owner_header_user');
         $data['breadcrumb'] = $this->load->view('common/executive_breadcrumb', $data, true);
-        $data['tabs'] = $this->load->view('owner_view/tabs', '', true);
+        
         $data['leftPanel'] = $this->load->view('owner_view/owner_myMessageLeft', '', true);
 
         $userType = $this->session->userdata('user_type');
@@ -235,7 +235,7 @@ class Owner extends WS_Controller {
 
         $this->load->view('common/owner_header_user');
         $data['breadcrumb'] = $this->load->view('common/executive_breadcrumb', $data, true);
-        $data['tabs'] = $this->load->view('owner_view/tabs', '', true);
+        
         $data['leftPanel'] = $this->load->view('owner_view/owner_myMessageLeft', '', true);
         $this->load->view('owner_view/owner_myMessage_add-edit', $data);
         $this->load->view('common/footer');
@@ -254,7 +254,7 @@ class Owner extends WS_Controller {
 
         $this->load->view('common/owner_header_user');
         $data['breadcrumb'] = $this->load->view('common/executive_breadcrumb', $data, true);
-        $data['tabs'] = $this->load->view('owner_view/tabs', '', true);
+        
         $data['leftPanel'] = $this->load->view('owner_view/owner_myMessageLeft', '', true);
         $this->load->view('owner_view/owner_myMessage_add-edit', $data);
         $this->load->view('common/footer');
@@ -326,7 +326,7 @@ class Owner extends WS_Controller {
         $data['records'] = $message;
         $this->load->view('common/owner_header_user');
         $data['breadcrumb'] = $this->load->view('common/executive_breadcrumb', $data, true);
-        $data['tabs'] = $this->load->view('owner_view/tabs', '', true);
+        
         $data['leftPanel'] = $this->load->view('owner_view/owner_myMessageLeft', '', true);
         $this->load->view('owner_view/owner_myMessageUser', $data);
         //$this->load->view('owner_view/owner_myActivity', $data);
@@ -342,7 +342,7 @@ class Owner extends WS_Controller {
         $data['records'] = $message;
         $this->load->view('common/owner_header_user');
         $data['breadcrumb'] = $this->load->view('common/executive_breadcrumb', $data, true);
-        $data['tabs'] = $this->load->view('owner_view/tabs', '', true);
+        
         $data['leftPanel'] = $this->load->view('owner_view/owner_myMessageLeft', '', true);
         $this->load->view('owner_view/owner_myMessageTrash', $data);
         $this->load->view('common/footer');
@@ -359,7 +359,7 @@ class Owner extends WS_Controller {
         $data['tab_type'] = 'Buy';
         $this->load->view('common/owner_header_user');
         //$data['breadcrumb']=$this->load->view('common/executive_breadcrumb',$data,true);
-        $data['tabs'] = $this->load->view('owner_view/tabs', '', true);
+        
         //$data['leftPanel'] = $this->load->view('owner_view/owner_myProfileLeft', '', true);
         $response = $this->owner_model->myProfileUserData();
         $data['row'] = $response;
@@ -373,7 +373,7 @@ class Owner extends WS_Controller {
         $data['controller'] = 'owner';
         $this->load->view('common/owner_header_user');
         $data['breadcrumb'] = $this->load->view('common/executive_breadcrumb', $data, true);
-        $data['tabs'] = $this->load->view('owner_view/tabs', '', true);
+        
         $data['leftPanel'] = $this->load->view('owner_view/owner_myProfileLeft', '', true);
         $response = $this->owner_model->myProfileUserData();
         $data['row'] = $response;
@@ -402,7 +402,7 @@ class Owner extends WS_Controller {
         $data['isPremiumMember'] = $isPremiumMember;
         $data['controller'] = 'owner';
         $this->load->view('front_view/header');
-        $data['tabs'] = $this->load->view('owner_view/tabs', '', true);
+        
         
         $this->load->view('owner_view/owner_myProfileEdit', $data);
         $this->load->view('front_view/footer');
@@ -518,7 +518,7 @@ class Owner extends WS_Controller {
 
     public function myProfileChangePassword() {
 
-        $data['heading'] = 'Profile - Change Password';
+        $data['heading'] = 'Change Password';
 		
         $response = $this->owner_model->myProfileUserData();
         //echo '<pre>';
@@ -526,12 +526,12 @@ class Owner extends WS_Controller {
         $data['row'] = $response;
 
         $data['controller'] = 'owner';
-        $this->load->view('common/owner_header_user');
-        $data['breadcrumb'] = $this->load->view('common/executive_breadcrumb', $data, true);
-        $data['tabs'] = $this->load->view('owner_view/tabs', '', true);
-        //$data['leftPanel'] = $this->load->view('owner_view/owner_myProfileLeft', '', true);
+        
+		$this->load->view('front_view/header');
+        
+        
         $this->load->view('owner_view/owner_myProfileChangePasswod', $data);
-        $this->load->view('common/footer_eauc');
+        $this->load->view('front_view/footer');
     }
 
     public function myProfileChangePasswordSave() {
@@ -617,7 +617,7 @@ class Owner extends WS_Controller {
         $data['tabtype'] = 'MyRequirement';
         $data['leftsidebar'] = $this->load->view('owner_view/buyer_leftsidebar', $data, true);
 
-        $data['tabs'] = $this->load->view('owner_view/tabs', '', true);
+        
         $this->load->view('owner_view/MyactivityManageRequirement', $data);
     }
 
@@ -634,7 +634,7 @@ class Owner extends WS_Controller {
         $data['tabtype'] = 'MyRequirement';
         $data['leftsidebar'] = $this->load->view('owner_view/buyer_leftsidebar', $data, true);
         $data['breadcrumb'] = $this->load->view('common/executive_breadcrumb', $data, true);
-        $data['tabs'] = $this->load->view('owner_view/tabs', '', true);
+        
         $this->load->view('owner_view/MyactivityMatchingRequirement', $data);
     }
 
@@ -1310,7 +1310,7 @@ class Owner extends WS_Controller {
         //echo '<PRE>',print_r($data['dashboard_statics_data']);echo '</PRE>';
         $this->load->view('common/owner_header_user');
         $data['breadcrumb'] = $this->load->view('common/executive_breadcrumb', $data, true);
-        $data['tabs'] = $this->load->view('owner_view/tabs', '', true);
+        
         $this->load->view('owner_view/sell_dashboard', $data);
         $this->load->view('common/footer');
     }
@@ -1328,7 +1328,7 @@ class Owner extends WS_Controller {
 
         $data['leftsidebar'] = $this->load->view('owner_view/seller_leftsidebar', $data, true);
 
-        $data['tabs'] = $this->load->view('owner_view/tabs', '', true);
+        
         $this->load->view('owner_view/sellMyactivityBidToBeOpenAuction', $data);
         $this->load->view('common/footer');
     }

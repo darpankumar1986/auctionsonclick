@@ -527,11 +527,10 @@ class Owner_model extends CI_Model {
 		
 		$email_alerts_array = $this->input->post('email_alerts'); 			 
 		$email_data = [];
+		$this->db->where('member_id', $id);
+		$this->db->update('tbl_member_email_alerts', array('status'=>0));
 		if(is_array($email_alerts_array) && count($email_alerts_array)>0)
 		{
-			$this->db->where('member_id', $id);
-			$this->db->update('tbl_member_email_alerts', array('status'=>0));
-
 			foreach($email_alerts_array as $emailAlertsCityId)
 			{
 				$email_data['member_id'] = $id;
