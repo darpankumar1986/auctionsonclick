@@ -264,10 +264,12 @@ if($row){
                         </label>
                     </div>
                     <div class="email_alerts">
+						<?php if($isPremiumMember > 0) {?>
                         <label class="container-radio">Daily Email Alerts
                             <input type="radio" <?php echo ($alert_type==1)?'checked="checked"':''; ?> name="alert_type" value="1">
                             <span class="checkmark"></span>
                         </label>
+						<?php } ?>
                         <label class="container-radio">Weekly Email Alerts
                             <input type="radio" <?php echo ($alert_type==2)?'checked="checked"':''; ?> name="alert_type" value="2">
                             <span class="checkmark"></span>
