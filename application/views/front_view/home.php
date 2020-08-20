@@ -15,7 +15,7 @@
 							<p>Buy properties &amp; Vehicles at more than 25% discount</p>
 							<form class="form_desc">
 								<div class="dropdown">
-									<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select
+									<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Category
 										<span class="caret"></span></button>
 									<ul class="dropdown-menu assetsType">
 										<?php $parentCat = $this->home_model->getAllCategory(0); ?>

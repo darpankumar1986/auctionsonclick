@@ -274,10 +274,10 @@ function send(){
 				status='1';
 			  $(".field-signupform-designation").text("Designation cannot be blank.");
 			  } */
-			 if($("#gst_no").val()==''){
+			 /*if($("#gst_no").val()==''){
 				status='1';
 			  $(".field-signupform-gst_no").text("GST number cannot be blank.");
-			  } 
+			  }*/ 
       }
       if($("#address1").val()==''){
         status='1';

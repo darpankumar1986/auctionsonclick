@@ -1,181 +1,181 @@
 <script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <script type="text/javascript">
-			$(document).ready(function(){
-				$('.error1').css('display','none');
-				$("#username").focus();
-				/*$('.keysubmit').keypress(function (e) {
-					if (e.which == 13) {
-						validateloginform();
-						return false;    //<---- Add this line
-					}
-				});*/
-		
-	
-			$("#ddlLogin").change(function(){
-				$("#username").focus();
-				$(this).find("option:selected").each(function(){
-				  if($(this).attr("value")=="banker"){
-						$(".box").not(".banker").hide();
-						$(".banker").show();
-						//$(".forgotLink").hide();
-					}           
-					else{
-						$(".box").hide();
-						//$(".forgotLink").show();
-					}
-				});
-				}).change();
+            $(document).ready(function(){
+                $('.error1').css('display','none');
+                $("#username").focus();
+                /*$('.keysubmit').keypress(function (e) {
+                    if (e.which == 13) {
+                        validateloginform();
+                        return false;    //<---- Add this line
+                    }
+                });*/
 
-				$("#login_submit_form").submit(function(){	
-					var loginType = $("#loginType").val();				
-					var pass = $("#password").val();
-					var hash = CryptoJS.SHA256(pass);
-					$("#password").val(hash);					
-					
-					if(loginType =='owner')
-					{
-						var ckUrl = "<?php echo base_url();?>registration/chk_login";
-					}
-					else
-					{
-						var ckUrl = "<?php echo base_url();?>registration/chk_banker_login";
-					}
-					
-					var  formData = "user_name="+$("#username").val();						 
-						 formData += "&user_id="+$("#txtLoginID").val();						 
-						 formData += "&password="+$("[name=password]").val();			 
-						 formData += "&submit1="+$("[name=submit1]").val();	
-						 
-						 var val =0;
-						 $.ajax({
-							url: ckUrl, // 
-							type:"POST",
-							data: formData,
-							async: false,
-							success:function(response)
-							{	
-								//alert(response);
-								//return false;
-								if(response==1)
-								{
-									$(".error1").css('display','block').html('<div class="flogout1"> You already have an active session;Force logout in existing session !! <a href=<?php echo base_url(); ?>registration/logout style="color:#000;font-weight:bold;">Force Logout</a> </div>');   
-									return false;
-								}									
-								else if(response==2)
-								{
-									$(".error1").css('display','block').html('Your account is blocked!<br> Please contact administrator to unblock it.');   
-									$("#password").val('');
-									return false;
-								}
-								else if(response==3)
-								{
-									$(".error1").css('display','block').html('Invalid username or password..!');   
-									$("#password").val('');
-									return false;
-								}
-								else if(response==4)
-								{
-									$(".error1").css('display','block').html('Invalid username or password..!<br/>Account will be blocked after 5 failed attempt!');   
-									$("#password").val('');
-									return false;
-								}
-								else if(response==5)
-								{
-									$(".error1").css('display','block').html('Your account has been blocked!<br> Please contact administrator to unblock it.'); 
-									$("#password").val('');  
-									return false;
-								}														
-								else{	
-									//alert(0);	
-									val =1;					
-									return true;									
-								}
-								
-							}
-							
-							
-						});
-						if(val == 1)
-						{
-							return true;
-						}
-						
-						return false;
-					
-				});
 
-		});
-		
-		$(document).on('click','.cd-close',function(){
-			$(".error1").css('display','none').html("");
-			$("#username").val("");
-			$("#txtLoginID").val("");
-			$("#password").val("");
-			
-		});
-		</script>
+            $("#ddlLogin").change(function(){
+                $("#username").focus();
+                $(this).find("option:selected").each(function(){
+                  if($(this).attr("value")=="banker"){
+                        $(".box").not(".banker").hide();
+                        $(".banker").show();
+                        //$(".forgotLink").hide();
+                    }
+                    else{
+                        $(".box").hide();
+                        //$(".forgotLink").show();
+                    }
+                });
+                }).change();
 
-	<script type="text/javascript">
-		function validateloginform(){
-			
-			 $(".error1").text("");
-			 //$("#lblError").removeClass('error');
-		   var usertype=$("#ddlLogin").val();
-		   var userid=$("#txtLoginID").val();  
-		   var username=$("#username").val();  
-		   var password=$("#password").val();  
-		   if(usertype=='owner')
-		   {
-			  if(username=='')
-			  {
-				  $(".error1").css('display','block').text("Please Enter Email ID");
-				  //$("#lblError").addClass('error');
-			  }
-			  else
-			  { 
-				  if(password=='')
-				  {
-					  $(".error1").css('display','block').text("Please Enter Password"); 
-					  //$("#lblError").addClass('error');
-				  }
-				  else
-				  {
-					$(".error1").css('display','none');  
-					$("#login_submit_form").trigger("submit");  					
-				  }    
-			  }
-		  } 
-		  if(usertype=='banker'){
-			  /*
-			  if(username==''){
-					$(".error1").css('display','block').text("Please Enter Email");
-					//$("#lblError").addClass('error');
-			  }
-			  */
-			  if(userid=='')
-			  {
-					$(".error1").css('display','block').text("Please Enter User ID"); 
-					//$("#lblError").addClass('error');
-			  }
-			  else
-			  { 
-				  if(password=='')
-				  {
-					  $(".error1").css('display','block').text("Please Enter Password"); 
-					  //$("#lblError").addClass('error');
-				  }
-				  else
-				  {					
-						$(".error1").css('display','none');  
-						$("#login_submit_form").trigger("submit");  							
-						  
-				  }    
-			  }
-		  }
-		}
-		
-	</script>	
-	<div class="container-fluid container_margin">
+                $("#login_submit_form").submit(function(){
+                    var loginType = $("#loginType").val();
+                    var pass = $("#password").val();
+                    var hash = CryptoJS.SHA256(pass);
+                    $("#password").val(hash);
+
+                    if(loginType =='owner')
+                    {
+                        var ckUrl = "<?php echo base_url();?>registration/chk_login";
+                    }
+                    else
+                    {
+                        var ckUrl = "<?php echo base_url();?>registration/chk_banker_login";
+                    }
+
+                    var  formData = "user_name="+$("#username").val();
+                         formData += "&user_id="+$("#txtLoginID").val();
+                         formData += "&password="+$("[name=password]").val();
+                         formData += "&submit1="+$("[name=submit1]").val();
+
+                         var val =0;
+                         $.ajax({
+                            url: ckUrl, //
+                            type:"POST",
+                            data: formData,
+                            async: false,
+                            success:function(response)
+                            {
+                                //alert(response);
+                                //return false;
+                                if(response==1)
+                                {
+                                    $(".error1").css('display','block').html('<div class="flogout1"> You already have an active session;Force logout in existing session !! <a href=<?php echo base_url(); ?>registration/logout style="color:#000;font-weight:bold;">Force Logout</a> </div>');
+                                    return false;
+                                }
+                                else if(response==2)
+                                {
+                                    $(".error1").css('display','block').html('Your account is blocked!<br> Please contact administrator to unblock it.');
+                                    $("#password").val('');
+                                    return false;
+                                }
+                                else if(response==3)
+                                {
+                                    $(".error1").css('display','block').html('Invalid username or password..!');
+                                    $("#password").val('');
+                                    return false;
+                                }
+                                else if(response==4)
+                                {
+                                    $(".error1").css('display','block').html('Invalid username or password..!<br/>Account will be blocked after 5 failed attempt!');
+                                    $("#password").val('');
+                                    return false;
+                                }
+                                else if(response==5)
+                                {
+                                    $(".error1").css('display','block').html('Your account has been blocked!<br> Please contact administrator to unblock it.');
+                                    $("#password").val('');
+                                    return false;
+                                }
+                                else{
+                                    //alert(0);
+                                    val =1;
+                                    return true;
+                                }
+
+                            }
+
+
+                        });
+                        if(val == 1)
+                        {
+                            return true;
+                        }
+
+                        return false;
+
+                });
+
+        });
+
+        $(document).on('click','.cd-close',function(){
+            $(".error1").css('display','none').html("");
+            $("#username").val("");
+            $("#txtLoginID").val("");
+            $("#password").val("");
+
+        });
+        </script>
+
+    <script type="text/javascript">
+        function validateloginform(){
+
+             $(".error1").text("");
+             //$("#lblError").removeClass('error');
+           var usertype=$("#ddlLogin").val();
+           var userid=$("#txtLoginID").val();
+           var username=$("#username").val();
+           var password=$("#password").val();
+           if(usertype=='owner')
+           {
+              if(username=='')
+              {
+                  $(".error1").css('display','block').text("Please Enter Email ID");
+                  //$("#lblError").addClass('error');
+              }
+              else
+              {
+                  if(password=='')
+                  {
+                      $(".error1").css('display','block').text("Please Enter Password");
+                      //$("#lblError").addClass('error');
+                  }
+                  else
+                  {
+                    $(".error1").css('display','none');
+                    $("#login_submit_form").trigger("submit");
+                  }
+              }
+          }
+          if(usertype=='banker'){
+              /*
+              if(username==''){
+                    $(".error1").css('display','block').text("Please Enter Email");
+                    //$("#lblError").addClass('error');
+              }
+              */
+              if(userid=='')
+              {
+                    $(".error1").css('display','block').text("Please Enter User ID");
+                    //$("#lblError").addClass('error');
+              }
+              else
+              {
+                  if(password=='')
+                  {
+                      $(".error1").css('display','block').text("Please Enter Password");
+                      //$("#lblError").addClass('error');
+                  }
+                  else
+                  {
+                        $(".error1").css('display','none');
+                        $("#login_submit_form").trigger("submit");
+
+                  }
+              }
+          }
+        }
+
+    </script>
+    <div class="container-fluid container_margin">
             <div class="row">
                 <div class="col-sm-12">
                    <div class="login_page">
@@ -184,39 +184,39 @@
                            <li class="active"><a data-toggle="tab" href="#Login">Login</a></li>
                            <li><a href="<?php echo base_url(); ?>registration/signup">Register</a></li>
                        </ul>
-				
-                       <div class="tab-content">
-							
-                           <div id="Login" class="tab-pane fade in active">
-							   <form class="custom_form" action="<?php echo base_url(); ?>registration/checklogintype" method="post" id="login_submit_form" autocomplete="off">
 
-										
+                       <div class="tab-content">
+
+                           <div id="Login" class="tab-pane fade in active">
+                               <form class="custom_form" action="<?php echo base_url(); ?>registration/checklogintype" method="post" id="login_submit_form" autocomplete="off">
+
+
                                    <div class="floating-form">
                                        <div class="floating-label">
-											<input type="hidden" id="loginType" name="login_as" value="owner">
-											<input type="hidden" id="action" name="action" value="<?php echo $_GET['action']; ?>">
+                                            <input type="hidden" id="loginType" name="login_as" value="owner">
+                                            <input type="hidden" id="action" name="action" value="<?php echo $_GET['action']; ?>">
 
-                             			   <input type="text" placeholder=" " class="keysubmit floating-input" name="user_name" id="username" value="<?php if($this->session->userdata('session_found_emailid')) { echo $this->session->userdata('session_found_emailid');} ?>">
+                                            <input type="text" placeholder=" " class="keysubmit floating-input" name="user_name" id="username" value="<?php if($this->session->userdata('session_found_emailid')) { echo $this->session->userdata('session_found_emailid');} ?>">
                                            <label class="custom_label">Email ID/Mobile No./Username</label>
                                        </div>
                                        <div class="floating-label">
-											<input type="hidden" name="track" value="<?php echo $track; ?>">
-											<input type="hidden" name="auctionID" value="<?php echo $auctionID; ?>">
-											<input type="password" class="keysubmit floating-input" name="password" id="password" placeholder=" ">
+                                            <input type="hidden" name="track" value="<?php echo $track; ?>">
+                                            <input type="hidden" name="auctionID" value="<?php echo $auctionID; ?>">
+                                           <input type="password" class="keysubmit floating-input" name="password" id="password" placeholder=" ">
                                            <label class="custom_label">Password</label>
-                                           <span class="eye_icon"><i class="fa fa-eye"></i></span>
+                                           <span toggle="#password" class="eye_icon toggle-password"><i class="fa fa-eye"></i></span>
                                        </div>
                                    </div>
                                    <div class="checkbox">
                                        <label><input type="checkbox" name="remember"> Remember me</label>
-                                       <label class="forget"><a href="<?php echo base_url()?>registration/forgetpassword" class="forget">forget password</a></label>
+                                       <label class="forget"><a href="<?php echo base_url()?>registration/forgetpassword" class="forget">Forgot password?</a></label>
                                    </div>
                                    <button type="submit" class="btn btn-default login_btn" name="submit1">Login</button>
 
-								   <div class="success_msg error1" style="padding-left:15px;color: #000 !important;background-color:#f78d8d; clear:both;width: 100%;clear: both; margin-bottom: 20px;">
-										<?php echo $this->session->flashdata('error_msg'); ?>
-									</div>
-							   </form>
+                                   <div class="success_msg error1" style="padding-left:15px;color: #000 !important;background-color:#f78d8d; clear:both;width: 100%;clear: both; margin-bottom: 20px;">
+                                        <?php echo $this->session->flashdata('error_msg'); ?>
+                                    </div>
+                               </form>
                            </div>
                            <div id="Register" class="tab-pane fade">
                                <form class="custom_form register_form">
@@ -326,4 +326,4 @@
             </div><!--row-->
 
         </div><!--container-fluid-->
-		<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+        <script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>

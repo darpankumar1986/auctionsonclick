@@ -12,6 +12,7 @@
     }
 
     $currentpackage = $this->home_model->getLastPackage($userid);
+	
 
     $totalActivePackage = $this->home_model->getTotalActivePackage($userid);
 
@@ -120,12 +121,20 @@ $(document).ready(function(){
                 var plan_amount = $(this).find('.plan_amount').val();
                 var due_cost = plan_amount - remaining_amount;
 
+				if(due_cost > 0)
+				{
+					$("#due_cost").html(due_cost);
 
-                $("#due_cost").html(due_cost);
-
-                $(".subscription_disable_text").hide();
-                $(".subscription_text").show();
-                $(".statewise_text").hide();
+					$(".subscription_disable_text").hide();
+					$(".subscription_text").show();
+					$(".statewise_text").hide();
+				}
+				else
+				{
+					$(".subscription_disable_text").show();
+		            $(".subscription_text").hide();
+	                $(".statewise_text").hide();
+				}
             }
         }
     });
@@ -245,6 +254,7 @@ $(document).ready(function(){
 <?php if (isset($this->session->userdata['flash:old:message_new'])) { ?>
     <div class="fail_msg" style="width: 100%; text-align: center;"> <?php echo @$this->session->userdata['flash:old:message_new']; ?></div>
 <?php } ?>
+<?php if($currentpackage->package_id > 0){ ?>
 <div class="container">
    <div class="row">
        <div class="col-sm-12">
@@ -603,3 +613,6 @@ $(document).ready(function(){
     .pan_subscription_tab{margin-bottom: 0px;}
     .extra_bottom_space{margin-bottom: 80px;}
 </style>
+<?php }else{ ?>
+	<div class="fail_msg" style="width: 100%; text-align: center;">No Subscription Plan</div><br/><br/><br/>
+<?php } ?>

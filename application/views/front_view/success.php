@@ -29,7 +29,7 @@
                <div class="row">
                    <div class="col-sm-12">
                        <div class="form_wrap_anction_search form-wrap thankyou_wrap">
-                           <p><a href="#">Explore <?php echo (int)$total_auction; ?> Live Bank Auctions</a></p>
+                           <p><a href="#" style="cursor: text; text-decoration: none;">Explore <?php echo (int)$total_auction; ?> Live Bank Auctions</a></p>
                            <form class="form_desc">
                                <div class="dropdown">
                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Category
