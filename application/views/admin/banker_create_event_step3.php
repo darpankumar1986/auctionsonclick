@@ -210,7 +210,16 @@ $other_city=$auctionData->other_city;
 							</div>
 						   </div>
 					  </div> 
-					  
+					  <div class="row">
+						<div class="lft_heading">Asset Details <span class="red"> *</span></div>
+						<div class="rgt_detail">
+							<textarea name="asset_details" id="asset_details" type="text"  class="input html_found" rows="8" style="width:400px;"><?php echo $auctionData->asset_details;?></textarea>
+							<div class="tooltips">
+								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
+								<span>Asset Details</span>
+							</div>	
+						</div>
+					</div>
 					  <div class="row">
 							<div class="lft_heading">Borrower Name</div>
 							<div class="rgt_detail">
@@ -422,16 +431,7 @@ $other_city=$auctionData->other_city;
 						</div>
 					</div>-->
                      <!--                    
-					 <div class="row">
-						<div class="lft_heading">Scheme Name </div>
-						<div class="rgt_detail">
-							<input name="scheme_name" id="scheme_name" type="text"  value="<?php echo $auctionData->scheme_name;?>"  class="input alphanumeric html_found">
-							<div class="tooltips">
-								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-								<span>This is the unique refrence number by which an event may be identified.e.g. in case of DRT event it may be the R C Number</span>
-							</div>	
-						</div>
-					</div>
+					 
 					
 					<div class="row">
 						<div class="lft_heading">Concerned Zone <span class="red"> *</span></div>
@@ -1951,8 +1951,12 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
             flag = 1;
         }
 		
-        if (jQuery('#description').val().trim() == '') {
-            jQuery('#spMsg').append("<li>Please Enter Description </li>");
+        if (jquery('#description').val().trim() == '') {
+            jquery('#spmsg').append("<li>please enter description </li>");
+            flag = 1;
+        }
+		if (jquery('#asset_details').val().trim() == '') {
+            jquery('#spmsg').append("<li>please enter Asset Details </li>");
             flag = 1;
         }
 		if (jQuery('#reference_no').val().trim() == '') {
@@ -2070,6 +2074,10 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
 		
         if (jQuery('#description').val().trim() == '') {
             jQuery('#spMsg').append("<li>Please Enter Description </li>");
+            flag = 1;
+        }
+		if (jquery('#asset_details').val().trim() == '') {
+            jquery('#spmsg').append("<li>please enter Asset Details </li>");
             flag = 1;
         }
 		if (jQuery('#reference_no').val().trim() == '') {
