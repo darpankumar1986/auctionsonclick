@@ -2075,11 +2075,11 @@ function submitForgotPassword(utype) {
             });
             */            
         } else {
-            $("#forgot_email").html('Please Enter Valid User ID / Email!');
+            $("#forgot_email").html('Please Enter Valid Email ID!');
             flag =1;
         }
     } else {
-        $("#forgot_email").html('Please Enter User ID / Email!');
+        $("#forgot_email").html('Please Enter Email ID!');
         flag =1;
     }
     

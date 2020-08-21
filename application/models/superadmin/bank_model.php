@@ -820,7 +820,7 @@ class Bank_model extends CI_Model {
 					'lho_id'=>$lho_id,
 					'zone_id'=>$zone,
 					'region_id'=>$region,
-					'status'=>1,
+					'status'=>$status,
 					'address1'=>$address1,
 					'address2'=>$address2,
 					'country'=>$country,

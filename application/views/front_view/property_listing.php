@@ -281,7 +281,7 @@ var oTable = null;
                     </div>
                     <div class="auction_table auction_table_border bank_auction_table shortlisted_table table-responsive">
                         <div class="get-alerts">
-                        <button class="btn btn-default" type="button" onclick="addtoalert('<?php echo $_GET['search_city']; ?>')">
+                        <button class="btn btn-default" type="button" <?php if($this->session->userdata('id')>0){ ?> onclick="addtoalert('<?php echo $_GET['search_city']; ?>')" <?php } else {?> onclick="window.location='<?php echo base_url(); ?>home/login'" <?php } ?>>
                             <i class="fa fa-bell"></i> Get Alerts
                         </button>
                         </div>
@@ -301,7 +301,7 @@ var oTable = null;
                                 //set table id in table open tag
                                     $tmpl = array('table_open' => '<table id="big_table" border="1" width="100%" cellpadding="2" cellspacing="1" class="myTable auction_table_box">');
                                     $this->table->set_template($tmpl);
-                                    $this->table->set_heading('Bank Name', 'Asset Details','City','EMD Submission Last Date','Reserve Price','View Details');
+                                    $this->table->set_heading('Bank Name', 'Description','City','EMD Submission Last Date','Reserve Price','View Details');
                                     echo $this->table->generate();
                                 ?>
 

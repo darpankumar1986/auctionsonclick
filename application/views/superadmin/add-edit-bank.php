@@ -76,7 +76,7 @@ if($row){
 								<?php if($logopath){?><span id="image_old_data" style="80px !important"><br><br><img src="<?php echo $logopath;?>"   /></span><?php }?>	
 							</div>
 						</div>
-						<?php  ?>
+						<?php /* ?>
 						<div class="row">
 							<div class="lft_heading">Large logo</div>
 								<div class="rgt_detail">
@@ -86,7 +86,7 @@ if($row){
 								<?php if($thumb_logopath){?><span id="thumb_logopath_old_data" style="80px !important"><br><br><img src="<?php echo $thumb_logopath;?>" />&nbsp;&nbsp;</span><?php }?>	
 							</div>
 						</div>
-						<?php  ?>	
+							
 						<div class="row">
 							<div class="lft_heading">Website Url</div>
 							<div class="rgt_detail">
@@ -94,6 +94,7 @@ if($row){
 								<label class="error" style="display:none;">Please enter url</label>
 							</div>					
 						</div>
+						<?php */ ?>
 						<div class="row">
 							<div class="lft_heading">Short Name <span class="red"> *</span></div>
 							<div class="rgt_detail">
@@ -102,13 +103,13 @@ if($row){
 							</div>					
 						</div>
 						<div class="row">
-							<div class="lft_heading">Address 1 <span class="red"> *</span></div>
+							<div class="lft_heading">Address <span class="red"> *</span></div>
 							<div class="rgt_detail">
 								<textarea maxlength="200" class="html_found" name="address1" ><?php echo $address1?></textarea>
 								<label class="error" style="display:none;">Please enter Address1</label>
 							</div>					
 						</div>
-						
+						<?php /* ?>
 						<div class="row">
 							<div class="lft_heading">Address 2 </div>
 							<div class="rgt_detail">
@@ -123,6 +124,7 @@ if($row){
 								<label class="error" style="display:none;">Please enter street</label>
 							</div>					
 						</div>
+						<?php */ ?>
 						<div class="row">
 							<div class="lft_heading">Country <span class="red"> *</span></div>
 							<div class="rgt_detail">
@@ -166,6 +168,7 @@ if($row){
 								<label class="error" style="display:none;">Please enter zip</label>
 							</div>					
 						</div>
+						<?php /* ?>
 						<div class="row">
 							<div class="lft_heading">Phone Number</div>
 							<div class="rgt_detail">
@@ -221,6 +224,7 @@ if($row){
 								<label class="error" style="display:none;">Please enter Order</label>
 							</div>					
 						</div>
+						<?php */ ?>
 						<div class="row">
 							<div class="lft_heading">Status<span class="red"> *</span></div>
 							<div class="rgt_detail">
@@ -367,7 +371,9 @@ jQuery(document).ready(function(){
 						    }
 					    }
 			    },
-			priority: {
+			
+			/*
+				priority: {
 				required:true,
 				remote: {
 						    url: "/superadmin/bank/uniquePriority",
@@ -383,6 +389,7 @@ jQuery(document).ready(function(){
 						    }
 					    }
 			    },
+			*/
 			//url: "required",
 			//shortname: "required",
 			shortname: {
@@ -426,10 +433,11 @@ jQuery(document).ready(function(){
 				remote: jQuery.validator.format("'{0}' is already in use"),
 				required: "Please enter shortname"
 		    },
+			/*
 		    priority: {
 				remote: jQuery.validator.format("'{0}' is already in use"),
 				required: "Please enter priority"
-		    },
+		    },*/
 			address1: {required: "Please enter address"},
 			country_id: {required: "Please select country"},
 			state_id: {required: "Please select state"},

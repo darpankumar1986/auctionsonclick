@@ -1939,24 +1939,24 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
     if (btn == "save")
     {
         if (jQuery('#bank_id').val() == '') {
-            jQuery('#spMsg').append("<li>Please Select Bank. </li>");
+            jQuery('#spMsg').append("<li>Please Select Bank </li>");
             flag = 1;
         }
 		if (jQuery('#branch_id').val() == '') {
-            jQuery('#spMsg').append("<li>Please Select Branch. </li>");
+            jQuery('#spMsg').append("<li>Please Select Branch </li>");
             flag = 1;
         }
         if (jQuery('#category_id').val() == '') {
-            jQuery('#spMsg').append("<li>Please Select Assets Category. </li>");
+            jQuery('#spMsg').append("<li>Please Select Assets Category </li>");
             flag = 1;
         }
 		
-        if (jquery('#description').val().trim() == '') {
-            jquery('#spmsg').append("<li>please enter description </li>");
+        if (jQuery('#description').val().trim() == '') {
+            jQuery('#spmsg').append("<li>please enter description </li>");
             flag = 1;
         }
-		if (jquery('#asset_details').val().trim() == '') {
-            jquery('#spmsg').append("<li>please enter Asset Details </li>");
+		if (jQuery('#asset_details').val().trim() == '') {
+            jQuery('#spMsg').append("<li>please enter Asset Details </li>");
             flag = 1;
         }
 		if (jQuery('#reference_no').val().trim() == '') {
@@ -2051,24 +2051,24 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
     {
         //alert(body);
         if (jQuery('#bank_id').val() == '') {
-            jQuery('#spMsg').append("<li>Please Select Bank. </li>");
+            jQuery('#spMsg').append("<li>Please Select Bank </li>");
             flag = 1;
         }
 		if (jQuery('#branch_id').val() == '') {
-            jQuery('#spMsg').append("<li>Please Select Branch. </li>");
+            jQuery('#spMsg').append("<li>Please Select Branch </li>");
             flag = 1;
         }
         if (jQuery('#category_id').val() == '') {
-            jQuery('#spMsg').append("<li>Please Select Assets Category. </li>");
+            jQuery('#spMsg').append("<li>Please Select Assets Category </li>");
             flag = 1;
         }
 		if ((jQuery('#category_id').val() == 1 || jQuery('#category_id').val() ==2) && jQuery('#sub_category_id').val() == '') {
-            jQuery('#spMsg').append("<li>Please Select Assets Type. </li>");
+            jQuery('#spMsg').append("<li>Please Select Assets Type </li>");
             flag = 1;
         }
 
 		if (jQuery('#contact_person_details_1').val() == '') {
-            jQuery('#spMsg').append("<li>Please Enter Contact Details. </li>");
+            jQuery('#spMsg').append("<li>Please Enter Contact Details </li>");
             flag = 1;
         }
 		
@@ -2076,8 +2076,8 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
             jQuery('#spMsg').append("<li>Please Enter Description </li>");
             flag = 1;
         }
-		if (jquery('#asset_details').val().trim() == '') {
-            jquery('#spmsg').append("<li>please enter Asset Details </li>");
+		if (jQuery('#asset_details').val().trim() == '') {
+            jQuery('#spMsg').append("<li>Please enter Asset Details </li>");
             flag = 1;
         }
 		if (jQuery('#reference_no').val().trim() == '') {

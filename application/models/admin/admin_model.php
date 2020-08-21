@@ -1084,6 +1084,7 @@ class Admin_model extends CI_Model {
 		//->where('((NOW() >= ea.bid_opening_date AND ea.auction_end_date <=NOW()  AND ea.open_price_bid = 1) )') //before
         // neeraj ->where('((NOW() >= ea.bid_opening_date AND NOW()<=ea.auction_end_date AND ea.open_price_bid = 1) )')   // //COMMENT WRONG QUERY
         // ->where('(NOW() >= ea.bid_opening_date AND NOW()<=ea.auction_end_date AND ea.opening_price IS NOT NULL )')   // //CAN BE DONE
+		->where('ea.bid_last_date >= NOW()')
 		->where('ea.status',1);
 		//->where('ea.department_id',$depart_id);
 		if($this->session->userdata('role_id')==1)
@@ -1167,7 +1168,7 @@ class Admin_model extends CI_Model {
 			->join('tbl_drt td','ea.drt_id=td.id','left ')
 			->join('tbl_product tp','ea.productID=tp.id','left ')
 			//->join('tblmst_account_type as act','act.account_id=ea.account_type_id','left')
-                        ->join('tblmst_department as dp','dp.department_id=ea.department_id','left')
+            ->join('tblmst_department as dp','dp.department_id=ea.department_id','left')
 			->where('ea.auction_start_date > NOW()')
 			->where('NOW()>ea.bid_last_date')
 			->where('ea.status',1)
@@ -1199,13 +1200,12 @@ class Admin_model extends CI_Model {
 		->join('tbl_branch as tbr','ea.branch_id=tbr.id','left')
 		->join('tbl_drt td','ea.drt_id=td.id','left')
 		->join('tbl_product tp','ea.productID=tp.id','left')
-		->join('tbl_live_auction_bid as b','b.auctionID=ea.id','left')
 		//->join('tblmst_account_type as act','act.account_id=ea.account_type_id','left')
         ->join('tbl_category as cat','cat.id=ea.category_id','left')
         ->join('tblmst_sales_person as sp','sp.id=ea.sales_person_id','left')
         //->join('tblmst_department as dp','dp.department_id=ea.department_id','left')
-		->where('ea.auction_end_date < NOW()')
-		->where('ea.status','6');
+		->where('ea.bid_last_date < NOW()');
+		//->where('ea.status','6');
 		//->where('ea.department_id',$depart_id);
 		//->where("(ea.first_opener=$userid OR ea.second_opener=$userid)");
 		

@@ -124,7 +124,7 @@
 									 <li class="user_info"><div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span><i class="fa fa-user"></i></span> <?php echo $full_name; ?><span class="caret"></span></button>
                                         <ul class="dropdown-menu">
                                             <li><a href="<?php echo base_url();?>owner/myProfileEdit">Modify Profile</a></li>
-                                            <li><a href="#">Change Password</a></li>
+                                            <!--<li><a href="#">Change Password</a></li>-->
                                             <li><a href="<?php echo base_url(); ?>owner/shortlistedAuction">Shortlist</a></li>
 											<?php $currentpackage = $this->home_model->getLastPackage($this->session->userdata('id')); ?>
 											<?php if($currentpackage->subscription_participate_id > 0){ ?>
@@ -199,7 +199,7 @@
 									 <li class="user_info"><div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span><i class="fa fa-user"></i></span> <?php echo $full_name; ?><span class="caret"></span></button>
                                         <ul class="dropdown-menu">
                                             <li><a href="<?php echo base_url();?>owner/myProfileEdit">Modify Profile</a></li>
-                                            <li><a href="#">Change Password</a></li>
+                                            <!--<li><a href="#">Change Password</a></li>-->
                                             <li><a href="<?php echo base_url(); ?>owner/shortlistedAuction">Shortlist</a></li>
 											<?php $currentpackage = $this->home_model->getLastPackage($this->session->userdata('id')); ?>
 											<?php if($currentpackage->subscription_participate_id > 0){ ?>

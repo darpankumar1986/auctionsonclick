@@ -18,12 +18,12 @@
     }
 </style>
 <?php
-	$this->db->where('r.id', $userid);
-	$this->db->join('tbl_state as s','s.id = r.state_id');
-	$query = $this->db->get("tbl_user_registration as r");
-	$user = $query->row();
+    $this->db->where('r.id', $userid);
+    $this->db->join('tbl_state as s','s.id = r.state_id');
+    $query = $this->db->get("tbl_user_registration as r");
+    $user = $query->row();
 
-	$full_name = ($user->first_name != '')?$user->first_name.' '.$user->last_name:$user->authorized_person;
+    $full_name = ($user->first_name != '')?$user->first_name.' '.$user->last_name:$user->authorized_person;
 ?>
     <table width="860px" align="center" cellpadding="0" cellspacing="0" style="border: 1px solid #ccc;"><tbody><tr><td>
    <table bgcolor="#005ca8" align="center" width="860" border="0" cellpadding="0" cellspacing="0">
@@ -37,7 +37,7 @@
                                 <table>
                                     <tbody>
                                         <tr>
-
+                                            <td width="5%">&nbsp;</td>
                                             <td>
                                                 <img alt="Logo" src="<?php echo $Logo; ?>" border="0" style="display:block; vertical-align:top;">
                                             </td>
@@ -66,6 +66,7 @@
                 <table width="780" align="center" cellpadding="0" cellspacing="0">
                     <tbody>
                         <tr>
+                            <td width="2%">&nbsp;</td>
                             <td>
                                 <p style="font-family: sans-serif;color: #333333;font-size: 13px;margin-top: 40px;margin-bottom: 25px;">Dear <strong><?php echo $full_name; ?>,</strong></p>
                                 <p style="font-family: sans-serif;color: #333333;font-size: 13px;margin-top: 0;margin-bottom: 25px;">Thank you for your order from <a href="#" style="color: #0078db; text-decoration: none;">www.Auctiononclick.com</a></p>
@@ -85,6 +86,7 @@
                     <table width="780" align="center" cellpadding="0" cellspacing="0" style="">
                         <tbody>
                             <tr>
+                                <td width="2%">&nbsp;</td>
                                 <td>
                                     <table class="auction_table_box" style="border-collapse: collapse;width: 100%;">
                                         <thead>
@@ -126,6 +128,7 @@
                         <table width="780" align="center" cellpadding="0" cellspacing="0">
                             <tbody>
                                 <tr>
+                                    <td width="2%">&nbsp;</td>
                                     <td>
                                         <p style="font-family: sans-serif;color: #0078db;font-size: 16px;margin-top: 40px;    margin-bottom: 10px;">Billing Details:</p>
                                     </td>
@@ -143,6 +146,7 @@
                     <table width="780" align="center" cellpadding="0" cellspacing="0">
                         <tbody>
                             <tr>
+                                <td width="2%">&nbsp;</td>
                                 <td style="border-top: 1px solid #ccc">
                                 </td>
                             </tr>
@@ -168,6 +172,7 @@
                         <table width="780" align="center" cellpadding="0" cellspacing="0">
                             <tbody>
                                 <tr>
+                                    <td width="2%">&nbsp;</td>
                                     <td width="70%">
                                         <table cellpadding="0" cellspacing="0">
                                             <tbody>
@@ -223,7 +228,7 @@
                                                         <table height="20" width="100%" cellpadding="0" cellspacing="0">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td width="80" style="font-family: sans-serif;color: #333333;font-size: 12px;">: <?php echo $full_name; ?></td>
+                                                                    <td width="100" style="font-family: sans-serif;color: #333333;font-size: 12px;">: <?php echo $full_name; ?></td>
                                                                     <td>|</td>
                                                                     <td width="150" style="font-family: sans-serif;color: #333333;font-size: 12px;text-align: center;"><a href="mailto:deepa.malik@c1india.com" style="color: #333333;"><?php echo $user->email_id; ?></a></td>
                                                                     <td width="10">|</td>
@@ -248,30 +253,30 @@
                                                         <table height="20" width="100%" cellpadding="0" cellspacing="0">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td width="90" style="font-family: sans-serif;color: #333333;font-size: 12px;">: <?php 
-																			if ($response != '' && $response->mode != 'null') {
-																				if($response->mode=='CC')
-																				{
-																					echo 'Credit Card';
-																				}
-																				else if($response->mode=='DC')
-																				{
-																					echo 'Debit Card';
-																				}
-																				else if($response->mode=='NB')
-																				{
-																					echo 'Net Banking';
-																				}
-																				else
-																				{
-																					echo $response->bankcode;
-																				}
-																			}
-																			else
-																			{
-																				echo '--' ; 
-																			}
-																	?></td>
+                                                                    <td width="90" style="font-family: sans-serif;color: #333333;font-size: 12px;">: <?php
+                                                                            if ($response != '' && $response->mode != 'null') {
+                                                                                if($response->mode=='CC')
+                                                                                {
+                                                                                    echo 'Credit Card';
+                                                                                }
+                                                                                else if($response->mode=='DC')
+                                                                                {
+                                                                                    echo 'Debit Card';
+                                                                                }
+                                                                                else if($response->mode=='NB')
+                                                                                {
+                                                                                    echo 'Net Banking';
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    echo $response->bankcode;
+                                                                                }
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                echo '--' ;
+                                                                            }
+                                                                    ?></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -422,7 +427,7 @@
                                 <td width="50%" style="font-family: sans-serif;color: #333333;font-size: 13px;text-align: right;">
                                     <p style="margin:0;padding-right: 5px;">Terms &amp; Conditions</p>
                                 </td>
-                                <td width="3%" style="color: #999999;text-align: center;">|</td>
+                                <td width="3%" style="color: #999999;text-align: center;vertical-align: top;">|</td>
                                 <td width="50%" style="font-family: sans-serif;color: #333333;font-size: 13px;text-align: left;">
                                     <p style="margin:0;padding-left: 5px;">Privacy Policy</p>
                                 </td>

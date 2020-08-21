@@ -5,8 +5,10 @@
 
 <script type="text/javascript">
  jQuery(".auctiondetail_iframe").colorbox({iframe:true, width:"70%", height:"70%"});	
-
+		
         jQuery(document).ready(function() {
+			jQuery('#big_table thead tr th').eq(6).addClass('hidetd');
+			jQuery('#big_table thead tr th').eq(7).addClass('hidetd');
 			var oTable = jQuery('#big_table').dataTable( {
 				"bProcessing": true,
 				
@@ -42,6 +44,8 @@
 				  });
 				},
 				"fnRowCallback": function (nRow, aData, iDisplayIndex) {
+						jQuery('td:eq(6)', nRow).addClass("hidetd");
+						jQuery('td:eq(7)', nRow).addClass("hidetd");
 						<?php  if($this->session->userdata('role_id') == 1) { ?> 
 						
 							//var actn = aData[7]+' <a href="javascript:void(0)" onclick="copyAuction('+aData[0]+')" class="cpyActn" id="cpyActn"><img style="padding-left:2px;width:17px;height:auto;" src="<?php echo base_url(); ?>images/copy.png" title="Copy Auction"></a>';
@@ -159,6 +163,9 @@ function copyAuction(id)
 }		
 	
 </script>
+<style>
+	.hidetd{display:none;}
+</style>
 <section class="container_12">
   <?php //echo $breadcrumb;?>
   <div class="row">
@@ -189,7 +196,7 @@ function copyAuction(id)
 						$tmpl = array ( 'table_open'  => '<table id="big_table" border="1" cellpadding="2" cellspacing="1" class="mytable">' );
 						$this->table->set_template($tmpl); 
 						
-						$this->table->set_heading('Auction ID','Institution Name','Auction Type','Location', 'Description','Emd Submission Last Date','Auction Start Date', 'Sales Person','Reserve Price','Action' );
+						$this->table->set_heading('Auction ID','Bank Name','Assets Category','Location', 'Description','Emd Submission Last Date','Auction Start Date', 'Sales Person','Reserve Price','Action' );
 						echo $this->table->generate(); 
 					?>
 					</div></div>

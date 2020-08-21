@@ -69,13 +69,13 @@
                                 }
                                 else if(response==3)
                                 {
-                                    $(".error1").css('display','block').html('Invalid username or password..!');
+                                    $(".error1").css('display','block').html('Invalid Email ID or Password..!');
                                     $("#password").val('');
                                     return false;
                                 }
                                 else if(response==4)
                                 {
-                                    $(".error1").css('display','block').html('Invalid username or password..!<br/>Account will be blocked after 5 failed attempt!');
+                                    $(".error1").css('display','block').html('Invalid Email ID or Password..!<br/>Account will be blocked after 5 failed attempt!');
                                     $("#password").val('');
                                     return false;
                                 }
