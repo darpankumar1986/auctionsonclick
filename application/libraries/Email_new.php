@@ -89,7 +89,7 @@ public function sendMailToUser($emailArr,$sub,$message,$attachment_path = "",$cc
 			$res = 1;
 		}
 		
-		$res =1;
+		//$res =1;
 		return $res;
 }  
       

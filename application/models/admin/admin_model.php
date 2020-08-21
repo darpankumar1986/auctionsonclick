@@ -290,7 +290,7 @@ class Admin_model extends CI_Model {
 		$is_corner_property			=	 $this->input->post('is_corner_property');
 		$remark						=	 $this->input->post('remark');
         $scheme_id                  =	 $this->input->post('scheme_id');
-		$scheme_name				=	 $this->input->post('scheme_name');
+		$asset_details				=	 $this->input->post('asset_details');
 		//$cprms_scheme_name		=	 $this->input->post('cprms_scheme_name');
 		$service_no					=	 $this->input->post('service_no');
 		$zone_id					=	 $this->input->post('zone_id');
@@ -483,7 +483,7 @@ class Admin_model extends CI_Model {
 			'is_corner_property'=>$is_corner_property,
 			'remark'=>$remark,
 			'scheme_id'=>$scheme_id,
-			'scheme_name'=>$scheme_name,
+			'asset_details'=>$asset_details,
 			'open_price_bid'=>$open_price_bid,
 			'opening_price'=>$opening_price,
 			//'cprms_scheme_name'=>$cprms_scheme_name,

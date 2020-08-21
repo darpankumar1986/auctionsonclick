@@ -366,6 +366,27 @@ ALTER TABLE `tbl_member_email_alerts` CHANGE `state_id` `city_id` int(11) NOT NU
 SET foreign_key_checks = 0;
 DROP TABLE `tbleventlogging`, `tbl_adminzone`, `tbl_assign_viewer_account`, `tbl_attribute`, `tbl_attribute_group`, `tbl_auction_bidder_limited_access`, `tbl_auction_bidder_utr_no`, `tbl_auction_credit_note`, `tbl_auction_emd_doc`, `tbl_auction_fee`, `tbl_auction_participate`, `tbl_auction_participate_doc`, `tbl_auction_participate_emd`, `tbl_auction_participate_frq`, `tbl_auction_participate_tenderfee`, `tbl_auction_status`, `tbl_auction_user_live_log`, `tbl_bank_account_details`, `tbl_bank_admin`, `tbl_bidderlogdetail`, `tbl_bidder_doc_master`, `tbl_branch_collection`, `tbl_c1zone`, `tbl_closed_auction_bidder`, `tbl_collection_log`, `tbl_corrchecklst`, `tbl_demand_note`, `tbl_emd_refund`, `tbl_enquiry_details`, `tbl_eventprocess`, `tbl_eventtracker`, `tbl_eventwf`, `tbl_event_evaluation`, `tbl_event_invoice_debts`, `tbl_follow_up`, `tbl_initiate_transfer`, `tbl_input_credit`, `tbl_invoice_entry`, `tbl_live_auction_bid`, `tbl_live_auction_bid_invalid`, `tbl_log_auction_alert`, `tbl_log_auction_participate`, `tbl_log_auction_pause_resume`, `tbl_log_bank_account_details`, `tbl_log_bidsubmission_track`, `tbl_log_bid_track`, `tbl_log_demand_note`, `tbl_log_emd_refund`, `tbl_log_event_log`, `tbl_log_initiate_transfer`, `tbl_log_input_credit`, `tbl_log_property_rate_calculation`, `tbl_log_tokens`, `tbl_log_user_registration_old`, `tbl_log_void_payment`, `tbl_message`, `tbl_news_blog`, `tbl_non_auction_payment`, `tbl_non_banker_auction_price`, `tbl_post_requirement`, `tbl_product_attribute_value`, `tbl_product_image_video`, `tbl_property_rate_calculation`, `tbl_property_view`, `tbl_rating_review`, `tbl_target`, `tbl_tokens`, `tbl_user_bank_follow`, `tbl_user_favorites`, `tbl_user_registration_vendor`, `tbl_user_search_detail`, `tbl_webpage`,`tbl_auction_corrigendum_approval`, `tbl_event_assign`, `tbl_home_page_slider`, `tbl_log_event_assign`, `tbl_log_event_creation`,`cn_table`, `sysdiagrams`, `table 86`;
 
+------------------Neeraj---------------------------
+DROP TABLE IF EXISTS `tbl_email_log`;
+CREATE TABLE IF NOT EXISTS `tbl_email_log` (
+  `email_id` int(11) NOT NULL AUTO_INCREMENT,
+  `member_id` int(11) DEFAULT NULL,
+  `email` varchar(1000) NOT NULL,
+  `subject` varchar(1000) NOT NULL,
+  `message` text NOT NULL,
+  `attachment` varchar(1000) DEFAULT NULL,
+  `cc_email` varchar(1000) DEFAULT NULL,
+  `is_sent` tinyint(4) NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  `email_type` tinyint(4) NOT NULL,
+  `indate` datetime NOT NULL,
+  PRIMARY KEY (`email_id`),
+  KEY `member_id` (`member_id`),
+  KEY `email_type` (`email_type`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 
 ALTER TABLE `tbl_auction`
+CHANGE `scheme_name` `asset_details` text COLLATE 'utf8_general_ci' NULL AFTER `remark`;
+ALTER TABLE `tbl_log_auction`
 CHANGE `scheme_name` `asset_details` text COLLATE 'utf8_general_ci' NULL AFTER `remark`;
