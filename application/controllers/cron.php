@@ -99,7 +99,7 @@ class Cron extends WS_Controller
 		$row_query = $this->db->get('tbl_subscription_participate as p');
 		foreach($row_query->result() as $row)
 		{
-			$data['first_name'] = $row->first_name;
+			$data['first_name'] = ($row->first_name != '')?$row->first_name.' '.$row->last_name:$row->authorized_person;
 			$data['package_end_date'] = $row->package_end_date;
 			$data['Logo_2'] = $this->load->view('email/Logo_2', $data, true); // render the view into HTML
 			$html = $this->load->view('email/reminder', $data, true); // render the view into HTML
@@ -136,10 +136,13 @@ class Cron extends WS_Controller
 			{
 				$this->load->library('Email_new','email');
 				$email_obj = new email_new();
-				$email_obj->sendMailToUser(array($row->email),$row->subject,$row->message); 
+				$ret = $email_obj->sendMailToUser(array($row->email),$row->subject,$row->message); 
 
-				$this->db->where('email_id',$row->email_id);
-				$this->db->update('tbl_email_log',array("is_sent"=>1));
+				if($ret)
+				{
+					$this->db->where('email_id',$row->email_id);
+					$this->db->update('tbl_email_log',array("is_sent"=>1));
+				}
 			}
 		}
 	}
