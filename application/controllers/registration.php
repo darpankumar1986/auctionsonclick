@@ -1770,11 +1770,28 @@ class Registration extends WS_Controller {
 		$data['Logo'] = $this->load->view('email/Logo', $data, true); // render the view into HTML
 		$data['Logo_2'] = $this->load->view('email/Logo_2', $data, true); // render the view into HTML
 		$body = $this->load->view('email/sendEmailCode', $data, true); // render the view into HTML
+
+		$data = array(
+								"email"=>$email,
+								"subject"=>$subject,
+								"message"=>$body,
+								"email_type"=>4,
+								"indate"=>date('Y-m-d H:i:s')
+							);
+				$this->db->insert('tbl_email_log',$data);
+				$email_id = $this->db->insert_id();
+			
                         
                         if($email !=''){
 							$this->load->library('Email_new','email');
 							$email_obj = new email_new();
-							echo $email_obj->sendMailToUser(array($email),$subject,$body);  
+							$ret = $email_obj->sendMailToUser(array($email),$subject,$body);  
+
+							if($ret)
+							{
+								$this->db->where('email_id',$email_id);
+								$this->db->update('tbl_email_log',array("is_sent"=>1));
+							}
 							die('--Done--');
 						}
 						echo 'tet';die;
