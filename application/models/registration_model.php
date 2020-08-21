@@ -414,7 +414,7 @@ class Registration_model extends CI_Model {
 
 		if($row = $row_query->row())
 		{
-			$data['first_name'] = $row->first_name;
+			$data['first_name'] = ($row->first_name != '')?$row->first_name.' '.$row->last_name:$row->authorized_person;
 			$email = $row->email_id;
 			$subject = "AuctionOnClick - Signup";
 			$data['Logo'] = $this->load->view('email/Logo', $data, true); // render the view into HTML
@@ -423,9 +423,25 @@ class Registration_model extends CI_Model {
 							
 			if($email !='')
 			{
+				$data = array(
+								"member_id"=>$user_id,
+								"email"=>$email,
+								"subject"=>$subject,
+								"message"=>$body,
+								"email_type"=>3,
+								"indate"=>date('Y-m-d H:i:s')
+							);
+				$this->db->insert('tbl_email_log',$data);
+				$email_id = $this->db->insert_id();
+
 				$this->load->library('Email_new','email');
 				$email_obj = new email_new();
-				$email_obj->sendMailToUser(array($email),$subject,$body);  
+				$ret = $email_obj->sendMailToUser(array($email),$subject,$body);
+				if($ret)
+				{
+					$this->db->where('email_id',$email_id);
+					$this->db->update('tbl_email_log',array("is_sent"=>1));
+				}
 			}
 		}
 	}

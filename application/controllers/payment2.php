@@ -186,6 +186,7 @@ class Payment2 extends WS_Controller
 						$state_str = $payment_res->state;
 						$package_type = $payment_res->package_type;
 						$paid_amount = $payment_res->payu_amount;
+						$email_id = $payment_res->payu_email;
 
 						$stateArr = array();
 						if($state_str != '')
@@ -357,6 +358,47 @@ class Payment2 extends WS_Controller
 							}
 						}
 
+
+						$emailData['userid'] = $bidderID;
+						$emailData['paid_amount'] = $paid_amount;
+						$emailData['order_date'] = date("Y-m-d H:i:s");
+						$emailData['ip'] = $payment_res->ip;
+						$emailData['order'] = $txnidArr[0];
+						$emailData['response'] = json_decode($payment_res->data);						
+						/* Email */
+
+						$subject = 'Your order#'.$emailData['order'].' on www.AuctionOnClick.com is successful.';
+						$emailData['Logo'] = $this->load->view('email/Logo', $emailData, true); // render the view into HTML
+						$body = $this->load->view('email/subscription', $emailData, true); // render the view into HTML
+
+						$data = array(
+								"member_id"=>$bidderID,
+								"email"=>$email_id,
+								"subject"=>$subject,
+								"message"=>$body,
+								"email_type"=>5,
+								"indate"=>date('Y-m-d H:i:s')
+							);
+						$this->db->insert('tbl_email_log',$data);
+						$email_log_id = $this->db->insert_id();
+
+						$this->load->library('Email_new','email');
+						$email_obj = new email_new();
+						$ret = $email_obj->sendMailToUser(array($email_id),$subject,$body); 
+
+						if($ret)
+						{
+							$this->db->where('email_id',$email_log_id);
+							$this->db->update('tbl_email_log',array("is_sent"=>1));
+						}
+                        
+
+						
+						
+						/* Email */
+
+
+
 						$this->session->set_flashdata('message','Subscription Payment Paid Successfully !<br>');	
 
 						/* login after payment */
@@ -441,15 +483,7 @@ class Payment2 extends WS_Controller
 				$tenderfeeID = $res1[0]->tenderfeeID;
 				
 				
-				$rData = array(							
-							'payment_status'=>'failure',
-							'date_modified'=>date('Y-m-d H:i:s')
-						);
-						
-						
-						$this->db->where('payment_log_id',$tenderfeeID);
-						$this->db->update('tbl_jda_payment_log',$rData);
-			
+				
 
 				$this->db->where('id', $txnidArr[0]);
 				$query  =   $this->db->get('tbl_payment');
@@ -458,17 +492,6 @@ class Payment2 extends WS_Controller
 				$payment_res = $res[0];
 				
 			
-				$dataAP['payment_verifier_accepted'] = NULL;
-				$dataAP['payment_verifier_comment'] = NULL;
-				$dataAP['payment_move_to_opener2'] = 0;
-				$dataAP['payment_verifier_accepted_date'] = NULL;
-				$dataAP['modify_date']= date('Y-m-d H:i:s');
-				$this->db->where('bidderID',$bidderID);
-				$this->db->where('auctionID',$auctionID);
-				$this->db->update('tbl_auction_participate',$dataAP);	
-				$insertedid_id	=1;	
-				
-
 				/* login after payment */
 					$this->db->where('id', $bidderID);
 					$row_query = $this->db->get('tbl_user_registration');
@@ -488,16 +511,7 @@ class Payment2 extends WS_Controller
 			
 					
 			
-				$rData = array(					
-					'payment_status'=>'failure',
-					'date_modified'=>date('Y-m-d H:i:s')
-				);
-				
-				
-				$this->db->where('payment_log_id',$payment_log_id);
-				$this->db->where('control_number',$controlNumber);
-				$this->db->update('tbl_jda_payment_log',$rData);	
-
+		
 				if($res1[0]->package_type > 0)
 				{
 					$this->session->set_flashdata('message_new','Subcription Payment Failure ! Please try again<br>');	

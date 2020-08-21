@@ -453,6 +453,9 @@ $('.alphanumericemail').bind('keypress', function (event) {
 				});
 				jQuery(".mobile_send_code,.mobile_resend").click(function(){
 					var mobile = $("#mobile_number").val();
+					var first_name = $("#first_name").val();
+					var authorised_person = $("#authorised_person").val();
+
 					if(mobile == '')
 					{
 						$(".field-signupform-mobile_number").html('Please enter mobile no.');
@@ -466,7 +469,7 @@ $('.alphanumericemail').bind('keypress', function (event) {
 						jQuery.ajax({
 							url: '<?php echo base_url(); ?>registration/sendMobileCode',
 							type: 'POST',
-							data: 'mobile=' + mobile,
+							data: 'mobile=' + mobile + '&first_name=' +first_name+ '&authorised_person=' +authorised_person,
 							success: function (data) {
 							   
 
