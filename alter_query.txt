@@ -384,3 +384,9 @@ CREATE TABLE IF NOT EXISTS `tbl_email_log` (
   KEY `member_id` (`member_id`),
   KEY `email_type` (`email_type`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+ALTER TABLE `tbl_auction`
+CHANGE `scheme_name` `asset_details` text COLLATE 'utf8_general_ci' NULL AFTER `remark`;
+ALTER TABLE `tbl_log_auction`
+CHANGE `scheme_name` `asset_details` text COLLATE 'utf8_general_ci' NULL AFTER `remark`;
