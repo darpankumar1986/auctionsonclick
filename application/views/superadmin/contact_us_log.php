@@ -81,7 +81,7 @@
 					$i=0;
 					foreach($records as $row){
 					$i++;
-					$indate = date('d M Y',strtotime($row->in_date_time));
+					$indate = date('d M Y H:i:s',strtotime($row->in_date_time));
 					//echo "<pre>";print_r($pay_res);
 					?>
 					<tr class='gradeA'>

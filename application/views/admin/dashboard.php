@@ -5,7 +5,8 @@
 <script type="text/javascript">
 	jQuery(".auctiondetail_iframe").colorbox({iframe:true, width:"70%", height:"70%"});	
         jQuery(document).ready(function() {
-			//jQuery('#big_table thead tr th').eq(7).addClass('hidetd');
+			jQuery('#big_table thead tr th').eq(6).addClass('hidetd');
+			jQuery('#big_table thead tr th').eq(7).addClass('hidetd');
 			var oTable = jQuery('#big_table').dataTable( {
 				"bProcessing": true,
 				
@@ -41,7 +42,8 @@
 				  });
 				},
 				"fnRowCallback": function (nRow, aData, iDisplayIndex) {
-							//jQuery('td:eq(8)', nRow).addClass("hidetd");
+					jQuery('td:eq(6)', nRow).addClass("hidetd");
+					jQuery('td:eq(7)', nRow).addClass("hidetd");
 							
 					setTimeout(function(){
 						jQuery(".auctiondetail_iframe").colorbox({iframe:true, width:"70%", height:"70%"});	
@@ -52,7 +54,9 @@
 				},
 			});
                     
-                    
+            
+			jQuery('#big_table1 thead tr th').eq(6).addClass('hidetd');
+			jQuery('#big_table1 thead tr th').eq(7).addClass('hidetd');					
 			var oTable1 = jQuery('#big_table1').dataTable( {
 				"bProcessing": true,
 				
@@ -88,7 +92,8 @@
 				  });
 				},
 				"fnRowCallback": function (nRow, aData, iDisplayIndex) {
-							
+							jQuery('td:eq(6)', nRow).addClass("hidetd");
+					jQuery('td:eq(7)', nRow).addClass("hidetd");
 							setTimeout(function(){
 								jQuery(".auctiondetail_iframe").colorbox({iframe:true, width:"70%", height:"70%"});	
 								
@@ -98,7 +103,8 @@
 						},
 			});
 			
-			
+			jQuery('#big_table2 thead tr th').eq(6).addClass('hidetd');
+			jQuery('#big_table2 thead tr th').eq(7).addClass('hidetd');	
 			var oTable2 = jQuery('#big_table2').dataTable( {
 				"bProcessing": true,
 				
@@ -135,8 +141,9 @@
 				  });
 				},
 				"fnRowCallback": function (nRow, aData, iDisplayIndex) {
-							//jQuery('td:eq(6)', nRow).addClass("hidetd");
-							setTimeout(function(){
+					jQuery('td:eq(6)', nRow).addClass("hidetd");
+					jQuery('td:eq(7)', nRow).addClass("hidetd");
+					setTimeout(function(){
 						jQuery(".auctiondetail_iframe").colorbox({iframe:true, width:"70%", height:"70%"});	
 						
 						jQuery(".auctiondetail_iframe").addClass("cboxElement");
@@ -418,7 +425,7 @@
         $tmpl = array ( 'table_open'  => '<table id="big_table" border="1" cellpadding="2" cellspacing="1" class="mytable  display">' );
         $this->table->set_template($tmpl); 
 
-        $this->table->set_heading('Auction ID','Institution Name','Auction Type','Location', 'Description','Emd Submission Last Date','Auction Start Date', 'Sales Person','Reserve Price','Action' );	
+        $this->table->set_heading('Auction ID','Bank Name','Assets Category','Location', 'Description','Emd Submission Last Date','Auction Start Date', 'Sales Person','Reserve Price','Action' );	
         echo $this->table->generate(); 
 ?>
 </div></div>
@@ -468,7 +475,7 @@
                                   $tmpl = array ( 'table_open'  => '<table id="big_table1" border="1" cellpadding="2" cellspacing="1" class="mytable">' );
                                   $this->table->set_template($tmpl); 
 
-                                  $this->table->set_heading('Auction ID','Institution Name','Auction Type','Location', 'Description','Emd Submission Last Date','Auction Start Date', 'Sales Person','Reserve Price','Action' );	
+                                  $this->table->set_heading('Auction ID','Bank Name','Assets Category','Location', 'Description','Emd Submission Last Date','Auction Start Date', 'Sales Person','Reserve Price','Action' );	
                                   echo $this->table->generate(); 
                                   ?>
                           </div></div>
@@ -497,7 +504,7 @@
 						$this->table->set_template($tmpl); 
 						
 						//$this->table->set_heading('Location', 'Account', 'Description', 'Due Date', 'Reserve Price', '% Complete', 'Action');	
-						$this->table->set_heading('Auction ID','Institution Name','Auction Type','Location', 'Description','Emd Submission Last Date','Auction Start Date', 'Sales Person','Reserve Price','Action' );
+						$this->table->set_heading('Auction ID','Bank Name','Assets Category','Location', 'Description','Emd Submission Last Date','Auction Start Date', 'Sales Person','Reserve Price','Action' );
 						
                         echo $this->table->generate(); 
 					?>

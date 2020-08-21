@@ -5,6 +5,8 @@
 <script type="text/javascript">
 	jQuery(".auctiondetail_iframe").colorbox({iframe:true, width:"70%", height:"70%"});	
         jQuery(document).ready(function() {
+			jQuery('#big_table thead tr th').eq(6).addClass('hidetd');
+			jQuery('#big_table thead tr th').eq(7).addClass('hidetd');
 			var oTable = jQuery('#big_table').dataTable( {
 				"bProcessing": true,
 				
@@ -41,7 +43,8 @@
 				  });
 				},
 				"fnRowCallback": function (nRow, aData, iDisplayIndex) {
-							//jQuery('td:eq(6)', nRow).addClass("hidetd");
+							jQuery('td:eq(6)', nRow).addClass("hidetd");
+							jQuery('td:eq(7)', nRow).addClass("hidetd");
 							setTimeout(function(){
 						jQuery(".auctiondetail_iframe").colorbox({iframe:true, width:"70%", height:"70%"});	
 						
@@ -95,7 +98,7 @@
 						$this->table->set_template($tmpl); 
 						
 						//$this->table->set_heading('Location', 'Account', 'Description', 'Due Date', 'Reserve Price', '% Complete ', 'Action');	
-						$this->table->set_heading('Auction ID','Institution Name','Auction Type','Location', 'Description','Emd Submission Last Date','Auction Start Date', 'Sales Person','Reserve Price','Action' );	
+						$this->table->set_heading('Auction ID','Bank Name','Assets Category','Location', 'Description','Emd Submission Last Date','Auction Start Date', 'Sales Person','Reserve Price','Action' );	
 						
                                                 echo $this->table->generate(); 
 					?>

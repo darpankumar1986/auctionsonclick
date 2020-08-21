@@ -371,3 +371,13 @@ ALTER TABLE `tbl_auction`
 CHANGE `scheme_name` `asset_details` text COLLATE 'utf8_general_ci' NULL AFTER `remark`;
 ALTER TABLE `tbl_log_auction`
 CHANGE `scheme_name` `asset_details` text COLLATE 'utf8_general_ci' NULL AFTER `remark`;
+
+UPDATE `tblmst_email_template` SET
+`email_template_id` = '14',
+`email_template_name` = 'sendMailToBidderResetPasswordLink',
+`subject` = 'Link For Reset Password',
+`msg` = '<p>Dear %bidder_name%,<br />\r\n<br />\r\nWe have received request for resetting your password. To reset, please %reset_link%<br />\r\n<br />\r\nThis link will get expired in 24 hours.<br />\r\n&nbsp;</p>\r\n\r\n<p>Regards,<br />\r\nAuctonOnClick Team<br />\r\n<strong>This Is An Auto Generated Email; Please Do Not Reply.</strong></p>',
+`status` = '1',
+`date_created` = '2018-03-21 15:58:01',
+`date_modified` = '2019-04-18 10:59:26'
+WHERE `email_template_id` = '14';

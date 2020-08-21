@@ -81,10 +81,10 @@
 								<th class="head0" style='width: 5%;'>ID</th>
 								<th class="head1" style='width: 35%;'>Bank Name</th>
 								<th class="head0" style='width: 5%;'>Status</th>
-								<!--<th class="head1" style='width: 5%;'> <input type="checkbox" id="selecctall1"/></th>-->
-								<th class="head0" style='width: 25%;'>Bank URL</th>
+								<!--<th class="head1" style='width: 5%;'> <input type="checkbox" id="selecctall1"/></th>
+								<th class="head0" style='width: 25%;'>Bank URL</th>-->
 								<th class="head0" style='width: 10%;'>Shortname</th>
-								<th class="head0" style='width: 10%;'>Order</th>
+								<!--<th class="head0" style='width: 10%;'>Order</th>-->
 								<th class="head1" style='width: 10%;'>Creation Date</th>
 								<th class="head1" style='width: 5%;'>Action</th>
 							</tr>
@@ -101,9 +101,9 @@
 									<td><?php echo ($data->status == 1)?'Active':'Inactive'; ?></td>
 									<!--<td><input type="checkbox" class="status12" name="status[]" value="<?php echo $data->id; ?>"></td>-->
 									
-									<td><?php echo $data->url; ?></td>
+									<!--<td><?php echo $data->url; ?></td>-->
 									<td><?php echo $data->shortName; ?></td>
-									<td><?php echo $data->priority; ?></td>
+									<!--<td><?php echo $data->priority; ?></td>-->
 									<td><?php echo GetDateFormat($data->indate); ?></td>
 									
 									<td>

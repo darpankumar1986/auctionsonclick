@@ -103,7 +103,7 @@
                         <div class="shortlist_desc">
                             <div class="desc_para"><p>Description</p></div>
                             <div class="desc_shortlist_button">
-                                <button class="btn btn-default shortlist_list <?php echo ($auction_data[0]->is_fav)?'shortlisted_list':''; ?>" type="button" onclick="addtoeventfavlist(<?php echo (int)$auction_data[0]->id; ?>)">
+                                <button class="btn btn-default shortlist_list <?php echo ($auction_data[0]->is_fav)?'shortlisted_list':''; ?>" type="button" <?php if($this->session->userdata('id')>0){ ?> onclick="addtoeventfavlist(<?php echo (int)$auction_data[0]->id; ?>)" <?php } else {?> onclick="window.location='<?php echo base_url(); ?>home/login'" <?php } ?> >
                                     <i class="fa fa-star"></i> <?php echo ($auction_data[0]->is_fav)?'Shortlisted':'Shortlist'; ?>
                                 </button>
                             </div>
@@ -176,7 +176,7 @@
                                 <?php if($auction_data[0]->isSub > 0 || $free_sub_flag == 1){ ?>
                                     <tr>
                                         <td>Asset Details</td>
-                                        <td><?php echo $auction_data[0]->PropertyDescription; ?></td>
+                                        <td><?php echo $auction_data[0]->asset_details; ?></td>
                                     </tr>
                                 <?php } ?>
                                 <tr>
@@ -200,17 +200,17 @@
                                     <td>₹<?php echo $auction_data[0]->emd_amt; ?></td>
                                 </tr>
                                 <tr>
-                                    <td>EMD Submission Last Date</td>
-                                    <td><?php echo date('F d',strtotime($auction_data[0]->bid_last_date)); ?><sup><?php echo date('S',strtotime($auction_data[0]->bid_last_date)); ?></sup>, <?php echo date('Y',strtotime($auction_data[0]->bid_last_date)); ?></td>
+                                    <td>EMD Submission Last Date & Time</td>
+                                    <td><?php echo date('F d',strtotime($auction_data[0]->bid_last_date)); ?><sup><?php echo date('S',strtotime($auction_data[0]->bid_last_date)); ?></sup>, <?php echo date('Y',strtotime($auction_data[0]->bid_last_date)); ?> at <?php echo date('h:i:s A',strtotime($auction_data[0]->bid_last_date)); ?></td>
                                 </tr>
                                 <?php if($auction_data[0]->isSub > 0 || $free_sub_flag == 1){ ?>
                                     <tr>
                                         <td>Auction Start Date & Time</td>
-                                        <td><?php echo date('F d',strtotime($auction_data[0]->auction_start_date)); ?><sup><?php echo date('S',strtotime($auction_data[0]->auction_start_date)); ?></sup>, <?php echo date('Y',strtotime($auction_data[0]->auction_start_date)); ?></td>
+                                        <td><?php echo date('F d',strtotime($auction_data[0]->auction_start_date)); ?><sup><?php echo date('S',strtotime($auction_data[0]->auction_start_date)); ?></sup>, <?php echo date('Y',strtotime($auction_data[0]->auction_start_date)); ?> at <?php echo date('h:i:s A',strtotime($auction_data[0]->auction_start_date)); ?></td>
                                     </tr>
                                     <tr>
                                         <td>Auction End Date & Time</td>
-                                        <td><?php echo date('F d',strtotime($auction_data[0]->auction_end_date)); ?><sup><?php echo date('S',strtotime($auction_data[0]->auction_end_date)); ?></sup>, <?php echo date('Y',strtotime($auction_data[0]->auction_end_date)); ?></td>
+                                        <td><?php echo date('F d',strtotime($auction_data[0]->auction_end_date)); ?><sup><?php echo date('S',strtotime($auction_data[0]->auction_end_date)); ?></sup>, <?php echo date('Y',strtotime($auction_data[0]->auction_end_date)); ?> at <?php echo date('h:i:s A',strtotime($auction_data[0]->auction_end_date)); ?></td>
                                     </tr>
                                     <tr>
                                         <td>E-Auction Provider</td>
@@ -228,7 +228,7 @@
 											{
 												$dSrNo=1;
 												foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id > 0){ ?>
-													<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Doc '.$dSrNo; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } 											$dSrNo++;
+													<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Documents '; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } 											$dSrNo++;
 													}
 
 												}
@@ -237,7 +237,7 @@
 												<?php
 												$picSrNo=1;
 												foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id==0 && $doc->status == 1){ ?>
-													<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Pic '.$picSrNo; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } ?>
+													<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Pic '.$picSrNo; ?></a><?php if($key+1 != (count($uploadedDocs)-1)){ ?>,<?php } ?>
 												<?php
 													$picSrNo++;
 												} }
@@ -298,37 +298,37 @@
                 </div>
             </div><!--row-->
         </div><!--container-fluid-->
-        <script>
-            function addtoeventfavlist(auctionID)
-            {
+<script>
+	function addtoeventfavlist(auctionID)
+	{
 
 
-                        if (auctionID) {
-                                var is_fav = $(".shortlist_list").hasClass('shortlisted_list');
-                                if(is_fav)
-                                {
-                                    $(".shortlist_list").removeClass('shortlisted_list');
-                                    $(".shortlist_list").html('<i class="fa fa-star"></i> Shortlist');
-                                }
-                                else
-                                {
-                                    $(".shortlist_list").addClass('shortlisted_list');
-                                    $(".shortlist_list").html('<i class="fa fa-star"></i> Shortlisted');
-                                }
-                        jQuery.ajax({
-                            url: '/home/liveupcomingauciton_event_add',
-                            type: 'POST',
-                            data: {
-                                auctionID: auctionID,
-                                message: "Added Successfully"
-                            },
-                            success: function (data) {
-                                //alert(data);
-                                //var rand = Math.random() * 10000000000000000;
-                                //location.href = "?rand=" + rand;
-                            }
-                        });
-                    }
+				if (auctionID) {
+						var is_fav = $(".shortlist_list").hasClass('shortlisted_list');
+						if(is_fav)
+						{
+							$(".shortlist_list").removeClass('shortlisted_list');
+							$(".shortlist_list").html('<i class="fa fa-star"></i> Shortlist');
+						}
+						else
+						{
+							$(".shortlist_list").addClass('shortlisted_list');
+							$(".shortlist_list").html('<i class="fa fa-star"></i> Shortlisted');
+						}
+				jQuery.ajax({
+					url: '/home/liveupcomingauciton_event_add',
+					type: 'POST',
+					data: {
+						auctionID: auctionID,
+						message: "Added Successfully"
+					},
+					success: function (data) {
+						//alert(data);
+						//var rand = Math.random() * 10000000000000000;
+						//location.href = "?rand=" + rand;
+					}
+				});
+			}
 
-            }
-        </script>
+	}
+</script>

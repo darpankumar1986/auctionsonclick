@@ -69,13 +69,13 @@
                                 }
                                 else if(response==3)
                                 {
-                                    $(".error1").css('display','block').html('Invalid username or password..!');
+                                    $(".error1").css('display','block').html('Invalid Email ID or Password..!');
                                     $("#password").val('');
                                     return false;
                                 }
                                 else if(response==4)
                                 {
-                                    $(".error1").css('display','block').html('Invalid username or password..!<br/>Account will be blocked after 5 failed attempt!');
+                                    $(".error1").css('display','block').html('Invalid Email ID or Password..!<br/>Account will be blocked after 5 failed attempt!');
                                     $("#password").val('');
                                     return false;
                                 }
@@ -197,7 +197,7 @@
                                             <input type="hidden" id="action" name="action" value="<?php echo $_GET['action']; ?>">
 
                                             <input type="text" placeholder=" " class="keysubmit floating-input" name="user_name" id="username" value="<?php if($this->session->userdata('session_found_emailid')) { echo $this->session->userdata('session_found_emailid');} ?>">
-                                           <label class="custom_label">Email ID/Mobile No./Username</label>
+                                           <label class="custom_label">Email ID</label>
                                        </div>
                                        <div class="floating-label">
                                             <input type="hidden" name="track" value="<?php echo $track; ?>">

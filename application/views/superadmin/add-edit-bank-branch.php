@@ -1,3 +1,10 @@
+<script type="text/javascript" src="<?php echo VIEWBASE?>js/plugins/jquery.uniform.min.js"></script>
+<script type="text/javascript" src="<?php echo VIEWBASE?>js/plugins/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?php echo VIEWBASE?>js/plugins/tinymce/jquery.tinymce.js"></script>
+<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/plugins/jquery.tagsinput.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo VIEWBASE?>css/plugins/jquery.tagsinput.css">
+<script type="text/javascript" src="<?php echo VIEWBASE; ?>js/plugins/jquery.colorbox-min.js"></script>
+
 <script>
     jQuery(document).ready(function () {
         //Examples of how to assign the Colorbox event to elements
@@ -134,10 +141,10 @@ if (!empty($row)) {
 					<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash();?>" />
 
                     <div class="row">
-                        <div class="lft_heading">Name of the Organization <span class="red"> *</span></div>
+                        <div class="lft_heading">Name of the Bank <span class="red"> *</span></div>
                         <div class="rgt_detail">
                             <select name="bank" id="bank" onchange="getZone(jQuery(this).val())" class="html_found">
-                                <option value="">Select Organization </option>
+                                <option value="">Select Bank</option>
 <?php foreach ($banks as $bank_record) { ?>
                                     <option value="<?php echo $bank_record->id; ?>" <?php echo ($bank_record->id == $bank_id) ? 'selected' : ''; ?>><?php echo $bank_record->name; ?></option>
                                 <?php } ?>
@@ -157,7 +164,7 @@ if (!empty($row)) {
                               </select>
                         </div>					
                     </div>
-                    <?php */ ?>
+                   
                     <div class="row">
                         <div class="lft_heading">Zone </div>
                         <div class="rgt_detail">
@@ -191,6 +198,7 @@ if (!empty($row)) {
                             </select>
                         </div>					
                     </div>
+					 <?php */ ?>
                     <div class="row">
                         <div class="lft_heading">Branch Name <span class="red"> *</span></div>
                         <div class="rgt_detail">
@@ -201,7 +209,7 @@ if (!empty($row)) {
                             <label class="error" id="branchName" <?php if (empty($name_exists)) { ?> style="display:none;"<?php } ?>>Name already exist</label>
                         </div>					
                     </div>
-
+					<?php /* ?>
                     <div class="row">
                         <div class="lft_heading">Address 1 </div>
                         <div class="rgt_detail">
@@ -279,6 +287,7 @@ if (!empty($row)) {
                                     <label class="error errorfax" style="display:none;">Please enter valid fax number </label>
                                 </div>					
                             </div>
+							<?php */ ?>
 							<?php /* ?>
                             <div class="row">
                                 <div class="lft_heading">Agreement No Date   </div>
@@ -335,7 +344,15 @@ if (!empty($row)) {
                                  </div>
                             </div>
 							<?php */ ?>
-
+							<div class="row">
+							<div class="lft_heading">Status<span class="red"> *</span></div>
+							<div class="rgt_detail">
+							<select name="status">
+								<option value="1" <?php if($status==1)echo 'selected';?>>Active</option>
+								<option value="0" <?php if($status==0)echo 'selected';?>>Inactive</option>
+							</select>
+							</div>	
+						</div>	
                             <div class="stdformbutton row" style="text-align:center;">
                                 <a href="<?php echo base_url() . 'superadmin/home' ?>" class="button_grey">Back</a>	
                                 <input type="submit"  name="addedit" value="<?php echo ($id) ? 'Update' : 'Submit' ?>" class="button_grey">

@@ -457,7 +457,7 @@ class Payment2 extends WS_Controller
 
 				$payment_res = $res[0];
 				
-			
+				/*
 				$dataAP['payment_verifier_accepted'] = NULL;
 				$dataAP['payment_verifier_comment'] = NULL;
 				$dataAP['payment_move_to_opener2'] = 0;
@@ -465,7 +465,8 @@ class Payment2 extends WS_Controller
 				$dataAP['modify_date']= date('Y-m-d H:i:s');
 				$this->db->where('bidderID',$bidderID);
 				$this->db->where('auctionID',$auctionID);
-				$this->db->update('tbl_auction_participate',$dataAP);	
+				$this->db->update('tbl_auction_participate',$dataAP);
+				*/
 				$insertedid_id	=1;	
 				
 

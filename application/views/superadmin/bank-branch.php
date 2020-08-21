@@ -62,25 +62,13 @@
 				<div class="container-outer">
 					<div class="container-inner">
 			<table cellpadding="0" cellspacing="0" border="0" class="stdtable display">
-				<colgroup>
-					<col class="con0" />
-					<col class="con1" />
-					<col class="con0" />
-					<col class="con1" />
-					<col class="con0" />
-					<col class="con1" />
-					<col class="con0" />
-					<col class="con1" />
-					<col class="con0" />
-					<col class="con1" />
-				</colgroup>
 				<thead>
 					<tr>
 						<th class="head0" style='width: 5%;'>ID</th>
 						<th class="head1" style='width: 20%;'>Branch Name</th>
-						<th class="head0" style='width: 20%;'>Organization Name</th>
-						<th class="head1" style='width: 20%;'>Zone Name</th>
-						<th class="head0" style='width: 20%;'>Region Name</th>
+						<th class="head0" style='width: 20%;'>Bank Name</th>
+						<!--<th class="head1" style='width: 20%;'>Zone Name</th>
+						<th class="head0" style='width: 20%;'>Region Name</th>-->
 						<th class="head0">Status</th>
 						<!--<th class="head1" style='width: 8%;'><input type="checkbox" id="selecctall1"/></th>-->
 						<th class="head1" style='width: 10%;'>Creation Date</th>
@@ -94,8 +82,8 @@
 							<td><?php echo $data->id; ?></td>
 							<td><?php echo $data->name; ?></td>
 							<td><?php echo GetTitleById('tbl_bank',$data->bank_id,'name'); ?></td>
-							<td><?php echo GetTitleByField('tbl_zone', 'zone_id="'.$data->zone_id.'"', 'zone_name'); ?></td>
-							<td><?php echo GetTitleById('tbl_region',$data->region_id,'name'); ?></td>
+							<!--<td><?php echo GetTitleByField('tbl_zone', 'zone_id="'.$data->zone_id.'"', 'zone_name'); ?></td>
+							<td><?php echo GetTitleById('tbl_region',$data->region_id,'name'); ?></td>-->
 							<td><?php echo ($data->status == 1)?'Active':'Inactive'; ?></td>
 							<?php /* ?><td><input type="checkbox" class="status12" name="status[]" value="<?php echo $data->id; ?>"></td><?php */ ?>
 							<td><?php echo GetDateFormat($data->indate); ?></td>

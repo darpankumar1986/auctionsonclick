@@ -27,7 +27,7 @@
                                    <div class="floating-form">
                                        <div class="floating-label">
 											<input name="forgotemail" maxlength="100" id="forgotemail"  type="text" class="floating-input input alphanumericemail" placeholder=" "/>                             			   
-                                           <label class="custom_label">Email ID/Mobile No./Username</label>
+                                           <label class="custom_label">Email ID</label>
 										   <span id="forgot_email" class="error2"></span>
                                        </div>
                                        <div class="floating-label">											 
