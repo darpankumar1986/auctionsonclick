@@ -1816,7 +1816,7 @@ input.hasDatepicker {
     color: #333333;
     border: 1px solid #ccc !important;
 }
-.custom_search_form .btn-default.active, .btn-default:active, .custom_search_form .open>.dropdown-toggle.btn-default {
+.custom_search_form .btn-default.active, .custom_search_form  .btn-default:active, .custom_search_form .open>.dropdown-toggle.btn-default {
     background-color: #ffffff;
     border-color: #cccccc;
     background-image: url(../images/down_arrow.png);
