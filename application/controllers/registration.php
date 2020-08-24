@@ -946,6 +946,7 @@ class Registration extends WS_Controller {
             $this->db->where('id',$userid);
             if($this->session->userdata('session_found_usertype') == 'bidder')
             {
+				
 				$query=$this->db->get('tbl_user_registration');
 			}
 			else
@@ -961,8 +962,9 @@ class Registration extends WS_Controller {
                     }
             }
             
-            
-            
+    
+        $this->db->where('member_id', $userid);
+		$this->db->update('tbl_member_remember',array('status'=>0));    
             
 		
 		if($this->session->userdata('session_found_emailid'))
@@ -1004,6 +1006,8 @@ class Registration extends WS_Controller {
 		
 		$date_of_expiry = time() + 60 ;
 		setcookie( "csrf_cookie_name", "", $date_of_expiry, "/" ) ;
+		setcookie( "rand_cookie", "", $date_of_expiry-60, "/" ) ;
+
 		
 		unset($_SESSION['token']);	
 		

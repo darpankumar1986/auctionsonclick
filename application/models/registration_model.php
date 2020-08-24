@@ -1114,6 +1114,25 @@ function checkLogin(){
 					   
 					   $this->session->set_userdata('table_session', 'registration_tb');
 					   $this->userupdate_login($row[0]->id);
+
+					   if(isset($_POST['remember']))
+					   {
+						   $rem_rand = md5($row[0]->email_id.rand(10000000000,99999999999));
+							$data = array(
+							'member_id'=>$row[0]->id ,
+							'email_id'=>$row[0]->email_id ,
+							'rand_id'=>$rem_rand ,
+							'user_agent' => $_SERVER['HTTP_USER_AGENT'],
+							'ip' => $_SERVER['REMOTE_ADDR'],
+							'status' => 1,
+							'in_date' => date("Y-m-d H:i:s")
+							);							
+							$this->db->insert('tbl_member_remember',$data); 
+
+
+							$date_of_expiry = time() + (84600*14) ; // 14 Days
+							setcookie( "rand_cookie", $rem_rand , $date_of_expiry, "/" ) ;
+					   }
 					}
                 }else{
                  $numRow=0;
@@ -2017,7 +2036,7 @@ public function checkHTMLTags($string)
 			$memData = $bQry->result();
 			$first_name = $memData[0]->first_name;
 			$last_name = $memData[0]->last_name;
-			$full_name = $first_name." ".$last_name;
+			$full_name = $first_name; //." ".$last_name
 			$userType = 'owner';
 			$random = $this->addRandomString($forgotemail,$userType);
 			

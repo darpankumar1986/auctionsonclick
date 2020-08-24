@@ -5535,7 +5535,7 @@ class User_model extends CI_Model {
         $email = trim($_GET['email']);
         $mobile = trim($_GET['mobile']);
         
-        $this->db->select('A.*, B.topic_name');
+        $this->db->select('count(*) as total');
        
        
         
@@ -5612,8 +5612,124 @@ class User_model extends CI_Model {
         
         return false;
     }
+
+
+	public function completeUserSubscriptionData($user_id) {		
+        //search query start//
+        $from_date = trim($_GET['from_date']);
+        $to_date = trim($_GET['to_date']);
+        $name = trim($_GET['name']);
+        $email = trim($_GET['email']);
+        $mobile = trim($_GET['mobile']);
+        
+        $this->db->select('A.*, B.package_name,B.package_description');
+       
+       
+        /*
+        if ($from_date != '' && $to_date != '') {
+            $this->db->where('(A.in_date_time BETWEEN ' . "'" . $from_date . "'  AND '" . $to_date . "')");           
+        }*/
+       
+		if ($name != '') 
+		{
+           $this->db->where("B.package_name like '%".$name."%'");
+        }        
+        
+        $this->db->order_by('A.subscription_participate_id DESC');
+        $this->db->join('tbl_subscription_package as B','B.package_id=A.package_id','left');
+		$user_id = $this->uri->segment(4);
+		$this->db->where('A.member_id',$user_id);
+        $query = $this->db->get('tbl_subscription_participate AS A');
+        
+        //echo $this->db->last_query();die;
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+    
+   public function GettotalUserSubscriptionlogs() {
+        
+        //search query start//
+        $from_date = trim($_GET['from_date']);
+        $to_date = trim($_GET['to_date']);
+        $name = trim($_GET['name']);
+        $email = trim($_GET['email']);
+        $mobile = trim($_GET['mobile']);
+        
+        $this->db->select('count(*) as total');
+       
+       
+        /*
+        if ($from_date != '' && $to_date != '') {
+            $this->db->where('(A.in_date_time BETWEEN ' . "'" . $from_date . "'  AND '" . $to_date . "')");           
+        }*/
+       
+		if ($name != '') 
+		{
+           $this->db->where("B.package_name like '%".$name."%'");
+        }  
+              
+        
+        $this->db->order_by('A.subscription_participate_id DESC');
+        $this->db->join('tbl_subscription_package as B','B.package_id=A.package_id','left');     
+		$user_id = $this->uri->segment(4);
+		$this->db->where('A.member_id',$user_id);
+        $query = $this->db->get('tbl_subscription_participate AS A');
+        //echo $this->db->last_query();die;
+        if ($query->num_rows() > 0) {
+            $data = $query->result();
+			return $data[0]->total;
+        } else {
+            return 0;
+        }
+    }
+    
+    public function UserSubscriptionLogs($start = 0, $limit = 10, $user_id) {
+		//search query start//
+        $from_date = trim($_GET['from_date']);
+        $to_date = trim($_GET['to_date']);
+        $name = trim($_GET['name']);
+        $email = trim($_GET['email']);
+        $mobile = trim($_GET['mobile']);
+        
+        $this->db->select('A.*, B.package_name,B.package_description');
+        $this->db->order_by('A.subscription_participate_id DESC');
+        $this->db->limit($limit, $start);
+       
+        
+        /*
+        if ($from_date != '' && $to_date != '') {
+            $this->db->where('(A.in_date_time BETWEEN ' . "'" . $from_date . "'  AND '" . $to_date . "')");           
+        }*/
+       
+		if ($name != '') 
+		{
+           $this->db->where("B.package_name like '%".$name."%'");
+        }          
+        
+        $this->db->join('tbl_subscription_package as B','B.package_id=A.package_id','left');     
+        $user_id = $this->uri->segment(4);
+		$this->db->where('A.member_id',$user_id);
+		$query = $this->db->get('tbl_subscription_participate AS A');
+		//echo $this->db->last_query();die;
+
+
+        $data = array();
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        
+        return false;
+    }
    
-   }
+}
   
 
 ?>

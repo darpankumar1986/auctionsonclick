@@ -1189,6 +1189,45 @@ class Home_model extends CI_Model {
 			}
 		}
 	}
+
+
+	public function loginFromRememberMe()
+	{
+		
+		$userid = $this->session->userdata('id');
+
+		if(!($userid > 0))
+		{
+			
+			if(isset($_COOKIE['rand_cookie'])) 
+			{
+
+				$this->db->where('rem.rand_id',$_COOKIE['rand_cookie']);
+				$this->db->where('rem.status',1);
+				$this->db->where('rem.user_agent',$_SERVER['HTTP_USER_AGENT']);
+				$this->db->join('tbl_user_registration as usr','usr.id=rem.member_id');
+				$row_query = $this->db->get('tbl_member_remember as rem');
+				if($row = $row_query->row())
+				{
+					
+					$this->session->set_userdata('id', $row->id);
+					$this->session->set_userdata('full_name', $row->first_name);	
+					$this->session->set_userdata('user_type', trim($row->user_type));
+					$rand = rand(10000000000,99999999999);
+					$this->session->set_userdata('session_id_user',$rand);
+					$this->session->set_userdata('table_session', 'registration_tb');
+					$setarray=array('user_sess_val'=> $rand);
+					$this->db->where('id',$row->id);
+					$this->db->update('tbl_user_registration',$setarray);	
+					$currentURL = current_url(); //http://myhost/main
+					$params   = $_SERVER['QUERY_STRING']; //my_id=1,3
+					$fullURL = $currentURL . '?' . $params;
+					//redirect($fullURL);
+				}
+			}
+		
+		}
+	}
 }
 
 ?>
