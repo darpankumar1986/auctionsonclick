@@ -3029,6 +3029,24 @@ h3.subscription_plan {
 
 /*-----------------------------sitemap_end-------------------------------------------------*/
 
+/*-----------------------------Error_404-------------------------------------------------*/
+
+.error_page {
+    padding-bottom: 80px;
+}
+.error_page h3 {
+    margin-bottom: 25px;
+}
+.error_page p {
+    margin-bottom: 0;
+}
+.error_page p a {
+    color: #0078db;
+}
+
+
+/*-----------------------------Error_404_end-------------------------------------------------*/
+
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
