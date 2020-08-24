@@ -24,6 +24,8 @@
     $user = $query->row();
 
     $full_name = ($user->first_name != '')?$user->first_name.' '.$user->last_name:$user->authorized_person;
+
+	$full_name = ucfirst(strtolower($full_name));
 ?>
     <table width="860px" align="center" cellpadding="0" cellspacing="0" style="border: 1px solid #ccc;"><tbody><tr><td>
    <table bgcolor="#005ca8" align="center" width="860" border="0" cellpadding="0" cellspacing="0">
