@@ -68,7 +68,6 @@ class Cron extends WS_Controller
 			$this->db->where('c.status',1);
 			$this->db->where('a.alerts_type IN(1,2)');
 			$this->db->order_by('c.city_name','ASC');
-			$this->db->group_by('r.id');
 			$this->db->join('tbl_city as c','c.id = a.city_id');
 			$this->db->join('tbl_user_registration as r','r.id = a.member_id');
 			$row_query = $this->db->get('tbl_member_email_alerts as a');
