@@ -151,23 +151,7 @@
             </tr>
         </tbody>
     </table>
-    <table bgcolor="#ffffff" align="center" width="860" border="0" cellpadding="0" cellspacing="0">
-        <tbody>
-            <tr>
-                <td>
-                    <table width="780" align="center" cellpadding="0" cellspacing="0" style="padding-bottom: 18px;">
-                        <tbody>
-                            <tr>
-                                <td style="font-family: sans-serif;color: #333333;font-size: 13px;text-align: center;">
-                                    <p style="margin:0;">If you do not wish to receive such emails, <a target="_blank" href="<?php echo base_url(); ?>home/unsubscribe/<?php echo $id_base64;?>/<?php echo $email_md5;?>" style="text-decoration: none;color: #0078db;">Unsubscribe here</a></p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+   
       </td></tr></tbody></table>
     </body>
 </html>
