@@ -9,7 +9,7 @@
 		private $smtpsecure = '';
 		
 		private $username = 'noreply@c1india.com';
-		private $password = 'Orange@321';
+		private $password = 'Neworange@2020'; //Orange@321
         
   
   
