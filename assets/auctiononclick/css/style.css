@@ -771,6 +771,9 @@ h3.auction_heading {
 select::-ms-expand {
     display: none;
 }
+input::-ms-clear, input::-ms-reveal {
+    display: none;
+}
 
 .custom_form .floating-select:focus ~ label.custom_label, .custom_form .floating-select:not([value=""]):valid ~ label.custom_label {
     top: 2px;
@@ -799,6 +802,9 @@ select::-ms-expand {
     text-align: center;
     cursor: pointer;
     color: #cccccc;
+}
+.floating-label span.eye_icon.fa-eye-slash {
+    color: #333333;
 }
 .custom_form .floating-textarea {
     height: 165px;

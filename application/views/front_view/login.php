@@ -204,7 +204,7 @@
                                             <input type="hidden" name="auctionID" value="<?php echo $auctionID; ?>">
                                            <input type="password" class="keysubmit floating-input" name="password" id="password" placeholder=" ">
                                            <label class="custom_label">Password</label>
-                                           <span toggle="#password" class="eye_icon toggle-password"><i class="fa fa-eye"></i></span>
+                                           <span toggle="#password" class="fa eye_icon toggle-password fa-eye"></span>
                                        </div>
                                    </div>
                                    <div class="checkbox">
