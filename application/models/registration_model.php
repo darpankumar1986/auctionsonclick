@@ -2034,9 +2034,16 @@ public function checkHTMLTags($string)
 		if($bQry->num_rows()>0)
 		{			
 			$memData = $bQry->result();
-			$first_name = $memData[0]->first_name;
-			$last_name = $memData[0]->last_name;
-			$full_name = $first_name; //." ".$last_name
+			if($memData[0]->user_type=='owner')
+			{
+				$first_name = $memData[0]->first_name;
+				$last_name = $memData[0]->last_name;
+				$full_name = $first_name." ".$last_name; //
+			}
+			else
+			{
+				$full_name = $memData[0]->authorized_person; 
+			}
 			$userType = 'owner';
 			$random = $this->addRandomString($forgotemail,$userType);
 			
