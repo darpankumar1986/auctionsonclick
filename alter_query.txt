@@ -418,3 +418,4 @@ CREATE TABLE `tbl_member_remember` (
 ------------------Neeraj---------------------------
 
 ALTER TABLE `tbl_user_registration` CHANGE `drt_id` `is_unsubscribe` TINYINT(1) NULL DEFAULT '0';
+ALTER TABLE `tbl_log_user_registration` CHANGE `drt_id` `is_unsubscribe` TINYINT(1) NULL DEFAULT '0';
