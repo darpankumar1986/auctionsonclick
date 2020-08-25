@@ -14,13 +14,14 @@
     <tbody>
         <tr>
             <td>
-                <table width="780" align="center" cellpadding="0" cellspacing="0" style="padding: 13px 0px;">
+                <table width="780" height="90" align="center" cellpadding="0" cellspacing="0" style="padding: 13px 0px;">
                     <tbody>
                         <tr>
                             <td>
                                 <table>
                                     <tbody>
                                         <tr>
+                                            <td width="5%">&nbsp;</td>
                                             <td>
                                                 <img alt="Logo" src="<?php echo $Logo; ?>" border="0" style="display:block; vertical-align:top;">
                                             </td>
@@ -42,11 +43,20 @@
         </tr>
     </tbody>
 </table>
+        <table bgcolor="#ffffff" align="center" width="860" height="30" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 <table bgcolor="#ffffff" align="center" width="860" border="0" cellpadding="0" cellspacing="0">
     <tbody>
         <tr>
             <td>
-                <table width="780" align="center" cellpadding="0" cellspacing="0" style="padding-top: 28px;padding-bottom: 18px;">
+                <table width="780" align="center" cellpadding="0" cellspacing="0">
                     <tbody>
                         <tr>
                             <td style="font-family: sans-serif;color: #333333;font-size: 22px;text-align: center;">
@@ -59,6 +69,15 @@
         </tr>
     </tbody>
 </table>
+        <table bgcolor="#ffffff" align="center" width="860" height="30" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     <table bgcolor="#ffffff" align="center" width="860" border="0" cellpadding="0" cellspacing="0">
         <tbody>
             <tr>
@@ -66,6 +85,7 @@
                     <table width="780" align="center" cellpadding="0" cellspacing="0" style="">
                         <tbody>
                             <tr>
+                                <td width="2%">&nbsp;</td>
                                 <td>
                                     <table class="auction_table_box" style="border-collapse: collapse;width: 100%;">
                                         <thead>
@@ -97,6 +117,15 @@
             </tr>
         </tbody>
     </table>
+        <table bgcolor="#ffffff" align="center" width="860" height="30" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     <table bgcolor="#ffffff" align="center" width="860" border="0" cellpadding="0" cellspacing="0">
         <tbody>
             <tr>
@@ -108,8 +137,9 @@
                                     <table width="228" height="40" align="center" cellpadding="0" cellspacing="0">
                                         <tbody>
                                             <tr>
+                                                <td width="8%">&nbsp;</td>
                                                 <td align="center" bgcolor="#0078db" style="border:none;-webkit-border-radius: 5px; -moz-border-radius: 5px;border-radius:4px;cursor:auto;padding:11px 20px;background:#0078db;" valign="middle">
-                                                    <a href="<?php echo base_url(); ?>propertylisting?search_city=<?php echo $city_name; ?>&parent_id=" style="color:#ffffff;font-family:sans-serif;font-size:13px;font-weight:600;line-height:120%;Margin:0;text-decoration:none;text-transform:none;" target="_blank">
+                                                    <a href="<?php echo base_url(); ?>propertylisting?search_city=<?php echo $city_name; ?>&parent_id=" style="color:#ffffff !important;font-family:sans-serif;font-size:13px;font-weight:600;line-height:120%;Margin:0;text-decoration:none;text-transform:none;" target="_blank">
                                                         View more Auction
                                                     </a>
                                                 </td>
@@ -124,6 +154,15 @@
             </tr>
         </tbody>
     </table>
+        <table bgcolor="#ffffff" align="center" width="860" height="30" border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     <table width="860" height="1" align="center" cellpadding="0" cellspacing="0">
         <tbody><tr>
             <td style="border-top: 1px solid #ccc;">
