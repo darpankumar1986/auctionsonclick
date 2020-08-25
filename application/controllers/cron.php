@@ -16,16 +16,23 @@ class Cron extends WS_Controller
 
 	public function sendAuctionMail()
 	{
+		$opt = '1';
 		$template = array();
 		$templateAuctionCount = array();
 
+		if(date('w') == '0')
+		{
+			$opt = '1,2';
+		}
+
 		$this->db->where('a.status',1);
 		$this->db->where('c.status',1);
-		$this->db->where('a.alerts_type IN(1,2)');
+		$this->db->where('a.alerts_type IN('.$opt.')');
 		$this->db->order_by('c.city_name','ASC');
 		$this->db->group_by('c.id');
 		$this->db->join('tbl_city as c','c.id = a.city_id');
 		$row_query = $this->db->get('tbl_member_email_alerts as a');
+		//echo $this->db->last_query();die;
 		foreach($row_query->result() as $row)
 		{
 			$this->db->select("bank.name as bank_name,a.reference_no,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID,c.name as subCategory,p.name as parentCategory",false)
@@ -100,6 +107,12 @@ class Cron extends WS_Controller
 		foreach($row_query->result() as $row)
 		{
 			$data['first_name'] = ($row->first_name != '')?$row->first_name.' '.$row->last_name:$row->authorized_person;
+
+			$data['first_name'] = ucfirst(strtolower($data['first_name']));
+
+			$data['id_base64'] = base64_encode($row->id);
+			$data['email_md5'] = md5($row->email_id);
+
 			$data['package_end_date'] = $row->package_end_date;
 			$data['Logo_2'] = $this->load->view('email/Logo_2', $data, true); // render the view into HTML
 			$html = $this->load->view('email/reminder', $data, true); // render the view into HTML

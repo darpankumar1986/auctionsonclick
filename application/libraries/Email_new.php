@@ -45,7 +45,7 @@ public function sendMailToUser($emailArr,$sub,$message,$attachment_path = "",$cc
 		  
 
 		//Set who the message is to be sent from
-		$mail->setFrom($this->username, BRAND_NAME);
+		$mail->setFrom($this->username, 'AuctionOnClick');
 		
 		//Set an alternative reply-to address
 		//$mail->addReplyTo($this->username, 'C1india');

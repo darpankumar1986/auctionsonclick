@@ -415,6 +415,12 @@ class Registration_model extends CI_Model {
 		if($row = $row_query->row())
 		{
 			$data['first_name'] = ($row->first_name != '')?$row->first_name.' '.$row->last_name:$row->authorized_person;
+
+			$data['first_name'] = ucfirst(strtolower($data['first_name']));
+
+			$data['id_base64'] = base64_encode($row->id);
+			$data['email_md5'] = md5($row->email_id);
+
 			$email = $row->email_id;
 			$subject = "AuctionOnClick - Signup";
 			$data['Logo'] = $this->load->view('email/Logo', $data, true); // render the view into HTML
@@ -447,7 +453,7 @@ class Registration_model extends CI_Model {
 	}
 	
 	public function save_step_first_temp() 
-        {	
+    {	
             $savestatus=0;
             $insert_id=0;
 			$id = $this->input->post('id');

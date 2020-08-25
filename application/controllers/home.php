@@ -495,6 +495,21 @@ class Home extends MY_Controller {
         
         $this->load->view('front_view/footer');
     }
+
+	public function unsubscribe($userkey = '',$useremail = '')
+	{
+		$id = base64_decode($userkey);
+		$this->db->where('id',$id);
+		$row_query = $this->db->get('tbl_user_registration');
+		if($row = $row_query->row())
+		{
+			if(md5($row->email_id) == $useremail)
+			{
+				$this->db->where('id',$row->id);
+				$this->db->update('tbl_user_registration',array("is_unsubscribe"=>1));
+			}
+		}
+	}
 }
 
 ?>

@@ -138,11 +138,11 @@
                         <tbody>
                             <tr>
                                 <td width="50%" style="font-family: sans-serif;color: #333333;font-size: 13px;text-align: right;">
-                                    <p style="margin:0;padding-right: 5px;"><a href="#" style="text-decoration: none;color: #0078db;">Terms &amp; Conditions</a></p>
+                                    <p style="margin:0;padding-right: 5px;"><a href="<?php echo base_url(); ?>terms-conditions" style="text-decoration: none;color: #0078db;">Terms &amp; Conditions</a></p>
                                 </td>
                                 <td width="3%" style="color: #999999;text-align: center;vertical-align: top;">|</td>
                                 <td width="50%" style="font-family: sans-serif;color: #333333;font-size: 13px;text-align: left;">
-                                    <p style="margin:0;padding-left: 5px;"><a href="#" style="text-decoration: none;color: #0078db;">Privacy Policy</a></p>
+                                    <p style="margin:0;padding-left: 5px;"><a href="<?php echo base_url(); ?>privacy-policy" style="text-decoration: none;color: #0078db;">Privacy Policy</a></p>
                                 </td>
                             </tr>
                         </tbody>
@@ -159,7 +159,7 @@
                         <tbody>
                             <tr>
                                 <td style="font-family: sans-serif;color: #333333;font-size: 13px;text-align: center;">
-                                    <p style="margin:0;">If you do not wish to receive such emails, <a href="#" style="text-decoration: none;color: #0078db;">Unsubscribe here</a></p>
+                                    <p style="margin:0;">If you do not wish to receive such emails, <a target="_blank" href="<?php echo base_url(); ?>home/unsubscribe/<?php echo $id_base64;?>/<?php echo $email_md5;?>" style="text-decoration: none;color: #0078db;">Unsubscribe here</a></p>
                                 </td>
                             </tr>
                         </tbody>
