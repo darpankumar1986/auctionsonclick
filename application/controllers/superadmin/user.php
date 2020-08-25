@@ -4805,34 +4805,42 @@ class User extends MY_Controller {
 						$this->excel->getActiveSheet()->setCellValue($column.$i, 'S.No.');
 						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Package Name');
 						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Package Description');
-						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Amount (Rs.)');
+						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Amount');
 						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Package Start Date');
 						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Package End Date');
 						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Package Purchase Date');
 						
 						$sn=1;	
 						foreach ($reportData as $row) {
-							
+							$package = $this->home_model->getSubcriptionPlan($row->package_id);
 							$i = ++$i;
 							$package_start_date = date('d M Y H:i:s',strtotime($row->package_start_date));
 							$package_end_date = date('d M Y H:i:s',strtotime($row->package_end_date));
 							$indate = date('d M Y H:i:s',strtotime($row->subscription_created_on));
-
-							$package = ($row->package_id > 3)?'State Wise (Any 2 States)':'PAN India'; 
-							$package .= ", ".$row->sub_month." Months Plan";
+							$state_bidder = $this->home_model->get_state_bidder($row->subscription_participate_id);
+							$packageName = ($row->package_id > 3)?'State Wise (Any 2 States)':'PAN India'; 
+							$packageName .= ", ".$row->sub_month." Months Plan";
 						    if($row->package_id > 3)
 							{ 
-								$state_bidder = $this->home_model->get_state_bidder($row->subscription_participate_id);
-								$package .= ", States Chosen: ";
-								$package .= implode(", ",$state_bidder);
+								
+								$packageName .= ", States Chosen: ";
+								$packageName .= implode(", ",$state_bidder);
 							}
 							
-							
+							$packageAmount = "₹".$row->package_amount.".00";
+							if($row->package_id > 3 && count($state_bidder) > 2){
+							  $packageAmount .= " (Subscription charges ₹";
+							  $packageAmount .= $package[0]->package_amount;
+							  $packageAmount .= ".00 + ";
+							  $packageAmount .= (count($state_bidder)-2)." additional State charges ₹";
+							  $packageAmount .= $row->package_amount - $package[0]->package_amount.".00)";
+							}
+							//echo $packageAmount;die;
 							$column = 'A';
 							$this->excel->getActiveSheet()->setCellValue($column.$i, $sn);
-							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $package);
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $packageName);
 							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $row->package_description);
-							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $row->package_amount);
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $packageAmount);
 							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $package_start_date);							
 							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $package_end_date);
 							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $indate);
