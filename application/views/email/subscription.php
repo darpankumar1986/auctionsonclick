@@ -448,7 +448,7 @@
                         <tbody>
                             <tr>
                                 <td style="font-family: sans-serif;color: #333333;font-size: 13px;text-align: center;">
-                                    <p style="margin:0;">If you do not wish to receive such emails, <a href="#" style="text-decoration: none;color: #0078db;">Unsubscribe here</a></p>
+                                    <p style="margin:0;">If you do not wish to receive such emails, <a target="_blank" href="<?php echo base_url(); ?>home/unsubscribe/<?php echo $id_base64;?>/<?php echo $email_md5;?>" style="text-decoration: none;color: #0078db;">Unsubscribe here</a></p>
                                 </td>
                             </tr>
                         </tbody>

@@ -68,22 +68,25 @@ class Cron extends WS_Controller
 			$this->db->where('c.status',1);
 			$this->db->where('a.alerts_type IN(1,2)');
 			$this->db->order_by('c.city_name','ASC');
-			$this->db->group_by('c.id');
+			$this->db->group_by('r.id');
 			$this->db->join('tbl_city as c','c.id = a.city_id');
 			$this->db->join('tbl_user_registration as r','r.id = a.member_id');
 			$row_query = $this->db->get('tbl_member_email_alerts as a');
 			foreach($row_query->result() as $row)
 			{
-				$subject = (int)$templateAuctionCount[$row->city_id]." New Auction property in ".$row->city_name;
-				$data = array(
-								"member_id"=>$row->id,
-								"email"=>$row->email_id,
-								"subject"=>$subject,
-								"message"=>$template[$row->city_id],
-								"email_type"=>1,
-								"indate"=>date('Y-m-d H:i:s')
-							);
-				$this->db->insert('tbl_email_log',$data);
+				if($row->is_unsubscribe != 1)
+				{
+					$subject = (int)$templateAuctionCount[$row->city_id]." New Auction property in ".$row->city_name;
+					$data = array(
+									"member_id"=>$row->id,
+									"email"=>$row->email_id,
+									"subject"=>$subject,
+									"message"=>$template[$row->city_id],
+									"email_type"=>1,
+									"indate"=>date('Y-m-d H:i:s')
+								);
+					$this->db->insert('tbl_email_log',$data);
+				}
 			}
 		}
 
