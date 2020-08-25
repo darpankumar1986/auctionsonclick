@@ -83,7 +83,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
                             ?>
                             <section class="header_wrapper">
                                 <div class="header_top">
-                                    <div class="logo"><img src="<?php echo base_url();?>assets/front_view/images/<?php echo SITE_LOGO; ?>" style="max-width: 250px;"></a>                                           
+                                    <div class="logo"><img src="<?php echo base_url();?>assets/front_view/images/<?php echo SITE_LOGO; ?>"></a>                                           
                                            
                                     </div>
                                     <div class="header_right">

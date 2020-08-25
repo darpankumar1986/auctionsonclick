@@ -14,14 +14,7 @@
     {
         $name=$_POST['name'];
     }
-	if(isset($_POST['email']) and !empty($_POST['email']))
-    {
-        $email=$_POST['email'];
-    }
-	if(isset($_POST['mobile']) and !empty($_POST['mobile']))
-    {
-        $mobile=$_POST['mobile'];
-    }
+	
     ?>
 <?php if( $this->session->flashdata('message')) {?>
 <span class="success_msg"><img src="<?php echo VIEWBASE; ?>images/icon_checkmark_small.png" class="success_tick"><?php echo $this->session->flashdata('message'); ?></span>
@@ -46,7 +39,7 @@ table a:hover {
     color: #fff;
 }
 </style>
-<div class="box-head"><?php echo $full_name; ?>: Subscription Logs</div>
+<div class="box-head">Subscription Logs: <?php echo ucwords(strtolower($full_name)); ?></div>
    <div class="centercontent tables">
 	<div class="pageheader notab">	
 	</div><!--pageheader-->	
@@ -55,13 +48,13 @@ table a:hover {
 				<table cellpadding="0" cellspacing="0" border="0" class="stdtable stdtablecb display">
 					<tbody>
 						<tr>
-							<td style="width:14%; vertical-align:top; border-top: 1px solid #ddd;">
-								<label><strong>From Date: </strong></label><input type="text" id="start_date" value="<?php echo $from_date;?>" name="from_date">
+							<td style="width:33%; vertical-align:top; border-top: 1px solid #ddd;">
+								<label><strong>Package Start From Date: </strong></label><input type="text" id="start_date" value="<?php echo $from_date;?>" name="from_date">
 							</td>
-							<td style="width:22%;  vertical-align:top; border-top: 1px solid #ddd;">
-								<label><strong>To Date: </strong></label><input type="text" value="<?php echo $to_date;?>" id="end_date" name="to_date">
+							<td style="width:33%;  vertical-align:top; border-top: 1px solid #ddd;">
+								<label><strong>Package Start To Date: </strong></label><input type="text" value="<?php echo $to_date;?>" id="end_date" name="to_date">
 							</td>
-							<td style="width:22%;  vertical-align:top; border-top: 1px solid #ddd;">
+							<td style="width:33%;  vertical-align:top; border-top: 1px solid #ddd;">
 								<label><strong>Package Name </strong></label><input type="text" value="<?php echo $name;?>" id="name" name="name">
 							</td>
 							
@@ -85,7 +78,7 @@ table a:hover {
 						<th class="head1"style="width:2%">S.No.</th>
 						<th class="head0" style="width:13%">Package Name</th>
 						<th class="head0" style="width:30%">Package Description</th>
-						<th class="head0" style="width:10%">Amount (Rs.)</th>
+						<th class="head0" style="width:10%">Amount</th>
 						<th class="head0" style="width:15%">Package Start Date</th>
 						<th class="head0" style="width:15%">Package End Date</th>
 						<th class="head0" style="width:15%">Package Purchase Date</th>
@@ -100,12 +93,29 @@ table a:hover {
 					$package_end_date = date('d M Y H:i:s',strtotime($row->package_end_date));
 					$indate = date('d M Y H:i:s',strtotime($row->subscription_created_on));
 					//echo "<pre>";print_r($pay_res);
+					$package = $this->home_model->getSubcriptionPlan($row->package_id);
+					
+
+
 					?>
 					<tr class='gradeA'>
 						<td><?php echo $i; ?></td>
-						<td><?php echo $row->package_name; ?></td>
+						<td>
+							<h4><?php echo ($row->package_id > 3)?'State Wise (Any 2 States)':'PAN India'; ?></h4>
+							<p><?php echo $row->sub_month;?> Months Plan</p>
+						    <?php if($row->package_id > 3){ $state_bidder = $this->home_model->get_state_bidder($row->subscription_participate_id);?>
+						    <h4>States Chosen</h4>
+							<p><?php echo implode(", ",$state_bidder); ?></p>
+						   <?php } ?>
+						</td>
 						<td><?php echo $row->package_description; ?></td>
-						<td><?php echo $row->package_amount;?></td>
+						<td>
+						<?php 
+							echo "₹".$row->package_amount.".00";
+							if($row->package_id > 3 && count($state_bidder) > 2){ ?>
+							  <p class="subscribe_charges">(Subscription charges ₹<?php echo $package[0]->package_amount; ?>.00 + <?php echo count($state_bidder)-2; ?> additional State charges ₹<?php echo $row->package_amount - $package[0]->package_amount; ?>.00)</p>
+						   <?php } 
+						?></td>
 						<td><?php echo $package_start_date;?></td>
 						<td><?php echo $package_end_date;?></td>
 						<td><?php echo $indate; ?></td>

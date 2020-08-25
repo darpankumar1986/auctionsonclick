@@ -13,7 +13,7 @@ header
  */
 .headerplain {height: 90px; background-color:#5e23dc;}
 .orange_line{width: 100%; background-color: #5e23dc; height: 3px;}
-.logo{width:40%; padding:5px 0 5px 0; }
+.logo{width:40%; padding:16px 0 5px 0; }
 .logo-text {
     font-size: 25px;
     color: #c92809; float: left;

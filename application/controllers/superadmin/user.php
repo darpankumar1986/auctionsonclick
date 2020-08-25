@@ -14,6 +14,7 @@ class User extends MY_Controller {
         $this->load->helper(array('form'));
         $this->load->model('superadmin/user_model');
         $this->load->model('superadmin/bank_model');
+        $this->load->model('home_model');
         $this->output->set_header("no-cache, private, no-store,must-revalidate, max-stale=0, post-check=0, pre-check=0");
 		$this->output->set_header('Pragma: no-cache');
         $this->check_isvalidated();
@@ -4816,12 +4817,20 @@ class User extends MY_Controller {
 							$package_start_date = date('d M Y H:i:s',strtotime($row->package_start_date));
 							$package_end_date = date('d M Y H:i:s',strtotime($row->package_end_date));
 							$indate = date('d M Y H:i:s',strtotime($row->subscription_created_on));
-							
+
+							$package = ($row->package_id > 3)?'State Wise (Any 2 States)':'PAN India'; 
+							$package .= ", ".$row->sub_month." Months Plan";
+						    if($row->package_id > 3)
+							{ 
+								$state_bidder = $this->home_model->get_state_bidder($row->subscription_participate_id);
+								$package .= ", States Chosen: ";
+								$package .= implode(", ",$state_bidder);
+							}
 							
 							
 							$column = 'A';
 							$this->excel->getActiveSheet()->setCellValue($column.$i, $sn);
-							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $row->package_name);
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $package);
 							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $row->package_description);
 							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $row->package_amount);
 							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $package_start_date);							
@@ -4858,7 +4867,7 @@ class User extends MY_Controller {
         $per_page = 10;
         $total_record = $this->user_model->GettotalUserSubscriptionlogs();
         
-        $config['base_url'] = site_url() . "superadmin/user/user_subscription_logs/".$user_id."?k=2&";
+        $config['base_url'] = site_url() . "superadmin/user/user_subscription_logs/".$userid."?k=2&";
         $config['base_url'] .= http_build_query($_GET, '', "&");
         
         $config['total_rows'] = $total_record;

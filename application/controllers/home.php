@@ -94,7 +94,7 @@ class Home extends MY_Controller {
     }
 
     function privacy_policy() {
-		$data['title'] = 'Terms &amp; Conditions';
+		$data['title'] = 'Privacy Policy';
         
         
         $this->load->view('front_view/header', $data);
@@ -178,7 +178,7 @@ class Home extends MY_Controller {
         }
 	
 	function auctionDetail($auctionID) {
-		$data['title'] = "View Detail";
+		$data['title'] = "Property - Details";
 		$data['auction_data'] = $this->home_model->aucDetailPopupData($auctionID);
 		$data['uploadedDocs'] = $this->home_model->GetUploadedDocsByAuctionId($auctionID);
 		//print_r($data['auction_data']);
@@ -195,7 +195,7 @@ class Home extends MY_Controller {
         
 	public function propertylisting()
 	{	
-		
+		$data['title'] = "Property - Listing";
 		$data['assetsType'] = $this->home_model->getAllAssetsType();
 		$this->load->view('front_view/header', $data);	
 		$vdata['property'] = $this->home_model->getProperty();
@@ -450,7 +450,7 @@ class Home extends MY_Controller {
 
 	public function advanced_search()
 	{
-		$data['title'] = 'Advanced Search';
+		$data['title'] = 'Search'; //Advanced Search
 		$data['totalAuction'] = $this->home_model->getTotalAdvancedSearchAuction();
         $this->load->view('front_view/header', $data);
         if(MOBILE_VIEW)

@@ -1952,7 +1952,7 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
         }
 		
         if (jQuery('#description').val().trim() == '') {
-            jQuery('#spmsg').append("<li>please Enter description </li>");
+            jQuery('#spMsg').append("<li>please Enter description </li>");
             flag = 1;
         }
 		if (jQuery('#asset_details').val().trim() == '') {

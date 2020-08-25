@@ -5622,13 +5622,13 @@ class User_model extends CI_Model {
         $email = trim($_GET['email']);
         $mobile = trim($_GET['mobile']);
         
-        $this->db->select('A.*, B.package_name,B.package_description');
+        $this->db->select('A.*, B.package_name,B.package_description,B.sub_month');
        
        
-        /*
+        
         if ($from_date != '' && $to_date != '') {
-            $this->db->where('(A.in_date_time BETWEEN ' . "'" . $from_date . "'  AND '" . $to_date . "')");           
-        }*/
+            $this->db->where('(A.package_start_date BETWEEN ' . "'" . $from_date . "'  AND '" . $to_date . "')");           
+        }
        
 		if ($name != '') 
 		{
@@ -5663,10 +5663,9 @@ class User_model extends CI_Model {
         $this->db->select('count(*) as total');
        
        
-        /*
         if ($from_date != '' && $to_date != '') {
-            $this->db->where('(A.in_date_time BETWEEN ' . "'" . $from_date . "'  AND '" . $to_date . "')");           
-        }*/
+            $this->db->where('(A.package_start_date BETWEEN ' . "'" . $from_date . "'  AND '" . $to_date . "')");           
+        }
        
 		if ($name != '') 
 		{
@@ -5696,15 +5695,14 @@ class User_model extends CI_Model {
         $email = trim($_GET['email']);
         $mobile = trim($_GET['mobile']);
         
-        $this->db->select('A.*, B.package_name,B.package_description');
+        $this->db->select('A.*, B.package_name,B.package_description,B.sub_month');
         $this->db->order_by('A.subscription_participate_id DESC');
         $this->db->limit($limit, $start);
        
         
-        /*
         if ($from_date != '' && $to_date != '') {
-            $this->db->where('(A.in_date_time BETWEEN ' . "'" . $from_date . "'  AND '" . $to_date . "')");           
-        }*/
+            $this->db->where('(A.package_start_date BETWEEN ' . "'" . $from_date . "'  AND '" . $to_date . "')");           
+        }
        
 		if ($name != '') 
 		{

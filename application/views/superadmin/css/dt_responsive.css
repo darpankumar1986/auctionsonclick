@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-img {width: 100%; height: auto;max-width: 169px;}
+/*img {width: 100%; height: auto;max-width: 169px;}*/
 
 @media screen and (max-width: 900px) {
 .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_length  {display:none;}

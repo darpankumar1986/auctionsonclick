@@ -24,7 +24,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <meta name="description" content="<?php echo ucwords($getBankName); ?> selling residential, commercial, industrial, agricultural properties, land, plots, house and  flats across the India. View, Bid & Win Non Performing Assets (NPA), DRT Properties."/>
-        <title><?php if($title != ''){echo $title;}else{ echo 'Auction';} ?></title>
+        <title><?php if($title != ''){echo $title;}else{ echo 'AuctionOnClick.com - Home Page';} ?></title>
       <meta name="description" content="Find residential and commercial auction properties for sale from the <?php echo BRAND_NAME; ?> . View, Bid & Win Non Performing Assets (NPA), Auction, Foreclosure and Sarfaesi Auction Properties."/>
       <meta name="Owner" content=" "/>
       <meta name="Copyright" content=""/>
