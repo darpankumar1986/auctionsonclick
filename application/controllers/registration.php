@@ -146,6 +146,7 @@ class Registration extends WS_Controller {
 		$data['staticData']=$staticData;
 		$id=base64_decode(urldecode($encoded_str));
 		$data['id']=$id;
+		$data['title'] = 'Register';
 		$this->load->view('front_view/header',$data);
 		if(MOBILE_VIEW)
 		{
@@ -182,6 +183,7 @@ class Registration extends WS_Controller {
 		$data['fp_captcha']=$this->captcha_image($word);
 		$this->session->set_userdata('fp_captcha', $data['fp_captcha']['word']);
 
+		$data['title'] = 'Forgot Password';
 		$this->load->view('front_view/header',$data);
 		if(MOBILE_VIEW)
 		{         
@@ -771,6 +773,7 @@ class Registration extends WS_Controller {
 				}
             }
 
+			$data['title'] = 'Login';
 			 $data['error_msg']="Invalid username and password";
              $this->session->set_flashdata('error_msg', $data['error_msg']);	
 

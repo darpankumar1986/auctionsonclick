@@ -12,12 +12,13 @@
                         <h1>Thank You!</h1>
                         <img src="<?php echo base_url(); ?>assets/auctiononclick/images/big_correct_icon.png">
                         
-						<?php if($_GET['cs']==1) {?>
-						<h3>Our representative will be getting in touch with you soon.</h3>
-                        <!--<p>We have sent you an email with your receipt.</p>-->
+						<?php if($_GET['cs']==2) {?>
+							<h3>You are successfully unsubscribed to AuctionsOnClick.com</h3>
+						<?php }else if($_GET['cs']==1) {?>
+							<h3>Our representative will be getting in touch with you soon.</h3>
 						<?php }else{ ?>
-						<h3>You are successfully subscribed to AuctionsOnClick.com</h3>
-                        <p>We have sent you an email with your receipt.</p>
+							<h3>You are successfully subscribed to AuctionsOnClick.com</h3>
+					        <p>We have sent you an email with your receipt.</p>
 						<?php } ?>
                     </div><!--thankyou-->
                 </div>

@@ -351,6 +351,7 @@ class Home extends MY_Controller {
 
 	public function login() {
 		
+		$data['title'] = 'Log  In';
         $this->load->view('front_view/header', $data);
         if(MOBILE_VIEW)
 		{			
@@ -402,7 +403,7 @@ class Home extends MY_Controller {
 	public function success()
 	{
 
-		$data['title'] = 'Thank You!';
+		$data['title'] = 'Thank You';
 		$data['subcription_plan'] = $this->home_model->getSubcriptionPlan(0);
 		$data['total_auction'] = $this->home_model->getTotalAuction();
 
@@ -508,8 +509,11 @@ class Home extends MY_Controller {
 			{
 				$this->db->where('id',$row->id);
 				$this->db->update('tbl_user_registration',array("is_unsubscribe"=>1));
+
+				redirect('home/success?cs=2');
 			}
 		}
+		redirect('404');
 	}
 }
 

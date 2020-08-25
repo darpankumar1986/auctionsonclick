@@ -63,10 +63,10 @@ class Cron extends WS_Controller
 
 		if(count($template) > 0)
 		{
-			$this->db->select("a.city_id,r.email_id,c.city_name,r.id",false);
+			$this->db->select("a.city_id,r.email_id,c.city_name,r.id,r.is_unsubscribe",false);
 			$this->db->where('a.status',1);
 			$this->db->where('c.status',1);
-			$this->db->where('a.alerts_type IN(1,2)');
+			$this->db->where('a.alerts_type IN('.$opt.')');
 			$this->db->order_by('c.city_name','ASC');
 			$this->db->join('tbl_city as c','c.id = a.city_id');
 			$this->db->join('tbl_user_registration as r','r.id = a.member_id');
@@ -75,12 +75,18 @@ class Cron extends WS_Controller
 			{
 				if($row->is_unsubscribe != 1)
 				{
+					$id_base64 = base64_encode($row->id);
+					$email_md5 = md5($row->email_id);
+
+					$link = base_url().'home/unsubscribe/'.$id_base64.'/'.$email_md5;
+					$template_final = str_replace('%%Unsubscribe%%',$link,$template[$row->city_id]);
+
 					$subject = (int)$templateAuctionCount[$row->city_id]." New Auction property in ".$row->city_name;
 					$data = array(
 									"member_id"=>$row->id,
 									"email"=>$row->email_id,
 									"subject"=>$subject,
-									"message"=>$template[$row->city_id],
+									"message"=>$template_final,
 									"email_type"=>1,
 									"indate"=>date('Y-m-d H:i:s')
 								);
@@ -112,8 +118,7 @@ class Cron extends WS_Controller
 
 			$data['first_name'] = ucfirst(strtolower($data['first_name']));
 
-			$data['id_base64'] = base64_encode($row->id);
-			$data['email_md5'] = md5($row->email_id);
+			
 
 			$data['package_end_date'] = $row->package_end_date;
 			$data['Logo_2'] = $this->load->view('email/Logo_2', $data, true); // render the view into HTML

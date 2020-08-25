@@ -27,6 +27,7 @@ class Error extends MY_Controller
 
     public function index()
     {
+		$data['title'] = '404 Page not found';
         $data['error'] = 1;
         $this->load->view('front_view/header',$data);
         //$this->load->view('front_view/home',$data);
