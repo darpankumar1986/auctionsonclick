@@ -24,6 +24,8 @@
     $user = $query->row();
 
     $full_name = ($user->first_name != '')?$user->first_name.' '.$user->last_name:$user->authorized_person;
+
+	$full_name = ucfirst(strtolower($full_name));
 ?>
     <table width="860px" align="center" cellpadding="0" cellspacing="0" style="border: 1px solid #ccc;"><tbody><tr><td>
    <table bgcolor="#005ca8" align="center" width="860" border="0" cellpadding="0" cellspacing="0">
@@ -425,11 +427,11 @@
                         <tbody>
                             <tr>
                                 <td width="50%" style="font-family: sans-serif;color: #333333;font-size: 13px;text-align: right;">
-                                    <p style="margin:0;padding-right: 5px;">Terms &amp; Conditions</p>
+                                    <p style="margin:0;padding-right: 5px;"><a href="#" style="text-decoration: none;color: #0078db;">Terms &amp; Conditions</a></p>
                                 </td>
                                 <td width="3%" style="color: #999999;text-align: center;vertical-align: top;">|</td>
                                 <td width="50%" style="font-family: sans-serif;color: #333333;font-size: 13px;text-align: left;">
-                                    <p style="margin:0;padding-left: 5px;">Privacy Policy</p>
+                                    <p style="margin:0;padding-left: 5px;"><a href="#" style="text-decoration: none;color: #0078db;">Privacy Policy</a></p>
                                 </td>
                             </tr>
                         </tbody>

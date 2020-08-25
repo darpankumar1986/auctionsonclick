@@ -14,6 +14,7 @@ class Home extends MY_Controller {
         $this->load->library('Datatables');
         $this->load->library('table');
         $this->load->model('home_model');
+		$this->home_model->loginFromRememberMe();
     }
 
     function page($slug) {

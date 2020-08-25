@@ -35,6 +35,7 @@ class Owner extends WS_Controller {
         $this->load->helper('file');
         $this->load->model('home_model');
         //$this->load->model('product_detail_model');
+		$this->home_model->loginFromRememberMe();
        
        
         

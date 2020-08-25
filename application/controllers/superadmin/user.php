@@ -4624,7 +4624,7 @@ class User extends MY_Controller {
             }
         }
 
-        $data['heading'] = 'EMD Refund Report';
+        $data['heading'] = 'Contact Us Logs';
         $this->load->view('superadmin/header', $data);
         
         $per_page = 10;
@@ -4661,6 +4661,236 @@ class User extends MY_Controller {
         $this->load->view('superadmin/contact_us_log', $data);
         $this->load->view('superadmin/footer');
     }
+
+	public function user_subscription_list($page_no) {
+        if ($this->input->get('submit')) 
+        {
+            $submit = $this->input->get('submit');
+            if (isset($submit) and ! empty($submit)) {
+				$data['email_id'] = $this->input->get('email_id');
+               
+                if ($submit == 'Download') 
+                {
+                    // if($this->input->post('from_date') && $this->input->post('to_date')){
+
+                    $reportData = $this->user_model->completeBidderListData();
+                    // }else{
+                    //$reportData='';
+                    //}
+                    if (!empty($reportData)) {
+                        header('Content-type: text/csv');
+                        header('Content-disposition: attachment;filename=Bidder_list.csv');
+                        echo "S.No,First Name,Last Name,Email ID,Mobile No." . PHP_EOL;
+                        foreach ($reportData as $row) {
+                           // echo $row->id . ',' . $row->user_id . ',' . $row->user_type . ',' . $row->user_type_main . ',' . $row->ip_address . ',' . date('d-m-Y_h:i:s', strtotime($row->logout_datetime)) . ',' . date('d-m-Y_h:i:s', strtotime($row->login_datetime)) . ',' . str_replace(array(' ', ';', ','), '_', $row->browser_type) . '' . PHP_EOL;
+                            echo $row->id . ',' . $row->first_name . ',' . $row->last_name 	 . ',' . $row->email_id . ',' . $row->mobile_no . ',' .    PHP_EOL;
+                        }
+                        die;
+                    }
+                }
+            }
+        }
+
+        $data['heading'] = 'Bidder List';
+        $this->load->view('superadmin/header', $data);
+        
+        $per_page = 10;
+        $total_record = $this->user_model->GetBidder_list();
+        
+        
+        
+       /* $config['base_url'] = site_url() . 'superadmin/user/userlog';
+        $config['total_rows'] = $total_record;
+        $config['per_page'] = $per_page;
+        $config["uri_segment"] = 4;
+        $config['cur_tag_open'] = '<li><a class="current">';
+        $config['cur_tag_close'] = '</a></li>';
+        $this->pagination->initialize($config);
+        $data['pagination_links'] = $this->pagination->create_links();
+        if ($page_no == '')
+            $limit = 0;
+        else
+            $limit = $config["per_page"] * ($page_no - 1);
+        $offset = ($limit) ? $limit : 0;*/
+        
+        $config['base_url'] = site_url() . 'superadmin/user/user_subscription_list?k=2&';
+        $config['base_url'] .= http_build_query($_GET, '', "&");
+        
+        $config['total_rows'] = $total_record;
+        $config['per_page'] = $per_page;
+        $config["uri_segment"] = 4;
+        $config['cur_tag_open'] = '<li><a class="current">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['page_query_string'] = TRUE;
+        //$config['suffix'] = '?' . http_build_query($_GET, '', "&");
+		$config['suffix'] = str_replace('per_page', 'k', $config['suffix']);
+        $config['suffix'] = str_replace('?', '&', $config['suffix']);
+
+        $this->pagination->initialize($config);
+        $data['pagination_links'] = $this->pagination->create_links();
+
+		$page_no = $_GET['per_page'];
+
+        if ($page_no == '')
+            $limit = 0;
+        else
+            $limit = $config["per_page"] * ($page_no - 1);
+
+        $offset = ($limit) ? $limit : 0;
+        
+
+        $array_records = $this->user_model->GetBidder_listing($offset, $per_page);
+        $data['records'] = $array_records;
+        $this->load->view('superadmin/user_subscription_list', $data);
+        $this->load->view('superadmin/footer');
+    }
+
+	public function user_subscription_logs($page_no) {
+		$userid = $this->uri->segment(4);
+		$user_type =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "user_type");
+		if($user_type == 'owner')
+		{
+			$full_name =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "first_name");
+			$full_name .= ' '.GetTitleByField('tbl_user_registration', "id='".$userid."'", "last_name");
+		}
+		else
+		{
+			$full_name .= ' '.GetTitleByField('tbl_user_registration', "id='".$userid."'", "authorized_person");
+		}
+        if ($this->input->get('submit')) 
+        {
+            $submit = $this->input->get('submit');
+           
+            
+            if (isset($submit) and ! empty($submit)) {
+                $data['from_date'] = $this->input->get('from_date');
+                $data['to_date'] = $this->input->get('to_date');
+                $data['name'] = $this->input->get('name');
+                
+               
+                
+                if ($submit == 'Download') 
+                {					 
+                    $reportData = $this->user_model->completeUserSubscriptionData();
+                   
+                   
+                    //echo '<pre>';
+
+                   
+                    if (!empty($reportData)) 
+                    {
+                       
+                        $this->load->library('excel');
+						//activate worksheet number 1
+						
+						$this->excel->setActiveSheetIndex(0);
+						//$this->excel->getActiveSheet()->setShowGridlines(FALSE);
+						//name the worksheet
+						$this->excel->getActiveSheet()->setTitle('User Subscription Logs');
+						
+						$this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
+						$this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(15);
+						$this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
+						$this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
+						$this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(30);
+						$this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(80);
+						$this->excel->getActiveSheet()->getColumnDimension('G')->setWidth(15);
+						$this->excel->getActiveSheet()->getRowDimension('1')->setRowHeight(20); 
+						
+						$this->excel->getActiveSheet()->getStyle("A2:Z1000")->getFont()->setSize(10);
+						$i =1;
+						$column = 'A';
+						
+						$this->excel->getActiveSheet()->setCellValue($column.$i, 'S.No.');
+						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Package Name');
+						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Package Description');
+						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Amount (Rs.)');
+						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Package Start Date');
+						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Package End Date');
+						$this->excel->getActiveSheet()->setCellValue(++$column.$i, 'Package Purchase Date');
+						
+						$sn=1;	
+						foreach ($reportData as $row) {
+							
+							$i = ++$i;
+							$package_start_date = date('d M Y H:i:s',strtotime($row->package_start_date));
+							$package_end_date = date('d M Y H:i:s',strtotime($row->package_end_date));
+							$indate = date('d M Y H:i:s',strtotime($row->subscription_created_on));
+							
+							
+							
+							$column = 'A';
+							$this->excel->getActiveSheet()->setCellValue($column.$i, $sn);
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $row->package_name);
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $row->package_description);
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $row->package_amount);
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $package_start_date);							
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $package_end_date);
+							$this->excel->getActiveSheet()->setCellValue(++$column.$i, $indate);
+							
+							
+							$sn++;
+                        }
+                        $i = ++$i;
+						//$this->excel->getActiveSheet()->getStyle('A'.$i.':F'.$i)->applyFromArray($miestilo_SEC2);
+
+						//$this->excel->getActiveSheet()->getRowDimension('1')->setRowHeight(40);
+						
+						$filename = 'user_subscription_log_'.time().'.xls'; //save our workbook as this file name
+						header('Content-Type: application/vnd.ms-excel'); //mime type
+						header('Content-Disposition: attachment;filename="' . $filename . '"'); //tell browser what's the file name
+						header('Cache-Control: max-age=0'); //no cache
+						//save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)
+						//if you want to save it as .XLSX Excel 2007 format
+						$objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');
+						//force user to download the Excel file without writing it to server's HD
+						$objWriter->save('php://output');	
+							
+					}
+						
+                 }
+            }
+        }
+
+        $data['heading'] = 'User Subscription Logs';
+        $this->load->view('superadmin/header', $data);
+        
+        $per_page = 10;
+        $total_record = $this->user_model->GettotalUserSubscriptionlogs();
+        
+        $config['base_url'] = site_url() . "superadmin/user/user_subscription_logs/".$user_id."?k=2&";
+        $config['base_url'] .= http_build_query($_GET, '', "&");
+        
+        $config['total_rows'] = $total_record;
+        $config['per_page'] = $per_page;
+        $config["uri_segment"] = 4;
+        $config['cur_tag_open'] = '<li><a class="current">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['page_query_string'] = TRUE;
+        
+		$config['suffix'] = str_replace('per_page', 'k', $config['suffix']);
+        $config['suffix'] = str_replace('?', '&', $config['suffix']);
+
+        $this->pagination->initialize($config);
+        $data['pagination_links'] = $this->pagination->create_links();
+
+		$page_no = $_GET['per_page'];
+
+        if ($page_no == '')
+            $limit = 0;
+        else
+            $limit = $config["per_page"] * ($page_no - 1);
+
+        $offset = ($limit) ? $limit : 0;
+        
+
+        $array_records = $this->user_model->UserSubscriptionLogs($offset, $per_page,$user_id);
+        $data['records'] = $array_records;
+        $this->load->view('superadmin/user_subscription_logs', $data);
+        $this->load->view('superadmin/footer');
+    }
 }
+
+
 
 ?>
