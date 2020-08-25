@@ -186,7 +186,7 @@ $(".toggle-password").click(function() {
 
 $(document).ready(function () {
     $('.floating-label').on('change', function() {
-        $('.state-label').addClass("defalult_floating");
+        $(this).find('.state-label').addClass("defalult_floating");
     });
 });
 
