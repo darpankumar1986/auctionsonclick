@@ -170,6 +170,7 @@ $(document).ready(function(){
 
 /*------------------------show_password------------------------------------------*/
 $(".toggle-password").click(function() {
+    $(this).toggleClass("fa-eye-slash");
     var input = $($(this).attr("toggle"));
     if (input.attr("type") == "password") {
         input.attr("type", "text");
@@ -180,6 +181,21 @@ $(".toggle-password").click(function() {
 
 
 /*------------------------show_password_end------------------------------------------*/
+
+/*------------------------input_onchange_event------------------------------------*/
+
+$(document).ready(function () {
+    $('.floating-label').on('change', function() {
+        $(this).find('.state-label').addClass("defalult_floating");
+    });
+});
+
+
+/*------------------------input_onchange_event_end------------------------------------*/
+
+
+
+
 
 
 

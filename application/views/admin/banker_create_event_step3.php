@@ -1952,11 +1952,11 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
         }
 		
         if (jQuery('#description').val().trim() == '') {
-            jQuery('#spmsg').append("<li>please enter description </li>");
+            jQuery('#spmsg').append("<li>please Enter description </li>");
             flag = 1;
         }
 		if (jQuery('#asset_details').val().trim() == '') {
-            jQuery('#spMsg').append("<li>please enter Asset Details </li>");
+            jQuery('#spMsg').append("<li>please Enter Asset Details </li>");
             flag = 1;
         }
 		if (jQuery('#reference_no').val().trim() == '') {
@@ -2077,7 +2077,7 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
             flag = 1;
         }
 		if (jQuery('#asset_details').val().trim() == '') {
-            jQuery('#spMsg').append("<li>Please enter Asset Details </li>");
+            jQuery('#spMsg').append("<li>Please Enter Asset Details </li>");
             flag = 1;
         }
 		if (jQuery('#reference_no').val().trim() == '') {

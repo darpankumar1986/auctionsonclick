@@ -9,7 +9,7 @@
 		private $smtpsecure = '';
 		
 		private $username = 'noreply@c1india.com';
-		private $password = 'Orange@321';
+		private $password = 'Neworange@2020'; //Orange@321
         
   
   
@@ -1863,7 +1863,7 @@ function backendCorrigendumSendMail($auctionID,$pModified_date=null)
             $subject = $email_query[0]->subject;
             $body = $email_query[0]->msg;
     
-            $body = str_replace("%bidder_name%", ucwords($name), $body);
+            $body = str_replace("%bidder_name%", ucwords(strtolower($name)), $body);
             $body = str_replace("%reset_link%", $link, $body);            
 			
             $emailArr = array();

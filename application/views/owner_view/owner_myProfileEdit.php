@@ -239,7 +239,7 @@ if($row){
                             <div class="floating-label">
                                 <input class="floating-input html_found pcb password" name="password" id="password" type="Password" placeholder=" " disabled>
                                 <label class="custom_label">New Password</label>
-                                <span toggle="#password" class="eye_icon toggle-password"><i class="fa fa-eye"></i></span>
+                                <span toggle="#password" class="fa eye_icon toggle-password fa-eye"></span>
                             </div>
                         </div>
                     </div>
@@ -250,7 +250,7 @@ if($row){
                             <div class="floating-label">
                                 <input class="floating-input html_found pcb" name="confirm_password" id="confirm_password" type="Password" placeholder=" " disabled>
                                 <label class="custom_label">Confirm New Password</label>
-                                <span toggle="#confirm_password" class="eye_icon toggle-password"><i class="fa fa-eye"></i></span>
+                                <span toggle="#confirm_password" class="fa eye_icon toggle-password fa-eye"></span>
                             </div>
                         </div>
                     </form>
