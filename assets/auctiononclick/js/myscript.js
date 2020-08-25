@@ -182,7 +182,7 @@ $(".toggle-password").click(function() {
 
 /*------------------------show_password_end------------------------------------------*/
 
-
+/*------------------------input_onchange_event------------------------------------*/
 
 $(document).ready(function () {
     $('.floating-label').on('change', function() {
@@ -191,7 +191,7 @@ $(document).ready(function () {
 });
 
 
-
+/*------------------------input_onchange_event_end------------------------------------*/
 
 
 
