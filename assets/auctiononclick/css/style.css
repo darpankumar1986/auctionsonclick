@@ -578,7 +578,7 @@ h3.auction_heading {
     font-size: 12px;
     color: #787878;
     padding: 2px 0;
-    display: block;
+    display: inline-block;
 }
 .footer_about ul li a:hover {
     text-decoration: none;
