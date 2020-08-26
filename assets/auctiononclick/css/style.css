@@ -1641,7 +1641,7 @@ h3.premium_service {
     margin: 15px auto;
     width: 60px;
     height: 2px;
-    background: #0078db;
+    background-color: #0078db;
 }
 .subscription_box p.additional_desc {
     font-size: 16px;
@@ -1676,7 +1676,7 @@ h3.premium_service {
 .subscription_box .checklist_state .btn-default:hover, .subscription_box .checklist_state .btn-default:focus, .subscription_box .checklist_state .btn-default:active, .subscription_box .checklist_state .btn-default:active:hover {
     background-color: transparent;
     color: #333333;
-    border-color: #cccccc;
+    border-color: #cccccc !important;
 }
 .subscription_box .checklist_state .dropdown-menu {
     margin-top: -1px;
@@ -2285,8 +2285,9 @@ h3.non_subscribe_profile {
     color: #fff;
     padding: 8px 21px;
 }
-.cancel_subscription .btn:hover {
+.cancel_subscription .btn:hover, .cancel_subscription .btn:focus, .cancel_subscription .btn:active, .cancel_subscription .btn:visited {
     background-color: #439b44;
+    outline: 0;
 }
 
 /*----------------------------Manage Subscription - Plan Change - Auto Renewal_end------------------------------*/
@@ -2513,6 +2514,7 @@ h3.subscription_plan {
 .pan_state_tab .subscription_box {
     padding: 6px 35px;
     border-radius: 4px;
+    cursor: pointer;
 }
 .pan_state_tab .subscription_box .sub_price span img.white_rupees {
     display: none;
@@ -2571,8 +2573,28 @@ h3.subscription_plan {
 }
 .pan_state_tab .active_plan .subscription_box .sub_price span img {
     display: none;
-}.pan_state_tab .active_plan .subscription_box .sub_price span img.white_rupees {
+}
+.pan_state_tab .active_plan .subscription_box .sub_price span img.white_rupees {
     display: inline-block;
+}
+.state_wise_tab .active_plan .subscription_box h4.states_desc:after {
+    background-color: #ffffff;
+}
+.state_wise_tab .active_plan .subscription_box .sub_price p.additional_desc {
+    color: #ffffff;
+}
+.state_wise_tab .active_plan .sub_price .state_price .small_state {
+    color: #ffffff;
+}
+.state_wise_tab .active_plan .checklist_state .btn-default {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+.state_wise_tab .active_plan .checklist_state .btn-default:hover, .state_wise_tab .active_plan .checklist_state .btn-default:focus, .state_wise_tab .active_plan .checklist_state .btn-default:active, .state_wise_tab .active_plan .checklist_state .btn-default:active:hover {
+    background-color: #ffffff;
+}
+.state_wise_tab .checklist_state .btn-default:hover, .state_wise_tab .checklist_state .btn-default:focus, .state_wise_tab .checklist_state .btn-default:active, .state_wise_tab .checklist_state .btn-default:active:hover {
+    border-color: #cccccc !important;
 }
 .subscription_box .sub_price h4 {
     margin-top: 10px;
