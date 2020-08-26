@@ -111,7 +111,7 @@
                         <div class="col-sm-6">
                             <div class="login">
                                 <ul>
-                                    <li class="customer_info"><div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span><i class="fa fa-headphones"></i></span> Customer Service</button>
+                                    <li class="customer_info"><div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span><img src="<?php echo base_url(); ?>assets/auctiononclick/images/headset.png"></span> Customer Service</button>
                                         <ul class="dropdown-menu arrow_box">
                                             <li>Contact Us</li>
                                             <li>MON-SAT | 9:00AM-7:00PM</li>

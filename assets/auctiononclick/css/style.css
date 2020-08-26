@@ -139,6 +139,9 @@ body{
     box-shadow: none;
     color: #fff;
 }
+.login ul li.customer_info img {
+    padding-right: 5px;
+}
 .login ul li.customer_info ul {
     min-width: 230px;
     top: 124%;
@@ -1526,6 +1529,8 @@ button.login_btn {
 }
 .login ul li.user_info .btn-default .caret {
     margin-left: 15px;
+    position: relative;
+    bottom: 2px;
 }
 .login ul li.user_info ul.dropdown-menu {
     margin-top: -1px;
