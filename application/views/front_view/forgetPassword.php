@@ -1,6 +1,5 @@
 <script src="<?php echo base_url(); ?>js/jquery.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>js/common.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
-<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <style>
 .error2
 {
@@ -59,4 +58,3 @@
             </div><!--row-->
 
         </div><!--container-fluid-->
-		<script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
