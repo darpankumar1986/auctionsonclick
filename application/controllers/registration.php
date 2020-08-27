@@ -178,7 +178,11 @@ class Registration extends WS_Controller {
 	}
 	
     public function forgetpassword()
-    {    
+    {   
+		if($this->session->userdata('id'))
+		{
+			$this->logout();
+		}
 		$word=random_string('numeric',6);
 		$data['fp_captcha']=$this->captcha_image($word);
 		$this->session->set_userdata('fp_captcha', $data['fp_captcha']['word']);
