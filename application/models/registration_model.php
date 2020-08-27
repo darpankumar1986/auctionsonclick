@@ -416,7 +416,7 @@ class Registration_model extends CI_Model {
 		{
 			$data['first_name'] = ($row->first_name != '')?$row->first_name.' '.$row->last_name:$row->authorized_person;
 
-			$data['first_name'] = ucfirst(strtolower($data['first_name']));
+			$data['first_name'] = ucwords(strtolower($data['first_name']));
 
 			$data['id_base64'] = base64_encode($row->id);
 			$data['email_md5'] = md5($row->email_id);
