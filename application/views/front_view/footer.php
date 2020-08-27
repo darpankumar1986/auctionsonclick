@@ -83,7 +83,7 @@
                                     </ul>
                                     <h4>Customer Service</h4>
                                     <ul>
-                                        <li><a href="mailto:support@auctionsonclick.com"><span><i class="fa fa-envelope"></i></span>support@auctionsonclick.com</a></li>
+                                        <li><a href="mailto:support@auctiononclick.com"><span><i class="fa fa-envelope"></i></span>support@auctiononclick.com</a></li>
                                         <li class="phone"><span><i class="fa fa-mobile big"></i></span>+91- 7291981124 / 1125 / 1126</li>
                                         <li class="phone"><span><i class="fa fa-phone big"></i></span>+91-124-4302020 / 21 / 22 / 23</li>
                                     </ul>
