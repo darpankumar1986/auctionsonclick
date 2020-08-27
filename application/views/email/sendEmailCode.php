@@ -81,7 +81,7 @@
                                                                 <p style="font-family: sans-serif;color: #333333;font-size: 14px;line-height: 18px;">In order to continue with your registration, please enter the following code into the text field in your browser window.</p>
                                                                 <p style="font-family: sans-serif;color: #333333;font-size: 14px;font-weight: bold;"><?php echo $code; ?></p>
                                                                 <p style="font-family: sans-serif;color: #333333;font-size: 14px;margin-bottom: 5px;">Regards,</p>
-                                                                <p style="font-family: sans-serif;color: #333333;font-size: 14px;font-weight: bold;margin-top: 0;"><a href="<?php echo base_url(); ?>">AuctionOnClick.com</a></p>
+                                                                <p style="font-family: sans-serif;font-size: 14px;font-weight: bold;margin-top: 0;"><a href="<?php echo base_url(); ?>" style="text-decoration: none;color: #0078db;">AuctionOnClick.com</a></p>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -151,7 +151,7 @@
                 </td>
             </tr>
         </tbody>
-    </table>    
+    </table>
       </td></tr></tbody></table>
     </body>
 </html>

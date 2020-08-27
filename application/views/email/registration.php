@@ -80,7 +80,7 @@
                                                                 <p style="font-family: sans-serif;color: #333333;font-size: 14px;">Thanks for signing up with AuctionOnClick.</p>
                                                                 <p style="font-family: sans-serif;color: #333333;font-size: 14px;line-height: 18px;">Stay up-to-date on latest property auctions.</p>
                                                                 <p style="font-family: sans-serif;color: #333333;font-size: 14px;margin-bottom: 5px;">Regards,</p>
-                                                                <p style="font-family: sans-serif;color: #333333;font-size: 14px;font-weight: bold;margin-top: 0;">AuctionOnClick.com</p>
+                                                                <p style="font-family: sans-serif;color: #333333;font-size: 14px;font-weight: bold;margin-top: 0;"><a href="<?php echo base_url(); ?>" style="text-decoration: none;color: #0078db;">AuctionOnClick.com</a></p>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -151,7 +151,7 @@
             </tr>
         </tbody>
     </table>
-   
+
       </td></tr></tbody></table>
     </body>
 </html>
