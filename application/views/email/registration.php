@@ -119,7 +119,7 @@
                     <table width="780" align="center" cellpadding="0" cellspacing="0" style="padding-top: 12px;padding-bottom: 18px;">
                         <tbody>
                             <tr>
-                                <td style="font-family: sans-serif;color: #666666;font-size: 11px;text-align: center;">
+                                <td style="font-family: sans-serif;color: #666666;font-size: 11px;text-align: center;padding-top:8px;">
                                     <p style="margin:0;">All trademarks, logos and names are properties of their respective owners.</p>
                                     <p style="margin-top: 2px;">All Rights Reserved. &#169; Copyright <?php echo date('Y');?> AuctionOnClick.</p>
                                 </td>
