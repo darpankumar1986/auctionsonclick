@@ -237,7 +237,7 @@ function send(){
       var n = $("#pass").val().localeCompare($("#cpassword").val());
     if(n!='0'){  
       status='1'; 
-      $(".field-signupform-cpassword").text("Password and confirm password does not match.");
+      $(".field-signupform-cpassword").text("Confirm password should be match to Password");
      }
     }
   if($("#usertype").val()=='owner' || $("#usertype").val()=='')
