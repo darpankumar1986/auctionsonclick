@@ -25,7 +25,7 @@
 
     $full_name = ($user->first_name != '')?$user->first_name.' '.$user->last_name:$user->authorized_person;
 
-	$full_name = ucfirst(strtolower($full_name));
+    $full_name = ucfirst(strtolower($full_name));
 ?>
     <table width="860px" align="center" cellpadding="0" cellspacing="0" style="border: 1px solid #ccc;"><tbody><tr><td>
    <table bgcolor="#005ca8" align="center" width="860" border="0" cellpadding="0" cellspacing="0">
@@ -226,14 +226,14 @@
                                                             </tbody>
                                                         </table>
                                                     </td>
-                                                    <td width="400">
+                                                    <td>
                                                         <table height="20" width="100%" cellpadding="0" cellspacing="0">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td width="100" style="font-family: sans-serif;color: #333333;font-size: 12px;">: <?php echo $full_name; ?></td>
-                                                                    <td>|</td>
-                                                                    <td width="150" style="font-family: sans-serif;color: #333333;font-size: 12px;text-align: center;"><a href="mailto:deepa.malik@c1india.com" style="color: #333333;"><?php echo $user->email_id; ?></a></td>
-                                                                    <td width="10">|</td>
+                                                                    <td style="font-family: sans-serif;color: #333333;font-size: 12px;">: <?php echo $full_name; ?></td>
+                                                                    <td width="10" style="text-align:center;">|</td>
+                                                                    <td style="font-family: sans-serif;color: #333333;font-size: 12px;text-align: center;"><a href="mailto:deepa.malik@c1india.com" style="color: #333333;"><?php echo $user->email_id; ?></a></td>
+                                                                    <td width="10" style="text-align:center;">|</td>
                                                                     <td style="font-family: sans-serif;color: #333333;font-size: 12px;">+91 <?php echo $user->mobile_no; ?></td>
                                                                 </tr>
                                                             </tbody>
@@ -440,7 +440,7 @@
             </tr>
         </tbody>
     </table>
-    
+
       </td></tr></tbody></table>
     </body>
 </html>

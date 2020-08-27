@@ -734,6 +734,7 @@ h3.auction_heading {
     background-image: url(../images/down_arrow.png);
     background-repeat: no-repeat;
     background-position: 96% 24px !important;
+    color: #333333;
 }
 .register_form.country_profile_mg .floating-label .floating-select {
     background-position: 98% 24px !important;
@@ -835,11 +836,16 @@ a.forget {
 }
 button.login_btn {
     width: 100%;
-    background-color: #005ca8;
+    background-color: #0078db;
     color: #ffffff;
     font-family: 'Roboto-Bold';
     padding: 17px 12px;
     margin-top: 15px;
+}
+button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.login_btn:active:focus {
+    background-color: #005ca8;
+    color: #ffffff;
+    outline: 0;
 }
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default:active:hover {
     background-color: #005ca8;
@@ -862,6 +868,10 @@ button.login_btn {
     height: 55px;
     vertical-align: top;
     padding: 15px 12px;
+    border: 0;
+}
+.custom_form .verify_btn:hover {
+    background-color: #565656;
 }
 .custom_form .verify_btn:focus {
     outline: 0;
