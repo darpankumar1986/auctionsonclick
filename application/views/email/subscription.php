@@ -232,7 +232,7 @@
                                                                 <tr>
                                                                     <td style="font-family: sans-serif;color: #333333;font-size: 12px;">: <?php echo $full_name; ?></td>
                                                                     <td width="10" style="text-align:center;">|</td>
-                                                                    <td style="font-family: sans-serif;color: #333333;font-size: 12px;text-align: center;"><a href="mailto:deepa.malik@c1india.com" style="color: #333333;"><?php echo $user->email_id; ?></a></td>
+                                                                    <td style="font-family: sans-serif;color: #333333;font-size: 12px;text-align: center;"><a href="mailto:deepa.malik@c1india.com" style="color: #333333;text-decoration: none;"><?php echo $user->email_id; ?></a></td>
                                                                     <td width="10" style="text-align:center;">|</td>
                                                                     <td style="font-family: sans-serif;color: #333333;font-size: 12px;">+91 <?php echo $user->mobile_no; ?></td>
                                                                 </tr>
