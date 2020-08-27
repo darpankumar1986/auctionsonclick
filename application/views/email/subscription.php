@@ -71,7 +71,7 @@
                             <td width="2%">&nbsp;</td>
                             <td>
                                 <p style="font-family: sans-serif;color: #333333;font-size: 13px;margin-top: 40px;margin-bottom: 25px;">Dear <strong><?php echo $full_name; ?>,</strong></p>
-                                <p style="font-family: sans-serif;color: #333333;font-size: 13px;margin-top: 0;margin-bottom: 25px;">Thank you for your order from <a href="#" style="color: #0078db; text-decoration: none;">www.Auctiononclick.com</a></p>
+                                <p style="font-family: sans-serif;color: #333333;font-size: 13px;margin-top: 0;margin-bottom: 25px;">Thank you for your order from <a href="<?php echo base_url(); ?>" style="color: #0078db; text-decoration: none;">www.Auctiononclick.com</a></p>
                                 <p style="font-family: sans-serif;color: #333333;font-size: 13px;margin-top: 0;margin-bottom: 50px;">For your conveninence, we have included a copy of your order below.</p>
                             </td>
                         </tr>
