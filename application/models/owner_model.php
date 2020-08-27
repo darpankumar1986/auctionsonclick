@@ -4042,7 +4042,7 @@ function getLoggedInOwner()
 		}
 		$this->db->where('f.is_fav', 1);
 		$this->db->where('a.status IN(1)');
-		$this->db->where('a.bid_last_date >= NOW()');
+		$this->db->where('auction_end_date >= NOW()');
 
 		$query = $this->db->get('');
 		if($query->num_rows()>0)
@@ -4072,7 +4072,7 @@ function getLoggedInOwner()
 		->where('f.bidderID',$bidderId)
 		->where('f.is_fav', 1)
 		->where('a.status IN(1)')
-		->where('a.bid_last_date >= NOW()');
+		->where('auction_end_date >= NOW()');
 		$this->db->order_by('a.bid_last_date','ASC');
 
 		return $this->datatables->generate();
@@ -4096,7 +4096,7 @@ function getLoggedInOwner()
 		->where('f.is_fav', 1)
 		->where('a.category_id',1)
 		->where('a.status IN(1)')
-		->where('a.bid_last_date >= NOW()');
+		->where('auction_end_date >= NOW()');
 		$this->db->order_by('a.bid_last_date','ASC');
 
 		return $this->datatables->generate();
@@ -4120,7 +4120,7 @@ function getLoggedInOwner()
 		->where('f.is_fav', 1)
 		->where('a.status IN(1)')
 		->where('a.category_id',2)
-		->where('a.bid_last_date >= NOW()');
+		->where('auction_end_date >= NOW()');
 		$this->db->order_by('a.bid_last_date','ASC');
 
 		return $this->datatables->generate();
@@ -4143,7 +4143,7 @@ function getLoggedInOwner()
 		->where('f.is_fav', 1)
 		->where('a.status IN(1)')
 		->where('a.category_id',3)
-		->where('a.bid_last_date >= NOW()');
+		->where('auction_end_date >= NOW()');
 		$this->db->order_by('a.bid_last_date','ASC');
 
 		return $this->datatables->generate();
