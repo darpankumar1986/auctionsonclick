@@ -125,7 +125,7 @@ class Cron extends WS_Controller
 			$html = $this->load->view('email/reminder', $data, true); // render the view into HTML
 
 
-			$subject = 'AuctionOnClick –Your subscription will expire in 3 days';
+			$subject = 'AuctionOnClick - Your subscription will expire in 3 days';
 			$data = array(
 							"member_id"=>$row->id,
 							"email"=>$row->email_id,
