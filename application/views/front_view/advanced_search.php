@@ -1,4 +1,27 @@
 <?php
+$bidderID = (int)$this->session->userdata('id');
+$free_sub_flag = 0;
+if($bidderID > 0)
+{
+	$isPremiumMember = $this->home_model->getTotalActivePackage($bidderID);
+	$indate =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "indate");
+	$free_sub_expire_date = date('Y-m-d H:i:s',strtotime(FREE_SUBSCRIPTION_TIME,strtotime($indate)));
+	$free_sub_expire_date_str = strtotime($free_sub_expire_date);
+	
+	if(time() < $free_sub_expire_date_str)
+	{
+		$free_sub_flag = 1;
+	}
+
+}
+if($isPremiumMember || $free_sub_flag == 1)
+{
+	$disabled = '';
+}
+else
+{
+	$disabled = 'disabled';
+}
 
     if(isset($_GET['search']) and !empty($_GET['search']))
     {
@@ -335,8 +358,8 @@ var oTable = null;
                         <label class="custom_label <?php echo ($bank_ID > 0)?'defalult_floating':''; ?>">Bank Name</label>
                         <span class="eye_icon down_icon"><i class="fa fa-chevron-down"></i></span>
                     </div>
-                    <div class="floating-label">
-                        <input class="floating-input" name="auction_start_date" id="auction_start_date" type="text" placeholder=" " autocomplete="off" value="<?php echo $auction_start_date; ?>" readonly>
+                    <div class="floating-label <?php if($disabled!=''){ echo 'email_bg';} ?>">
+                        <input class="floating-input" name="auction_start_date" id="auction_start_date" type="text" placeholder=" " autocomplete="off" value="<?php echo $auction_start_date; ?>" readonly <?php echo $disabled; ?>>
                         <label class="custom_label">Auction Start Date</label>
                     </div>
                     <div class="floating-label">
@@ -372,12 +395,12 @@ var oTable = null;
                         <input class="floating-input" name="search_location" id="search_location" type="text" placeholder=" " value="<?php echo $search_location; ?>">
                         <label class="custom_label">Location</label>
                     </div>
-                    <div class="floating-label">
-                        <input class="floating-input" name="borrower_name" id="borrower_name" type="text" placeholder=" " value="<?php echo $borrower_name; ?>">
+                    <div class="floating-label <?php if($disabled!=''){ echo 'email_bg';} ?>">
+                        <input class="floating-input" name="borrower_name" id="borrower_name" type="text" placeholder=" " value="<?php echo $borrower_name; ?>" <?php echo $disabled; ?> >
                         <label class="custom_label">Borrower Name</label>
                     </div>
-                    <div class="floating-label">
-                        <input class="floating-input" name="auction_end_date" id="auction_end_date" type="text" placeholder=" " autocomplete="off" value="<?php echo $auction_end_date; ?>" readonly>
+                    <div class="floating-label <?php if($disabled!=''){ echo 'email_bg';} ?>">
+                        <input class="floating-input" name="auction_end_date" id="auction_end_date" type="text" placeholder=" " autocomplete="off" value="<?php echo $auction_end_date; ?>" readonly <?php echo $disabled; ?>>
                         <label class="custom_label">Auction End Date</label>
                     </div>
                     <div class="floating-label">
