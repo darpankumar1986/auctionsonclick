@@ -66,7 +66,7 @@
 var oTable = null;
     $(document).ready(function () {
         //$("#big_table thead tr th").eq(0).addClass("hidetd");
-
+		$("#big_table thead tr th").eq(4).css('text-align','right');
 
             initHomeTable();
 
@@ -245,7 +245,7 @@ var oTable = null;
 
 
                       $('td:eq(5)', nRow).addClass('button-img');
-                      $('td:eq(4)', nRow).html('₹'+aData[4]);
+                      $('td:eq(4)', nRow).html('₹'+indian_money_format(aData[4])).css('text-align','right');
 
 
                       $('td:eq(5)', nRow).html('<a class="corrigendum_iframe" href="<?php echo base_url(); ?>home/auctionDetail/' + aData[5] + '"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/view_button.png" title="View Auction" class="edit1"></a>'); /* auctionDetailPopup */
@@ -413,7 +413,7 @@ var oTable = null;
                     <div class="custom-dropdown-select">
                         <div class="custom-select">
                             <select name="dataSort" id="dataSort" class="dataSort">
-                                <option value="">Sort</option>
+                                <option value="">Newest (Default Sort)</option>
                                 <option value="1">Newest (Default Sort)</option>
                                 <option value="2">Price (High to Low)</option>
                                 <option value="3">Price (Low to High)</option>
