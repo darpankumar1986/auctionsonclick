@@ -236,8 +236,8 @@ class Home extends CI_Controller {
         //$this->form_validation->set_rules('area_unit_id', 'Area Unit', 'trim|required|xss_clean');
         $this->form_validation->set_rules('category_id', 'Category/ Property Type', 'trim|required|xss_clean');
         //$this->form_validation->set_rules('contact_person_details_1', '1st Contact Person Details', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('latitude', 'Latitude', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('longitude', 'Longitude', 'trim|required|xss_clean');
+        //$this->form_validation->set_rules('latitude', 'Latitude', 'trim|required|xss_clean');
+        //$this->form_validation->set_rules('longitude', 'Longitude', 'trim|required|xss_clean');
 
 
 

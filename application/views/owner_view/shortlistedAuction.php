@@ -9,6 +9,9 @@
         //$("#big_table thead tr th").eq(0).addClass("hidetd");
         $("#big_table thead tr th").eq(4).css('text-align','right');
         $('#big_table').DataTable({
+			dom: "<'row'<'col-sm-6'>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7 pagination_main'p>>",
                 "bAutoWidth": false,
                 //"aoColumns": [{"sWidth": "5%"}, {"sWidth": "10%"}, {"sWidth": "20%"}, {"sWidth": "30%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "10%"}, {"sWidth": "10%"}],
                 "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6] } ],
@@ -55,6 +58,9 @@
 
 
         $('#big_table2').DataTable({
+			dom: "<'row'<'col-sm-6'>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7 pagination_main'p>>",
                 "bAutoWidth": false,
                 //"aoColumns": [{"sWidth": "5%"}, {"sWidth": "10%"}, {"sWidth": "20%"}, {"sWidth": "30%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "10%"}, {"sWidth": "10%"}],
                 "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6] } ],
@@ -100,6 +106,9 @@
             });
 
             $('#big_table3').DataTable({
+				dom: "<'row'<'col-sm-6'>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7 pagination_main'p>>",
                 "bAutoWidth": false,
                 //"aoColumns": [{"sWidth": "5%"}, {"sWidth": "10%"}, {"sWidth": "20%"}, {"sWidth": "30%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "10%"}, {"sWidth": "10%"}],
                 "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6] } ],
@@ -145,6 +154,9 @@
             });
 
             $('#big_table4').DataTable({
+				dom: "<'row'<'col-sm-6'>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7 pagination_main'p>>",
                 "bAutoWidth": false,
                 //"aoColumns": [{"sWidth": "5%"}, {"sWidth": "10%"}, {"sWidth": "20%"}, {"sWidth": "30%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "10%"}, {"sWidth": "10%"}],
                 "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 6] } ],

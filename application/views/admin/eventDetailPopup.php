@@ -169,7 +169,9 @@ section{float:none;}
         <tr class="odd">
              
             <td align="left" valign="top" class=""><strong>How to Reach</strong></td>
-            <td td align="left" valign="top" class="" colspan="3"><a target="_blank" href="<?php echo base_url().'admin/home/viewGoogleMap/'. $auction_detail->id;?>">View</a></td>
+            <td td align="left" valign="top" class="" colspan="3">
+			<?php if($auction_detail->latitude != '' && $auction_detail->longitude !='') {?>
+			<a target="_blank" href="<?php echo base_url().'admin/home/viewGoogleMap/'. $auction_detail->id;?>">View</a><?php } else { echo 'N/A';} ?></td>
 			<td align="left" valign="top" class=""><strong>E-Auction Provider</strong></td>
             <td align="left" valign="top" class=""  colspan="3">
                 <?php echo $auction_detail->service_no; ?>

@@ -141,7 +141,7 @@ var oTable = null;
 
 
                       $('td:eq(5)', nRow).addClass('button-img');
-                      $('td:eq(4)', nRow).html('₹'+aData[4]).css('text-align','right');
+                      $('td:eq(4)', nRow).html('₹'+indian_money_format(aData[4])).css('text-align','right');
 
 
 
@@ -269,7 +269,14 @@ var oTable = null;
                         <div class="row">
                             <div class="col-sm-9">
                                 <div class="desc_wrapper_inner">
-                                    <h3><?php echo (int)$totalAuction; ?> Bank Auction in <?php echo ucwords($_GET['search_city']); ?> </h3>
+                                    <h3><?php 
+									$bankName = GetTitleByField('tbl_bank', "id='".$_GET['bank']."'", "name");
+									echo (int)$totalAuction; ?> Bank Auction <?php if($_GET['search_city'] !='') {echo 'in '.ucwords(strtolower($_GET['search_city']));} else{ 
+									echo 'for '.$bankName;}
+									
+									?> 
+									
+									</h3>
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -290,16 +297,18 @@ var oTable = null;
                         </div>
                     </div>
                     <div class="auction_table auction_table_border bank_auction_table shortlisted_table table-responsive">
+						<?php if($_GET['search_city'] !='') {?>
                         <div class="get-alerts">
                         <button class="btn btn-default" type="button" <?php if($this->session->userdata('id')>0){ ?> onclick="addtoalert('<?php echo $_GET['search_city']; ?>')" <?php } else {?> onclick="window.location='<?php echo base_url(); ?>home/login'" <?php } ?>>
                             <i class="fa fa-bell"></i> Get Alerts
                         </button>
                         </div>
+						<?php } ?>
                         <div class="property_dropdown_listing">
                         <div class="custom-dropdown-select">
                            <div class="custom-select sort-data">
                             <select name="dataSort" id="dataSort" class="dataSort">
-                                <option value="">Sort</option>
+                                <option value="">Newest (Default Sort)</option>
                                 <option value="1">Newest (Default Sort)</option>
                                 <option value="2">Price (High to Low)</option>
                                 <option value="3">Price (Low to High)</option>

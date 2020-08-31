@@ -58,8 +58,10 @@
 ?>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <script src="<?php echo base_url();?>js/jquery-ui-1.12.1.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
-<script type="text/javascript" src="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
-<link rel="stylesheet" href="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.css?rand=<?php echo CACHE_RANDOM; ?>">
+<script type="text/javascript" src="<?php echo base_url()?>js/datepicker.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url()?>css/datepicker.min.css?rand=<?php echo CACHE_RANDOM; ?>">
+<!-- <script type="text/javascript" src="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.css?rand=<?php echo CACHE_RANDOM; ?>"> -->
 <script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <script type="text/javascript">
 
@@ -334,7 +336,7 @@ var oTable = null;
                         <span class="eye_icon down_icon"><i class="fa fa-chevron-down"></i></span>
                     </div>
                     <div class="floating-label">
-                        <input class="floating-input" name="auction_start_date" id="auction_start_date" type="text" placeholder=" " autocomplete="off" value="<?php echo $auction_start_date; ?>">
+                        <input class="floating-input" name="auction_start_date" id="auction_start_date" type="text" placeholder=" " autocomplete="off" value="<?php echo $auction_start_date; ?>" readonly>
                         <label class="custom_label">Auction Start Date</label>
                     </div>
                     <div class="floating-label">
@@ -375,7 +377,7 @@ var oTable = null;
                         <label class="custom_label">Borrower Name</label>
                     </div>
                     <div class="floating-label">
-                        <input class="floating-input" name="auction_end_date" id="auction_end_date" type="text" placeholder=" " autocomplete="off" value="<?php echo $auction_end_date; ?>">
+                        <input class="floating-input" name="auction_end_date" id="auction_end_date" type="text" placeholder=" " autocomplete="off" value="<?php echo $auction_end_date; ?>" readonly>
                         <label class="custom_label">Auction End Date</label>
                     </div>
                     <div class="floating-label">
@@ -443,6 +445,7 @@ var oTable = null;
 <?php } ?>
 <script>
     $(document).ready(function(){
+		/*
           $('#auction_start_date').datepicker({
             controlType: 'select',
             oneLine: true,
@@ -460,6 +463,21 @@ var oTable = null;
             dateFormat: 'yy-mm-dd',
             yearRange: '2018:<?php echo date('Y');?>',
             //timeFormat: 'HH:mm:00'
+        });
+		*/
+
+		  $('#auction_start_date').datepicker({
+            format: 'yyyy-mm-dd',
+            autoHide: true
+            //startDate: minAuctionDate,
+            //endDate: maxAuctionDate
+        });
+
+        $('#auction_end_date').datepicker({
+            format: 'yyyy-mm-dd',
+            autoHide: true
+            //startDate: minAuctionDate,
+            //endDate: maxAuctionDate
         });
 
 

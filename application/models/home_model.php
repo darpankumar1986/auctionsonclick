@@ -300,7 +300,21 @@ class Home_model extends CI_Model {
 
 	function advancedSearchDatatable($bankIdbyshortname='')
     {           		
+		$bidderID = (int)$this->session->userdata('id');
+		$free_sub_flag = 0;
+		if($bidderID > 0)
+		{
+			$isPremiumMember = $this->getTotalActivePackage($bidderID);
+			$indate =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "indate");
+			$free_sub_expire_date = date('Y-m-d H:i:s',strtotime(FREE_SUBSCRIPTION_TIME,strtotime($indate)));
+			$free_sub_expire_date_str = strtotime($free_sub_expire_date);
+			
+			if(time() < $free_sub_expire_date_str)
+			{
+				$free_sub_flag = 1;
+			}
 		
+		}
 			$_POST['sColumns'] = "bank.name,a.PropertyDescription,c.name,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y')as emd_date,a.reserve_price,a.id";
                $this->datatables->select("bank.name,a.PropertyDescription,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y')as emd_date,a.reserve_price,a.id as listID",false)
                 ->from('tbl_auction as a')				
@@ -325,6 +339,30 @@ class Home_model extends CI_Model {
 				}
 				/************Sorting End*********/
 
+				
+				if($isPremiumMember || $free_sub_flag == 1)
+				{
+					
+
+					if($_GET['borrower_name'] != '')
+					{
+					//$this->db->where('a.borrower_name',$_GET['borrower_name']);
+					$this->db->where("a.borrower_name like '%".$_GET['borrower_name']."%'");
+					}
+
+					$auction_start_date = $_GET['auction_start_date'];
+					$auction_end_date = $_GET['auction_end_date'];
+					
+					if($auction_start_date != '')
+					{
+						$this->db->where('a.auction_start_date >=',$auction_start_date.' 00:00:00');
+					}
+
+					if($auction_end_date != '')
+					{
+						$this->db->where('a.auction_end_date <=',$auction_end_date.' 23:59:59');
+					}
+				}
 
 				if($_GET['search_city'] != '')
 				{
@@ -336,13 +374,7 @@ class Home_model extends CI_Model {
 				{
 					$this->db->where("a.PropertyDescription like '%".$_GET['search']."%'");
 				}
-
-				if($_GET['borrower_name'] != '')
-				  {
-					//$this->db->where('a.borrower_name',$_GET['borrower_name']);
-					$this->db->where("a.borrower_name like '%".$_GET['borrower_name']."%'");
-				  }
-
+				
 				if($_GET['search_location'] != '')
 				{
 					$this->db->where("a.reference_no like '%".$_GET['search_location']."%'");
@@ -377,18 +409,7 @@ class Home_model extends CI_Model {
 					$this->db->where('a.reserve_price <=',$reservePriceMaxRange);
 				}
 
-				$auction_start_date = $_GET['auction_start_date'];
-				$auction_end_date = $_GET['auction_end_date'];
 				
-				if($auction_start_date != '')
-				{
-					$this->db->where('a.auction_start_date >=',$auction_start_date.' 00:00:00');
-				}
-
-				if($auction_end_date != '')
-				{
-					$this->db->where('a.auction_end_date <=',$auction_end_date.' 23:59:59');
-				}
 
 			  if($_GET['parent_id'] != '')
 			  {
@@ -403,6 +424,23 @@ class Home_model extends CI_Model {
 
 	function getTotalAdvancedSearchAuction()
     { 
+
+		$bidderID = (int)$this->session->userdata('id');
+		$free_sub_flag = 0;
+		$isPremiumMember = 0;
+		if($bidderID > 0)
+		{
+			$isPremiumMember = $this->getTotalActivePackage($bidderID);
+			$indate =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "indate");
+			$free_sub_expire_date = date('Y-m-d H:i:s',strtotime(FREE_SUBSCRIPTION_TIME,strtotime($indate)));
+			$free_sub_expire_date_str = strtotime($free_sub_expire_date);
+			
+			if(time() < $free_sub_expire_date_str)
+			{
+				$free_sub_flag = 1;
+			}
+		
+		}
 		
                $this->db->select("a.id",false)
                 ->from('tbl_auction as a')				
@@ -423,13 +461,8 @@ class Home_model extends CI_Model {
 				  {
 					$this->db->where("a.PropertyDescription like '%".$_GET['search']."%'");
 				  }
-					
-				  if($_GET['borrower_name'] != '')
-				  {
-					//$this->db->where('a.borrower_name',$_GET['borrower_name']);
-					$this->db->where("a.borrower_name like '%".$_GET['borrower_name']."%'");
-				  }
-
+				
+				
 				  if($_GET['search_location'] != '')
 				{
 					$this->db->where("a.reference_no like '%".$_GET['search_location']."%'");
@@ -462,18 +495,27 @@ class Home_model extends CI_Model {
 					$this->db->where('a.reserve_price <=',$reservePriceMaxRange);
 				}
 
-
-				$auction_start_date = $_GET['auction_start_date'];
-				$auction_end_date = $_GET['auction_end_date'];
+				if($isPremiumMember || $free_sub_flag == 1)
+				{	
+					if($_GET['borrower_name'] != '')
+					{
+						//$this->db->where('a.borrower_name',$_GET['borrower_name']);
+						$this->db->where("a.borrower_name like '%".$_GET['borrower_name']."%'");
+					}
 				
-				if($auction_start_date != '')
-				{
-					$this->db->where('a.auction_start_date >=',$auction_start_date.' 00:00:00');
-				}
+					$auction_start_date = $_GET['auction_start_date'];
+					$auction_end_date = $_GET['auction_end_date'];
+					
+					if($auction_start_date != '')
+					{
+						$this->db->where('a.auction_start_date >=',$auction_start_date.' 00:00:00');
+					}
 
-				if($auction_end_date != '')
-				{
-					$this->db->where('a.auction_end_date <=',$auction_end_date.' 23:59:59');
+					if($auction_end_date != '')
+					{
+						$this->db->where('a.auction_end_date <=',$auction_end_date.' 23:59:59');
+					}
+
 				}
 
 				if($_GET['parent_id'] != '')

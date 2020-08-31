@@ -1856,7 +1856,7 @@ function backendCorrigendumSendMail($auctionID,$pModified_date=null)
     function sendMailToBidderResetPasswordLink($to,$randomstr,$name)
     {
         $link = base_url()."registration/resetPassword?c=".$randomstr;
-		$link = " <a href='".$link."'>Click here</a>";
+		//$link = " <a href='".$link."'>Click here</a>";
         
         if($to != '')
         {   
@@ -1868,14 +1868,19 @@ function backendCorrigendumSendMail($auctionID,$pModified_date=null)
             $email_query = $this->db->get('tblmst_email_template')->result();
 
             $subject = $email_query[0]->subject;
-            $body = $email_query[0]->msg;
+			
+            //$body = $email_query[0]->msg;
     
-            $body = str_replace("%bidder_name%", ucwords(strtolower($name)), $body);
-            $body = str_replace("%reset_link%", $link, $body);            
+            //$body = str_replace("%bidder_name%", ucwords(strtolower($name)), $body);
+            //$body = str_replace("%reset_link%", $link, $body);            
 			
             $emailArr = array();
             $emailArr[] = $to; 
-         
+			$data['link'] = $link;
+			$data['bidder_name'] = ucwords(strtolower($name));
+			$data['Logo_2'] = $this->load->view('email/Logo_2', $data, true); // render the view into HTML
+			$body = $this->load->view('email/forgotPassword', $data, true); // render the view into HTML
+
             if(is_array($emailArr) && count($emailArr)>0)
 			{
 				$this->sendMailToUser($emailArr,$subject,$body);         

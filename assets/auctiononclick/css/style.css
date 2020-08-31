@@ -2237,6 +2237,9 @@ h3.user_profile {
     border-radius: 4px;
     color: #fff;
 }
+.premium_member p {
+	background-color: #4ea94f;
+}
 h3.non_subscribe_profile {
     margin-top: 25px;
 }

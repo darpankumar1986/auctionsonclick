@@ -86,7 +86,7 @@
                             <div class="col-sm-9">
                                 <div class="desc_wrapper_inner">
                                     <h3>Residential Plot in <?php echo $auction_data[0]->location_name; ?>, <?php echo $auction_data[0]->city_name; ?></h3>
-                                    <p><img src="<?php echo base_url().$auction_data[0]->bank_img; ?>" style="width:18px;height:18px;"> <?php echo $auction_data[0]->bank_name; ?></p>
+                                    <p><!--<img src="<?php echo base_url().$auction_data[0]->bank_img; ?>" style="width:18px;height:18px;">--> <?php echo $auction_data[0]->bank_name; ?></p>
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -193,15 +193,15 @@
                                 </tr>
                                 <tr>
                                     <td>Reserve Price</td>
-                                    <td>₹<?php echo $auction_data[0]->reserve_price; ?></td>
+                                    <td>₹<?php echo moneyFormatIndia($auction_data[0]->reserve_price); ?></td>
                                 </tr>
                                 <tr>
                                     <td>EMD Amount</td>
-                                    <td>₹<?php echo $auction_data[0]->emd_amt; ?></td>
+                                    <td>₹<?php echo moneyFormatIndia($auction_data[0]->emd_amt); ?></td>
                                 </tr>
                                 <tr>
-                                    <td>EMD Submission Last Date & Time</td>
-                                    <td><?php echo date('F d',strtotime($auction_data[0]->bid_last_date)); ?><sup><?php echo date('S',strtotime($auction_data[0]->bid_last_date)); ?></sup>, <?php echo date('Y',strtotime($auction_data[0]->bid_last_date)); ?> at <?php echo date('h:i:s A',strtotime($auction_data[0]->bid_last_date)); ?></td>
+                                    <td>EMD Submission Last Date <?php if($auction_data[0]->isSub > 0 || $free_sub_flag == 1){ echo '& Time'; } ?></td>
+                                    <td><?php echo date('F d',strtotime($auction_data[0]->bid_last_date)); ?><sup><?php echo date('S',strtotime($auction_data[0]->bid_last_date)); ?></sup>, <?php echo date('Y',strtotime($auction_data[0]->bid_last_date)); ?> <?php if($auction_data[0]->isSub > 0 || $free_sub_flag == 1){ echo 'at '.date('h:i:s A',strtotime($auction_data[0]->bid_last_date)); } ?></td>
                                 </tr>
                                 <?php if($auction_data[0]->isSub > 0 || $free_sub_flag == 1){ ?>
                                     <tr>
@@ -228,7 +228,7 @@
 											{
 												$dSrNo=1;
 												foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id > 0){ ?>
-													<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Documents '; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } 											$dSrNo++;
+													<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Sale Notice '; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } 											$dSrNo++;
 													}
 
 												}

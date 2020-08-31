@@ -466,7 +466,7 @@ $other_city=$auctionData->other_city;
 					  <div class="row">
 							<div class="lft_heading">Reserve Price <span class="red">*</span></div>
 							<div class="rgt_detail">
-								 <input name="reserve_price" id="reserve_price" type="text" maxlength="13" value="<?php echo $auctionData->reserve_price;?>" class="input numericonly">
+								 <input name="reserve_price" id="reserve_price" type="text" maxlength="13" value="<?php echo $auctionData->reserve_price;?>" class="input numericonly onlynumber">
 								<div class="tooltips">
 								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
 										<span>It is the base price finalised by the valuer of MCG.</span>
@@ -497,14 +497,14 @@ $other_city=$auctionData->other_city;
 					  <div class="row">
 							<div class="lft_heading">EMD Amount <span class="red">*</span></div>
 							<div class="rgt_detail">
-										<input name="emd_amt" id="emd_amt" type="text" maxlength="13"  class="input numericonly onlynumber numericonly_1" value="<?php echo $auctionData->emd_amt;?>">
-										<div class="tooltips">
-										<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-												<span>Earnest money deposit asked by the MCG.</span>
-										</div>
-                                                                                
-										<div id="emdWords" style="width:262px;margin-top: 3px;"></div>
-                                                                                <div class="errDiv"><?php echo $this->session->userdata['flash:old:emda'];?></div>
+								<input name="emd_amt" id="emd_amt" type="text" maxlength="13"  class="input numericonly onlynumber" value="<?php echo $auctionData->emd_amt;?>">
+								<div class="tooltips">
+								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
+										<span>Earnest money deposit.</span>
+								</div>
+																		
+								<div id="emdWords" style="width:262px;margin-top: 3px;"></div>
+								<div class="errDiv"><?php echo $this->session->userdata['flash:old:emda'];?></div>
 										
 										
 							</div>
@@ -854,7 +854,7 @@ $other_city=$auctionData->other_city;
 						-->
 						
 						<div class="row">
-							<div class="lft_heading">Property Latitude <span class="red">*</span></div>
+							<div class="lft_heading">Property Latitude</div>
 							<div class="rgt_detail">
                             <input name="latitude"  id="latitude" type="text" value="<?php if($auctionData->latitude!=''){echo $auctionData->latitude; }; ?>"  >
 							<div class="tooltips">
@@ -865,7 +865,7 @@ $other_city=$auctionData->other_city;
 						</div>
 						
 						<div class="row">
-							<div class="lft_heading">Property Longitude <span class="red">*</span></div>
+							<div class="lft_heading">Property Longitude</div>
 							<div class="rgt_detail">
                             <input name="longitude"  id="longitude" type="text" value="<?php if($auctionData->longitude!=''){echo $auctionData->longitude; }; ?>" >
 								<div class="tooltips">
@@ -1789,7 +1789,7 @@ jQuery(document).ready(function($){
 		
 	});
 	*/
-	
+	/*
 	jQuery("#emd_amt").blur(function(){
 		var emdVal = jQuery(this).val().trim();
 		if(emdVal !='' && emdVal>0)
@@ -1798,7 +1798,7 @@ jQuery(document).ready(function($){
 			jQuery('#emdWords').html(inwords);   
 		}
 	});
-	
+	*/
 	jQuery(".addMem").click(function(){		
 		var addMoreImgRandomKey = Math.floor(Math.random() * 1000000);
 		
@@ -1987,7 +1987,8 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
             flag = 1;
         }*/
 
-        if (jQuery('#latitude').val().trim() == '') {
+        /*
+		if (jQuery('#latitude').val().trim() == '') {
             jQuery('#spMsg').append("<li>Please Enter Latitude </li>");
             flag = 1;
         }
@@ -1995,6 +1996,7 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
             jQuery('#spMsg').append("<li>Please Enter Longitude </li>");
             flag = 1;
         }
+		*/
 
         /*
          if(jQuery('#image').val()!='')
@@ -2259,7 +2261,7 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
             flag = 1;
         }
         */
-
+		/*
         if (jQuery('#latitude').val().trim() == '') {
             jQuery('#spMsg').append("<li>Please Enter Latitude </li>");
             flag = 1;
@@ -2268,6 +2270,7 @@ jQuery('#area, #bid_inc').bind("cut copy paste",function(e) {
             jQuery('#spMsg').append("<li>Please Enter Longitude </li>");
             flag = 1;
         }
+		*/
 
         jQuery('.fileRq').each(function () {
             var fieldId = jQuery(this).attr('id');

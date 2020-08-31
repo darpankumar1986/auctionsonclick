@@ -63,6 +63,25 @@ if($row){
 }
 //echo '<pre>', print_r($row), '</pre>';
 
+$currentpackage = $this->home_model->getLastPackage($id);
+
+
+$totalActivePackage = $this->home_model->getTotalActivePackage($id);
+
+$package_id = $currentpackage->package_id;
+$package_amount = $currentpackage->package_amount;
+$package_start_date = $currentpackage->package_start_date;
+$package_end_date = $currentpackage->package_end_date;
+
+$package = $this->home_model->getSubcriptionPlan($package_id);
+$packagelist = $this->home_model->getSubcriptionPlan();
+//print_r($package);die;
+
+$end_date_str = strtotime($package_end_date);
+$tilldate = time();
+$diff =  $end_date_str - $tilldate;
+$remaining_day = floor($diff/86400);
+
 ?>
 
 <div class="container-fluid container_margin">
@@ -80,7 +99,19 @@ if($row){
                   </div>
               </div>
           </div>
+         <?php }else{?>
+        <div class="container">
+              <div class="row advanced_search_row row_padding">
+                  <div class="col-sm-12">
+                      <div class="become_premium_member premium_member">
+                          <p>Your account will expire in <?php echo $remaining_day;?> <?php echo ($remaining_day==1)?'day': 'days';?></p>
+                      </div>
+                  </div>
+              </div>
+          </div>
          <?php } ?>
+		
+		
        <div class="col-sm-12">
            <h3 class="premium_service user_profile">Profile</h3>
        </div>

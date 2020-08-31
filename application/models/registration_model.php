@@ -1153,7 +1153,7 @@ function checkLogin(){
 							$this->db->insert('tbl_member_remember',$data); 
 
 
-							$date_of_expiry = time() + (84600*14) ; // 14 Days
+							$date_of_expiry = time() + (86400*14) ; // 14 Days
 							setcookie( "rand_cookie", $rem_rand , $date_of_expiry, "/" ) ;
 					   }
 					}
