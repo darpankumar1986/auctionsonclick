@@ -7,6 +7,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
 		//$("#big_table thead tr th").eq(0).addClass("hidetd");
+		$("#big_table thead tr th").eq(4).css('text-align','right');
 		$('#big_table').DataTable({
 				"bAutoWidth": false,
 				//"aoColumns": [{"sWidth": "5%"}, {"sWidth": "10%"}, {"sWidth": "20%"}, {"sWidth": "30%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "15%"}, {"sWidth": "10%"}, {"sWidth": "10%"}],
@@ -38,7 +39,7 @@
 									 
 					   $('td:eq(0)', nRow).addClass('hide');	   
 					  $('td:eq(6)', nRow).addClass('button-img');
-					  $('td:eq(5)', nRow).html('₹'+aData[5]);
+					  $('td:eq(5)', nRow).html('₹'+indian_money_format(aData[5])).css('text-align','right');
 
 					  
 					  $('td:eq(6)', nRow).html('<a class="corrigendum_iframe" href="<?php echo base_url(); ?>home/auctionDetail/' + aData[6] + '"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/view_button.png" title="View Auction" class="edit1"></a>'); /* auctionDetailPopup */
@@ -84,7 +85,7 @@
 									 
 					   $('td:eq(0)', nRow).addClass('hide');	   
 					  $('td:eq(6)', nRow).addClass('button-img');
-					  $('td:eq(5)', nRow).html('₹'+aData[5]);
+					  $('td:eq(5)', nRow).html('₹'+indian_money_format(aData[5])).css('text-align','right');
 
 					  
 					  $('td:eq(6)', nRow).html('<a class="corrigendum_iframe" href="<?php echo base_url(); ?>home/auctionDetail/' + aData[6] + '"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/view_button.png" title="View Auction" class="edit1"></a>'); /* auctionDetailPopup */
@@ -129,7 +130,7 @@
 									 
 					   $('td:eq(0)', nRow).addClass('hide');	   
 					  $('td:eq(6)', nRow).addClass('button-img');
-					  $('td:eq(5)', nRow).html('₹'+aData[5]);
+					  $('td:eq(5)', nRow).html('₹'+indian_money_format(aData[5])).css('text-align','right');
 
 					  
 					  $('td:eq(6)', nRow).html('<a class="corrigendum_iframe" href="<?php echo base_url(); ?>home/auctionDetail/' + aData[6] + '"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/view_button.png" title="View Auction" class="edit1"></a>'); /* auctionDetailPopup */
@@ -174,7 +175,7 @@
 									 
 					   $('td:eq(0)', nRow).addClass('hide');	   
 					  $('td:eq(6)', nRow).addClass('button-img');
-					  $('td:eq(5)', nRow).html('₹'+aData[5]);
+					  $('td:eq(5)', nRow).html('₹'+indian_money_format(aData[5])).css('text-align','right');
 
 					  
 					  $('td:eq(6)', nRow).html('<a class="corrigendum_iframe" href="<?php echo base_url(); ?>home/auctionDetail/' + aData[6] + '"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/view_button.png" title="View Auction" class="edit1"></a>'); /* auctionDetailPopup */

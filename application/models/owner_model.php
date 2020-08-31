@@ -4061,9 +4061,9 @@ function getLoggedInOwner()
 		
 		$bidderId=$this->session->userdata['id'];
 
-		$_POST['sColumns'] = "a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id";
+		$_POST['sColumns'] = "a.id,b.name,a.PropertyDescription,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y')as emd_date,a.reserve_price,a.id";
 		
-		$this->datatables->select("a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+		$this->datatables->select("a.id,b.name,a.PropertyDescription,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y')as emd_date,a.reserve_price,a.id as listID",false)
 		->from('tbl_auction as a')				
 		//->join('tbl_category as c','c.id=a.subcategory_id','left')
 		->join('tbl_auction_bidder_fav as f','f.auctionID=a.id','left')
@@ -4084,9 +4084,9 @@ function getLoggedInOwner()
 		
 		$bidderId=$this->session->userdata['id'];
 
-		$_POST['sColumns'] = "a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id";
+		$_POST['sColumns'] = "a.id,b.name,a.PropertyDescription,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y') as emd_date,a.reserve_price,a.id";
 		
-		$this->datatables->select("a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+		$this->datatables->select("a.id,b.name,a.PropertyDescription,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y') as emd_date,a.reserve_price,a.id as listID",false)
 		->from('tbl_auction as a')				
 		//->join('tbl_category as c','c.id=a.subcategory_id','left')
 		->join('tbl_auction_bidder_fav as f','f.auctionID=a.id','left')
@@ -4108,9 +4108,9 @@ function getLoggedInOwner()
 		
 		$bidderId=$this->session->userdata['id'];
 
-		$_POST['sColumns'] = "a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id";
+		$_POST['sColumns'] = "a.id,b.name,a.PropertyDescription,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y') as emd_date,a.reserve_price,a.id";
 		
-		$this->datatables->select("a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+		$this->datatables->select("a.id,b.name,a.PropertyDescription,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y') as emd_date,a.reserve_price,a.id as listID",false)
 		->from('tbl_auction as a')				
 		//->join('tbl_category as c','c.id=a.subcategory_id','left')
 		->join('tbl_auction_bidder_fav as f','f.auctionID=a.id','left')
@@ -4131,9 +4131,9 @@ function getLoggedInOwner()
     {           		
 		$bidderId=$this->session->userdata['id'];
 
-		$_POST['sColumns'] = "a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id";
+		$_POST['sColumns'] = "a.id,b.name,a.PropertyDescription,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y') as emd_date,a.reserve_price,a.id";
 		
-		$this->datatables->select("a.id,b.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+		$this->datatables->select("a.id,b.name,a.PropertyDescription,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y') as emd_date,a.reserve_price,a.id as listID",false)
 		->from('tbl_auction as a')				
 		//->join('tbl_category as c','c.id=a.subcategory_id','left')
 		->join('tbl_auction_bidder_fav as f','f.auctionID=a.id','left')
