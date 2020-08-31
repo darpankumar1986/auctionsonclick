@@ -33,7 +33,7 @@
     $package_start_date_str = strtotime($package_start_date);
     $package_end_date_str = strtotime($package_end_date);
     $pdiff = $package_end_date_str - $package_start_date_str;
-    $total_package_day = floor($pdiff/84600);
+    $total_package_day = floor($pdiff/86400);
     $per_day_cost = round($package_amount/$total_package_day,4);
 
     //$consumed_amount = ceil($package[0]->per_day_cost*$consumed_day);

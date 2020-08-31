@@ -6,7 +6,7 @@
 <script type="text/javascript" src="<?php echo base_url();?>application/views/admin/js/plugins/jquery.uniform.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application/views/admin/js/plugins/jquery.validate.min.js"></script>
 <style>
-.success_msg{width: 96%;float: left;color: #157D0B !important;font-size: 13px; background:#ccebc9;  border-left: solid 1px #bbb; border-right: solid 1px #bbb; text-align:left;font-weight: bold;	padding: 0 1% 0 3%;background-position: 4px 6px; line-height:30px;}
+    .success_msg{color: #157D0B !important;font-size: 18px; background:#ccebc9;font-weight: normal;  text-align:center;padding: 10px 0;margin: 0 11px;background-position: 4px 6px;border: 0;}
 
 .error2{color:#000; font-size:12px; font-weight:bold; width:96%; float:left; background:#f78d8d; padding:5px 2%; }
 </style>
@@ -63,6 +63,25 @@ if($row){
 }
 //echo '<pre>', print_r($row), '</pre>';
 
+$currentpackage = $this->home_model->getLastPackage($id);
+
+
+$totalActivePackage = $this->home_model->getTotalActivePackage($id);
+
+$package_id = $currentpackage->package_id;
+$package_amount = $currentpackage->package_amount;
+$package_start_date = $currentpackage->package_start_date;
+$package_end_date = $currentpackage->package_end_date;
+
+$package = $this->home_model->getSubcriptionPlan($package_id);
+$packagelist = $this->home_model->getSubcriptionPlan();
+//print_r($package);die;
+
+$end_date_str = strtotime($package_end_date);
+$tilldate = time();
+$diff =  $end_date_str - $tilldate;
+$remaining_day = floor($diff/86400);
+
 ?>
 
 <div class="container-fluid container_margin">
@@ -80,7 +99,19 @@ if($row){
                   </div>
               </div>
           </div>
+         <?php }else{?>
+        <div class="container">
+              <div class="row advanced_search_row row_padding">
+                  <div class="col-sm-12">
+                      <div class="become_premium_member premium_member">
+                          <p>Your account will expire in <?php echo $remaining_day;?> <?php echo ($remaining_day==1)?'day': 'days';?></p>
+                      </div>
+                  </div>
+              </div>
+          </div>
          <?php } ?>
+		
+		
        <div class="col-sm-12">
            <h3 class="premium_service user_profile">Profile</h3>
        </div>

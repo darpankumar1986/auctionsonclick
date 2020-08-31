@@ -630,7 +630,7 @@ if(!function_exists('moneyFormatIndia'))
         } else {
             $thecash = $num;
         }
-        return $thecash.".".$nums[1]; 
+        return $thecash; //.".".$nums[1] 
         }
     }
 }

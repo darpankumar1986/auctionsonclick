@@ -1234,9 +1234,11 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     background-color: #fba510;
     color: white;
 }
+/*
 .auction_table_box th {
     border-right: 1px solid #df910a;
 }
+*/
 /*
 .auction_table_box th:first-child {
     border-radius:5px 0 0 0;
@@ -1802,21 +1804,7 @@ h3.premium_service span .fa-star {
 .shortlisted_table .auction_table_box th {
     background-color: #333333;
 }
-.shortlisted_table .auction_table_box th {
-    border-right: 0;
-}
-.shortlisted_table .auction_table_box th:first-child {
-    border-left: 0;
-}
-.shortlisted_table .auction_table_box th:last-child {
-    border-right: 0;
-}
-.auction_table_box td:first-child {
-    border-left: 1px solid transparent;
-}
-.auction_table_box td:last-child {
-    border-right: 1px solid transparent;
-}
+
 /*----------------------------User Shortlist Page_end----------------------*/
 
 /*----------------------------View Detail - After Subscription----------------------*/
@@ -2248,6 +2236,9 @@ h3.user_profile {
     background-color: #e71c28;
     border-radius: 4px;
     color: #fff;
+}
+.premium_member p {
+	background-color: #4ea94f;
 }
 h3.non_subscribe_profile {
     margin-top: 25px;

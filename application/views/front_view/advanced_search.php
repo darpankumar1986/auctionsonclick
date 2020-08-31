@@ -1,4 +1,27 @@
 <?php
+$bidderID = (int)$this->session->userdata('id');
+$free_sub_flag = 0;
+if($bidderID > 0)
+{
+	$isPremiumMember = $this->home_model->getTotalActivePackage($bidderID);
+	$indate =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "indate");
+	$free_sub_expire_date = date('Y-m-d H:i:s',strtotime(FREE_SUBSCRIPTION_TIME,strtotime($indate)));
+	$free_sub_expire_date_str = strtotime($free_sub_expire_date);
+	
+	if(time() < $free_sub_expire_date_str)
+	{
+		$free_sub_flag = 1;
+	}
+
+}
+if($isPremiumMember || $free_sub_flag == 1)
+{
+	$disabled = '';
+}
+else
+{
+	$disabled = 'disabled';
+}
 
     if(isset($_GET['search']) and !empty($_GET['search']))
     {
@@ -58,8 +81,10 @@
 ?>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <script src="<?php echo base_url();?>js/jquery-ui-1.12.1.js?rand=<?php echo CACHE_RANDOM; ?>" type="text/javascript"></script>
-<script type="text/javascript" src="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
-<link rel="stylesheet" href="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.css?rand=<?php echo CACHE_RANDOM; ?>">
+<script type="text/javascript" src="<?php echo base_url()?>js/datepicker.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url()?>css/datepicker.min.css?rand=<?php echo CACHE_RANDOM; ?>">
+<!-- <script type="text/javascript" src="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
+<link rel="stylesheet" href="<?php echo base_url()?>js/calender/jquery-ui-timepicker-addon.css?rand=<?php echo CACHE_RANDOM; ?>"> -->
 <script src="<?php echo base_url(); ?>assets/auctiononclick/js/bootstrap.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
 <script type="text/javascript">
 
@@ -333,8 +358,8 @@ var oTable = null;
                         <label class="custom_label <?php echo ($bank_ID > 0)?'defalult_floating':''; ?>">Bank Name</label>
                         <span class="eye_icon down_icon"><i class="fa fa-chevron-down"></i></span>
                     </div>
-                    <div class="floating-label">
-                        <input class="floating-input" name="auction_start_date" id="auction_start_date" type="text" placeholder=" " autocomplete="off" value="<?php echo $auction_start_date; ?>">
+                    <div class="floating-label <?php if($disabled!=''){ echo 'email_bg';} ?>">
+                        <input class="floating-input" name="auction_start_date" id="auction_start_date" type="text" placeholder=" " autocomplete="off" value="<?php echo $auction_start_date; ?>" readonly <?php echo $disabled; ?>>
                         <label class="custom_label">Auction Start Date</label>
                     </div>
                     <div class="floating-label">
@@ -370,12 +395,12 @@ var oTable = null;
                         <input class="floating-input" name="search_location" id="search_location" type="text" placeholder=" " value="<?php echo $search_location; ?>">
                         <label class="custom_label">Location</label>
                     </div>
-                    <div class="floating-label">
-                        <input class="floating-input" name="borrower_name" id="borrower_name" type="text" placeholder=" " value="<?php echo $borrower_name; ?>">
+                    <div class="floating-label <?php if($disabled!=''){ echo 'email_bg';} ?>">
+                        <input class="floating-input" name="borrower_name" id="borrower_name" type="text" placeholder=" " value="<?php echo $borrower_name; ?>" <?php echo $disabled; ?> >
                         <label class="custom_label">Borrower Name</label>
                     </div>
-                    <div class="floating-label">
-                        <input class="floating-input" name="auction_end_date" id="auction_end_date" type="text" placeholder=" " autocomplete="off" value="<?php echo $auction_end_date; ?>">
+                    <div class="floating-label <?php if($disabled!=''){ echo 'email_bg';} ?>">
+                        <input class="floating-input" name="auction_end_date" id="auction_end_date" type="text" placeholder=" " autocomplete="off" value="<?php echo $auction_end_date; ?>" readonly <?php echo $disabled; ?>>
                         <label class="custom_label">Auction End Date</label>
                     </div>
                     <div class="floating-label">
@@ -443,6 +468,7 @@ var oTable = null;
 <?php } ?>
 <script>
     $(document).ready(function(){
+		/*
           $('#auction_start_date').datepicker({
             controlType: 'select',
             oneLine: true,
@@ -460,6 +486,21 @@ var oTable = null;
             dateFormat: 'yy-mm-dd',
             yearRange: '2018:<?php echo date('Y');?>',
             //timeFormat: 'HH:mm:00'
+        });
+		*/
+
+		  $('#auction_start_date').datepicker({
+            format: 'yyyy-mm-dd',
+            autoHide: true
+            //startDate: minAuctionDate,
+            //endDate: maxAuctionDate
+        });
+
+        $('#auction_end_date').datepicker({
+            format: 'yyyy-mm-dd',
+            autoHide: true
+            //startDate: minAuctionDate,
+            //endDate: maxAuctionDate
         });
 
 
