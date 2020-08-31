@@ -66,7 +66,7 @@
 var oTable = null;
     $(document).ready(function () {
         //$("#big_table thead tr th").eq(0).addClass("hidetd");
-		$("#big_table thead tr th").eq(4).css('text-align','right');
+        $("#big_table thead tr th").eq(4).css('text-align','right');
 
             initHomeTable();
 
@@ -398,7 +398,7 @@ var oTable = null;
     //print_r($subCatArray);
     if($_GET['search']=='' && $_GET['parent_id']=='' && $_GET['borrower_name']=='' && $_GET['search_location']=='' && $_GET['auction_start_date']=='' && $_GET['auction_end_date']=='' && $_GET['reservePriceMinRange']=='' && $_GET['reservePriceMaxRange']=='' && $_GET['bank']=='' && $_GET['search_city']=='') {} else {?>
     <div class="row bank_auction_row">
-        <div class="col-sm-9 border_right">
+        <div class="col-sm-10">
             <div class="desc_wrapper">
                 <div class="row">
                     <div class="col-sm-12">
@@ -408,10 +408,10 @@ var oTable = null;
                     </div>
                 </div>
             </div>
-            <div class="auction_table bank_auction_table shortlisted_table table-responsive">
+            <div class="auction_table auction_table_border bank_auction_table shortlisted_table table-responsive">
                 <div class="property_dropdown_listing">
                     <div class="custom-dropdown-select">
-                        <div class="custom-select">
+                        <div class="custom-select select_margin">
                             <select name="dataSort" id="dataSort" class="dataSort">
                                 <option value="">Newest (Default Sort)</option>
                                 <option value="1">Newest (Default Sort)</option>
@@ -432,7 +432,7 @@ var oTable = null;
             </div>
 
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-2 border_left">
             <div class="adblock_right">
                 <img src="<?php echo base_url(); ?>assets/auctiononclick/images/ad_space_other.png">
             </div><!--adblock-->
