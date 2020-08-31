@@ -1771,7 +1771,7 @@ class Registration extends WS_Controller {
 			$data['first_name'] = 'User';
 		}
 
-		$data['first_name'] = ucfirst(strtolower($data['first_name']));
+		$data['first_name'] = ucwords(strtolower($data['first_name']));
 
 		$randNumber=rand(100000,999999);
 		$randNumber = 111111;

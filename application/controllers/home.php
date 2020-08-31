@@ -438,6 +438,8 @@ class Home extends MY_Controller {
 		$data = array();
 		foreach($query->result() as $city)
 		{
+			$city->city_name = ucwords(strtolower($city->city_name));
+			$city->city_name = str_replace("And","and",$city->city_name);
 			array_push($data,array("id"=>$city->id,"label"=>$city->city_name));
 		}
 		echo json_encode($data);
