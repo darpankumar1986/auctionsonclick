@@ -26,9 +26,45 @@
                 });
                 }).change();
 
+				$("#username").keyup(function(){
+					$("#login_email").hide();
+				});
+
+				$("#password").keyup(function(){
+					$("#login_password").hide();
+				});
+
+
                 $("#login_submit_form").submit(function(){
                     var loginType = $("#loginType").val();
+					var username = $("#username").val();
                     var pass = $("#password").val();
+					var error = false;
+
+					if(username == '')
+					{
+						$("#login_email").html('Please Enter Email ID.');
+						$("#login_email").show();
+						error = true;
+					}
+					else
+					{
+						$("#login_email").hide();
+					}
+
+					if(pass == '')
+					{
+						$("#login_password").show();
+						error = true;
+					}
+					else
+					{
+						$("#login_password").hide();
+					}
+					
+
+					if(!error)
+					{
                     var hash = CryptoJS.SHA256(pass);
                     $("#password").val(hash);
 
@@ -64,25 +100,25 @@
                                 else if(response==2)
                                 {
                                     $(".error1").css('display','block').html('Your account is blocked!<br> Please contact administrator to unblock it.');
-                                    $("#password").val('');
+                                    $("#password").val(pass);
                                     return false;
                                 }
                                 else if(response==3)
                                 {
                                     $(".error1").css('display','block').html('Invalid Email ID or Password..!');
-                                    $("#password").val('');
+                                   $("#password").val(pass);
                                     return false;
                                 }
                                 else if(response==4)
                                 {
                                     $(".error1").css('display','block').html('Invalid Email ID or Password..!<br/>Account will be blocked after 5 failed attempt!');
-                                    $("#password").val('');
+                                    $("#password").val(pass);
                                     return false;
                                 }
                                 else if(response==5)
                                 {
                                     $(".error1").css('display','block').html('Your account has been blocked!<br> Please contact administrator to unblock it.');
-                                    $("#password").val('');
+                                    $("#password").val(pass);
                                     return false;
                                 }
                                 else{
@@ -99,10 +135,13 @@
                         {
                             return true;
                         }
+					}
 
                         return false;
 
                 });
+
+				
 
         });
 
@@ -175,6 +214,15 @@
         }
 
     </script>
+	<style>
+		.error2 {
+				color: #e83c3c;
+				font-size: 13px;
+				margin-left: 14px;
+				display: block;
+			}
+		#login_email,#login_password{display: none;}
+	</style>
     <div class="container-fluid container_margin">
             <div class="row">
                 <div class="col-sm-12">
@@ -198,6 +246,7 @@
 
                                             <input type="text" placeholder=" " class="keysubmit floating-input" name="user_name" id="username" value="<?php if($this->session->userdata('session_found_emailid')) { echo $this->session->userdata('session_found_emailid');} ?>">
                                            <label class="custom_label">Email ID</label>
+										   <span id="login_email" class="error2">Please Enter Email ID</span>
                                        </div>
                                        <div class="floating-label">
                                             <input type="hidden" name="track" value="<?php echo $track; ?>">
@@ -205,6 +254,8 @@
                                            <input type="password" class="keysubmit floating-input" name="password" id="password" placeholder=" ">
                                            <label class="custom_label">Password</label>
                                            <span toggle="#password" class="eye_icon toggle-password fa-eye-slash fa"></span>
+
+										   <span id="login_password" class="error2">Please Enter Password</span>
                                        </div>
                                    </div>
                                    <div class="checkbox">
