@@ -321,7 +321,37 @@ $(document).ready(function(){
 				console.log([ui.item.value]);
 			}
 		});
+
+
+		$('.dropdown ul').on('click', function (e) {
+			 e.stopPropagation();
+			 setTimeout(function(){
+				 setCategoryTitle();
+			 },10);
+		});
 	});
+function setCategoryTitle()
+{
+	var icon = '<span class="caret"></span>';
+	var parCat = $("input[name='parentCat']:checked").parent().find('label').html();
+	var parCatVal = $("input[name='parentCat']:checked").val();
+	$("#category_text_button").html(parCat+icon);
+
+	var checkboxlength = $("input[name='s_sub_id']:checked").length;
+
+	if(checkboxlength < 3 && checkboxlength > 0 && parCatVal < 3)
+	{
+		if(checkboxlength == 1)
+		{
+			var subCatText = $("input[name='s_sub_id']:checked").attr('data-text');
+			$("#category_text_button").html(subCatText+icon);
+		}
+		else if(parCatVal == 1)
+		{
+			$("#category_text_button").html("2 selected"+icon);
+		}
+	}	
+}
 function indian_money_format(x)
 {
     x=x.toString();

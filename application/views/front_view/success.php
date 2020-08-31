@@ -33,17 +33,17 @@
                            <p><a href="#" style="cursor: text; text-decoration: none;">Explore <?php echo (int)$total_auction; ?> Live Bank Auctions</a></p>
                            <form class="form_desc">
                                <div class="dropdown">
-                                   <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Category
+                                   <button id="category_text_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Category
                                        <span class="caret"></span></button>
                                    <ul class="dropdown-menu">
                                        <?php $parentCat = $this->home_model->getAllCategory(0); ?>
 										<?php foreach($parentCat as $key => $parCat){ ?>
 										<li class="dropdown-header">
 										<input type="radio" id="test<?php echo $key; ?>" class="s_parent_id" s-data-parent-id="<?php echo $parCat->id;?>" name="parentCat" value="<?php echo $parCat->id;?>">
-											<label for="test<?php echo $key; ?>">All <?php echo $parCat->name; ?></label></li>
+											<label for="test<?php echo $key; ?>"><?php echo ($parCat->id != 3)?'All ':'';?><?php echo $parCat->name; ?></label></li>
 											<?php $Cats = $this->home_model->getAllCategory($parCat->id); ?>
 											<?php foreach($Cats as $cat){ ?>
-												<li><label class="checkbox-inline"><input type="checkbox" s-data-parent="<?php echo $parCat->id;?>" name="s_sub_id" value="<?php echo $cat->id;?>"><?php echo $cat->name; ?></label></li>
+												<li><label class="checkbox-inline"><input type="checkbox" s-data-parent="<?php echo $parCat->id;?>" name="s_sub_id" value="<?php echo $cat->id;?>" data-text="<?php echo $cat->name; ?>"><?php echo $cat->name; ?></label></li>
 											<?php } ?>
 									   
 										<?php } ?>   
