@@ -23,7 +23,7 @@
 												foreach ($top_cities as $key =>$city)
 												  {
 										  ?>
-													<li><a href="<?php echo base_url();?>propertylisting?search_city=<?php echo $key; ?>"><?php echo $key.' ('.$city.')'; ?></a></li>
+													<li><a href="<?php echo base_url();?>propertylisting?search_city=<?php echo $key; ?>"><?php echo ucwords(strtolower($key)).' ('.$city.')'; ?></a></li>
 										  <?php 
 												  }
 											}
@@ -47,7 +47,7 @@
 												if($cnt<=10)
 												  {
 										  ?>
-												<li><a href="<?php echo base_url();?>propertylisting?bank=<?php echo $bank->id; ?>"><?php echo $bank->name; ?></a></li>
+												<li><a href="<?php echo base_url();?>propertylisting?bank=<?php echo $bank->id; ?>"><?php echo ucwords(strtolower($bank->name)); ?></a></li>
 										  <?php 
 												  }
 											  }
@@ -71,7 +71,7 @@
                                         <li><a href="<?php echo base_url();?>contact-us">Contact Us</a></li>
                                         <li><a href="<?php echo base_url();?>sitemap">Sitemap</a></li>
                                         <li><a href="<?php echo base_url();?>terms-conditions">Terms &amp; Conditions</a></li>
-                                        <li><a href="<?php echo base_url();?>privacy-policy">Privacy-Policy</a></li>
+                                        <li><a href="<?php echo base_url();?>privacy-policy">Privacy Policy</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                                 <div class="footer_about">
                                     <h4>Network Sites</h4>
                                     <ul>
-                                        <li><a href="#">Bankeauctions.com</a></li>
+                                        <li><a href="https://bankeauctions.com/" target="_blank">Bankeauctions.com</a></li>
                                     </ul>
                                     <h4>Customer Service</h4>
                                     <ul>

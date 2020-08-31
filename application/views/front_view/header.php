@@ -137,7 +137,7 @@
                                     <li class="login_register"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span>Login / Register</a></li>
                                     <?php } ?>
 
-                                    <li><a href="#"><span class="cret-1" onclick="openNav()"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/menu_icon.png"></span></a></li>
+                                    <li class="bar_icon"><a href="#"><span class="cret-1" onclick="openNav()"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/menu_icon.png"></span></a></li>
                                 </ul>
                                 <div id="mySidenav" class="sidenav">
                                     <button type="button" class="closebtn" onclick="closeNav()">&times;</button>
@@ -145,7 +145,7 @@
                                         <?php if(!($this->session->userdata('id') > 0)){ ?>
                                             <li class="list_desc"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span> Login / Register</a></li>
                                         <?php } ?>
-                                        <li class="list_desc"><a href="#"><span><i class="fa fa-headphones"></i></span> Customer Service</a></li>
+                                        <!--<li class="list_desc"><a href="#"><span><i class="fa fa-headphones"></i></span> Customer Service</a></li>-->
                                         <li><a href="<?php echo base_url();?>home/premiumServices">Premium Services</a></li>
                                         <li><a href="<?php echo base_url();?>home/advanced_search">Advanced Search</a></li>
                                         <li><a href="<?php echo base_url();?>home/top_cities">Top Cities</a></li>
@@ -153,7 +153,7 @@
                                         <li><a href="https://bankeauctions.com/" target="_blank">Bankeauctions.com</a></li>
                                         <li><a href="<?php echo base_url();?>about-us">About Us</a></li>
                                         <li><a href="<?php echo base_url();?>faq">FAQ</a></li>
-                                        <li><a href="<?php echo base_url();?>contact-us">Contact US</a></li>
+                                        <li><a href="<?php echo base_url();?>contact-us">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -211,7 +211,7 @@
                                     <?php }else{ ?>
                                     <li><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span>Login / Register</a></li>
                                     <?php } ?>
-                                    <li><a href="#"><span class="cret-1" onclick="openNav()"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/menu_icon.png"></span></a></li>
+                                    <li class="bar_icon"><a href="#"><span class="cret-1" onclick="openNav()"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/menu_icon.png"></span></a></li>
                                 </ul>
                                 <div id="mySidenav" class="sidenav">
                                     <button type="button" class="closebtn" onclick="closeNav()">&times;</button>
@@ -220,7 +220,7 @@
                                         <?php if(!($this->session->userdata('id') > 0)){ ?>
                                             <li class="list_desc"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span> Login / Register</a></li>
                                         <?php } ?>
-                                        <li class="list_desc"><a href="#"><span><i class="fa fa-headphones"></i></span> Customer Service</a></li>
+                                        <!--<li class="list_desc"><a href="#"><span><i class="fa fa-headphones"></i></span> Customer Service</a></li>-->
                                         <li><a href="<?php echo base_url();?>home/premiumServices">Premium Services</a></li>
                                         <li><a href="<?php echo base_url();?>home/advanced_search">Advanced Search</a></li>
                                         <li><a href="<?php echo base_url();?>home/top_cities">Top Cities</a></li>
@@ -228,7 +228,7 @@
                                         <li><a href="https://bankeauctions.com/" target="_blank">Bankeauctions.com</a></li>
                                         <li><a href="<?php echo base_url();?>about-us">About Us</a></li>
                                         <li><a href="<?php echo base_url();?>faq">FAQ</a></li>
-                                        <li><a href="<?php echo base_url();?>contact-us">Contact US</a></li>
+                                        <li><a href="<?php echo base_url();?>contact-us">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -114,13 +114,22 @@ body{
     text-transform: uppercase;
     font-size: 14px;
 }
+.login ul > li.bar_icon > a {
+	padding-right: 0;
+}
 .login ul > li.login_register > a {
     background-color: #fff;
     color: #000;
     border-radius: 4px;
 }
-.login ul > li > a:hover {
+.login ul > li.login_register > a:hover, .login ul > li.login_register > a:focus, .login ul > li.login_register > a:active {
     text-decoration: none;
+    background-color: #f0f0f0;
+    outline: 0;
+    color: #333333;
+}
+.login ul > li > a {
+	text-decoration: none;
 }
 .login ul > li > a span {
     margin-right: 5px;
@@ -176,6 +185,8 @@ body{
 .login ul li.customer_info ul li a {
     color: #333333;
     padding: 0;
+	text-transform:none;
+	font-size: 12px;
 }
 .login ul li.customer_info ul li a:hover {
     background-color: transparent;
@@ -931,11 +942,19 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     font-family: 'Roboto-Bold';
     color: #333333;
 }
+.container-padding {
+	padding:0;
+}
+.container-padding .row {
+	margin: 0;
+}
+.container-padding .col-sm-12 {
+	padding: 0;
+}
 .adblock {
     text-align: center;
     padding: 17px 0;
     border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
 }
 .ad_row_width .col-sm-12 {
     padding: 0;
@@ -1025,6 +1044,7 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     content: "\f107";
     top: 9px;
     right: 24px;
+	font-size: 18px;
     width: 0;
     height: 0;
 }
@@ -1192,6 +1212,7 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
 .auction_table_box td, .auction_table_box th {
     border: 1px solid #cccccc;
     padding: 13px;
+	vertical-align: top;
 }
 .auction_table_box th {
     font-family: 'Roboto-Bold';
@@ -1375,8 +1396,8 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
 .form_wrap_anction_search .search_btn_section .btn-default .fa-search {
     padding-right: 6px;
 }
-.row .border_right {
-    border-right: 1px solid #cccccc;
+.row .border_left {
+    border-left: 1px solid #cccccc;
 }
 .desc_wrapper {
     margin-top: 30px;
@@ -1471,7 +1492,7 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     width: 30%;
 }
 .adblock_right img {
-    padding: 20px 0 0 30px;
+    padding: 15px 0;
 }
 .premium_section {
     width: 600px;
@@ -1752,9 +1773,20 @@ h3.premium_service span .fa-star {
     background-color: #333333;
 }
 .shortlisted_table .auction_table_box th {
-    border-right: 1px solid #333333;
+    border-right: 0;
 }
-
+.shortlisted_table .auction_table_box th:first-child {
+    border-left: 0;
+}
+.shortlisted_table .auction_table_box th:last-child {
+    border-right: 0;
+}
+.auction_table_box td:first-child {
+	border-left: 1px solid transparent;
+}
+.auction_table_box td:last-child {
+    border-right: 1px solid transparent;
+}
 /*----------------------------User Shortlist Page_end----------------------*/
 
 /*----------------------------View Detail - After Subscription----------------------*/

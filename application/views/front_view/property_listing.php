@@ -9,7 +9,7 @@
 var oTable = null;
     $(document).ready(function () {
         //$("#big_table thead tr th").eq(0).addClass("hidetd");
-
+		  $("#big_table thead tr th").eq(4).css('text-align','right');	
 
             initHomeTable();
 
@@ -141,7 +141,8 @@ var oTable = null;
 
 
                       $('td:eq(5)', nRow).addClass('button-img');
-                      $('td:eq(4)', nRow).html('₹'+aData[4]);
+                      $('td:eq(4)', nRow).html('₹'+aData[4]).css('text-align','right');
+
 
 
                       $('td:eq(5)', nRow).html('<a class="corrigendum_iframe" href="<?php echo base_url(); ?>home/auctionDetail/' + aData[5] + '"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/view_button.png" title="View Auction" class="edit1"></a>'); /* auctionDetailPopup */
@@ -185,17 +186,21 @@ var oTable = null;
 .pagination>li a:focus{border: 0px !important;}
 */
 </style>
-<div class="container container_margin">
-            <div class="row">
-                <div class="col-sm-12">
+<div class="container-fluid container_margin">
+            <div class="row row_bg">
+				<div class="container">
+					<div class="row">
+					<div class="col-sm-12">
                     <div class="breadcrumb_main">
                         <ol class="breadcrumb">
                             <li><a href="<?php echo base_url();?>">Home</a></li>
                             <li class="active"><?php echo ucwords($_GET['search_city']); ?> Auctions</li>
                         </ol>
-                        <h3>Bank Auctions in <?php echo ucwords($_GET['search_city']); ?></h3>
+                        <!-- <h3>Bank Auctions in <?php echo ucwords($_GET['search_city']); ?></h3> -->
                     </div><!--breadcrumb_main-->
                 </div>
+					</div>
+				</div>
             </div><!--row-->
         </div><!--container-->
 <div class="container">
@@ -248,7 +253,7 @@ var oTable = null;
         </div>
     </div>
 </div>
-            <div class="container-fluid">
+            <div class="container-fluid container-padding">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="adblock">
@@ -259,7 +264,7 @@ var oTable = null;
         </div><!--container-fluid-->
         <div class="container">
             <div class="row bank_auction_row">
-                <div class="col-sm-9 border_right">
+                <div class="col-sm-10">
                     <div class="desc_wrapper">
                         <div class="row">
                             <div class="col-sm-9">
@@ -313,7 +318,7 @@ var oTable = null;
                     </div>
 
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2  border_left">
                     <div class="adblock_right">
                     <img src="<?php echo base_url(); ?>assets/auctiononclick/images/ad_space_other.png">
                     </div><!--adblock-->
