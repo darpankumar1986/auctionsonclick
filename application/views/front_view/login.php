@@ -204,7 +204,7 @@
                                             <input type="hidden" name="auctionID" value="<?php echo $auctionID; ?>">
                                            <input type="password" class="keysubmit floating-input" name="password" id="password" placeholder=" ">
                                            <label class="custom_label">Password</label>
-                                           <span toggle="#password" class="fa eye_icon toggle-password fa-eye"></span>
+                                           <span toggle="#password" class="eye_icon toggle-password fa-eye-slash fa"></span>
                                        </div>
                                    </div>
                                    <div class="checkbox">
@@ -213,7 +213,7 @@
                                    </div>
                                    <button type="submit" class="btn btn-default login_btn" name="submit1">Login</button>
 
-                                   <div class="success_msg error1" style="padding-left:15px;color: #000 !important;background-color:#f78d8d; clear:both;width: 100%;clear: both; margin-bottom: 20px;">
+                                   <div class="success_msg error1" style="padding-left:15px;color: #ffffff !important;background-color:#e71c28; clear:both;width: 100%;clear: both; margin-bottom: 20px;">
                                         <?php echo $this->session->flashdata('error_msg'); ?>
                                     </div>
                                </form>

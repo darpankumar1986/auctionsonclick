@@ -115,7 +115,7 @@ body{
     font-size: 14px;
 }
 .login ul > li.bar_icon > a {
-	padding-right: 0;
+    padding-right: 0;
 }
 .login ul > li.login_register > a {
     background-color: #fff;
@@ -129,7 +129,7 @@ body{
     color: #333333;
 }
 .login ul > li > a {
-	text-decoration: none;
+    text-decoration: none;
 }
 .login ul > li > a span {
     margin-right: 5px;
@@ -185,8 +185,8 @@ body{
 .login ul li.customer_info ul li a {
     color: #333333;
     padding: 0;
-	text-transform:none;
-	font-size: 12px;
+    text-transform:none;
+    font-size: 12px;
 }
 .login ul li.customer_info ul li a:hover {
     background-color: transparent;
@@ -638,7 +638,20 @@ h3.auction_heading {
     font-size: 18px;
     vertical-align: middle;
 }
-
+.swal2-modal .swal2-styled {
+    background-color: #0078db !important;
+    color: #ffffff;
+    border: 0;
+    font-family: 'Roboto-Bold';
+    padding: 10px 52px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+.swal2-modal .swal2-styled:hover, .swal2-modal .swal2-styled:focus {
+    background-color: #005ca8 !important;
+    outline: 0;
+    box-shadow: none;
+}
 /*----------------------------Login-page---------------------------------------*/
 
 .auction-main-wrapper .position-fix {
@@ -818,8 +831,11 @@ input::-ms-clear, input::-ms-reveal {
     cursor: pointer;
     color: #cccccc;
 }
-.floating-label span.eye_icon.fa-eye-slash {
+.floating-label span.eye_icon.fa-eye {
     color: #333333;
+}
+.fa-eye:before {
+    content: "\f06e" !important;
 }
 .custom_form .floating-textarea {
     height: 165px;
@@ -854,11 +870,6 @@ button.login_btn {
     margin-top: 15px;
 }
 button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.login_btn:active:focus {
-    background-color: #005ca8;
-    color: #ffffff;
-    outline: 0;
-}
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default:active:hover {
     background-color: #005ca8;
     color: #ffffff;
     outline: 0;
@@ -943,13 +954,13 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     color: #333333;
 }
 .container-padding {
-	padding:0;
+    padding:0;
 }
 .container-padding .row {
-	margin: 0;
+    margin: 0;
 }
 .container-padding .col-sm-12 {
-	padding: 0;
+    padding: 0;
 }
 .adblock {
     text-align: center;
@@ -1044,7 +1055,7 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     content: "\f107";
     top: 9px;
     right: 24px;
-	font-size: 18px;
+    font-size: 18px;
     width: 0;
     height: 0;
 }
@@ -1212,7 +1223,7 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
 .auction_table_box td, .auction_table_box th {
     border: 1px solid #cccccc;
     padding: 13px;
-	vertical-align: top;
+    vertical-align: top;
 }
 .auction_table_box th {
     font-family: 'Roboto-Bold';
@@ -1476,8 +1487,9 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     color: #fff;
     border: 0;
 }
-.shortlist_desc .desc_shortlist_button .shortlist_list:hover {
+.shortlist_desc .desc_shortlist_button .shortlist_list:hover, .shortlist_desc .desc_shortlist_button .shortlist_list:focus  {
     background-color: #005ca8;
+    outline: 0;
 }
 .shortlist_desc .desc_shortlist_button .shortlist_list .fa-star {
     padding-right: 5px;
@@ -1517,6 +1529,12 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     margin-bottom: 20px;
     text-transform: uppercase;
 }
+.premium_section_inner > .btn-default:hover, .premium_section_inner > .btn-default:active, .premium_section_inner > .btn-default:focus {
+    background-color: #3eb13f;
+    color: #ffffff;
+    outline: 0;
+    box-shadow: none;
+}
 .premium_section_inner .login_register_section li {
     display: inline-block;
 }
@@ -1534,7 +1552,11 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     text-transform: uppercase;
     padding: 8px 24px;
 }
-
+.premium_section_inner .login_register_section li button:hover, .premium_section_inner .login_register_section li button:focus {
+    background-color: #f39d07;
+    color: #333333;
+    outline: 0;
+}
 /*----------------------------View Detail - Before Login & Subscription_end------------------------*/
 
 /*----------------------------View Detail - After Login Before Subscription------------------------*/
@@ -1782,7 +1804,7 @@ h3.premium_service span .fa-star {
     border-right: 0;
 }
 .auction_table_box td:first-child {
-	border-left: 1px solid transparent;
+    border-left: 1px solid transparent;
 }
 .auction_table_box td:last-child {
     border-right: 1px solid transparent;
@@ -1897,9 +1919,28 @@ input.hasDatepicker {
 .custom_search_form .dropdown-menu li.dropdown-header {
     padding: 4px 20px;
 }
+/*
 .custom_search_form .floating-input, .floating-select {
     border-radius: 0
 }
+*/
+.floating-select option {
+    font-family: 'Roboto-Regular';
+    font-size: 13px;
+    color: #666666;
+    padding: 7px 16px;
+    cursor: pointer;
+    user-select: none;
+}
+/*
+.floating-select option:hover {
+    background-color: #f0f0f0;
+}
+.floating-select option:checked, .floating-select option:hover {
+    color: #333333;
+    background: #f0f0f0 repeat url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2P48OHDfwAJdAPQc75m7AAAAABJRU5ErkJggg==);
+}
+*/
 .advanced_search_btn {
     text-align: center;
     margin-top: 15px;

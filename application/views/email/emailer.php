@@ -141,7 +141,7 @@
                                                 <td width="8%">&nbsp;</td>
                                                 <td align="center" bgcolor="#0078db" style="border:none;-webkit-border-radius: 5px; -moz-border-radius: 5px;border-radius:4px;cursor:auto;padding:11px 20px;background:#0078db;" valign="middle">
                                                     <a href="<?php echo base_url(); ?>propertylisting?search_city=<?php echo $city_name; ?>&parent_id=" style="color:#ffffff !important;font-family:sans-serif;font-size:13px;font-weight:600;line-height:120%;Margin:0;text-decoration:none;text-transform:none;" target="_blank">
-                                                        View more Auction
+                                                        View more Auctions
                                                     </a>
                                                 </td>
                                             </tr>
