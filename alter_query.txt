@@ -419,3 +419,16 @@ CREATE TABLE `tbl_member_remember` (
 
 ALTER TABLE `tbl_user_registration` CHANGE `drt_id` `is_unsubscribe` TINYINT(1) NULL DEFAULT '0';
 ALTER TABLE `tbl_log_user_registration` CHANGE `drt_id` `is_unsubscribe` TINYINT(1) NULL DEFAULT '0';
+
+
+------------------Dheeraj---------------------------
+
+ALTER TABLE `tbl_auction`
+CHANGE `reserve_price` `reserve_price` decimal(27,0) NULL AFTER `subcategory_id`;
+ALTER TABLE `tbl_auction`
+CHANGE `emd_amt` `emd_amt` decimal(23,0) NULL AFTER `borrower_name`;
+
+ALTER TABLE `tbl_log_auction`
+CHANGE `reserve_price` `reserve_price` decimal(27,0) NULL AFTER `subcategory_id`;
+ALTER TABLE `tbl_log_auction`
+CHANGE `emd_amt` `emd_amt` decimal(23,0) NULL AFTER `borrower_name`;

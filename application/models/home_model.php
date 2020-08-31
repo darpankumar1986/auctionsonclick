@@ -301,8 +301,8 @@ class Home_model extends CI_Model {
 	function advancedSearchDatatable($bankIdbyshortname='')
     {           		
 		
-			$_POST['sColumns'] = "bank.name,a.PropertyDescription,c.name,city.city_name,a.bid_last_date,a.reserve_price,a.id";
-               $this->datatables->select("bank.name,a.PropertyDescription,city.city_name,a.bid_last_date,a.reserve_price,a.id as listID",false)
+			$_POST['sColumns'] = "bank.name,a.PropertyDescription,c.name,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y')as emd_date,a.reserve_price,a.id";
+               $this->datatables->select("bank.name,a.PropertyDescription,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y')as emd_date,a.reserve_price,a.id as listID",false)
                 ->from('tbl_auction as a')				
 				->join('tbl_category as c','c.id=a.subcategory_id','left')
 				->join('tbl_city as city','city.id=a.city','left')
@@ -311,17 +311,17 @@ class Home_model extends CI_Model {
                 ->where('bid_last_date >= NOW()');
 
 				/************Sorting Start*********/
-				if($_GET['dataSortValue']==1)
-				{
-					$this->db->order_by('a.bid_last_date','DESC');
-				}
 				if($_GET['dataSortValue']==2)
 				{	
 					$this->db->order_by('a.reserve_price','DESC');
 				}
-				if($_GET['dataSortValue']==3)
+				else if($_GET['dataSortValue']==3)
 				{	
 					$this->db->order_by('a.reserve_price','ASC');
+				}
+				else
+				{
+					$this->db->order_by('a.indate','DESC');
 				}
 				/************Sorting End*********/
 
@@ -411,7 +411,7 @@ class Home_model extends CI_Model {
 				->join('tbl_bank as bank','bank.id=a.bank_id','left')
                 ->where('a.status IN(1)')
                 ->where('bid_last_date >= NOW()');
-                  $this->db->order_by('a.bid_last_date','ASC');
+                $this->db->order_by('a.bid_last_date','ASC');
 
 				  if($_GET['search_city'] != '')
 				  {
