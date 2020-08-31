@@ -6,7 +6,7 @@
 <script type="text/javascript" src="<?php echo base_url();?>application/views/admin/js/plugins/jquery.uniform.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>application/views/admin/js/plugins/jquery.validate.min.js"></script>
 <style>
-.success_msg{width: 96%;float: left;color: #157D0B !important;font-size: 13px; background:#ccebc9;  border-left: solid 1px #bbb; border-right: solid 1px #bbb; text-align:left;font-weight: bold;	padding: 0 1% 0 3%;background-position: 4px 6px; line-height:30px;}
+    .success_msg{color: #157D0B !important;font-size: 18px; background:#ccebc9;font-weight: normal;  text-align:center;padding: 10px 0;margin: 0 11px;background-position: 4px 6px;border: 0;}
 
 .error2{color:#000; font-size:12px; font-weight:bold; width:96%; float:left; background:#f78d8d; padding:5px 2%; }
 </style>
