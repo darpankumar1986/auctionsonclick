@@ -1258,6 +1258,9 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
 .auction_table {
     margin-top: 20px;
 }
+.auction_table .select_margin {
+    margin-left: 19px;
+}
 .pagination_main {
     text-align: right;
 }
@@ -1401,8 +1404,13 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     color: #fff;
     border-radius: 0 !important;
 }
-.form_wrap_anction_search .search_btn_section .btn-default:hover {
-    background-color: #005ca8 !important;
+.form_wrap_anction_search .search_btn_section .btn-default:hover, .form_wrap_anction_search .search_btn_section .btn-default:focus, .form_wrap_anction_search .search_btn_section .btn-default:active:hover, {
+    background-color: #333333 !important;
+    outline: 0 !important;
+    box-shadow: none;
+}
+.form_wrap_anction_search .search_btn_section .btn:focus {
+    outline: 0;
 }
 .form_wrap_anction_search .search_btn_section .btn-default .fa-search {
     padding-right: 6px;
@@ -1957,14 +1965,18 @@ input.hasDatepicker {
     background-color: #0078db;
     margin-right: 8px;
 }
-.advanced_search_btn .search_btn_new:hover {
+.advanced_search_btn .search_btn_new:hover, .advanced_search_btn .search_btn_new:focus {
     background-color: #005ca8;
+    outline: 0;
+    border: none;
 }
 .advanced_search_btn .clear_btn_new {
     background-color: #666666;
 }
-.advanced_search_btn .clear_btn_new:hover {
+.advanced_search_btn .clear_btn_new:hover, .advanced_search_btn .clear_btn_new:focus {
     background-color: #565656;
+    outline: 0;
+    border: none;
 }
 /*----------------------------Advanced Search_end-------------------------------------------*/
 
@@ -2784,7 +2796,7 @@ h3.subscription_plan {
     text-decoration: none;
 }
 .thankyou_wrap .search_btn_section .btn-default {
-    background-color: #fba510 !important;
+    background-color: #005ca8 !important;
 }
 .thankyou_wrap .search_btn_section {
     flex: 0 0 19%;

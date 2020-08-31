@@ -84,9 +84,9 @@
                    <p>Plot Number 301, 1st Floor, Udyog Vihar,<br/>Phase - II, Gurgaon - 122015,<br/>Haryana, India</p>
                </div>
                 <div class="sales_enquery_section">
-                    <h4>Sales Enquiry</h4>
+<!--                    <h4>Sales Enquiry</h4>-->
                     <p><span class="contact_us_icons"><img src="<?php echo base_url();?>assets/auctiononclick/images/phone.png"></span>Mobile Number: +91- 7291981129</p>
-                    <p class="enquiry"><span class="contact_us_icons"><img src="<?php echo base_url();?>assets/auctiononclick/images/mail.png"></span>Email ID: <a href="mailto:enquiry@auctionsonclick.com">enquiry@auctionsonclick.com</a></p>
+                    <p class="enquiry"><span class="contact_us_icons"><img src="<?php echo base_url();?>assets/auctiononclick/images/mail.png"></span>Email ID: <a href="mailto:support@auctiononclick.com">support@auctiononclick.com</a></p>
                 </div>
             </div>
         </div>
