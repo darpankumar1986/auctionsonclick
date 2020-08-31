@@ -1331,8 +1331,8 @@ class Registration extends WS_Controller {
 						
 					$res = $this->registration_model->save_step_first();
 
-					$this->session->set_flashdata('msg','Registration done Successfully !<br>');	
-					redirect("/registration/signup");
+					$this->session->set_flashdata('msg_reg','Registration done Successfully !<br>');	
+					redirect("/");
 							
 							
 				} else {

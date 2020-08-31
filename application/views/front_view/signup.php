@@ -115,12 +115,12 @@
                                            <button type="button" class="btn verify_btn verify_btn3 mobile_resend">Resend in 30</button>
                                            <button type="button" class="btn verify_btn mobile_verified" style="background-color: green;">Verified</button>
                                            <span  class="field-signupform-mobile_number help-block-error error2"></span>
-                                           <p class="error_desc">OTP verification will be sent to this mobile number</p>
+                                           <p class="error_desc mobile_text">OTP verification will be sent to this mobile number</p>
 
                                        </div>
                                        <div class="floating-label mobileVerficationCode">
                                            <input class="floating-input floating-float" type="text" name="mobile_verification_code" id="mobile_verification_code" placeholder=" ">
-                                           <label class="custom_label">XXXXXX</label>
+                                           <label class="custom_label"></label>
                                            <button type="button" class="btn verify_btn verify_btn2 mobile_verification_button">Verify</button>
                                            <span  class="field-signupform-mobile_verification_button help-block-error error2"></span>
                                            <p class="error_desc">Enter OTP sent to your mobile number</p>
@@ -133,13 +133,13 @@
                                            <button type="button" class="btn verify_btn verify_btn3 email_resend">Resend in 30</button>
                                            <button type="button" class="btn verify_btn email_verified" style="background-color: green;">Verified</button>
                                            <span  class="field-signupform-email help-block-error error2" ></span>
-                                           <p class="error_desc">Your account verification code will be sent to this email ID</p>
+                                           <p class="error_desc email_text">Your account verification code will be sent to this email ID</p>
 
                                        </div>
 
                                        <div class="floating-label emailVerficationCode">
                                            <input class="floating-input floating-float" type="text" name="email_verification_code" id="email_verification_code" placeholder=" ">
-                                           <label class="custom_label">XXXXXX</label>
+                                           <label class="custom_label"></label>
                                            <button type="button" class="btn verify_btn verify_btn2 email_verification_button">Verify</button>
                                            <span  class="field-signupform-email_verification_button help-block-error error2"></span>
                                            <p class="error_desc">Enter verification code sent to your email ID</p>
@@ -526,6 +526,7 @@ $('.alphanumericemail').bind('keypress', function (event) {
                                     $(".mobile_send_code").hide();
                                     $(".mobile_resend").hide();
                                     $(".mobile_verified").show();
+									$(".mobile_text").hide();
 
                                     isMobileVerified = true;
                                }
@@ -614,6 +615,7 @@ $('.alphanumericemail').bind('keypress', function (event) {
                                     $(".email_send_code").hide();
                                     $(".email_resend").hide();
                                     $(".email_verified").show();
+									$(".email_text").hide();
 
                                     isEmailVerified = true;
                                }

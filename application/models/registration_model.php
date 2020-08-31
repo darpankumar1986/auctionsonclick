@@ -402,6 +402,23 @@ class Registration_model extends CI_Model {
 				//$this->session->set_userdata('id', $insert_id);			
 				//$this->session->set_userdata('full_name', $first_name.' '.$last_name);	
 				//$this->session->set_userdata('user_type', $register_as);
+
+				/* login after registration */
+					$this->db->where('id', $insert_id);
+					$row_query = $this->db->get('tbl_user_registration');
+					$row = $row_query->result();
+
+					$this->session->set_userdata('id', $row[0]->id);
+					$this->session->set_userdata('full_name', $row[0]->first_name);	
+					$this->session->set_userdata('user_type', trim($row[0]->user_type));
+					$rand = rand(10000000000,99999999999);
+					$this->session->set_userdata('session_id_user',$rand);
+					$this->session->set_userdata('table_session', 'registration_tb');
+
+					$setarray=array('user_sess_val'=> $rand);
+					$this->db->where('id',$row[0]->id);
+					$this->db->update('tbl_user_registration',$setarray);
+				/* end login after registration */
 			}
 			
 			return $insert_id;

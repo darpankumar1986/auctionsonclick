@@ -1831,9 +1831,16 @@ function backendCorrigendumSendMail($auctionID,$pModified_date=null)
 					
 					$ch = curl_init();
 					
-					curl_setopt($ch, CURLOPT_URL, $url);
+					/*curl_setopt($ch, CURLOPT_URL, $url);
 					curl_setopt($ch, CURLOPT_POST, 0);
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);*/
+
+					curl_setopt($ch, CURLOPT_URL, $url);
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+					curl_setopt($ch, CURLOPT_POST, 0);
+					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0); // change to 1 to verify cert
+					curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
 
 					$return = curl_exec($ch);
 					curl_close ($ch);
