@@ -149,7 +149,7 @@ function goAdvancedSearch(str)
 	var auction_end_date = $("#auction_end_date").val().trim();
 	var reservePriceMaxRange = $("#reservePriceMaxRange").val().trim();
 	var reservePriceMinRange = $("#reservePriceMinRange").val().trim();
-	var parent_id = $('.dropdown-header input[name=parent_id]:checked').val();
+	var parent_id = $('.dropdown-header input[name=parentCat]:checked').val();
 	if(typeof(parent_id) == 'undefined')
 	{
 		parent_id ='';
@@ -167,7 +167,7 @@ function goAdvancedSearch(str)
     {
         
         var sub_id_str = '';
-        $("input[name=sub_id]:checked").each(function(){
+        $("input[name=s_sub_id]:checked").each(function(){
             var sub_id = $(this).val();
             sub_id_str += '&sc[]='+sub_id;
         });
@@ -322,7 +322,7 @@ $(document).ready(function(){
 			}
 		});
 
-
+		
 		$('.dropdown ul').on('click', function (e) {
 			 e.stopPropagation();
 			 setTimeout(function(){
@@ -335,6 +335,10 @@ function setCategoryTitle()
 	var icon = '<span class="caret"></span>';
 	var parCat = $("input[name='parentCat']:checked").parent().find('label').html();
 	var parCatVal = $("input[name='parentCat']:checked").val();
+	if(typeof(parCat)=='undefined')
+	{
+		parCat = 'Category';
+	}
 	$("#category_text_button").html(parCat+icon);
 
 	var checkboxlength = $("input[name='s_sub_id']:checked").length;
@@ -344,6 +348,7 @@ function setCategoryTitle()
 		if(checkboxlength == 1)
 		{
 			var subCatText = $("input[name='s_sub_id']:checked").attr('data-text');
+			console.log(subCatText);
 			$("#category_text_button").html(subCatText+icon);
 		}
 		else if(parCatVal == 1)
