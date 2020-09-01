@@ -537,7 +537,7 @@ $(document).ready(function(){
                         </div>
                         <?php if($package_id > 3 ){ ?>
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12 current_left"><!-- current_left,current_center,current_right -->
                                 <div class="state_chosen_wrapper">
                                    <div class="hide_list">
                                        <p class="add_more_state">Add more states <span><i class="fa fa-angle-down"></i></span>
@@ -595,8 +595,8 @@ $(document).ready(function(){
                 <div class="row statewise_text" style="display: none;">
                     <div class="col-sm-12">
                         <div class="Active_membership">
-                            <p>Your current membership is for <?php echo $package[0]->sub_month;?> months, you have added<span id="add_state_count"></span>new states to your existing subscription.</p>
-                            <p><span>Amount paid for <?php echo $package[0]->sub_month;?> months: ₹<?php echo $package_amount; ?>.00</span> | <span>Days consumed: <?php echo $consumed_day; ?> days</span> | <span>New renewal date: <?php echo date('F dS, Y',strtotime($package_end_date) + 86400); ?></span></p>
+                            <p>Your current membership is for <?php echo $package[0]->sub_month;?> months, you have added <span id="add_state_count" style="padding:0;">2</span> new states to your existing subscription.</p>
+                            <p><span>Chosen States: <span style="padding:0;">Tamilnadu,udisa</span></span> | <span>Charges: ₹<span style="padding:0;">200</span>/state</span></p>
                             <p class="amount_due">Amount due : ₹<span id="due_cost_state">2500</span> </p>
                             <button type="button" class="btn search_btn_new pay_now add_state">Pay Now</button>
                         </div>
