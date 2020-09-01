@@ -2661,6 +2661,12 @@ h3.subscription_plan {
 .pan_state_tab .current_plan .subscription_box {
     background-color: #f3f3f3;
 }
+/*
+#State_Wise .col-sm-4 {
+    display: grid;
+    grid-auto-flow: row;
+}
+*/
 .pan_state_tab .current_plan p {
     color: #666666;
     text-align: center;
@@ -3159,7 +3165,18 @@ h3.subscription_plan {
     margin-bottom: 25px;
     line-height: 24px;
 }
-
+.privacy_policy .privacy_policy_inner ul li {
+    display: block;
+    text-align: left;
+    padding-left: 30px;
+    margin-top: 10px;
+    background-image: url(../images/correct_icon.png);
+    background-repeat: no-repeat;
+    background-position: 0 4px;
+}
+.privacy_policy .privacy_policy_inner ul {
+    margin-bottom: 10px;
+}
 /*-----------------------------privacy_policy_end--------------------------------------*/
 
 /*-----------------------------sitemap-------------------------------------------------*/

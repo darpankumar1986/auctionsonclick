@@ -202,7 +202,13 @@ $('.cancel_subscription button').on('click', function(){
 /*-----------------------upgrade subscription equal hdight div--------*/
 
 
-
-
-
+//
+//$(document).ready(function() {
+//
+//    var maxHeight = 0;
+//
+//    $('#State_Wise .subscription_box').each(function() {
+//        maxHeight = $(this).height() > maxHeight ? $(this).height() : maxHeight;
+//    }).height(maxHeight);
+//});
 /*-----------------------upgrade subscription equal hdight div_end--------*/
