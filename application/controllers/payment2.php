@@ -260,10 +260,15 @@ class Payment2 extends WS_Controller
 							if($package_type == 2 && strtotime($row->package_end_date) > time())
 							{
 								$remarks = "Renew after expired - Add Package";
+								$package->package_amount = $paid_amount;
 							}
 							else if($package_type == 1)
 							{
 								$remarks = "Upgrade - Add Package";
+							}
+							else
+							{
+								$package->package_amount = $paid_amount;
 							}
 
 						}
