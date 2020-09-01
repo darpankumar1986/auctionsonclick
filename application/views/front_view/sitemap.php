@@ -4,7 +4,7 @@
                 <div class="col-sm-12">
                     <div class="breadcrumb_main">
                         <ol class="breadcrumb">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="<?php echo base_url();?>">Home</a></li>
                             <li class="active">Sitemap</li>
                         </ol>
 <!--                        <h3>Bank Auctions in Amritsar</h3>-->
