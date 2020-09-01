@@ -1274,14 +1274,16 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     font-size: 13px;
 }
 .pagination_main .pagination>li>a:focus, .pagination_main .pagination>li>a:hover, .pagination_main .pagination>li>span:focus, .pagination_main .pagination>li>span:hover {
-    background-color: #0078db;
+    background-color: #005ca8;
     color: #ffffff;
     border-radius: 4px;
+    outline: 0;
 }
 .pagination_main .pagination>.active>a, .pagination_main .pagination>.active>a:focus, .pagination_main .pagination>.active>a:hover, .pagination_main .pagination>.active>span, .pagination_main .pagination>.active>span:focus, .pagination_main .pagination>.active>span:hover {
     background-color: #0078db;
     color: #ffffff;
     border-radius: 4px;
+    outline: 0;
 }
 .top-pagination {
     float: right;
@@ -2452,9 +2454,12 @@ h3.non_subscribe_profile {
     color: #333333;
     margin-top: 0;
 }
-.state_chosen_wrapper {
-    padding-left: 10%;
+/*
+.current_left .state_chosen_wrapper {
+    width: 333px;
+    text-align: center;
 }
+*/
 .hide_list p.add_more_state {
     color: #0078db;
     margin-bottom: 0;

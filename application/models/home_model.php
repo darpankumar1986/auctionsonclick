@@ -1095,6 +1095,16 @@ class Home_model extends CI_Model {
 			$query = $this->db->get("tbl_user_registration");
 			$bidder = $query->row();
 
+			if($package_id > 2)
+			{
+				$perStatePrize = $package->city_per_cost;
+				$totalCity = count($_GET['state']);
+				$extraCity = $totalCity - 2;
+
+				$package->package_amount = $package->package_amount + ($extraCity*$perStatePrize);
+
+			}
+
 			if($package_type == 1 && $_GET['due_cost'] > 0) // upgrade
 			{
 				$package->package_amount = $_GET['due_cost'];
@@ -1269,6 +1279,11 @@ class Home_model extends CI_Model {
 			}
 		
 		}
+	}
+
+	function standardDateFormat($dateTime)
+	{
+		return date('F d',strtotime($dateTime)).'<sup>'.date('S',strtotime($dateTime)).'</sup>, '.date('Y',strtotime($dateTime));
 	}
 }
 
