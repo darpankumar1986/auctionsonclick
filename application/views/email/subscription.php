@@ -101,7 +101,7 @@
                                         <tbody>
                                             <tr>
                                                 <td style="font-size: 13px;padding: 13px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;"><?php echo $order; ?></td>
-                                                <td style="font-size: 13px;padding: 13px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;"><?php echo date('F dS, Y',strtotime($order_date)); ?></td>
+                                                <td style="font-size: 13px;padding: 13px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;"><?php echo $this->home_model->standardDateFormat($order_date); ?></td>
                                                 <td style="font-size: 13px;padding: 13px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;"><?php echo date('H:i:s',strtotime($order_date)); ?></td>
                                             </tr>
                                         </tbody>
