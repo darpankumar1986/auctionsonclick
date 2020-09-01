@@ -209,6 +209,11 @@ class Payment2 extends WS_Controller
 							$this->db->where('subscription_participate_id', $row->subscription_participate_id);
 							$this->db->update("tbl_subscription_participate_city",array('sub_end_date'=>date('Y-m-d H:i:00')));
 
+							if($package_id > 2 && count($stateArr) > 2)
+							{
+								$package->package_amount += (count($stateArr) - 2) * $package->city_per_cost;
+							}
+
 							/* credit amount */
 							$log_data = array(
 								'subscription_participate_id'=>$row->subscription_participate_id,
