@@ -335,6 +335,10 @@ function setCategoryTitle()
 	var icon = '<span class="caret"></span>';
 	var parCat = $("input[name='parentCat']:checked").parent().find('label').html();
 	var parCatVal = $("input[name='parentCat']:checked").val();
+	if(typeof(parCat)=='undefined')
+	{
+		parCat = 'Category';
+	}
 	$("#category_text_button").html(parCat+icon);
 
 	var checkboxlength = $("input[name='s_sub_id']:checked").length;

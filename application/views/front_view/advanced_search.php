@@ -90,7 +90,9 @@ else
 
 var oTable = null;
     $(document).ready(function () {
-		setCategoryTitle();
+		setTimeout(function(){
+				 setCategoryTitle();
+			 },10);
         //$("#big_table thead tr th").eq(0).addClass("hidetd");
         $("#big_table thead tr th").eq(4).css('text-align','right');
 			
