@@ -490,6 +490,7 @@ body{
     cursor: pointer;
     line-height: 14px;
     display: inline-block;
+    font-size: 13px;
     color: #333333;
 }
 .dropdown-header [type="radio"]:checked + label:before,
@@ -741,6 +742,7 @@ h3.auction_heading {
     font-size:14px;
     padding: 4px 40px 4px 14px;
     display:block;
+    color: #333333;
     width:100%;
     height:55px;
     background-color: transparent;
@@ -1579,6 +1581,8 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     border: 0;
     color: #fff;
     text-transform: uppercase;
+    min-width: 190px;
+    text-align: left;
 }
 .login ul li.user_info .btn-default.active.focus, .login ul li.user_info .btn-default.active:focus, .login ul li.user_info .btn-default.active:hover, .login ul li.user_info .btn-default:active.focus, .login ul li.user_info .btn-default:active:focus, .login ul li.user_info .btn-default:active:hover, .login ul li.user_info .open>.dropdown-toggle.btn-default.focus, .login ul li.user_info .open>.dropdown-toggle.btn-default:focus, .login ul li.user_info .open>.dropdown-toggle.btn-default:hover {
     background-color: white;
@@ -1851,9 +1855,10 @@ h3.premium_service span .fa-star {
 /*----------------------------View Detail - After Subscription_end----------------------*/
 
 /*----------------------------Advanced Search-------------------------------------------*/
-input.hasDatepicker {
+input#auction_start_date, input#auction_end_date {
     background-image: url(../images/calendar.png) !important;
     background-position: 97% 15px !important;
+    background-repeat: no-repeat;
 }
 .ui-widget.ui-widget-content {
     border: 1px solid #cccccc;
@@ -1911,6 +1916,9 @@ input.hasDatepicker {
 }
 .custom_search_form .dropdown-menu li {
     padding: 0 40px;
+}
+.custom_search_form .dropdown-menu li .checkbox-inline {
+    font-size: 13px;
 }
 .custom_search_form .dropdown-menu li.dropdown-header {
     padding: 4px 20px;
@@ -2238,7 +2246,7 @@ h3.user_profile {
     color: #fff;
 }
 .premium_member p {
-	background-color: #4ea94f;
+    background-color: #4ea94f;
 }
 h3.non_subscribe_profile {
     margin-top: 25px;
@@ -2375,12 +2383,15 @@ h3.non_subscribe_profile {
     background-color: #333333;
     color: #fff;
     padding: 8px 21px;
+    border: 0;
 }
-.cancel_subscription .btn:hover, .cancel_subscription .btn:focus, .cancel_subscription .btn:active, .cancel_subscription .btn:visited {
-    background-color: #439b44;
+.cancel_subscription .btn:hover, .cancel_subscription .btn:focus {
+/*    background-color: #439b44;*/
     outline: 0;
 }
-
+.cancel_subscription .selected {
+    background-color: #439b44;
+}
 /*----------------------------Manage Subscription - Plan Change - Auto Renewal_end------------------------------*/
 /*----------------------------Manage Subscription - State Wise - Manual Renewal----------------------------------*/
 .subscription_table .plan_desc .subscribe_address {
@@ -2413,7 +2424,7 @@ h3.non_subscribe_profile {
     font-size: 24px;
 }
 .state_wise_tab .subscription_box .checklist_state {
-    margin-bottom: 75px;
+    margin-bottom: 65px;
 }
 .state_chosen h4 {
     font-size: 14px;
@@ -2691,7 +2702,7 @@ h3.subscription_plan {
     margin-top: 10px;
 }
 .subscription_box .sub_price > div {
-    line-height: 45px;
+    line-height: normal;
 }
 .pan_state_tab .nav-tabs {
     border-color: #0078db;
@@ -2888,6 +2899,9 @@ h3.subscription_plan {
 }
 .cancel_subscription {
     margin-top: 20px;
+
+}
+.manageSubmargin {
     margin-bottom: 70px;
 }
 .subscription_warning {

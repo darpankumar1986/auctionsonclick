@@ -3,24 +3,24 @@ $bidderID = (int)$this->session->userdata('id');
 $free_sub_flag = 0;
 if($bidderID > 0)
 {
-	$isPremiumMember = $this->home_model->getTotalActivePackage($bidderID);
-	$indate =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "indate");
-	$free_sub_expire_date = date('Y-m-d H:i:s',strtotime(FREE_SUBSCRIPTION_TIME,strtotime($indate)));
-	$free_sub_expire_date_str = strtotime($free_sub_expire_date);
-	
-	if(time() < $free_sub_expire_date_str)
-	{
-		$free_sub_flag = 1;
-	}
+    $isPremiumMember = $this->home_model->getTotalActivePackage($bidderID);
+    $indate =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "indate");
+    $free_sub_expire_date = date('Y-m-d H:i:s',strtotime(FREE_SUBSCRIPTION_TIME,strtotime($indate)));
+    $free_sub_expire_date_str = strtotime($free_sub_expire_date);
+
+    if(time() < $free_sub_expire_date_str)
+    {
+        $free_sub_flag = 1;
+    }
 
 }
 if($isPremiumMember || $free_sub_flag == 1)
 {
-	$disabled = '';
+    $disabled = '';
 }
 else
 {
-	$disabled = 'disabled';
+    $disabled = 'disabled';
 }
 
     if(isset($_GET['search']) and !empty($_GET['search']))
@@ -374,7 +374,7 @@ var oTable = null;
                 <div class="floating-form">
                     <div class="floating-label">
                        <div class="dropdown">
-                                   <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Category
+                           <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="category_text_button">Category
                                        <span class="caret"></span></button>
                                    <ul class="dropdown-menu">
                                        <?php $parentCat = $this->home_model->getAllCategory(0); ?>
@@ -468,7 +468,7 @@ var oTable = null;
 <?php } ?>
 <script>
     $(document).ready(function(){
-		/*
+        /*
           $('#auction_start_date').datepicker({
             controlType: 'select',
             oneLine: true,
@@ -487,9 +487,9 @@ var oTable = null;
             yearRange: '2018:<?php echo date('Y');?>',
             //timeFormat: 'HH:mm:00'
         });
-		*/
+        */
 
-		  $('#auction_start_date').datepicker({
+          $('#auction_start_date').datepicker({
             format: 'yyyy-mm-dd',
             autoHide: true
             //startDate: minAuctionDate,

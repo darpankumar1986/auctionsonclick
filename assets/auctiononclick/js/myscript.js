@@ -190,9 +190,17 @@ $(document).ready(function () {
     });
 });
 
-
 /*------------------------input_onchange_event_end------------------------------------*/
 
+/*-----------------------upgrade subscription button_end--------*/
+$('.cancel_subscription button').on('click', function(){
+    $(this).toggleClass('selected');
+});
+
+
+/*-----------------------upgrade subscription button_end--------*/
+
+/*-----------------------upgrade subscription equal hdight div--------*/
 
 
 
@@ -200,4 +208,4 @@ $(document).ready(function () {
 
 
 
-
+/*-----------------------upgrade subscription equal hdight div_end--------*/

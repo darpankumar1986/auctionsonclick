@@ -602,16 +602,20 @@ $(document).ready(function(){
                         </div>
                     </div>
                 </div>
-                <div class="extra_bottom_space"></div>
+
             </div>
 
         </div>
     </div>
-
+<div class="row">
+    <div class="col-sm-12">
+        <div class="manageSubmargin"></div>
+    </div>
+</div>
 </div><!--container-->
 <style>
     .pan_subscription_tab{margin-bottom: 0px;}
-    .extra_bottom_space{margin-bottom: 80px;}
+
 </style>
 <?php }else{ ?>
     <div class="fail_msg" style="width: 100%; text-align: center;">No Subscription Plan</div><br/><br/><br/>
