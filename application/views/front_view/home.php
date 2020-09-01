@@ -16,8 +16,8 @@
             <div class="banner-img">
                 <div class="banner-text">
                         <div class="home_form_wrap form_wrap_anction_search form-wrap">
-                            <h3>Find your best property &amp; Vehicles here</h3>
-                            <p>Buy properties &amp; Vehicles at more than 25% discount</p>
+                            <h3>Find your desired property here</h3>
+                            <p>Properties at lower prices than the market rates</p>
                             <form class="form_desc">
                                 <div class="dropdown">
                                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="category_text_button">Category
@@ -69,7 +69,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h3 class="auction_heading">Benefits of buying through Bank Auction</h3>
+                    <h3 class="auction_heading">Benefits of buying auctioned properties</h3>
                 </div>
             </div><!--row-->
             <div class="row">
@@ -79,8 +79,8 @@
                             <img src="<?php echo base_url(); ?>assets/auctiononclick/images/benefits_icon/price_icon.png">
                         </div><!--benefit_img-->
                         <div class="box_desc">
-                            <h4>Price Advantage</h4>
-                            <p>Bank Auction properties are approximately 25% cheaper than market price.</p>
+                            <h4>Cost Benefit</h4>
+                            <p>Bank auction properties are potentially 20-30% cheaper than the prevailing market price</p>
                         </div><!--box_desc-->
                     </div><!--benefit_box-->
                 </div>
@@ -90,8 +90,8 @@
                             <img src="<?php echo base_url(); ?>assets/auctiononclick/images/benefits_icon/legally_icon.png">
                         </div><!--benefit_img-->
                         <div class="box_desc">
-                            <h4>Legally Safe</h4>
-                            <p>Banks / Financial Institutions apprve loans after verification of all the legal aspects only, Bank Auction auctions are legally safe and fall user the SARFAESI Act and DRT Act.</p>
+                            <h4>Legitimate Assurance</h4>
+                            <p>The Bank Auctions are conducted within the SARFAESI Act and DRT Act's guidelines. The bank/financial institutions loan approvals are subject to verification of all legal aspects. </p>
                         </div><!--box_desc-->
                     </div><!--benefit_box-->
                 </div>
@@ -101,19 +101,19 @@
                             <img src="<?php echo base_url(); ?>assets/auctiononclick/images/benefits_icon/credibility_icon.png">
                         </div><!--benefit_img-->
                         <div class="box_desc">
-                            <h4>Credibility</h4>
-                            <p>You are buying from a Bank / Financial institution, which is authorized by Govt of India to sell such properties.</p>
+                            <h4>Credible Sellers</h4>
+                            <p>The bank/financial institutions are authorized by Govt. of India, hence it is safe to purchase such properties.</p>
                         </div><!--box_desc-->
                     </div><!--benefit_box-->
                 </div>
                 <div class="col-sm-2">
                     <div class="benefit_box">
                         <div class="benefit_img">
-                            <img src="<?php echo base_url(); ?>assets/auctiononclick/images/benefits_icon/time_icon.png">
+                            <img src="<?php echo base_url(); ?>assets/auctiononclick/images/benefits_icon/icon-hassle-free-process.png">
                         </div><!--benefit_img-->
                         <div class="box_desc">
-                            <h4>Time</h4>
-                            <p>Entire transaction will be over in less than two months period. Ownership will be transferred in one month.</p>
+                            <h4>Hassle-Free Process</h4>
+                            <p>The buyer will have lesser burden of going through the legal liabilities of the property.</p>
                         </div><!--box_desc-->
                     </div><!--benefit_box-->
                 </div>
@@ -124,7 +124,7 @@
                         </div><!--benefit_img-->
                         <div class="box_desc">
                             <h4>Transparency</h4>
-                            <p>100 % transparent transaction.</p>
+                            <p>100 % transparent transaction and absolutely secure.</p>
                         </div><!--box_desc-->
                     </div><!--benefit_box-->
                 </div>

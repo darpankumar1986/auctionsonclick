@@ -98,7 +98,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="footer_copyright">
-                            <p>All trademarks, logos and names are properties of their respective owners. All Rights Reserved. &copy Copyright <?php echo date('Y');?> C1 India Private Limited.</p>
+                            <p>@<?php echo date('Y');?> by C1 India. All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>

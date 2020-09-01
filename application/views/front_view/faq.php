@@ -26,43 +26,57 @@
 			<div class="about_us_main faq_main">
 				<ul>
 					<li>
-						<h4>1. How do I participate in a bank auction?</h4>
-						<p>You can participate in a bank auction in 3 simple steps:</p>
-						<p>On <strong>AuctionsOnClick.com</strong> Narrow down on the <strong>property of your choice</strong> and proceed to the e-auction website by clicking on the link provided on the page and register.</p>
-						<p>After registration on the e-auction site, submit the relevant documents mentioned and pay the Earnest Money Deposit (EMD) amount to the bank. The payment needs to be made prior to the date of registration for the EMD to participate in the auction.</p>
-						<p>Bid on the property on the date of its auction.</p>
+						<h4>1.	How to search for a property?</h4>
+						<p>Users can directly visit – <a href="<?php echo base_url();?>">www.auctiononclick.com</a> and search the property by location/Bank/Type of the asset category such as commercial/residential/vehicles.</p>
+						<p>You can also use the <strong>advanced search</strong> option which enables you to select a date range or minimum-maximum price range and also by bank/company name to shortlist properties.</p>
 					</li>
 					<li>
-						<h4>2. Can I cancel my bid?</h4>
-						<p>No, once you submit a bid you cannot cancel it.</p>
+						<h4>2.	How to make the payment to avail premium services?</h4>
+						<p>You can make the payment via Net Banking or Debit Card and Credit Card, whichever suits your preference.</p>
 					</li>
 					<li>
-						<h4>3. Who are the e-auctions websites?</h4>
-						<p>E-auction websites are authorised third party auction websites that manage auctions on a bank’s behalf.</p>
+						<h4>3.	How Pan-India premium services are differ from State-wise premium services?</h4>
+						<p>Pan-India premium services include all India reach and allows you to seek for any property available for auction in India. State-wise subscription plan lets you narrow down your interest group to 2 states and accordingly is cheaper compared to the Pan-India plan. We offer 3, 6, and 12 months subscription plans for both the service models with added benefits. To know more about the plans click <a href="<?php echo base_url()?>home/premiumServices">https://auctiononclick.com/home/premiumServices</a></p>
 					</li>
 					<li>
-						<h4>4. Which documents need to be submitted to participate in an auction?</h4>
-						<p>Pan Card, Annexure 3/Declaration Form, Annexure 2/Details of Bidder and Proof of Address are required to be submitted.</p>
+						<h4>4.	Is the website secured and safe?</h4>
+						<p>Yes, the website is absolutely safe and owns all the necessary safety certificates.</p>
 					</li>
 					<li>
-						<h4>5. What is the Reserve Price?</h4>
-						<p>Reserve Price is the minimum price assigned by the bank for a given property to be auctioned.</p>
+						<h4>5.	Can I view all the properties listed for auction without purchasing premium services?</h4>
+						<p>Non-subscribers can only access the basic information but for detailed information, one has to purchase a premium membership.</p>
 					</li>
 					<li>
-						<h4>6. What is the EMD amount?</h4>
-						<p>Earnest Money Deposit or EMD is the deposit money required to be paid in advance for participating in bank auctions. The amount is usually 10% of the Reserve Price.</p>
+						<h4>6.	How will I be notified of interest-based or selected properties?</h4>
+						<p>You will receive emails and notifications regarding your interests and subscription model. If you have subscribed for a premium membership you’ll be notified daily or weekly, depending upon your selection preference and for non-subscribers weekly email alerts would be sent.</p>
 					</li>
 					<li>
-						<h4>7. What is an Auction Notice?</h4>
-						<p>It is the auctioning Bank’s notice containing all relevant auction details.</p>
+						<h4>7.	How to receive the latest updates regarding new bank auction listings?</h4>
+						<p>You can select the 'Get Alerts' option on the listing page to receive the latest updates and notifications.</p>
 					</li>
 					<li>
-						<h4>8. How to search for a property?</h4>
-						<p>On <strong>AuctionsOnClick.com,</strong> users can search for a property by the city it is located in or by the category - Commercial/Residential/Vehicles or even by the bank auctioning it. Enter your query in the Search Box provided on the home page or if you wish to access a specific auction then, you could do an Advance Search. The Advance Search allows you to search by either selecting a date range or by entering the minimum or maximum price and the Borrower or Company name.</p>
+						<h4>8.	Do you involve in the auction process of a listed property?</h4>
+						<p>No, we only provide an e-auction platform and everything rests on the third party. The criteria, guidelines, documentation, etc. are decided and declared by the seller party conducting the auction.</p>
 					</li>
 					<li>
-						<h4>9. How to receive the latest updates about new bank auctions?</h4>
-						<p>On the listings page you can either subscribe to receive updates via email or click on the push notification to receive instant notifications on any new updates.</p>
+						<h4>9.	Do you charge any commission regarding property sales?</h4>
+						<p>No, we only charge subscription fees for our premium services and nothing else.</p>
+					</li>
+					<li>
+						<h4>10.	Do you assist with the inspection of properties?</h4>
+						<p>We do not engage in the inspection of any property but for the assistance, you can always get in touch and approach the concerning bank or its branch who has listed the property for sale.</p>
+					</li>
+					<li>
+						<h4>11.	What is the reserve price?</h4>
+						<p>Reserve price is referred to as a minimum price listed by the bank for a specific property that is to be auctioned.</p>
+					</li>
+					<li>
+						<h4>12.	What is inferred by the EMD amount?</h4>
+						<p>EMD (earnest money deposit) is referred to as a certain deposit amount that is required to be paid in advance to participate in a bank auction. Generally, the EMD amount is 10% of the reserve price stated.</p>
+					</li>
+					<li>
+						<h4>13.	What is an auction notice?</h4>
+						<p>Auction notice contains all the necessary information relevant to the auction, which is issued by the bank hosting the auction.</p>
 					</li>
 				</ul>
 
