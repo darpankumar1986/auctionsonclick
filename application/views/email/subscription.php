@@ -409,8 +409,7 @@
                         <tbody>
                             <tr>
                                 <td style="font-family: sans-serif;color: #666666;font-size: 11px;text-align: center;padding-top:8px;">
-                                    <p style="margin:0;">All trademarks, logos and names are properties of their respective owners.</p>
-                                    <p style="margin-top: 2px;">All Rights Reserved. &#169; Copyright <?php echo date('Y');?> AuctionOnClick.</p>
+                                    <p style="margin:0;">@<?php echo date('Y');?> by C1 India. All Rights Reserved.</p>
                                 </td>
                             </tr>
                         </tbody>

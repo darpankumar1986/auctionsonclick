@@ -90,9 +90,10 @@ else
 
 var oTable = null;
     $(document).ready(function () {
+		setCategoryTitle();
         //$("#big_table thead tr th").eq(0).addClass("hidetd");
         $("#big_table thead tr th").eq(4).css('text-align','right');
-
+			
             initHomeTable();
 
             $(document).on("click",".select-items",function(){
@@ -120,7 +121,7 @@ var oTable = null;
                 //setTimeout(function(){ $("#big_table_info").text(''); }, 500);
                 }
             });
-            $(".dropdown-header input[name=parent_id]").change(function(){
+            $(".dropdown-header input[name=parentCat]").change(function(){
                 var parent = $(this).val();
 
                 $(".parent_id").each(function(){
@@ -139,7 +140,7 @@ var oTable = null;
 
             });
 
-            $("input[name=sub_id]").change(function(){
+            $("input[name=s_sub_id]").change(function(){
                 var parent_id = $(this).attr('data-parent');
 
                 $(".parent_id").each(function(){
@@ -157,6 +158,8 @@ var oTable = null;
                 //initHomeTable();
                 setTimeout(function(){ $("#big_table_info").text(''); }, 500);
             });
+
+			
         });
 
 
@@ -167,16 +170,16 @@ var oTable = null;
                 oTable.destroy();
                 //oTable = null
             }
-            var parent_id = $('.dropdown-header input[name=parent_id]:checked').val();
-            if(typeof(parent_id) == 'undefined')
-            {
-                parent_id ='';
-            }
+            var parent_id = "<?php echo $_GET['parent_id'];?>";
             var sub_id_str = '';
-            $("input[name=sub_id]:checked").each(function(){
-                var sub_id = $(this).val();
-                sub_id_str += '&sc[]='+sub_id;
-            });
+            <?php
+                if(is_array($_GET['sc'])){
+                foreach($_GET['sc'] as $sub_cat)
+                {?>
+                    sub_id_str += '&sc[]='+<?php echo $sub_cat; ?>;
+            <?php
+                    } }
+            ?>
 
             //var dataSort = $("#dataSort").val();
             var  dataSortValue = $(".select-items").closest('.custom-select').find('select option:selected').val();
@@ -380,11 +383,11 @@ var oTable = null;
                                        <?php $parentCat = $this->home_model->getAllCategory(0); ?>
                                         <?php foreach($parentCat as $key => $parCat){ ?>
                                         <li class="dropdown-header">
-                                        <input type="radio" id="test<?php echo $key; ?>" class="parent_id" data-parent-id="<?php echo $parCat->id;?>" name="parent_id" value="<?php echo $parCat->id;?>" <?php echo ($parCat->id==$parent_id)?'checked="checked"':''; ?>>
+                                        <input type="radio" id="test<?php echo $key; ?>" class="s_parent_id" s-data-parent-id="<?php echo $parCat->id;?>" name="parentCat" value="<?php echo $parCat->id;?>" <?php echo ($parCat->id==$parent_id)?'checked="checked"':''; ?>>
                                             <label for="test<?php echo $key; ?>">All <?php echo $parCat->name; ?></label></li>
                                             <?php $Cats = $this->home_model->getAllCategory($parCat->id); ?>
                                             <?php foreach($Cats as $cat){ ?>
-                                                <li><label class="checkbox-inline"><input type="checkbox" data-parent="<?php echo $parCat->id;?>" name="sub_id" value="<?php echo $cat->id;?>" <?php if(in_array($cat->id,$_GET['sc'])){ echo 'checked="checked"'; } ?>><?php echo $cat->name; ?></label></li>
+                                                <li><label class="checkbox-inline"><input type="checkbox" s-data-parent="<?php echo $parCat->id;?>" name="s_sub_id" value="<?php echo $cat->id;?>" data-text="<?php echo $cat->name; ?>" <?php if(in_array($cat->id,$_GET['sc'])){ echo 'checked="checked"'; } ?>><?php echo $cat->name; ?></label></li>
                                             <?php } ?>
 
                                         <?php } ?>
