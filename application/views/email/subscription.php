@@ -93,9 +93,9 @@
                                     <table class="auction_table_box" style="border-collapse: collapse;width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th width="33%" style="font-size: 13px;padding:12px;color: #0078db;font-family: sans-serif;border: 1px solid #ccc;text-align: left;font-weight: normal;">Order#</th>
-                                                <th width="33%" style="font-size: 13px;padding: 12px;color: #0078db;font-family: sans-serif;border: 1px solid #ccc;text-align: left;font-weight: normal;">Order Date</th>
-                                                <th width="33%" style="font-size: 13px;padding: 12px;color: #0078db;font-family: sans-serif;border: 1px solid #ccc;text-align: left;font-weight: normal;">Order Time</th>
+                                                <th width="33%" style="background-color:#f9fafb;font-size: 13px;padding:12px;color: #0078db;font-family: sans-serif;border: 1px solid #ccc;text-align: left;font-weight: normal;">Order#</th>
+                                                <th width="33%" style="background-color:#f9fafb;font-size: 13px;padding: 12px;color: #0078db;font-family: sans-serif;border: 1px solid #ccc;text-align: left;font-weight: normal;">Order Date</th>
+                                                <th width="33%" style="background-color:#f9fafb;font-size: 13px;padding: 12px;color: #0078db;font-family: sans-serif;border: 1px solid #ccc;text-align: left;font-weight: normal;">Order Time</th>
                                             </tr>
                                         </thead>
                                         <tbody>

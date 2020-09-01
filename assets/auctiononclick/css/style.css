@@ -470,6 +470,38 @@ body{
 .home_form_wrap.form_wrap_anction_search .custom-dropdown-select .select-selected {
     border: 0;
 }
+/*IE*/
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .form-wrap.home_form_wrap .form_desc .dropdown-toggle.btn-default {
+        border-top: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+    .form-wrap.home_form_wrap .form_desc .dropdown-toggle.btn-default:hover {
+        border-color: #ccc !important;
+    }
+    .home_form_wrap.form_wrap_anction_search .custom-dropdown-select .select-selected {
+        border-top: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+
+}
+
+/*Mozilla*/
+@-moz-document url-prefix() {
+    .form-wrap.home_form_wrap .form_desc .dropdown-toggle.btn-default {
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+    .form-wrap.home_form_wrap .form_desc .dropdown-toggle.btn-default:hover {
+        border-color: #ccc !important;
+    }
+    .home_form_wrap.form_wrap_anction_search .custom-dropdown-select .select-selected {
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+}
 /*---------------------------Radio-box----------------------------------------*/
 .form-wrap .form_desc .dropdown-menu .dropdown-header label {
     margin-bottom: 0;
