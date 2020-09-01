@@ -93,7 +93,7 @@ define('ADMINISTRATIVE_FEE','0');
 //C1india SMS API 
 //define('SMSAPIURL',"http://43.240.66.10/unified.php?usr=24934&pwd=~C1@india~&ph=%%mobile%%&sndr=SCWIND&text=%%msg%%");
 
-//define('SMSAPIURL',"https://global.datagenit.com/API/sms-api.php?auth=D!~2741l9lPDa1wtt&msisdn=%%mobile%%&senderid=UPDATE&message=%%msg%%");
+//define('SMSAPIURL',"https://global.datagenit.com/API/sms-api.php?auth=D!~4614CMDb1J5cLV&msisdn=%%mobile%%&senderid=CINDIN&message=%%msg%%");
 define('SMSAPIURL',"");
 
 
