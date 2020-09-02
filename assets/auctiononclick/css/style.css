@@ -2470,7 +2470,7 @@ h3.non_subscribe_profile {
 .state_chosen p.subscribe_address {
     font-size: 16px;
     color: #318532 !important;
-    margin-bottom: 62px;
+    margin-bottom: 45px;
 }
 .state_wise_tab .state_chosen_wrapper p.add_more_state span {
     font-size: 18px;
@@ -2481,6 +2481,8 @@ h3.non_subscribe_profile {
 }
 .state_wise_tab .state_chosen_wrapper p.selected_states {
     color: #666666;
+    text-align: center;
+    width: 100%;
 }
 .state_wise_tab .state_chosen_wrapper p.selected_states span {
     color: #333333;
@@ -2497,8 +2499,18 @@ h3.non_subscribe_profile {
     margin-bottom: 0;
     cursor: pointer;
     position: relative;
-    display: inline-block;
-    margin-right: 13px;
+    display: block;
+    width: 333px;
+    text-align: center;
+    margin-right: 0;
+}
+.hide_list p.add_more_state.more_state_center {
+    width: 100%;
+    padding-left: 20px;
+}
+.hide_list p.add_more_state.more_state_right {
+    float: right;
+    padding-left: 20px;
 }
 .hide_list {
     position: relative;
@@ -2506,10 +2518,9 @@ h3.non_subscribe_profile {
 .hide_list .all_state_list {
     display: none;
     position: absolute;
-    right: -10px;
-    top:-130px;
+    left: 66px;
+    top:-110px;
     width: 86%;
-    height: 315px;
     background-color: #ffffff;
     border: 1px solid #0078db;
     z-index: 9;
@@ -2518,6 +2529,21 @@ h3.non_subscribe_profile {
     position: relative;
     height: 100%;
     padding: 10px;
+}
+.all_state_list_inner .popup_close_btn {
+    text-align: right;
+}
+.all_state_list_inner .popup_close_btn .closebtn_popup {
+    background-color: #0078db;
+    padding: 0 9px;
+    border-radius: 4px;
+    border: 0;
+    font-size: 20px;
+    color: #ffffff;
+}
+.all_state_list_inner .popup_close_btn .closebtn_popup:hover, .all_state_list_inner .popup_close_btn .closebtn_popup:focus {
+    background-color: #005ca8;
+    outline: 0;
 }
 /*
 .all_state_list_inner:after, .all_state_list_inner:before {
@@ -2583,6 +2609,11 @@ h3.non_subscribe_profile {
     margin-right: 30px;
     margin-top: 8px;
     padding: 9px 25px;
+    border: 0;
+}
+.confirm_btn .btn:hover, .confirm_btn .btn:focus {
+    background-color: #005ca8;
+    outline: 0;
 }
 /*----------------------------Manage Subscription - State Wise - Manual Renewal_end----------------------------------*/
 

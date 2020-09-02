@@ -164,7 +164,11 @@ $(document).ready(function(){
     $(".add_more_state").click(function(){
         $(".all_state_list").toggle();
     });
+    $(".closebtn_popup").button().on("click", function () {
+        $(".all_state_list").hide();
+    });
 });
+
 
 /*------------------------choose state list_end---------------------------------------------*/
 
@@ -199,16 +203,4 @@ $('.cancel_subscription button').on('click', function(){
 
 
 /*-----------------------upgrade subscription button_end--------*/
-/*-----------------------upgrade subscription equal hdight div--------*/
 
-
-//
-//$(document).ready(function() {
-//
-//    var maxHeight = 0;
-//
-//    $('#State_Wise .subscription_box').each(function() {
-//        maxHeight = $(this).height() > maxHeight ? $(this).height() : maxHeight;
-//    }).height(maxHeight);
-//});
-/*-----------------------upgrade subscription equal hdight div_end--------*/

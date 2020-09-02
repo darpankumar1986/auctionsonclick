@@ -101,26 +101,26 @@
 var remaining_amount = "<?php echo $remaining_amount; ?>";
 $(document).ready(function(){
 
-	$(document).click(function(e){
-		console.log(event.target);
-		var flag = $(event.target).closest('.packageplan').length;
-		var flag1 = $(event.target).closest('.Active_membership').length;
-		var flag2 = $(event.target).closest('.current_membership').length;
-		var flag3 = $(event.target).closest('.state_chosen_wrapper').length;
+    $(document).click(function(e){
+        console.log(event.target);
+        var flag = $(event.target).closest('.packageplan').length;
+        var flag1 = $(event.target).closest('.Active_membership').length;
+        var flag2 = $(event.target).closest('.current_membership').length;
+        var flag3 = $(event.target).closest('.state_chosen_wrapper').length;
 
-		if(!flag && !flag1 && !flag2 && !flag3)
-		{
-			 $(".packageplan").removeClass('active_plan');
-			 $(".subscription_disable_text").hide();
-			 $(".subscription_text").hide();
-			 $(".statewise_text").hide();
-			 $(".selected_states").hide();
-		}
-	});
+        if(!flag && !flag1 && !flag2 && !flag3)
+        {
+             $(".packageplan").removeClass('active_plan');
+             $(".subscription_disable_text").hide();
+             $(".subscription_text").hide();
+             $(".statewise_text").hide();
+             $(".selected_states").hide();
+        }
+    });
     $("#upgrade_subscription").click(function(){
         $(".Subscription_plan").slideToggle();
-		var currHeight = $(".current_plan .subscription_box").outerHeight();
-		$("#State_Wise .packageplan .subscription_box").css('height',currHeight+'px');
+        var currHeight = $(".current_plan .subscription_box").outerHeight();
+        $("#State_Wise .packageplan .subscription_box").css('height',currHeight+'px');
     });
     $(".packageplan").click(function(){
         if(!$(this).hasClass('current_plan'))
@@ -134,21 +134,21 @@ $(document).ready(function(){
                 $(".subscription_disable_text").show();
                 $(".subscription_text").hide();
                 $(".statewise_text").hide();
-				$(".selected_states").hide();
+                $(".selected_states").hide();
             }
             else
             {
                 var plan_amount = $(this).find('.plan_amount').val();
-				var plan_renewal_date = $(this).find('.package_renewal_date').val();
+                var plan_renewal_date = $(this).find('.package_renewal_date').val();
                 var due_cost = plan_amount - remaining_amount;
 
 
-				var checkbox_length = $(".packageplan.active_plan").find('[type=checkbox]:checked').length;
-				if(checkbox_length > 2)
-				{
-					var city_per_cost = $(".packageplan.active_plan").find('.city_per_cost').val();			
-					var due_cost = due_cost + ((checkbox_length - 2)*city_per_cost);
-				}
+                var checkbox_length = $(".packageplan.active_plan").find('[type=checkbox]:checked').length;
+                if(checkbox_length > 2)
+                {
+                    var city_per_cost = $(".packageplan.active_plan").find('.city_per_cost').val();
+                    var due_cost = due_cost + ((checkbox_length - 2)*city_per_cost);
+                }
 
                 if(due_cost > 0)
                 {
@@ -157,15 +157,15 @@ $(document).ready(function(){
                     $(".subscription_disable_text").hide();
                     $(".subscription_text").show();
                     $(".statewise_text").hide();
-					$(".selected_states").hide();
-					$("#renewal_date_msg").html('New renewal date: '+plan_renewal_date);
+                    $(".selected_states").hide();
+                    $("#renewal_date_msg").html('New renewal date: '+plan_renewal_date);
                 }
                 else
                 {
                     $(".subscription_disable_text").show();
                     $(".subscription_text").hide();
                     $(".statewise_text").hide();
-					$(".selected_states").hide();
+                    $(".selected_states").hide();
                 }
             }
         }
@@ -182,10 +182,10 @@ $(document).ready(function(){
             {
                 var checkbox_length = $(".packageplan.active_plan").find('[type=checkbox]:checked').length;
 
-				if(checkbox_length > 2)
-				{	
-					var due_cost = due_cost + ((checkbox_length - 2)*city_per_cost);
-				}
+                if(checkbox_length > 2)
+                {
+                    var due_cost = due_cost + ((checkbox_length - 2)*city_per_cost);
+                }
 
                 if(checkbox_length == package_city || true)
                 {
@@ -214,7 +214,7 @@ $(document).ready(function(){
         $(".subscription_text").hide();
         $(".packageplan").removeClass('active_plan');
         $(".statewise_text").hide();
-		$(".selected_states").hide();
+        $(".selected_states").hide();
     });
 
     $(".checkbox-state").change(function(){
@@ -222,24 +222,24 @@ $(document).ready(function(){
         if(checkbox_length > 2)
         {
             var plan_amount = $(".packageplan.active_plan").find('.plan_amount').val();
-			var city_per_cost = $(".packageplan.active_plan").find('.city_per_cost').val();
-			
-			var due_cost = plan_amount - remaining_amount + ((checkbox_length - 2)*city_per_cost);
-			$("#due_cost").html(due_cost);
+            var city_per_cost = $(".packageplan.active_plan").find('.city_per_cost').val();
+
+            var due_cost = plan_amount - remaining_amount + ((checkbox_length - 2)*city_per_cost);
+            $("#due_cost").html(due_cost);
 
         }
-		else
-		{
-			var plan_amount = $(".packageplan.active_plan").find('.plan_amount').val();
-			var city_per_cost = $(".packageplan.active_plan").find('.city_per_cost').val();
-			var due_cost = plan_amount - remaining_amount;
-			$("#due_cost").html(due_cost);
-		}
+        else
+        {
+            var plan_amount = $(".packageplan.active_plan").find('.plan_amount').val();
+            var city_per_cost = $(".packageplan.active_plan").find('.city_per_cost').val();
+            var due_cost = plan_amount - remaining_amount;
+            $("#due_cost").html(due_cost);
+        }
 
-		var obj = $(this);
-		setTimeout(function(){
-			setStateTitle(obj);
-		},10);
+        var obj = $(this);
+        setTimeout(function(){
+            setStateTitle(obj);
+        },10);
     });
 
 
@@ -247,22 +247,22 @@ $(document).ready(function(){
 
 function setStateTitle(obj)
 {
-	var icon = '<span class="caret"></span>';
-	var checkbox_length = obj.closest('.dropdown-menu').find('[type=checkbox]:checked').length;
+    var icon = '<span class="caret"></span>';
+    var checkbox_length = obj.closest('.dropdown-menu').find('[type=checkbox]:checked').length;
 
-	if(checkbox_length == 1)
-	{
-		obj.closest('.checklist_state').find('.dropdown .btn').html(checkbox_length + ' Selected'+icon);
-	}
-	else if(checkbox_length > 0)
-	{
-		obj.closest('.checklist_state').find('.dropdown .btn').html(checkbox_length + ' Selected'+icon);
-		
-	}
-	else
-	{
-		obj.closest('.checklist_state').find('.dropdown .btn').html('Selecte States'+icon);
-	}
+    if(checkbox_length == 1)
+    {
+        obj.closest('.checklist_state').find('.dropdown .btn').html(checkbox_length + ' Selected'+icon);
+    }
+    else if(checkbox_length > 0)
+    {
+        obj.closest('.checklist_state').find('.dropdown .btn').html(checkbox_length + ' Selected'+icon);
+
+    }
+    else
+    {
+        obj.closest('.checklist_state').find('.dropdown .btn').html('Selecte States'+icon);
+    }
 }
 
 $(document).ready(function(){
@@ -293,8 +293,8 @@ $(document).ready(function(){
             $(".statewise_text").show();
             $("#add_state_count").html(add_state_count);
             $("#due_cost_state").html(add_state_count*<?php echo $package[0]->city_per_cost; ?>);
-			$("#statewise_text_data").html(selected_state);
-			$("#statewise_city_per_day").html('<?php echo round($package[0]->city_per_cost,0); ?>');
+            $("#statewise_text_data").html(selected_state);
+            $("#statewise_city_per_day").html('<?php echo round($package[0]->city_per_cost,0); ?>');
         }
         else
         {
@@ -319,9 +319,9 @@ $(document).ready(function(){
         window.location = '?package_id=<?php echo $package[0]->package_id; ?>&package_type=3&due_cost='+due_cost+state;
     });
 
-	$('.dropdown ul').on('click', function (e) {
-		 e.stopPropagation();
-	});
+    $('.dropdown ul').on('click', function (e) {
+         e.stopPropagation();
+    });
 });
 </script>
 
@@ -441,7 +441,7 @@ $(document).ready(function(){
                                                 <img class="white_rupees" src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_medium_white.png"></span><span class="rupees"><?php echo $packagelist[0]->package_amount; ?></span></div>
                                             <input type="hidden" class="plan_amount" name="text" value="<?php echo $packagelist[0]->package_amount; ?>" />
                                             <input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[0]->package_id; ?>" />
-											<input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[0]->sub_month." months")-86400)); ?>" />
+                                            <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[0]->sub_month." months")-86400)); ?>" />
                                         </div>
                                     </div><!--subscription_box-->
                                     <?php if($currentplan1 != ''){ ?>
@@ -459,7 +459,7 @@ $(document).ready(function(){
                                                 </span><span class="rupees"><?php echo $packagelist[1]->package_amount; ?></span></div>
                                             <input type="hidden" class="plan_amount" name="text" value="<?php echo $packagelist[1]->package_amount; ?>" />
                                             <input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[1]->package_id; ?>" />
-											<input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[1]->sub_month." months")-86400)); ?>" />
+                                            <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[1]->sub_month." months")-86400)); ?>" />
                                         </div>
                                     </div><!--subscription_box-->
                                     <?php if($currentplan2 != ''){ ?>
@@ -477,7 +477,7 @@ $(document).ready(function(){
                                                 </span><span class="rupees"><?php echo $packagelist[2]->package_amount; ?></span></div>
                                                 <input type="hidden" class="plan_amount" name="text" value="<?php echo $packagelist[2]->package_amount; ?>" />
                                                 <input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[2]->package_id; ?>" />
-												<input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[2]->sub_month." months")-86400)); ?>" />
+                                                <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[2]->sub_month." months")-86400)); ?>" />
                                         </div>
                                     </div><!--subscription_box-->
                                     <?php if($currentplan3 != ''){ ?>
@@ -506,7 +506,7 @@ $(document).ready(function(){
                                                 <input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[3]->package_id; ?>" />
                                                 <input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[3]->city_per_cost; ?>" />
                                                 <input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[3]->package_city; ?>" />
-												<input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[3]->sub_month." months")-86400)); ?>" />
+                                                <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[3]->sub_month." months")-86400)); ?>" />
 
                                             <?php  if($currentplan4 != ''){ ?>
                                                 <div class="plan_desc state_chosen">
@@ -550,7 +550,7 @@ $(document).ready(function(){
                                         <input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[4]->package_id; ?>" />
                                         <input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[4]->city_per_cost; ?>" />
                                         <input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[4]->package_city; ?>" />
-										<input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[4]->sub_month." months")-86400)); ?>" />
+                                        <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[4]->sub_month." months")-86400)); ?>" />
 
                                         <?php  if($currentplan5 != ''){ ?>
                                         <div class="plan_desc state_chosen">
@@ -592,7 +592,7 @@ $(document).ready(function(){
                                         <input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[5]->package_id; ?>" />
                                         <input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[5]->city_per_cost; ?>" />
                                         <input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[5]->package_city; ?>" />
-										<input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[5]->sub_month." months")-86400)); ?>" />
+                                        <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[5]->sub_month." months")-86400)); ?>" />
 
                                         <?php  if($currentplan6 != ''){ ?>
                                         <div class="plan_desc state_chosen">
@@ -624,13 +624,16 @@ $(document).ready(function(){
                         </div>
                         <?php if($package_id > 3 ){ ?>
                         <div class="row">
-                            <div class="col-sm-12 current_left"><!-- current_left,current_center,current_right -->
+                            <div class="col-sm-12 current_left" style="padding:0;"><!-- current_left,current_center,current_right -->
                                 <div class="state_chosen_wrapper">
-                                   <div class="hide_list">
-                                       <p class="add_more_state">Add more states <span><i class="fa fa-angle-down"></i></span>
+                                   <div class="hide_list clearfix">
+                                       <p class="add_more_state <?php if($package_id == 5){echo 'more_state_center';} ?><?php if($package_id == 6){echo 'more_state_right';} ?>">Add more states <span><i class="fa fa-angle-down"></i></span>
                                        </p>
                                        <div class="all_state_list">
                                            <div class="all_state_list_inner">
+                                              <div class="popup_close_btn">
+                                               <button type="button" class="closebtn_popup">×</button>
+                                               </div>
                                                <ul>
                                                    <?php $statelist = $this->home_model->getAllState(); ?>
                                                    <?php foreach($statelist as $state){ ?>
@@ -683,7 +686,7 @@ $(document).ready(function(){
                     <div class="col-sm-12">
                         <div class="Active_membership">
                             <p>Your current membership is for <?php echo $package[0]->sub_month;?> months, you have added <span id="add_state_count" style="padding:0;">2</span> new states to your existing subscription.</p>
-                            <p><span>Chosen States: <span id="statewise_text_data" style="padding:0;">Tamilnadu,udisa</span></span>|<span>Charges: ₹<span style="padding:0;" id="statewise_city_per_day">200</span>/State</span></p>
+                            <p><!--<span>Chosen States: <span id="statewise_text_data" style="padding:0;">Tamilnadu,udisa</span></span>| --><span>Charges: ₹<span style="padding:0;" id="statewise_city_per_day">200</span>/State</span></p>
                             <p class="amount_due">Amount due : ₹<span id="due_cost_state">2500</span> </p>
                             <button type="button" class="btn search_btn_new pay_now add_state">Pay Now</button>
                         </div>
