@@ -100,20 +100,27 @@
 <script>
 var remaining_amount = "<?php echo $remaining_amount; ?>";
 $(document).ready(function(){
-	$(document).click(function(e){
-		/*var flag = $(event.target).closest('.packageplan').length;
-		var flag1 = $(event.target).closest('.Active_membership').length;
 
-		if(!flag && !flag1)
+	$(document).click(function(e){
+		console.log(event.target);
+		var flag = $(event.target).closest('.packageplan').length;
+		var flag1 = $(event.target).closest('.Active_membership').length;
+		var flag2 = $(event.target).closest('.current_membership').length;
+		var flag3 = $(event.target).closest('.state_chosen_wrapper').length;
+
+		if(!flag && !flag1 && !flag2 && !flag3)
 		{
 			 $(".packageplan").removeClass('active_plan');
 			 $(".subscription_disable_text").hide();
 			 $(".subscription_text").hide();
 			 $(".statewise_text").hide();
-		}*/
+			 $(".selected_states").hide();
+		}
 	});
     $("#upgrade_subscription").click(function(){
         $(".Subscription_plan").slideToggle();
+		var currHeight = $(".current_plan .subscription_box").outerHeight();
+		$("#State_Wise .packageplan .subscription_box").css('height',currHeight+'px');
     });
     $(".packageplan").click(function(){
         if(!$(this).hasClass('current_plan'))
@@ -127,6 +134,7 @@ $(document).ready(function(){
                 $(".subscription_disable_text").show();
                 $(".subscription_text").hide();
                 $(".statewise_text").hide();
+				$(".selected_states").hide();
             }
             else
             {
@@ -149,6 +157,7 @@ $(document).ready(function(){
                     $(".subscription_disable_text").hide();
                     $(".subscription_text").show();
                     $(".statewise_text").hide();
+					$(".selected_states").hide();
 					$("#renewal_date_msg").html('New renewal date: '+plan_renewal_date);
                 }
                 else
@@ -156,6 +165,7 @@ $(document).ready(function(){
                     $(".subscription_disable_text").show();
                     $(".subscription_text").hide();
                     $(".statewise_text").hide();
+					$(".selected_states").hide();
                 }
             }
         }
@@ -204,6 +214,7 @@ $(document).ready(function(){
         $(".subscription_text").hide();
         $(".packageplan").removeClass('active_plan');
         $(".statewise_text").hide();
+		$(".selected_states").hide();
     });
 
     $(".checkbox-state").change(function(){
@@ -672,7 +683,7 @@ $(document).ready(function(){
                     <div class="col-sm-12">
                         <div class="Active_membership">
                             <p>Your current membership is for <?php echo $package[0]->sub_month;?> months, you have added <span id="add_state_count" style="padding:0;">2</span> new states to your existing subscription.</p>
-                            <p><span>Chosen States: <span id="statewise_text_data" style="padding:0;">Tamilnadu,udisa</span></span> | <span>Charges: ₹<span style="padding:0;" id="statewise_city_per_day">200</span>/State</span></p>
+                            <p><span>Chosen States: <span id="statewise_text_data" style="padding:0;">Tamilnadu,udisa</span></span>|<span>Charges: ₹<span style="padding:0;" id="statewise_city_per_day">200</span>/State</span></p>
                             <p class="amount_due">Amount due : ₹<span id="due_cost_state">2500</span> </p>
                             <button type="button" class="btn search_btn_new pay_now add_state">Pay Now</button>
                         </div>
