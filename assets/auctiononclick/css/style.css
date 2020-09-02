@@ -1306,8 +1306,8 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     font-size: 13px;
 }
 .pagination_main .pagination>li>a:focus, .pagination_main .pagination>li>a:hover, .pagination_main .pagination>li>span:focus, .pagination_main .pagination>li>span:hover {
-    background-color: #005ca8;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #666666;
     border-radius: 4px;
     outline: 0;
 }
@@ -2519,6 +2519,7 @@ h3.non_subscribe_profile {
     height: 100%;
     padding: 10px;
 }
+/*
 .all_state_list_inner:after, .all_state_list_inner:before {
     right: 100%;
     top: 50%;
@@ -2542,6 +2543,7 @@ h3.non_subscribe_profile {
     border-width: 8px;
     margin-top: -24px;
 }
+*/
 .all_state_list_inner ul li {
     display: inline-block;
     width: 24%;
@@ -3168,11 +3170,17 @@ h3.subscription_plan {
 .privacy_policy .privacy_policy_inner ul li {
     display: block;
     text-align: left;
-    padding-left: 30px;
+    padding-left: 22px;
     margin-top: 10px;
-    background-image: url(../images/correct_icon.png);
-    background-repeat: no-repeat;
-    background-position: 0 4px;
+    position: relative;
+}
+.privacy_policy .privacy_policy_inner ul li:before {
+    content: '\2022';
+    font-size: 32px;
+    position: absolute;
+    line-height: 20px;
+    left: 0;
+    top: 0;
 }
 .privacy_policy .privacy_policy_inner ul {
     margin-bottom: 10px;
