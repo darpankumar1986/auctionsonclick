@@ -1720,6 +1720,7 @@ class Registration extends WS_Controller {
 		$this->session->set_userdata('mobileVerificationCode', $randNumber);
 		$this->session->set_userdata('mobileNo', $mobileNo);
 
+		$data['first_name'] = ucwords(strtolower($data['first_name']));
 
 		$smsText = "Dear ".$data['first_name'].", ".$randNumber." is your one time password to continue with your registration. Valid for 10 minutes.";
 
