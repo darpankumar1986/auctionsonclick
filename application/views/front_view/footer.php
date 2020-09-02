@@ -280,6 +280,8 @@ $(document).ready(function(){
         });
         $("input[s-data-parent-id]").prop('checked',false);
         $("input[s-data-parent-id="+parent+"]").prop('checked',true);
+
+		$("input[s-data-parent="+parent+"]").prop('checked',true);
     });
 
     $("input[name=s_sub_id]").change(function(){

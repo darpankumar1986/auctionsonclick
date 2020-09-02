@@ -397,7 +397,7 @@ $(document).ready(function(){
            </div>
        </div>
    </div>
-   <div class="row">
+   <div class="row" >
         <div class="col-sm-12">
             <div class="subscribe_notification manage_sub_downgrade">
                  <?php /* if($totalActivePackage == 1 && ((strtotime($package_end_date)) - 259200) < time()) { ?>
