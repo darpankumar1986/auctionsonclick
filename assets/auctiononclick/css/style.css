@@ -580,6 +580,7 @@ h3.auction_heading {
     color: #333333;
     margin-top: 25px;
     margin-bottom: 12px;
+    min-height: 52px;
 }
 .benefit_box .box_desc p {
     margin-right: 10px;

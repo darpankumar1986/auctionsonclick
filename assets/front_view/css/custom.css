@@ -16,10 +16,10 @@
 }
 .filter_btn{width:185px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; padding: 23px;}
 .searhcbtn{background: #1776ae;    color: #fff; padding: 23px;}
-	
+
  .f_item_icon{
     float: left;
-    width:100%; 
+    width:100%;
     display: inline-block;
     margin-bottom: 20px;
 }
@@ -103,9 +103,9 @@
 .btn-success {
     color: #fff !important; background-color: #1776ae;
     border-color: #1776ae !important;}
-	.btn-sm{border:solid 1px #ccc;}
-	/*.no-mrgn{margin:0;}*/
-	.btn:focus, .btn:hover {
+    .btn-sm{border:solid 1px #ccc;}
+    /*.no-mrgn{margin:0;}*/
+    .btn:focus, .btn:hover {
     color: #fff;
     border-color: #fff !important;
     background-color: #1776ae;
@@ -116,8 +116,8 @@
     bottom: 54px;
     z-index: -9;
 }
-	
-	.dropdown-menu{
+
+    .dropdown-menu{
 min-width: 185px;
 }
 
@@ -142,4 +142,4 @@ min-width: 185px;
     background-position: 4px 6px;
     line-height: 30px;
 }
-.fail_msg{width: 98%;float: left;color: red !important;font-size: 13px; background: #ffb6c1;  border-left: solid 1px #bbb; border-right: solid 1px #bbb; text-align:left;font-weight: bold;	padding: 0 1% 0 3%;     background-position: 4px 6px; line-height:30px;}
+.fail_msg{width: 98%;float: left;color: #ffffff !important;font-size: 15px; background: #e71c28;  border-left: solid 1px #bbb; border-right: solid 1px #bbb; text-align:left;padding: 8px 0;     background-position: 4px 6px; line-height:30px;}
