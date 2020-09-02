@@ -100,6 +100,7 @@
 <script>
 var remaining_amount = "<?php echo $remaining_amount; ?>";
 $(document).ready(function(){
+	
 
     $(document).click(function(e){
         console.log(event.target);
@@ -187,7 +188,7 @@ $(document).ready(function(){
                     var due_cost = due_cost + ((checkbox_length - 2)*city_per_cost);
                 }
 
-                if(checkbox_length == package_city || true)
+                if(checkbox_length >= package_city)
                 {
                     var state = '';
                     $(".packageplan.active_plan").find('[type=checkbox]:checked').each(function(){
@@ -322,6 +323,10 @@ $(document).ready(function(){
     $('.dropdown ul').on('click', function (e) {
          e.stopPropagation();
     });
+
+	<?php if($_GET['l'] == 1){ ?>
+		$("#upgrade_subscription").click();
+	<?php } ?>
 });
 </script>
 
@@ -392,7 +397,7 @@ $(document).ready(function(){
            </div>
        </div>
    </div>
-   <div class="row">
+   <div class="row" >
         <div class="col-sm-12">
             <div class="subscribe_notification manage_sub_downgrade">
                  <?php /* if($totalActivePackage == 1 && ((strtotime($package_end_date)) - 259200) < time()) { ?>
@@ -441,7 +446,7 @@ $(document).ready(function(){
                                                 <img class="white_rupees" src="<?php echo base_url(); ?>assets/auctiononclick/images/rupees_medium_white.png"></span><span class="rupees"><?php echo $packagelist[0]->package_amount; ?></span></div>
                                             <input type="hidden" class="plan_amount" name="text" value="<?php echo $packagelist[0]->package_amount; ?>" />
                                             <input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[0]->package_id; ?>" />
-                                            <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[0]->sub_month." months")-86400)); ?>" />
+                                            <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[0]->sub_month." months")-0)); ?>" />
                                         </div>
                                     </div><!--subscription_box-->
                                     <?php if($currentplan1 != ''){ ?>
@@ -459,7 +464,7 @@ $(document).ready(function(){
                                                 </span><span class="rupees"><?php echo $packagelist[1]->package_amount; ?></span></div>
                                             <input type="hidden" class="plan_amount" name="text" value="<?php echo $packagelist[1]->package_amount; ?>" />
                                             <input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[1]->package_id; ?>" />
-                                            <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[1]->sub_month." months")-86400)); ?>" />
+                                            <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[1]->sub_month." months")-0)); ?>" />
                                         </div>
                                     </div><!--subscription_box-->
                                     <?php if($currentplan2 != ''){ ?>
@@ -477,7 +482,7 @@ $(document).ready(function(){
                                                 </span><span class="rupees"><?php echo $packagelist[2]->package_amount; ?></span></div>
                                                 <input type="hidden" class="plan_amount" name="text" value="<?php echo $packagelist[2]->package_amount; ?>" />
                                                 <input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[2]->package_id; ?>" />
-                                                <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[2]->sub_month." months")-86400)); ?>" />
+                                                <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[2]->sub_month." months")-0)); ?>" />
                                         </div>
                                     </div><!--subscription_box-->
                                     <?php if($currentplan3 != ''){ ?>
@@ -506,7 +511,7 @@ $(document).ready(function(){
                                                 <input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[3]->package_id; ?>" />
                                                 <input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[3]->city_per_cost; ?>" />
                                                 <input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[3]->package_city; ?>" />
-                                                <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[3]->sub_month." months")-86400)); ?>" />
+                                                <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[3]->sub_month." months")-0)); ?>" />
 
                                             <?php  if($currentplan4 != ''){ ?>
                                                 <div class="plan_desc state_chosen">
@@ -550,7 +555,7 @@ $(document).ready(function(){
                                         <input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[4]->package_id; ?>" />
                                         <input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[4]->city_per_cost; ?>" />
                                         <input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[4]->package_city; ?>" />
-                                        <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[4]->sub_month." months")-86400)); ?>" />
+                                        <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[4]->sub_month." months")-0)); ?>" />
 
                                         <?php  if($currentplan5 != ''){ ?>
                                         <div class="plan_desc state_chosen">
@@ -592,7 +597,7 @@ $(document).ready(function(){
                                         <input type="hidden" class="package_id" name="text" value="<?php echo $packagelist[5]->package_id; ?>" />
                                         <input type="hidden" class="city_per_cost" name="text" value="<?php echo $packagelist[5]->city_per_cost; ?>" />
                                         <input type="hidden" class="package_city" name="text" value="<?php echo $packagelist[5]->package_city; ?>" />
-                                        <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[5]->sub_month." months")-86400)); ?>" />
+                                        <input type="hidden" class="package_renewal_date" name="text" value="<?php echo $this->home_model->standardDateFormat(date('Y-m-d 23:59:59',strtotime("+".$packagelist[5]->sub_month." months") - 0)); ?>" />
 
                                         <?php  if($currentplan6 != ''){ ?>
                                         <div class="plan_desc state_chosen">
@@ -668,7 +673,7 @@ $(document).ready(function(){
                 <div class="row subscription_disable_text" style="display: none;">
                     <div class="col-sm-12">
                         <div class="current_membership">
-                            <p>Your current membership will continue until <?php echo $this->home_model->standardDateFormat(date('Y-m-d H:i:s',strtotime($package_end_date) + 86400)); ?> after which you can change your plan.</p>
+                            <p>Your current membership will continue until <?php echo $this->home_model->standardDateFormat($package_end_date); ?> after which you can change your plan.</p>
                         </div>
                     </div>
                 </div>
