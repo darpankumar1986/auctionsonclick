@@ -271,7 +271,7 @@
 							<?php $isPremiumMember = $this->home_model->getTotalActivePackage($userid);
 								if($isPremiumMember) {?>
 									<p>Upgrade your subscription to view auction details and documents.</p>
-									<button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url();?>owner/manageSubscription'">Upgrade Subscription</button>
+									<button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url();?>owner/manageSubscription?l=1'">Upgrade Subscription</button>
 								<?php }else{ ?>
 									<p>Become Premium member to view auction details and documents.</p>
 									<button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url();?>home/premiumServices'">Premium Services</button>

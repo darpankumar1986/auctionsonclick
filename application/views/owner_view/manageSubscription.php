@@ -100,6 +100,7 @@
 <script>
 var remaining_amount = "<?php echo $remaining_amount; ?>";
 $(document).ready(function(){
+	
 
     $(document).click(function(e){
         console.log(event.target);
@@ -322,6 +323,10 @@ $(document).ready(function(){
     $('.dropdown ul').on('click', function (e) {
          e.stopPropagation();
     });
+
+	<?php if($_GET['l'] == 1){ ?>
+		$("#upgrade_subscription").click();
+	<?php } ?>
 });
 </script>
 
