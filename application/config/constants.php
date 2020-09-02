@@ -93,8 +93,8 @@ define('ADMINISTRATIVE_FEE','0');
 //C1india SMS API 
 //define('SMSAPIURL',"http://43.240.66.10/unified.php?usr=24934&pwd=~C1@india~&ph=%%mobile%%&sndr=SCWIND&text=%%msg%%");
 
-//define('SMSAPIURL',"https://global.datagenit.com/API/sms-api.php?auth=D!~4614CMDb1J5cLV&msisdn=%%mobile%%&senderid=CINDIN&message=%%msg%%");
-define('SMSAPIURL',"");
+define('SMSAPIURL',"https://global.datagenit.com/API/sms-api.php?auth=D!~4614CMDb1J5cLV&msisdn=%%mobile%%&senderid=CINDIN&message=%%msg%%");
+//define('SMSAPIURL',"");
 
 
 /* Ccavenue payment gateway contants Start Testing Auction Fee*/
@@ -145,8 +145,8 @@ $random = '67894567345';
 $random = rand(1000000000,9999999999);
 define('CACHE_RANDOM',$random);
 
-define('FREE_SUBSCRIPTION_TIME','+1 days');
-//define('FREE_SUBSCRIPTION_TIME','+1 months');
+//define('FREE_SUBSCRIPTION_TIME','+1 days');
+define('FREE_SUBSCRIPTION_TIME','+1 months');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
