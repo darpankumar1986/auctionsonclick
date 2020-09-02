@@ -53,13 +53,14 @@
                                                 </div>
                                                 <div class="sub_list">
                                                     <ul>
-                                                        <li>3 Months Premium Access</li>
-                                                        <li>Auction Document/Notice</li>
-                                                        <li>Auction History</li>
-                                                        <li>Daily Mobile Notification</li>
-                                                        <li>Daily Email Alert</li>
-                                                        <li>Multiple City Email Alert</li>
-                                                        <li>Email Support</li>
+                                                        <li>Pan India Premium Access</li>
+														<li>View Complete Auction Details</li>
+														<li>Download Auction Document/Notice</li>
+														<li>Download Property Pictures</li>
+														<li>Daily/Weekly Email Alert</li>
+														<li>Multiple City Email Alert</li>
+														<li>Advanced Search </li>
+														<li>Email Support</li>
                                                     </ul>
                                                 </div>
 												<?php if($this->session->userdata('id') > 0){ ?>
@@ -84,13 +85,14 @@
                                                 </div>
                                                 <div class="sub_list">
                                                     <ul>
-                                                        <li>6 Months Premium Access</li>
-                                                        <li>Auction Document/Notice</li>
-                                                        <li>Auction History</li>
-                                                        <li>Daily Mobile Notification</li>
-                                                        <li>Daily Email Alert</li>
-                                                        <li>Multiple City Email Alert</li>
-                                                        <li>Email Support</li>
+                                                        <li>Pan India Premium Access</li>
+														<li>View Complete Auction Details</li>
+														<li>Download Auction Document/Notice</li>
+														<li>Download Property Pictures</li>
+														<li>Daily/Weekly Email Alert</li>
+														<li>Multiple City Email Alert</li>
+														<li>Advanced Search </li>
+														<li>Email Support</li>
                                                     </ul>
                                                 </div>
                                                 <?php if($this->session->userdata('id') > 0){ ?>	
@@ -115,13 +117,14 @@
                                                 </div>
                                                 <div class="sub_list">
                                                     <ul>
-                                                        <li>12 Months Premium Access</li>
-                                                        <li>Auction Document/Notice</li>
-                                                        <li>Auction History</li>
-                                                        <li>Daily Mobile Notification</li>
-                                                        <li>Daily Email Alert</li>
-                                                        <li>Multiple City Email Alert</li>
-                                                        <li>Email Support</li>
+                                                        <li>Pan India Premium Access</li>
+														<li>View Complete Auction Details</li>
+														<li>Download Auction Document/Notice</li>
+														<li>Download Property Pictures</li>
+														<li>Daily/Weekly Email Alert</li>
+														<li>Multiple City Email Alert</li>
+														<li>Advanced Search </li>
+														<li>Email Support</li>
                                                     </ul>
                                                 </div>
                                                 <?php if($this->session->userdata('id') > 0){ ?>	
@@ -165,13 +168,14 @@
                                                 </div>
                                                 <div class="sub_list">
                                                     <ul>
-                                                        <li>3 Months Premium Access</li>
-                                                        <li>Auction Document/Notice</li>
-                                                        <li>Auction History</li>
-                                                        <li>Daily Mobile Notification</li>
-                                                        <li>Daily Email Alert</li>
-                                                        <li>Multiple City Email Alert</li>
-                                                        <li>Email Support</li>
+                                                        <li>Subscribed States Premium Access</li>
+														<li>View Complete Auction Details</li>
+														<li>Download Auction Document/Notice</li>
+														<li>Download Property Pictures</li>
+														<li>Daily/Weekly Email Alerts</li>
+														<li>Multiple City Email Alerts</li>
+														<li>Advanced Search </li>
+														<li>Email Support</li>
                                                     </ul>
                                                 </div>
 												<?php if($this->session->userdata('id') > 0){ ?>
@@ -211,13 +215,14 @@
                                                 </div>
                                                 <div class="sub_list">
                                                     <ul>
-                                                        <li>6 Months Premium Access</li>
-                                                        <li>Auction Document/Notice</li>
-                                                        <li>Auction History</li>
-                                                        <li>Daily Mobile Notification</li>
-                                                        <li>Daily Email Alert</li>
-                                                        <li>Multiple City Email Alert</li>
-                                                        <li>Email Support</li>
+                                                        <li>Subscribed States Premium Access</li>
+														<li>View Complete Auction Details</li>
+														<li>Download Auction Document/Notice</li>
+														<li>Download Property Pictures</li>
+														<li>Daily/Weekly Email Alerts</li>
+														<li>Multiple City Email Alerts</li>
+														<li>Advanced Search </li>
+														<li>Email Support</li>
                                                     </ul>
                                                 </div>
                                                 <?php if($this->session->userdata('id') > 0){ ?>
@@ -256,13 +261,14 @@
                                                 </div>
                                                 <div class="sub_list">
                                                     <ul>
-                                                        <li>12 Months Premium Access</li>
-                                                        <li>Auction Document/Notice</li>
-                                                        <li>Auction History</li>
-                                                        <li>Daily Mobile Notification</li>
-                                                        <li>Daily Email Alert</li>
-                                                        <li>Multiple City Email Alert</li>
-                                                        <li>Email Support</li>
+                                                        <li>Subscribed States Premium Access</li>
+														<li>View Complete Auction Details</li>
+														<li>Download Auction Document/Notice</li>
+														<li>Download Property Pictures</li>
+														<li>Daily/Weekly Email Alerts</li>
+														<li>Multiple City Email Alerts</li>
+														<li>Advanced Search </li>
+														<li>Email Support</li>
                                                     </ul>
                                                 </div>
                                                 <?php if($this->session->userdata('id') > 0){ ?>
@@ -307,7 +313,7 @@
 					if(data_id > 3)
 					{
 						var selected_checkbox = $(this).closest('.subscription_box').find('[type=checkbox]:checked').length;
-						if(selected_checkbox == 2 || true)
+						if(selected_checkbox >= 2)
 						{
 							var state = '';
 							$(this).closest('.subscription_box').find('[type=checkbox]:checked').each(function(){

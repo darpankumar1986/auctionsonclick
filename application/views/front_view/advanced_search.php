@@ -273,7 +273,7 @@ var oTable = null;
                 "fnRowCallback": function (nRow, aData, iDisplayIndex) {
 
 
-
+					  $('td:eq(2)',nRow).html(capitalize_Words(aData[2]));	
                       $('td:eq(5)', nRow).addClass('button-img');
                       $('td:eq(4)', nRow).html('₹'+indian_money_format(aData[4])).css('text-align','right');
 

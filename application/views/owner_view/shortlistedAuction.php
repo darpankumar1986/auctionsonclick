@@ -40,7 +40,8 @@
                 "fnRowCallback": function (nRow, aData, iDisplayIndex) {
 
 
-                       $('td:eq(0)', nRow).addClass('hide');
+                      $('td:eq(0)', nRow).addClass('hide');
+					  $('td:eq(3)',nRow).html(capitalize_Words(aData[3]));
                       $('td:eq(6)', nRow).addClass('button-img');
                       $('td:eq(5)', nRow).html('₹'+indian_money_format(aData[5])).css('text-align','right');
 
@@ -89,7 +90,8 @@
                 "fnRowCallback": function (nRow, aData, iDisplayIndex) {
 
 
-                       $('td:eq(0)', nRow).addClass('hide');
+                      $('td:eq(0)', nRow).addClass('hide');
+					  $('td:eq(3)',nRow).html(capitalize_Words(aData[3]));
                       $('td:eq(6)', nRow).addClass('button-img');
                       $('td:eq(5)', nRow).html('₹'+indian_money_format(aData[5])).css('text-align','right');
 
@@ -137,7 +139,8 @@
                 "fnRowCallback": function (nRow, aData, iDisplayIndex) {
 
 
-                       $('td:eq(0)', nRow).addClass('hide');
+                      $('td:eq(0)', nRow).addClass('hide');
+					  $('td:eq(3)',nRow).html(capitalize_Words(aData[3]));
                       $('td:eq(6)', nRow).addClass('button-img');
                       $('td:eq(5)', nRow).html('₹'+indian_money_format(aData[5])).css('text-align','right');
 
@@ -185,7 +188,8 @@
                 "fnRowCallback": function (nRow, aData, iDisplayIndex) {
 
 
-                       $('td:eq(0)', nRow).addClass('hide');
+                      $('td:eq(0)', nRow).addClass('hide');
+					  $('td:eq(3)',nRow).html(capitalize_Words(aData[3]));
                       $('td:eq(6)', nRow).addClass('button-img');
                       $('td:eq(5)', nRow).html('₹'+indian_money_format(aData[5])).css('text-align','right');
 

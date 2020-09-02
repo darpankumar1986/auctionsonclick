@@ -85,7 +85,7 @@
                         <div class="row">
                             <div class="col-sm-9">
                                 <div class="desc_wrapper_inner">
-                                    <h3>Residential Plot in <?php echo $auction_data[0]->location_name; ?>, <?php echo $auction_data[0]->city_name; ?></h3>
+                                    <h3>Residential Plot in <?php echo $auction_data[0]->location_name; ?>, <?php echo ucwords(strtolower($auction_data[0]->city_name)); ?></h3>
                                     <p><!--<img src="<?php echo base_url().$auction_data[0]->bank_img; ?>" style="width:18px;height:18px;">--> <?php echo $auction_data[0]->bank_name; ?></p>
                                 </div>
                             </div>
@@ -185,7 +185,7 @@
                                 </tr>
                                 <tr>
                                     <td>City</td>
-                                    <td><?php echo $auction_data[0]->city_name; ?></td>
+                                    <td><?php echo ucwords(strtolower($auction_data[0]->city_name)); ?></td>
                                 </tr>
                                 <tr>
                                     <td>State</td>

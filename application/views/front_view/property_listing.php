@@ -139,7 +139,7 @@ var oTable = null;
                 "fnRowCallback": function (nRow, aData, iDisplayIndex) {
 
 
-
+					  $('td:eq(2)',nRow).html(capitalize_Words(aData[2]));
                       $('td:eq(5)', nRow).addClass('button-img');
                       $('td:eq(4)', nRow).html('₹'+indian_money_format(aData[4])).css('text-align','right');
 
@@ -194,7 +194,7 @@ var oTable = null;
                     <div class="breadcrumb_main">
                         <ol class="breadcrumb">
                             <li><a href="<?php echo base_url();?>">Home</a></li>
-                            <li class="active"><?php echo ucwords($_GET['search_city']); ?> Auctions</li>
+                            <li class="active"><?php echo ucwords(strtolower($_GET['search_city'])); ?> Auctions</li>
                         </ol>
                         <!-- <h3>Bank Auctions in <?php echo ucwords($_GET['search_city']); ?></h3> -->
                     </div><!--breadcrumb_main-->

@@ -391,7 +391,8 @@ class Owner extends WS_Controller {
         $cities = $this->bank_model->GetCity();
         $data['cities'] = $cities;
 
-        $data['title'] = 'Profile';
+        $data['title'] = 'Profile - AuctionOnClick';
+		$data['description'] = "";
         $response = $this->owner_model->myProfileUserData();
         $emailAlertData = $this->owner_model->memberEmailAlertData();
 		$isPremiumMember = $this->owner_model->isPremiumMember();
@@ -3422,7 +3423,8 @@ class Owner extends WS_Controller {
 
 	public function shortlistedAuction()
 	{	
-		$data['title'] = "Shortlisted";
+		$data['title'] = 'Shortlised Auction Properties - AuctionOnClick';
+		$data['description'] = "";
 		$data['assetsType'] = $this->owner_model->getAllAssetsType();
 		$vdata['property'] = $this->owner_model->getProperty();
 		$this->load->view('front_view/header',$data);
@@ -3490,7 +3492,8 @@ class Owner extends WS_Controller {
 		}
 
 		
-		$data['title'] = 'Manage Subscription';
+		$data['title'] = 'Manage Subscription - AuctionOnClick';
+		$data['description'] = "";
 		$this->load->view('front_view/header',$data);
 		if(MOBILE_VIEW)
 		{				

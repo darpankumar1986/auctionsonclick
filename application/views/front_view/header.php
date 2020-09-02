@@ -22,17 +22,9 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-
-      <meta name="description" content="<?php echo ucwords($getBankName); ?> selling residential, commercial, industrial, agricultural properties, land, plots, house and  flats across the India. View, Bid & Win Non Performing Assets (NPA), DRT Properties."/>
-        <title><?php if($title != ''){echo $title;}else{ echo 'AuctionOnClick.com - Home Page';} ?></title>
-      <meta name="description" content="Find residential and commercial auction properties for sale from the <?php echo BRAND_NAME; ?> . View, Bid & Win Non Performing Assets (NPA), Auction, Foreclosure and Sarfaesi Auction Properties."/>
-      <meta name="Owner" content=" "/>
-      <meta name="Copyright" content=""/>
-      <meta name="classification" content="Property Search"/>
-      <meta name="distribution" content="India"/>
-      <meta name="rating" content="General"/>
-      <meta name="audience" content="All"/>
-
+	  <title><?php echo $title; ?></title>
+      <meta name="Description" content="<?php echo $description; ?>"/>
+	  <meta name="Keywords" content="auction, foreclosure, sales notice, nilami, foreclosed homes, online auctions, foreclosed properties">
     <link rel="icon" href="<?php echo base_url();?>favicon.ico?rand=<?php echo CACHE_RANDOM; ?>">
     <link href="<?php echo base_url(); ?>assets/auctiononclick/css/jquery-ui-1.12.1.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url();?>assets/front_view/css/flexslider.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet" type="text/css" />
@@ -64,8 +56,6 @@
     <script src="<?php echo base_url(); ?>bankeauc/js/sweetalert.min.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
     <script src="<?php echo base_url(); ?>bankeauc/js/sweetalert.core.js?rand=<?php echo CACHE_RANDOM; ?>"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bankeauc/css/sweetalert.css?rand=<?php echo CACHE_RANDOM; ?>">-->
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>bankeauc/css/sweetalert.css?rand=<?php echo CACHE_RANDOM; ?>">
     <link href="<?php echo base_url(); ?>assets/auctiononclick/css/bootstrap.min.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet">
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?rand=<?php echo CACHE_RANDOM; ?>">-->

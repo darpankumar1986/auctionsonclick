@@ -18,14 +18,16 @@
 
 										  if(is_array($top_cities) && count($top_cities)>0)
 										  {
-											if($cnt<=10)
-											{
+											
 												foreach ($top_cities as $key =>$city)
 												  {
+													if($cnt<=10)
+													{
 										  ?>
 													<li><a href="<?php echo base_url();?>propertylisting?search_city=<?php echo $key; ?>"><?php echo ucwords(strtolower($key)).' ('.$city.')'; ?></a></li>
 										  <?php 
-												  }
+											  		$cnt++;
+												    }
 											}
 										  }
 										  ?>
@@ -49,6 +51,7 @@
 										  ?>
 												<li><a href="<?php echo base_url();?>propertylisting?bank=<?php echo $bank->id; ?>"><?php echo ucwords(strtolower($bank->name)); ?></a></li>
 										  <?php 
+											  		$cnt++;
 												  }
 											  }
 										  }
@@ -369,6 +372,13 @@ function indian_money_format(x)
     var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
 	return res;
 }
+
+//capitalize_Words 
+function capitalize_Words(str)
+{
+ return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
 </script>
 
 </body>
