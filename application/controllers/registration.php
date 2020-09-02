@@ -1716,7 +1716,7 @@ class Registration extends WS_Controller {
 		}
 
 		$randNumber=rand(100000,999999);
-		$randNumber = 111111;
+		//$randNumber = 111111;
 		$this->session->set_userdata('mobileVerificationCode', $randNumber);
 		$this->session->set_userdata('mobileNo', $mobileNo);
 
@@ -1774,7 +1774,7 @@ class Registration extends WS_Controller {
 		$data['first_name'] = ucwords(strtolower($data['first_name']));
 
 		$randNumber=rand(100000,999999);
-		$randNumber = 111111;
+		//$randNumber = 111111;
 		$this->session->set_userdata('emailVerificationCode', $randNumber);
 		$this->session->set_userdata('email', $email);		
 		$subject = "AuctionOnClick - Signup OTP";
