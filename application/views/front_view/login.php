@@ -259,7 +259,7 @@
                                        </div>
                                    </div>
                                    <div class="checkbox">
-                                       <label><input type="checkbox" name="remember"> Remember me</label>
+                                       <!--<label><input type="checkbox" name="remember"> Remember me</label>-->
                                        <label class="forget"><a href="<?php echo base_url()?>registration/forgetpassword" class="forget">Forgot password?</a></label>
                                    </div>
                                    <button type="submit" class="btn btn-default login_btn" name="submit1">Login</button>

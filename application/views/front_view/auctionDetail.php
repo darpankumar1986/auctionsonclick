@@ -268,16 +268,22 @@
                     <?php if(!($auction_data[0]->isSub > 0 || $free_sub_flag == 1)){ ?>
                     <div class="premium_section">
                         <div class="premium_section_inner">
-                            <p>Become Premium member to view auction details and documents.</p>
-                            <button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url();?>home/premiumServices'">Premium Services</button>
-                            <?php if(!$this->session->userdata('id')){ ?>
-                                <p class="subscriber_para">If you are already a subscriber</p>
-                                <ul class="login_register_section">
-                                    <li><a href="<?php echo base_url(); ?>home/login"><button class="btn btn-default btn_login" type="button">Login</button></a></li>
-                                    <li><p>Or</p></li>
-                                <li><a href="<?php echo base_url(); ?>registration/signup"><button class="btn btn-default btn_register" type="button">Register</button></a></li>
-                                </ul>
-                            <?php } ?>
+							<?php $isPremiumMember = $this->home_model->getTotalActivePackage($userid);
+								if($isPremiumMember) {?>
+									<p>Upgrade your subscription to view auction details and documents.</p>
+									<button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url();?>owner/manageSubscription'">Upgrade Subscription</button>
+								<?php }else{ ?>
+									<p>Become Premium member to view auction details and documents.</p>
+									<button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url();?>home/premiumServices'">Premium Services</button>
+								<?php } ?>
+								<?php if(!$this->session->userdata('id')){ ?>
+									<p class="subscriber_para">If you are already a subscriber</p>
+									<ul class="login_register_section">
+										<li><a href="<?php echo base_url(); ?>home/login"><button class="btn btn-default btn_login" type="button">Login</button></a></li>
+										<li><p>Or</p></li>
+									<li><a href="<?php echo base_url(); ?>registration/signup"><button class="btn btn-default btn_register" type="button">Register</button></a></li>
+									</ul>
+								<?php } ?>
                         </div>
                     </div>
                     <?php } ?>

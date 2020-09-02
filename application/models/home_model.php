@@ -1283,7 +1283,7 @@ class Home_model extends CI_Model {
 
 	function standardDateFormat($dateTime)
 	{
-		return date('F d',strtotime($dateTime)).'<sup>'.date('S',strtotime($dateTime)).'</sup>, '.date('Y',strtotime($dateTime));
+		return date('F j',strtotime($dateTime)).'<sup>'.date('S',strtotime($dateTime)).'</sup>, '.date('Y',strtotime($dateTime));
 	}
 }
 
