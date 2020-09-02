@@ -307,7 +307,7 @@
 					if(data_id > 3)
 					{
 						var selected_checkbox = $(this).closest('.subscription_box').find('[type=checkbox]:checked').length;
-						if(selected_checkbox == 2 || true)
+						if(selected_checkbox >= 2)
 						{
 							var state = '';
 							$(this).closest('.subscription_box').find('[type=checkbox]:checked').each(function(){
