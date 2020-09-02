@@ -432,3 +432,28 @@ ALTER TABLE `tbl_log_auction`
 CHANGE `reserve_price` `reserve_price` decimal(27,0) NULL AFTER `subcategory_id`;
 ALTER TABLE `tbl_log_auction`
 CHANGE `emd_amt` `emd_amt` decimal(23,0) NULL AFTER `borrower_name`;
+
+DROP TABLE IF EXISTS `tbl_subscription_package`;
+CREATE TABLE `tbl_subscription_package` (
+  `package_id` int(11) NOT NULL AUTO_INCREMENT,
+  `package_name` varchar(1000) NOT NULL,
+  `package_description` text,
+  `package_amount` int(11) NOT NULL,
+  `sub_month` int(11) DEFAULT NULL,
+  `package_city` tinyint(2) NOT NULL,
+  `per_day_cost` decimal(15,5) DEFAULT NULL,
+  `city_per_cost` decimal(15,4) NOT NULL DEFAULT '0.0000',
+  `package_status` tinyint(1) NOT NULL,
+  `package_updated_on` datetime DEFAULT NULL,
+  `package_created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`package_id`),
+  KEY `package_status` (`package_status`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `tbl_subscription_package` (`package_id`, `package_name`, `package_description`, `package_amount`, `sub_month`, `package_city`, `per_day_cost`, `city_per_cost`, `package_status`, `package_updated_on`, `package_created_on`) VALUES
+(1,	'3 Months Pan India',	'Pan India Premium Access\r\nView Complete Auction Details\r\nDownload Auction Document/Notice\r\nDownload Property Pictures\r\nDaily/Weekly Email Alert\r\nMultiple City Email Alert\r\nAdvanced Search \r\nEmail Support',	2000,	3,	0,	22.22220,	0.0000,	1,	'2020-08-07 00:00:00',	'2020-09-02 09:40:40'),
+(2,	'6 Months in Pan India',	'Pan India Premium Access\r\nView Complete Auction Details\r\nDownload Auction Document/Notice\r\nDownload Property Pictures\r\nDaily/Weekly Email Alert\r\nMultiple City Email Alert\r\nAdvanced Search \r\nEmail Support',	3500,	6,	0,	19.44440,	0.0000,	1,	'2020-08-07 00:00:00',	'2020-09-02 09:41:39'),
+(3,	'12 Months in Pan India',	'Pan India Premium Access\r\nView Complete Auction Details\r\nDownload Auction Document/Notice\r\nDownload Property Pictures\r\nDaily/Weekly Email Alert\r\nMultiple City Email Alert\r\nAdvanced Search \r\nEmail Support',	6500,	12,	0,	17.80820,	0.0000,	1,	'2020-08-07 00:00:00',	'2020-09-02 09:41:47'),
+(4,	'3 Months in state wise',	'Subscribed States Premium Access\r\nView Complete Auction Details\r\nDownload Auction Document/Notice\r\nDownload Property Pictures\r\nDaily/Weekly Email Alerts\r\nMultiple City Email Alerts\r\nAdvanced Search \r\nEmail Support',	1500,	3,	2,	16.66670,	100.0000,	1,	'2020-08-07 00:00:00',	'2020-09-02 09:43:41'),
+(5,	'6 Months in state wise',	'Subscribed States Premium Access\r\nView Complete Auction Details\r\nDownload Auction Document/Notice\r\nDownload Property Pictures\r\nDaily/Weekly Email Alerts\r\nMultiple City Email Alerts\r\nAdvanced Search \r\nEmail Support',	2500,	6,	2,	13.88890,	200.0000,	1,	'2020-08-07 00:00:00',	'2020-09-02 09:43:48'),
+(6,	'12 Months in state wise',	'Subscribed States Premium Access\r\nView Complete Auction Details\r\nDownload Auction Document/Notice\r\nDownload Property Pictures\r\nDaily/Weekly Email Alerts\r\nMultiple City Email Alerts\r\nAdvanced Search \r\nEmail Support',	4000,	12,	2,	10.95890,	400.0000,	1,	'2020-08-07 00:00:00',	'2020-09-02 09:43:55');

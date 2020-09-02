@@ -146,7 +146,9 @@ class Registration extends WS_Controller {
 		$data['staticData']=$staticData;
 		$id=base64_decode(urldecode($encoded_str));
 		$data['id']=$id;
-		$data['title'] = 'Register';
+		$data['title'] = 'Create your account - AuctionOnClick';
+		$data['description'] = "Create your account and find the latest auction properties in the locality of your choice, available for sale by Banks and Financial Institutions.";
+
 		$this->load->view('front_view/header',$data);
 		if(MOBILE_VIEW)
 		{

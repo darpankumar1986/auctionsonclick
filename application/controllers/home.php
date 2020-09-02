@@ -40,6 +40,8 @@ class Home extends MY_Controller {
     }
 
     public function index() {
+		
+
 		/*
 		$this->load->model('elastic_model');		
 		$res = $this->elastic_model->property();
@@ -49,8 +51,8 @@ class Home extends MY_Controller {
         $data['homebreakingNews'] = $homebreakingNews;
 	
         
-
-
+		
+		
         $data['controller'] = 'home';
         $data['bankData'] = $bankData;
 
@@ -59,7 +61,8 @@ class Home extends MY_Controller {
 		$data['aData'] = $this->home_model->liveAuctionDatatable();
 		$data['assetsType'] = $this->home_model->getAllAssetsType();
 
-		
+		$data['title'] = 'Auction Properties, NPA Assets, Foreclosure Properties - AuctionOnClick';
+		$data['description'] = "Find Non Performing Assets (NPA), Distressed Assets, Foreclosure and Sarfaesi Auction properties available for sale by Banks and Financial Institutions at lower prices on AuctionOnClick.com.";
 
         $this->load->view('front_view/header', $data);
         if(MOBILE_VIEW)
@@ -77,16 +80,16 @@ class Home extends MY_Controller {
 	
   
     function faq() {
-        $data['title'] = 'FAQ';
-		//
-        //
+        $data['title'] = 'FAQs on Auction Properties - AuctionOnClick';
+		$data['description'] = "";
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/faq', $data);   
         $this->load->view('front_view/footer');     
     }
 
     function about_us() {
-		$data['title'] = 'About Us';
+		$data['title'] = 'About Us - AuctionOnClick';
+		$data['description'] = "Find Non Performing Assets (NPA), Distressed Assets, Foreclosure and Sarfaesi Auction properties available for sale by Banks and Financial Institutions at lower prices on AuctionOnClick.com.";
                 
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/about_us', $data);
@@ -94,17 +97,16 @@ class Home extends MY_Controller {
     }
 
     function privacy_policy() {
-		$data['title'] = 'Privacy Policy';
-        
-        
+        $data['title'] = 'Privacy Policy - AuctionOnClick';
+		$data['description'] = "";
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/privecy-policy', $data);
         $this->load->view('front_view/footer');
     }
 
     function terms_of_use() {
-		$data['title'] = 'Terms &amp; Conditions';	
-
+		$data['title'] = 'Terms &amp; Conditions - AuctionOnClick';
+		$data['description'] = "";
         
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/terms_of_use', $data);
@@ -112,9 +114,8 @@ class Home extends MY_Controller {
     }
 
 	function sitemap() {
-        $data['title'] = 'Sitemap';
-		//
-        //
+        $data['title'] = 'Sitemap - AuctionOnClick';
+		$data['description'] = "Find Non Performing Assets (NPA), Distressed Assets, Foreclosure and Sarfaesi Auction properties available for sale by Banks and Financial Institutions at lower prices on AuctionOnClick.com.";
         $this->load->view('front_view/header', $data);
         $this->load->view('front_view/sitemap', $data);   
         $this->load->view('front_view/footer');     
@@ -138,7 +139,8 @@ class Home extends MY_Controller {
     
 
 	function contact_us() {
-		$data['title'] = 'Contact Us';
+		$data['title'] = 'Contact Us - AuctionOnClick';
+		$data['description'] = "Get in touch with AuctionOnClick for more info on properties available on Auction";
         $getContactUsTopic = $this->home_model->getContactUsTopic();
         $data['getContactUsTopic'] = $getContactUsTopic;
         $this->load->view('front_view/header', $data);
@@ -178,7 +180,8 @@ class Home extends MY_Controller {
         }
 	
 	function auctionDetail($auctionID) {
-		$data['title'] = "Property - Details";
+		
+
 		$data['auction_data'] = $this->home_model->aucDetailPopupData($auctionID);
 		$data['uploadedDocs'] = $this->home_model->GetUploadedDocsByAuctionId($auctionID);
 		//print_r($data['auction_data']);
@@ -188,6 +191,9 @@ class Home extends MY_Controller {
 		$data['sales_person_detail'] = 'Mr. '.$salesPerson[0]->sales_person_name.', Mobile No. '.$salesPerson[0]->mobile_no.', <a href="mailto:'.$salesPerson[0]->email_id.'">'.$salesPerson[0]->email_id.'</a>';
 		
 		//$data['data'] = $this->home_model->GetAuctionDocuments($auctionID);
+		$data['title'] = "Auction of ".ucwords(strtolower($data['auction_data'][0]->PropertyDescription))." - AuctionOnClick";
+		$data['description'] = "Auction of ".ucwords(strtolower($data['auction_data'][0]->PropertyDescription)).", ".ucwords(strtolower($data['auction_data'][0]->city_name)).". Get the complete details of auction and conditions of sale. View and download the Sale Notice and Property Pictures.";
+		
 		$this->load->view('front_view/header', $data);	
 		$this->load->view('front_view/auctionDetail', $data);
 		$this->load->view('front_view/footer');
@@ -195,15 +201,31 @@ class Home extends MY_Controller {
         
 	public function propertylisting()
 	{	
-		$data['title'] = "Property - Listing";
+		
 		$data['assetsType'] = $this->home_model->getAllAssetsType();
-		$this->load->view('front_view/header', $data);	
+		
 		$vdata['property'] = $this->home_model->getProperty();
 		
 		$vdata['data'] = $this->home_model->getAuctionCityLocation();
 		$vdata['totalAuction'] = $this->home_model->getTotalAdvancedSearchAuction();
 		
-		 if(MOBILE_VIEW)
+		if($_GET['search_city'])
+		{
+			$title = 'New Bank Auction Properties in '.ucwords(strtolower($_GET['search_city'])).' - AuctionOnClick';
+			$description = 'Find the latest auction properties available for sale by Banks and Financial Institutions under Sarfaesi Act, DRT Act and various other acts in '.ucwords(strtolower($_GET['search_city'])).', India';
+		}
+		else
+		{
+			$bankName = GetTitleByField('tbl_bank', "id='".$_GET['bank']."'", "name");
+			$title = $bankName.' Auction Properties in India - AuctionOnClick';
+			$description = (int)$vdata['totalAuction'].'+ auction properties available for sale by '.$bankName.'.';
+		}
+		$data['title'] = $title; 
+		$data['description'] = $description;
+
+		$this->load->view('front_view/header', $data);	
+		
+		if(MOBILE_VIEW)
 		{				
 			$this->load->view('mobile/property_listing',$vdata);
 		}
@@ -351,7 +373,8 @@ class Home extends MY_Controller {
 
 	public function login() {
 		
-		$data['title'] = 'Log  In';
+		$data['title'] = 'Login to your account - AuctionOnClick';
+		$data['description'] = "Login to your account and find the latest auction properties in the locality of your choice, available for sale by Banks and Financial Institutions.";
         $this->load->view('front_view/header', $data);
         if(MOBILE_VIEW)
 		{			
@@ -385,7 +408,8 @@ class Home extends MY_Controller {
 		}
 
 		
-		$data['title'] = 'Premium Services';
+		$data['title'] = 'Premium Services - AuctionOnClick';
+		$data['description'] = "Buy Premium Services to get the complete details of auction and conditions of sale. View and download the Sale Notice and Property Pictures.";
 		$data['subcription_plan'] = $this->home_model->getSubcriptionPlan(0);
         $this->load->view('front_view/header', $data);
         if(MOBILE_VIEW)
@@ -452,7 +476,8 @@ class Home extends MY_Controller {
 
 	public function advanced_search()
 	{
-		$data['title'] = 'Search'; //Advanced Search
+		$data['title'] = 'Advanced Search - AuctionOnClick';
+		$data['description'] = "Find Non Performing Assets (NPA), Distressed Assets, Foreclosure and Sarfaesi Auction properties available for sale by Banks and Financial Institutions at lower prices on AuctionOnClick.com.";
 		$data['totalAuction'] = $this->home_model->getTotalAdvancedSearchAuction();
         $this->load->view('front_view/header', $data);
         if(MOBILE_VIEW)
@@ -469,7 +494,8 @@ class Home extends MY_Controller {
 
 	public function top_banks()
 	{
-		$data['title'] = 'Top Banks';
+		$data['title'] = 'Top Bank Auction Properties - AuctionOnClick';
+		$data['description'] = "Find the latest auction properties in the locality of your choice, available for sale by Banks and Financial Institutions under Sarfaesi Act, DRT Act and various other acts.";
 		$data['top_banks'] = $this->home_model->getAllBank();
         $this->load->view('front_view/header', $data);
         if(MOBILE_VIEW)
@@ -485,7 +511,8 @@ class Home extends MY_Controller {
     }
 	public function top_cities()
 	{
-		$data['title'] = 'Top Cities';
+		$data['title'] = 'Auction Properties in Top Cities - AuctionOnClick';
+		$data['description'] = "Find the latest auction properties in the locality of your choice, available for sale by Banks and Financial Institutions under Sarfaesi Act, DRT Act and various other acts.";
 		$data['top_cities'] = $this->home_model->getTopCities();
         $this->load->view('front_view/header', $data);
         if(MOBILE_VIEW)
