@@ -49,7 +49,7 @@
 												if($cnt<=10)
 												  {
 										  ?>
-												<li><a href="<?php echo base_url();?>propertylisting?bank=<?php echo $bank->id; ?>"><?php echo ucwords(strtolower($bank->name)); ?></a></li>
+												<li><a href="<?php echo base_url();?>propertylisting?bank=<?php echo $bank->id; ?>"><?php echo $bank->name; ?></a></li>
 										  <?php 
 											  		$cnt++;
 												  }

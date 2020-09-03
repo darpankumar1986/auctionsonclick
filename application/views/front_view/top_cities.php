@@ -26,7 +26,7 @@
 								foreach ($top_cities as $key =>$city)
 								  {
 							  ?>
-									<li><a href="<?php echo base_url();?>propertylisting?search_city=<?php echo $key; ?>"><?php echo $key.' ('.$city.')'; ?></a></li>
+									<li><a href="<?php echo base_url();?>propertylisting?search_city=<?php echo $key; ?>"><?php echo ucwords(strtolower($key)).' ('.$city.')'; ?></a></li>
 							  <?php 
 								  }
 							  }
