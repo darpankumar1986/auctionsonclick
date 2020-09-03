@@ -533,11 +533,11 @@ class Bank_model extends CI_Model {
 		$wordCount = count($words);
 
 		// declare which columns should be searched
-		$columns = array("u.id", "u.name", "tb.name" , "zone.name", "region.name");
+		$columns = array("u.id", "u.name", "tb.name");
 		$columnCount = count($columns);
 
 		// start from a basic query, which we will expand later
-		$query = "SELECT count(*) as total FROM tbl_branch as u LEFT JOIN tbl_bank as tb ON tb.id = u.bank_id LEFT JOIN tbl_zone as zone ON zone.zone_id = u.zone_id LEFT JOIN tbl_region as region ON region.id = u.region_id WHERE 1  ";
+		$query = "SELECT count(*) as total FROM tbl_branch as u LEFT JOIN tbl_bank as tb ON tb.id = u.bank_id WHERE 1  ";
 
 		// all words should be used
 		// that's why we are adding them with the 'AND' operator.
@@ -580,7 +580,7 @@ class Bank_model extends CI_Model {
 		}
 		
 		$query .= " AND u.status != 5 ";
-		$query .= "ORDER BY u.zone_id";
+		$query .= "ORDER BY u.id";
 		
 		$query = $this->db->query($query);
         
@@ -622,11 +622,11 @@ class Bank_model extends CI_Model {
 		$wordCount = count($words);
 
 		// declare which columns should be searched
-		$columns = array("u.id", "u.name", "tb.name" , "zone.name", "region.name");
+		$columns = array("u.id", "u.name", "tb.name");
 		$columnCount = count($columns);
 
 		// start from a basic query, which we will expand later
-		$query = "SELECT u.* FROM tbl_branch as u LEFT JOIN tbl_bank as tb ON tb.id = u.bank_id LEFT JOIN tbl_zone as zone ON zone.zone_id = u.zone_id LEFT JOIN tbl_region as region ON region.id = u.region_id WHERE 1  ";
+		$query = "SELECT u.* FROM tbl_branch as u LEFT JOIN tbl_bank as tb ON tb.id = u.bank_id WHERE 1  ";
 
 		// all words should be used
 		// that's why we are adding them with the 'AND' operator.
