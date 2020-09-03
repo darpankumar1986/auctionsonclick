@@ -457,3 +457,7 @@ INSERT INTO `tbl_subscription_package` (`package_id`, `package_name`, `package_d
 (4,	'3 Months in state wise',	'Subscribed States Premium Access\r\nView Complete Auction Details\r\nDownload Auction Document/Notice\r\nDownload Property Pictures\r\nDaily/Weekly Email Alerts\r\nMultiple City Email Alerts\r\nAdvanced Search \r\nEmail Support',	1500,	3,	2,	16.66670,	100.0000,	1,	'2020-08-07 00:00:00',	'2020-09-02 09:43:41'),
 (5,	'6 Months in state wise',	'Subscribed States Premium Access\r\nView Complete Auction Details\r\nDownload Auction Document/Notice\r\nDownload Property Pictures\r\nDaily/Weekly Email Alerts\r\nMultiple City Email Alerts\r\nAdvanced Search \r\nEmail Support',	2500,	6,	2,	13.88890,	200.0000,	1,	'2020-08-07 00:00:00',	'2020-09-02 09:43:48'),
 (6,	'12 Months in state wise',	'Subscribed States Premium Access\r\nView Complete Auction Details\r\nDownload Auction Document/Notice\r\nDownload Property Pictures\r\nDaily/Weekly Email Alerts\r\nMultiple City Email Alerts\r\nAdvanced Search \r\nEmail Support',	4000,	12,	2,	10.95890,	400.0000,	1,	'2020-08-07 00:00:00',	'2020-09-02 09:43:55');
+
+----------------Darpan -------------------------------
+ALTER TABLE `tbl_bank`
+ADD `show_on_homepage` int(11) NULL DEFAULT '0';
