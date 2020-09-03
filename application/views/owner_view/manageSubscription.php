@@ -102,7 +102,7 @@ var remaining_amount = "<?php echo $remaining_amount; ?>";
 $(document).ready(function(){
 	
 
-    $(document).click(function(e){
+    /*$(document).click(function(e){
         console.log(event.target);
         var flag = $(event.target).closest('.packageplan').length;
         var flag1 = $(event.target).closest('.Active_membership').length;
@@ -117,7 +117,8 @@ $(document).ready(function(){
              $(".statewise_text").hide();
              $(".selected_states").hide();
         }
-    });
+    });*/
+
     $("#upgrade_subscription").click(function(){
         $(".Subscription_plan").slideToggle();
         var currHeight = $("#State_Wise .current_plan .subscription_box").outerHeight();
