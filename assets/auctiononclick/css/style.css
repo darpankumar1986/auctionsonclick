@@ -1655,6 +1655,10 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     padding: 6px 22px;
     border-radius: 4px 4px 0 0;
 }
+.login ul li.user_info .dropdown.open .btn-default {
+    background-color: #ffffff;
+    color: #333333;
+}
 .login ul li.user_info .btn-default .caret {
     margin-left: 15px;
     position: relative;
