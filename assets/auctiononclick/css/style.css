@@ -1870,18 +1870,22 @@ h3.premium_service span .fa-star {
 .shortlisted_table .auction_table_box th {
     background-color: #333333;
 }
-.shortlisted_table .auction_table_box th:first-child {
+.shortlisted_table .auction_table_box th:focus {
+    outline: 0;
+}
+.auction_table.shortlisted_table .auction_table_box th:first-child {
     border-left: 1px solid transparent;
 }
-.shortlisted_table .auction_table_box th:last-child {
+.auction_table.shortlisted_table .auction_table_box th:last-child {
     border-right: 0;
 }
-.shortlisted_table .auction_table_box td:first-child {
+.auction_table.shortlisted_table .auction_table_box td:first-child {
     border-left: 1px solid transparent;
 }
-.shortlisted_table .auction_table_box td:last-child {
+.auction_table.shortlisted_table .auction_table_box td:last-child {
     border-right: 1px solid transparent;
 }
+
 /*----------------------------User Shortlist Page_end----------------------*/
 
 /*----------------------------View Detail - After Subscription----------------------*/

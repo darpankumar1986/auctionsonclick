@@ -9,7 +9,7 @@
         //$("#big_table thead tr th").eq(0).addClass("hidetd");
         $("#big_table thead tr th").eq(4).css('text-align','right');
         $('#big_table').DataTable({
-			dom: "<'row'<'col-sm-6'>>" +
+            dom: "<'row'<'col-sm-6'>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-5'i><'col-sm-7 pagination_main'p>>",
                 "bAutoWidth": false,
@@ -41,7 +41,7 @@
 
 
                       $('td:eq(0)', nRow).addClass('hide');
-					  $('td:eq(3)',nRow).html(capitalize_Words(aData[3]));
+                      $('td:eq(3)',nRow).html(capitalize_Words(aData[3]));
                       $('td:eq(6)', nRow).addClass('button-img');
                       $('td:eq(5)', nRow).html('₹'+indian_money_format(aData[5])).css('text-align','right');
 
@@ -59,7 +59,7 @@
 
 
         $('#big_table2').DataTable({
-			dom: "<'row'<'col-sm-6'>>" +
+            dom: "<'row'<'col-sm-6'>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-5'i><'col-sm-7 pagination_main'p>>",
                 "bAutoWidth": false,
@@ -91,7 +91,7 @@
 
 
                       $('td:eq(0)', nRow).addClass('hide');
-					  $('td:eq(3)',nRow).html(capitalize_Words(aData[3]));
+                      $('td:eq(3)',nRow).html(capitalize_Words(aData[3]));
                       $('td:eq(6)', nRow).addClass('button-img');
                       $('td:eq(5)', nRow).html('₹'+indian_money_format(aData[5])).css('text-align','right');
 
@@ -108,7 +108,7 @@
             });
 
             $('#big_table3').DataTable({
-				dom: "<'row'<'col-sm-6'>>" +
+                dom: "<'row'<'col-sm-6'>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-5'i><'col-sm-7 pagination_main'p>>",
                 "bAutoWidth": false,
@@ -140,7 +140,7 @@
 
 
                       $('td:eq(0)', nRow).addClass('hide');
-					  $('td:eq(3)',nRow).html(capitalize_Words(aData[3]));
+                      $('td:eq(3)',nRow).html(capitalize_Words(aData[3]));
                       $('td:eq(6)', nRow).addClass('button-img');
                       $('td:eq(5)', nRow).html('₹'+indian_money_format(aData[5])).css('text-align','right');
 
@@ -157,7 +157,7 @@
             });
 
             $('#big_table4').DataTable({
-				dom: "<'row'<'col-sm-6'>>" +
+                dom: "<'row'<'col-sm-6'>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-5'i><'col-sm-7 pagination_main'p>>",
                 "bAutoWidth": false,
@@ -189,7 +189,7 @@
 
 
                       $('td:eq(0)', nRow).addClass('hide');
-					  $('td:eq(3)',nRow).html(capitalize_Words(aData[3]));
+                      $('td:eq(3)',nRow).html(capitalize_Words(aData[3]));
                       $('td:eq(6)', nRow).addClass('button-img');
                       $('td:eq(5)', nRow).html('₹'+indian_money_format(aData[5])).css('text-align','right');
 
@@ -264,7 +264,7 @@
                                 <div id="all" class="tab-pane fade in active">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <div class="auction_table shortlisted_table table-responsive">
+                                            <div class="shortlisted_table table-responsive">
                                                 <?php
                                                 //set table id in table open tag
                                                     $tmpl = array('table_open' => '<table id="big_table" border="1" width="100%" cellpadding="2" cellspacing="1" class="myTable auction_table_box">');
@@ -279,7 +279,7 @@
                                 <div id="Properties" class="tab-pane fade">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <div class="auction_table shortlisted_table table-responsive">
+                                            <div class="shortlisted_table table-responsive">
                                                 <?php
                                                 //set table id in table open tag
                                                     $tmpl = array('table_open' => '<table id="big_table2" border="1" width="100%" cellpadding="2" cellspacing="1" class="myTable auction_table_box">');
@@ -294,7 +294,7 @@
                                 <div id="Vehicles" class="tab-pane fade">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <div class="auction_table shortlisted_table table-responsive">
+                                            <div class="shortlisted_table table-responsive">
                                                 <?php
                                                 //set table id in table open tag
                                                     $tmpl = array('table_open' => '<table id="big_table3" border="1" width="100%" cellpadding="2" cellspacing="1" class="myTable auction_table_box">');
@@ -309,7 +309,7 @@
                                 <div id="Others" class="tab-pane fade">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <div class="auction_table shortlisted_table table-responsive">
+                                            <div class="shortlisted_table table-responsive">
                                                 <?php
                                                 //set table id in table open tag
                                                     $tmpl = array('table_open' => '<table id="big_table4" border="1" width="100%" cellpadding="2" cellspacing="1" class="myTable auction_table_box">');
