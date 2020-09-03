@@ -2293,6 +2293,8 @@ h3.user_profile {
     background-image: url(../images/down_arrow.png);
     background-repeat: no-repeat;
     background-position: 98% 24px !important;
+    border-radius: 4px;
+    box-shadow: none;
 }
 .received_email_alerts .chosen-container-multi .chosen-choices li.search-field input[type="text"] {
     font-family: 'Roboto-Regular';
