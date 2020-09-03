@@ -120,8 +120,11 @@ $(document).ready(function(){
     });
     $("#upgrade_subscription").click(function(){
         $(".Subscription_plan").slideToggle();
-        var currHeight = $(".current_plan .subscription_box").outerHeight();
-        $("#State_Wise .packageplan .subscription_box").css('height',currHeight+'px');
+        var currHeight = $("#State_Wise .current_plan .subscription_box").outerHeight();
+		if(currHeight)
+		{
+	        $("#State_Wise .packageplan .subscription_box").css('height',currHeight+'px');
+		}
     });
     $(".packageplan").click(function(){
         if(!$(this).hasClass('current_plan'))
