@@ -191,8 +191,8 @@ class Home extends MY_Controller {
 		$data['sales_person_detail'] = 'Mr. '.$salesPerson[0]->sales_person_name.', Mobile No. '.$salesPerson[0]->mobile_no.', <a href="mailto:'.$salesPerson[0]->email_id.'">'.$salesPerson[0]->email_id.'</a>';
 		
 		//$data['data'] = $this->home_model->GetAuctionDocuments($auctionID);
-		$data['title'] = "Auction of ".ucwords(strtolower($data['auction_data'][0]->PropertyDescription))." - AuctionOnClick";
-		$data['description'] = "Auction of ".ucwords(strtolower($data['auction_data'][0]->PropertyDescription)).", ".ucwords(strtolower($data['auction_data'][0]->city_name)).". Get the complete details of auction and conditions of sale. View and download the Sale Notice and Property Pictures.";
+		$data['title'] = "Auction of ".strtolower($data['auction_data'][0]->PropertyDescription)." - AuctionOnClick";
+		$data['description'] = "Auction of ".strtolower($data['auction_data'][0]->PropertyDescription).", ".ucwords(strtolower($data['auction_data'][0]->city_name)).". Get the complete details of auction and conditions of sale. View and download the Sale Notice and Property Pictures.";
 		
 		$this->load->view('front_view/header', $data);	
 		$this->load->view('front_view/auctionDetail', $data);

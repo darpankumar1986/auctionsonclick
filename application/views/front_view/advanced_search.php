@@ -90,12 +90,12 @@ else
 
 var oTable = null;
     $(document).ready(function () {
-		setTimeout(function(){
-				 setCategoryTitle();
-			 },10);
+        setTimeout(function(){
+                 setCategoryTitle();
+             },10);
         //$("#big_table thead tr th").eq(0).addClass("hidetd");
         $("#big_table thead tr th").eq(4).css('text-align','right');
-			
+
             initHomeTable();
 
             $(document).on("click",".select-items",function(){
@@ -161,7 +161,7 @@ var oTable = null;
                 setTimeout(function(){ $("#big_table_info").text(''); }, 500);
             });
 
-			
+
         });
 
 
@@ -273,7 +273,7 @@ var oTable = null;
                 "fnRowCallback": function (nRow, aData, iDisplayIndex) {
 
 
-					  $('td:eq(2)',nRow).html(capitalize_Words(aData[2]));	
+                      $('td:eq(2)',nRow).html(capitalize_Words(aData[2]));
                       $('td:eq(5)', nRow).addClass('button-img');
                       $('td:eq(4)', nRow).html('₹'+indian_money_format(aData[4])).css('text-align','right');
 
@@ -386,13 +386,14 @@ var oTable = null;
                                         <?php foreach($parentCat as $key => $parCat){ ?>
                                         <li class="dropdown-header">
                                         <input type="radio" id="test<?php echo $key; ?>" class="s_parent_id" s-data-parent-id="<?php echo $parCat->id;?>" name="parentCat" value="<?php echo $parCat->id;?>" <?php echo ($parCat->id==$parent_id)?'checked="checked"':''; ?>>
-                                            <label for="test<?php echo $key; ?>">All <?php echo $parCat->name; ?></label></li>
+                                            <label for="test<?php echo $key; ?>"><?php echo ($parCat->id != 3)?'All ':'';?> <?php echo $parCat->name; ?></label></li>
                                             <?php $Cats = $this->home_model->getAllCategory($parCat->id); ?>
                                             <?php foreach($Cats as $cat){ ?>
                                                 <li><label class="checkbox-inline"><input type="checkbox" s-data-parent="<?php echo $parCat->id;?>" name="s_sub_id" value="<?php echo $cat->id;?>" data-text="<?php echo $cat->name; ?>" <?php if(in_array($cat->id,$_GET['sc'])){ echo 'checked="checked"'; } ?>><?php echo $cat->name; ?></label></li>
                                             <?php } ?>
 
                                         <?php } ?>
+                                       <li class="clear_filter"><label>Clear</label></li>
                                    </ul>
                                </div>
                     </div>
@@ -423,11 +424,20 @@ var oTable = null;
                 <button type="button" class="btn clear_btn_new" onclick="window.location='<?php echo base_url(); ?>home/advanced_search'">Clear</button>
             </div>
         </div>
+    </div><!--row--></div>
+<div class="container-fluid container-padding">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="adblock advanced_search_top_border">
+            </div><!--adblock-->
+        </div>
     </div><!--row-->
+</div><!--container-fluid-->
 <?php
     //print_r($subCatArray);
     if($_GET['search']=='' && $_GET['parent_id']=='' && $_GET['borrower_name']=='' && $_GET['search_location']=='' && $_GET['auction_start_date']=='' && $_GET['auction_end_date']=='' && $_GET['reservePriceMinRange']=='' && $_GET['reservePriceMaxRange']=='' && $_GET['bank']=='' && $_GET['search_city']=='') {} else {?>
-    <div class="row bank_auction_row">
+    <div class="container">
+       <div class="row bank_auction_row">
         <div class="col-sm-10">
             <div class="desc_wrapper">
                 <div class="row">
