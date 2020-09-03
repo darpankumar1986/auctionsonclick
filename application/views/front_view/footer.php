@@ -301,7 +301,18 @@ $(document).ready(function(){
         });
 
         $("input[s-data-parent-id="+parent_id+"]").prop('checked',true);
+
+		var checkboxlength = $("input[name='s_sub_id']:checked").length;
+		if(checkboxlength == '0')
+		{
+			 $("input[name=parentCat]").prop('checked',false);
+		}
     });
+
+	$(".clear_filter").click(function(){
+		$("input[name=parentCat]").prop('checked',false);
+		$("input[name=s_sub_id]").prop('checked',false);
+	});
 });
 </script>
 <script>
