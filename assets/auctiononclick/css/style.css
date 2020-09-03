@@ -882,12 +882,15 @@ input::-ms-clear, input::-ms-reveal {
     cursor: pointer;
     color: #cccccc;
 }
-.floating-label span.eye_icon.fa-eye {
+.floating-label span.eye_icon.fa-eye-slash {
     color: #333333;
 }
+/*
 .fa-eye:before {
-    content: "\f06e" !important;
+    content: "\f06e";
 }
+*/
+
 .custom_form .floating-textarea {
     height: 165px;
     padding-top: 20px;
@@ -1561,7 +1564,7 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     border: 0;
 }
 .shortlist_desc .desc_shortlist_button .shortlist_list:hover, .shortlist_desc .desc_shortlist_button .shortlist_list:focus  {
-    background-color: #005ca8;
+/*    background-color: #005ca8;*/
     outline: 0;
 }
 .shortlist_desc .desc_shortlist_button .shortlist_list .fa-star {
@@ -1765,6 +1768,8 @@ h3.premium_service {
 }
 .subscription_box .upgrade_btn:focus, .subscription_box .upgrade_btn:hover, .subscription_box .upgrade_btn:active.focus, .subscription_box .upgrade_btn:active:focus, .subscription_box .upgrade_btn:active:hover {
     background-color: #005ca8;
+    outline: 0;
+    color: #ffffff;
 }
 .subscription_box h4.states_desc {
     position: relative;
@@ -1839,9 +1844,11 @@ h3.premium_service {
 .shortlist_desc .desc_shortlist_button .shortlisted_list {
     background-color: #4ea94f;
 }
+/*
 .shortlist_desc .desc_shortlist_button .shortlisted_list:hover {
     background-color: #3d843e;
 }
+*/
 
 /*----------------------------View Detail Shortlisted - After Login Before Subscription_end----------------------*/
 
@@ -1919,6 +1926,9 @@ h3.premium_service span .fa-star {
     color: #fff;
     border: 0;
     padding: 7px 23px;
+}
+.table_desc .table-bordered>tbody>tr>td.residential_btn .btn-default:focus {
+    outline: 0;
 }
 .table_desc .table-bordered>tbody>tr>td.residential_btn .btn-default span {
     padding-left: 6px;

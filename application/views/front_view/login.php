@@ -26,45 +26,45 @@
                 });
                 }).change();
 
-				$("#username").keyup(function(){
-					$("#login_email").hide();
-				});
+                $("#username").keyup(function(){
+                    $("#login_email").hide();
+                });
 
-				$("#password").keyup(function(){
-					$("#login_password").hide();
-				});
+                $("#password").keyup(function(){
+                    $("#login_password").hide();
+                });
 
 
                 $("#login_submit_form").submit(function(){
                     var loginType = $("#loginType").val();
-					var username = $("#username").val();
+                    var username = $("#username").val();
                     var pass = $("#password").val();
-					var error = false;
+                    var error = false;
 
-					if(username == '')
-					{
-						$("#login_email").html('Please Enter Email ID.');
-						$("#login_email").show();
-						error = true;
-					}
-					else
-					{
-						$("#login_email").hide();
-					}
+                    if(username == '')
+                    {
+                        $("#login_email").html('Please Enter Email ID.');
+                        $("#login_email").show();
+                        error = true;
+                    }
+                    else
+                    {
+                        $("#login_email").hide();
+                    }
 
-					if(pass == '')
-					{
-						$("#login_password").show();
-						error = true;
-					}
-					else
-					{
-						$("#login_password").hide();
-					}
-					
+                    if(pass == '')
+                    {
+                        $("#login_password").show();
+                        error = true;
+                    }
+                    else
+                    {
+                        $("#login_password").hide();
+                    }
 
-					if(!error)
-					{
+
+                    if(!error)
+                    {
                     var hash = CryptoJS.SHA256(pass);
                     $("#password").val(hash);
 
@@ -135,13 +135,13 @@
                         {
                             return true;
                         }
-					}
+                    }
 
                         return false;
 
                 });
 
-				
+
 
         });
 
@@ -214,15 +214,15 @@
         }
 
     </script>
-	<style>
-		.error2 {
-				color: #e83c3c;
-				font-size: 13px;
-				margin-left: 14px;
-				display: block;
-			}
-		#login_email,#login_password{display: none;}
-	</style>
+    <style>
+        .error2 {
+                color: #e83c3c;
+                font-size: 13px;
+                margin-left: 14px;
+                display: block;
+            }
+        #login_email,#login_password{display: none;}
+    </style>
     <div class="container-fluid container_margin">
             <div class="row">
                 <div class="col-sm-12">
@@ -246,16 +246,16 @@
 
                                             <input type="text" placeholder=" " class="keysubmit floating-input" name="user_name" id="username" value="<?php if($this->session->userdata('session_found_emailid')) { echo $this->session->userdata('session_found_emailid');} ?>">
                                            <label class="custom_label">Email ID</label>
-										   <span id="login_email" class="error2">Please Enter Email ID</span>
+                                           <span id="login_email" class="error2">Please Enter Email ID</span>
                                        </div>
                                        <div class="floating-label">
                                             <input type="hidden" name="track" value="<?php echo $track; ?>">
                                             <input type="hidden" name="auctionID" value="<?php echo $auctionID; ?>">
                                            <input type="password" class="keysubmit floating-input" name="password" id="password" placeholder=" ">
                                            <label class="custom_label">Password</label>
-                                           <span toggle="#password" class="eye_icon toggle-password fa-eye-slash fa"></span>
+                                           <span toggle="#password" class="fa eye_icon toggle-password fa-eye"></span>
 
-										   <span id="login_password" class="error2">Please Enter Password</span>
+                                           <span id="login_password" class="error2">Please Enter Password</span>
                                        </div>
                                    </div>
                                    <div class="checkbox">

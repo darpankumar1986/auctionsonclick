@@ -110,8 +110,8 @@ $remaining_day = floor($diff/86400);
               </div>
           </div>
          <?php } ?>
-		
-		
+
+
        <div class="col-sm-12">
            <h3 class="premium_service user_profile">Profile</h3>
        </div>
@@ -268,9 +268,9 @@ $remaining_day = floor($diff/86400);
                     <div class="custom_form register_form custom_search_form profile_form">
                         <div class="floating-form">
                             <div class="floating-label">
-                                <input class="floating-input html_found pcb password" name="password" id="password" type="Password" placeholder=" " disabled>
+                                <input class="floating-input html_found pcb password" name="password" id="password" type="password" placeholder=" " disabled>
                                 <label class="custom_label">New Password</label>
-                                <span toggle="#password" class="eye_icon toggle-password fa-eye-slash fa"></span>
+                                <span toggle="#password" class="fa eye_icon toggle-password fa-eye"></span>
                             </div>
                         </div>
                     </div>
@@ -279,9 +279,9 @@ $remaining_day = floor($diff/86400);
                     <div class="custom_form register_form custom_search_form profile_form">
                         <div class="floating-form">
                             <div class="floating-label">
-                                <input class="floating-input html_found pcb" name="confirm_password" id="confirm_password" type="Password" placeholder=" " disabled>
+                                <input class="floating-input html_found pcb" name="confirm_password" id="confirm_password" type="password" placeholder=" " disabled>
                                 <label class="custom_label">Confirm New Password</label>
-                                <span toggle="#confirm_password" class="eye_icon toggle-password fa-eye-slash fa"></span>
+                                <span toggle="#confirm_password" class="fa eye_icon toggle-password fa-eye"></span>
                             </div>
                         </div>
                     </form>
