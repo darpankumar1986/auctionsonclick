@@ -9,7 +9,7 @@
 var oTable = null;
     $(document).ready(function () {
         //$("#big_table thead tr th").eq(0).addClass("hidetd");
-		  $("#big_table thead tr th").eq(4).css('text-align','right');	
+          $("#big_table thead tr th").eq(4).css('text-align','right');
 
             initHomeTable();
 
@@ -139,7 +139,7 @@ var oTable = null;
                 "fnRowCallback": function (nRow, aData, iDisplayIndex) {
 
 
-					  $('td:eq(2)',nRow).html(capitalize_Words(aData[2]));
+                      $('td:eq(2)',nRow).html(capitalize_Words(aData[2]));
                       $('td:eq(5)', nRow).addClass('button-img');
                       $('td:eq(4)', nRow).html('₹'+indian_money_format(aData[4])).css('text-align','right');
 
@@ -188,9 +188,9 @@ var oTable = null;
 </style>
 <div class="container-fluid container_margin">
             <div class="row row_bg">
-				<div class="container">
-					<div class="row">
-					<div class="col-sm-12">
+                <div class="container">
+                    <div class="row">
+                    <div class="col-sm-12">
                     <div class="breadcrumb_main">
                         <ol class="breadcrumb">
                             <li><a href="<?php echo base_url();?>">Home</a></li>
@@ -199,8 +199,8 @@ var oTable = null;
                         <!-- <h3>Bank Auctions in <?php echo ucwords($_GET['search_city']); ?></h3> -->
                     </div><!--breadcrumb_main-->
                 </div>
-					</div>
-				</div>
+                    </div>
+                </div>
             </div><!--row-->
         </div><!--container-->
 <div class="container">
@@ -264,28 +264,28 @@ var oTable = null;
         </div><!--container-fluid-->
         <div class="container">
             <div class="row bank_auction_row">
-                <div class="col-sm-10">
+                <div class="col-sm-10 border_right">
                     <div class="desc_wrapper">
                         <div class="row">
                             <div class="col-sm-9">
                                 <div class="desc_wrapper_inner">
-                                    <h3><?php 
-									$bankName = GetTitleByField('tbl_bank', "id='".$_GET['bank']."'", "name");
-									echo (int)$totalAuction; ?> Bank Auction <?php if($_GET['search_city'] !='') {echo 'in '.ucwords(strtolower($_GET['search_city']));} else{ 
-									echo 'for '.$bankName;}
-									
-									?> 
-									
-									</h3>
+                                    <h3><?php
+                                    $bankName = GetTitleByField('tbl_bank', "id='".$_GET['bank']."'", "name");
+                                    echo (int)$totalAuction; ?> Bank Auction <?php if($_GET['search_city'] !='') {echo 'in '.ucwords(strtolower($_GET['search_city']));} else{
+                                    echo 'for '.$bankName;}
+
+                                    ?>
+
+                                    </h3>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="social_platform">
-								<?php 
-									$currentURL = current_url(); //http://myhost/main
-									$params   = $_SERVER['QUERY_STRING']; //my_id=1,3
-									$fullURL = $currentURL . '?' . $params;
-								?>
+                                <?php
+                                    $currentURL = current_url(); //http://myhost/main
+                                    $params   = $_SERVER['QUERY_STRING']; //my_id=1,3
+                                    $fullURL = $currentURL . '?' . $params;
+                                ?>
                                     <ul>
                                         <li><a href="https://wa.me/?text=<?php echo $fullURL; ?>" class="whatsapp" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
                                         <li><a href="https://www.facebook.com/sharer.php?u=<?php echo $fullURL; ?>" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a></li>
@@ -297,13 +297,13 @@ var oTable = null;
                         </div>
                     </div>
                     <div class="auction_table auction_table_border bank_auction_table shortlisted_table table-responsive">
-						<?php if($_GET['search_city'] !='') {?>
+                        <?php if($_GET['search_city'] !='') {?>
                         <div class="get-alerts">
                         <button class="btn btn-default" type="button" <?php if($this->session->userdata('id')>0){ ?> onclick="addtoalert('<?php echo $_GET['search_city']; ?>')" <?php } else {?> onclick="window.location='<?php echo base_url(); ?>home/login'" <?php } ?>>
                             <i class="fa fa-bell"></i> Get Alerts
                         </button>
                         </div>
-						<?php } ?>
+                        <?php } ?>
                         <div class="property_dropdown_listing">
                         <div class="custom-dropdown-select">
                            <div class="custom-select sort-data">
@@ -334,7 +334,7 @@ var oTable = null;
                 </div>
             </div><!--row-->
         </div><!--container-->
-        <div class="container-fluid">
+<div class="container-fluid container-padding">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="adblock">
@@ -347,39 +347,39 @@ var oTable = null;
 
  function addtoalert(city)
 {
-	//alert(city);
-	if (city) 
-	{
+    //alert(city);
+    if (city)
+    {
 
-		jQuery.ajax({
-			url: '/home/addtoalert',
-			type: 'POST',
-			data: {
-				city: city
-			},
-			success: function (response) {
-				//console.log(response);
-				if(response=='1')
-				{
-					//alert('Thank you for subscribing email alert for the '+city);
-					swal('', 'Thank you for subscribing email alert for the '+city, 'success');
-				}
-				if(response=='2')
-				{
-					//alert('You have already subscribed email alert for the '+city);
-					//var msg = 'You have already subscribed email alert for the '+city;
-					swal('', 'You have already subscribed email alert for the '+city, 'warning');
-				}
-				if(response=='0')
-				{
-					//alert('Invaild City');
-					swal('Oops!', 'Invaild City', 'error');
-				}
-				//var rand = Math.random() * 10000000000000000;
-				//location.href = "?rand=" + rand;
-			}
-		});
-	}
+        jQuery.ajax({
+            url: '/home/addtoalert',
+            type: 'POST',
+            data: {
+                city: city
+            },
+            success: function (response) {
+                //console.log(response);
+                if(response=='1')
+                {
+                    //alert('Thank you for subscribing email alert for the '+city);
+                    swal('', 'Thank you for subscribing email alert for the '+city, 'success');
+                }
+                if(response=='2')
+                {
+                    //alert('You have already subscribed email alert for the '+city);
+                    //var msg = 'You have already subscribed email alert for the '+city;
+                    swal('', 'You have already subscribed email alert for the '+city, 'warning');
+                }
+                if(response=='0')
+                {
+                    //alert('Invaild City');
+                    swal('Oops!', 'Invaild City', 'error');
+                }
+                //var rand = Math.random() * 10000000000000000;
+                //location.href = "?rand=" + rand;
+            }
+        });
+    }
 
 }
 </script>
