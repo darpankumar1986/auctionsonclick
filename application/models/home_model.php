@@ -305,7 +305,7 @@ class Home_model extends CI_Model {
 		if($bidderID > 0)
 		{
 			$isPremiumMember = $this->getTotalActivePackage($bidderID);
-			$indate =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "indate");
+			$indate =	GetTitleByField('tbl_user_registration', "id='".$bidderID."'", "indate");
 			$free_sub_expire_date = date('Y-m-d H:i:s',strtotime(FREE_SUBSCRIPTION_TIME,strtotime($indate)));
 			$free_sub_expire_date_str = strtotime($free_sub_expire_date);
 			
@@ -431,7 +431,7 @@ class Home_model extends CI_Model {
 		if($bidderID > 0)
 		{
 			$isPremiumMember = $this->getTotalActivePackage($bidderID);
-			$indate =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "indate");
+			$indate =	GetTitleByField('tbl_user_registration', "id='".$bidderID."'", "indate");
 			$free_sub_expire_date = date('Y-m-d H:i:s',strtotime(FREE_SUBSCRIPTION_TIME,strtotime($indate)));
 			$free_sub_expire_date_str = strtotime($free_sub_expire_date);
 			

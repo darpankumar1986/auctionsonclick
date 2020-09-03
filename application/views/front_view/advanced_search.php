@@ -4,7 +4,7 @@ $free_sub_flag = 0;
 if($bidderID > 0)
 {
     $isPremiumMember = $this->home_model->getTotalActivePackage($bidderID);
-    $indate =	GetTitleByField('tbl_user_registration', "id='".$userid."'", "indate");
+    echo $indate =	GetTitleByField('tbl_user_registration', "id='".$bidderID."'", "indate");
     $free_sub_expire_date = date('Y-m-d H:i:s',strtotime(FREE_SUBSCRIPTION_TIME,strtotime($indate)));
     $free_sub_expire_date_str = strtotime($free_sub_expire_date);
 

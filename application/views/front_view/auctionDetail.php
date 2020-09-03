@@ -93,11 +93,17 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="social_platform">
+								 <?php
+                                    $currentURL = current_url(); //http://myhost/main
+                                    $params   = $_SERVER['QUERY_STRING']; //my_id=1,3
+                                    $fullURL = $currentURL . '?' . $params;
+                                ?>
+
                                     <ul>
-                                        <li><a href="#" class="whatsapp"><i class="fa fa-whatsapp"></i></a></li>
-                                        <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#" class="envelope"><i class="fa fa-envelope"></i></a></li>
+                                        <li><a href="https://wa.me/?text=<?php echo $fullURL; ?>" class="whatsapp" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+                                        <li><a href="https://www.facebook.com/sharer.php?u=<?php echo $fullURL; ?>" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="https://twitter.com/share?url=<?php echo $fullURL; ?>" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="mailto:?subject=&amp;body=<?php echo $fullURL; ?>" target="_blank" class="envelope"><i class="fa fa-envelope"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
