@@ -30,7 +30,7 @@
                         </div>
                         <div class="privacy_policy_inner">
                             <h4>User Agreement</h4>
-                            <p>Your use of https://www.AuctionOnClick.com {including https://www.AuctionOnClick.com (hereinafter referred to as "AuctionOnClick") and its related sites, services and tools} is governed by the following terms and conditions. If you transact on any AuctionOnClick website other than the Website, you shall be subject to the policies that are applicable to the AuctionOnClick sites for such transaction. This User Agreement for the Website shall come into effect from the time and date the user accepts the same ("User Agreement"). You are contracting with C1 India Private Limited, a company incorporated under Companies Act, 1956 with registered office at 1502, 15th Floor, Ambadeep Building, 14, K. G. Marg, New Delhi- 110001. These terms and conditions constitute your binding obligations towards the contracting entity (hereinafter referred to as "C1 India"). </p>
+                            <p>Your use of <a href="<?php echo base_url();?>">https://www.AuctionOnClick.com</a> {including <a href="<?php echo base_url();?>">https://www.AuctionOnClick.com</a> (hereinafter referred to as "AuctionOnClick") and its related sites, services and tools} is governed by the following terms and conditions. If you transact on any AuctionOnClick website other than the Website, you shall be subject to the policies that are applicable to the AuctionOnClick sites for such transaction. This User Agreement for the Website shall come into effect from the time and date the user accepts the same ("User Agreement"). You are contracting with C1 India Private Limited, a company incorporated under Companies Act, 1956 with registered office at 1502, 15th Floor, Ambadeep Building, 14, K. G. Marg, New Delhi- 110001. These terms and conditions constitute your binding obligations towards the contracting entity (hereinafter referred to as "C1 India"). </p>
                         </div>
                         <div class="privacy_policy_inner">
                             <h4>Amendments</h4>
@@ -40,7 +40,7 @@
                             <p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company's terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client's needs in respect of provision of the Company's stated services, in accordance with and subject to, prevailing law of India. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
                         </div>
                         <div class="privacy_policy_inner">
-                            <h4>Terms & Conditions:</h4>
+                            <h4>Terms & Conditions</h4>
                             <p>Though all efforts have been made to ensure the accuracy of the content on this website, the same should not be construed as a statement of law or used for any legal purposes. In case of any ambiguity or doubts, users are advised to verify / check with C1 India to obtain appropriate professional advice.</p>
                             <p>Under no circumstances will C1 India be liable for any expense, loss or damage including, without limitation, indirect or consequential loss or damage, or any expense, loss or damage whatsoever arising from use, or loss of use, of data, arising out of or in connection with the use of this website.</p>
                         </div>
@@ -106,7 +106,7 @@
                             </ul>
                             <p>We will approve link requests from these organizations if we decide that: (a) the link would not make us look unfavorably to ourselves or to our accredited businesses; (b) the organization does not have any negative records with us; (c) the benefit to us from the visibility of the hyperlink compensates the absence of AuctionOnClick; and (d) the link is in the context of general resource information.</p>
                             <p>These organizations may link to our home page so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products or services; and (c) fits within the context of the linking party's site.</p>
-                            <p>If you are one of the organizations listed in paragraph 2 above and are interested in linking to our website, you must inform us by sending an e-mail to AuctionOnClick(support@auctiononclick.com). Please include your name, your organization name, contact information as well as the URL of your site, a list of any URLs from which you intend to link to our Website, and a list of the URLs on our site to which you would like to link. Wait 2-3 weeks for a response.</p>
+                            <p>If you are one of the organizations listed in paragraph 2 above and are interested in linking to our website, you must inform us by sending an e-mail to AuctionOnClick(<a href="mailto:support@auctiononclick.com">support@auctiononclick.com</a>). Please include your name, your organization name, contact information as well as the URL of your site, a list of any URLs from which you intend to link to our Website, and a list of the URLs on our site to which you would like to link. Wait 2-3 weeks for a response.</p>
                             <p>Approved organizations may hyperlink to our Website as follows:</p>
                             <ul>
 								<li>By use of our corporate name; or</li>
@@ -128,7 +128,7 @@
                             <p>We shall not be hold responsible for any content that appears on your Website. You agree to protect and defend us against all claims that is rising on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.</p>
                         </div>
 						<div class="privacy_policy_inner">
-                            <h4>Privacy Policy: </h4>
+                            <h4>Privacy Policy </h4>
                             <p>As a general rule, this website does not collect Personal Information about you when you visit the site. You can generally visit the site without revealing Personal Information, unless you choose to provide such information.Please refer "Privacy Policy".</p>
                         </div>
 						<div class="privacy_policy_inner">
@@ -159,13 +159,11 @@
                         </div>
 						<div class="privacy_policy_inner">
                             <h4>Subscription Cancellations & Refund Policy</h4>
-                            <p>If you want to cancel a subscription you have with us, please mail us at support@auctiononclick.com</p>
+                            <p>If you want to cancel a subscription you have with us, please mail us at <a href="mailto:support@auctiononclick.com">support@auctiononclick.com</a></p>
                             <p>When you cancel a subscription with us, you will continue to receive your subscription benefits until the end of the current billing period. You will not receive a refund of any portion of the subscription fees you paid for the current or prior billing periods.</p>
-                            <p>&nbsp;</p>
-                            <p>Example 1: Quarterly subscription cancellation</p>
+                            <p><strong>Example 1: Quarterly subscription cancellation</strong></p>
                             <p>If we process a quarterly subscription's cancellation on June 7th, you will continue to receive the benefits of that subscription until September 6th (90 days) and there will not be a refund of any part of the quarterly subscription fee. You will neither be billed for nor receive the benefits of the cancelled subscription after your current billing cycle ends.</p>
-                            <p>&nbsp;</p>
-                            <p>Example 2: Annual subscription cancellation</p>
+                            <p><strong>Example 2: Annual subscription cancellation</strong></p>
                             <p>If we process an annual subscription's cancellation on the first day of the subscription that begins June 1, you will continue to receive the benefits of that subscription May 31st of the next year and there will not be a refund of any part of the annual subscription fee. You will neither be billed for nor receive the benefits of the cancelled subscription after your current billing cycle ends.</p>
 							<p>Do not wait until the end of a billing or subscription period to make a subscription cancellation request because such requests are typically processed within 2 to 3 business days after we receive them. As it takes longer for us to receive postal mail than electronic mail, we recommend that you email your request. Providing us with your account/subscription number (if you have one) can also speed up the process of honoring your request.</p>
 							<p>We will confirm your subscription has been cancelled by either email or postal mail.</p>
@@ -196,7 +194,7 @@
                         </div>
 						<div class="privacy_policy_inner">
                             <h4>Contacting Us</h4>
-                            <p>Email your refund or subscription cancellation request to support@auctiononclick.com. Please include the words <strong>"Refund Request"</strong> or <strong>"Subscription Cancellation Request"</strong> in the subject line of your email.</p>
+                            <p>Email your refund or subscription cancellation request to <a href="mailto:support@auctiononclick.com">support@auctiononclick.com</a>. Please include the words <strong>"Refund Request"</strong> or <strong>"Subscription Cancellation Request"</strong> in the subject line of your email.</p>
                             <p>To serve you and others better in the future, we request (but do not require) that you tell us why you want a refund or cancelled your subscription. We want satisfied customers.</p>
                         </div>
                     </div>

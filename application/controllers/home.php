@@ -61,7 +61,7 @@ class Home extends MY_Controller {
 		$data['aData'] = $this->home_model->liveAuctionDatatable();
 		$data['assetsType'] = $this->home_model->getAllAssetsType();
 
-		$data['title'] = 'Auction Properties, NPA Assets, Foreclosure Properties - AuctionOnClick';
+		$data['title'] = 'Auction Properties, NPAs, Foreclosure Properties - AuctionOnClick';
 		$data['description'] = "Find Non Performing Assets (NPA), Distressed Assets, Foreclosure and Sarfaesi Auction properties available for sale by Banks and Financial Institutions at lower prices on AuctionOnClick.com.";
 
         $this->load->view('front_view/header', $data);
