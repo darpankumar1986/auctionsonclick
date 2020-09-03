@@ -1443,7 +1443,7 @@ button.login_btn:hover, button.login_btn:focus, button.login_btn:active, button.
     color: #fff;
     border-radius: 0 !important;
 }
-.form_wrap_anction_search .search_btn_section .btn-default:hover, .form_wrap_anction_search .search_btn_section .btn-default:focus, .form_wrap_anction_search .search_btn_section .btn-default:active:hover, {
+.form_wrap_anction_search .search_btn_section .btn-default:hover, .form_wrap_anction_search .search_btn_section .btn-default:focus, .form_wrap_anction_search .search_btn_section .btn-default:active:hover {
     background-color: #333333 !important;
     outline: 0 !important;
     box-shadow: none;
@@ -1784,6 +1784,7 @@ h3.premium_service {
     background-color: transparent;
     color: #333333;
     border-color: #cccccc !important;
+    outline: 0;
 }
 .subscription_box .checklist_state .dropdown-menu {
     margin-top: -1px;
