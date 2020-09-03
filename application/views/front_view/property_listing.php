@@ -223,6 +223,7 @@ var oTable = null;
                                                 <?php } ?>
 
                                             <?php } ?>
+                                        <li class="clear_filter"><label>Clear</label></li>
                                     </ul>
                                     <input type="hidden" name="assetsTypeId" id="assetsTypeId" value="0"/>
                                 </div>
@@ -235,6 +236,7 @@ var oTable = null;
                                <div class="custom-dropdown-select">
                                    <div class="custom-select">
                                        <select name="bank" id="bank">
+                                           <option value="">Select Bank</option>
                                            <option value="">Select Bank</option>
                                            <?php foreach($allbank as $bank){ ?>
                                                <option value="<?php echo $bank->id; ?>"><?php echo $bank->name; ?></option>

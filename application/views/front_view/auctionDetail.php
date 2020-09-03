@@ -38,6 +38,7 @@
                                                 <?php } ?>
 
                                             <?php } ?>
+                                        <li class="clear_filter"><label>Clear</label></li>
                                     </ul>
                                     <input type="hidden" name="assetsTypeId" id="assetsTypeId" value="0"/>
                                 </div>
@@ -50,6 +51,7 @@
                                <div class="custom-dropdown-select">
                                    <div class="custom-select">
                                        <select name="bank" id="bank">
+                                           <option value="">Select Bank</option>
                                            <option value="">Select Bank</option>
                                            <?php foreach($allbank as $bank){ ?>
                                                <option value="<?php echo $bank->id; ?>"><?php echo $bank->name; ?></option>
@@ -129,46 +131,46 @@
                                     <td>Bank Name</td>
                                     <td><?php echo $auction_data[0]->bank_name; ?></td>
                                 </tr>
-								<?php if($auction_data[0]->isSub > 0 || $free_sub_flag == 1){ ?>
-									<tr>
-										<td>Bank Branch</td>
-										<td><?php echo $auction_data[0]->branch_name; ?></td>
-									</tr>
-									<tr>
-										<td>Contact Details</td>
-										<td><?php echo $auction_data[0]->contact_person_details_1; ?></td>
-									</tr>
-									<tr>
-										<td>Auction Type</td>
-										<td>
-											<?php if($auction_data[0]->event_type=='sarfaesi')
-												{
-													echo 'Sarfaesi Auction';
-												}
-												else if($auction_data[0]->event_type=='liquidation')
-												{
-													echo 'Liquidation Auction';
-												}
-												else if($auction_data[0]->event_type=='government')
-												{
-													echo 'Government Auction';
-												}
-												else 
-												{
-													echo 'Other Auction';
-												}
-											 ?>
-										</td>
-									</tr>
-										<tr>
-										<td>Borrower Name</td>
-										<td><?php echo $auction_data[0]->borrower_name; ?></td>
-									</tr>
-									<tr>
-										<td>Asset Category</td>
-										<td><?php echo $auction_data[0]->category_name; ?></td>
-									</tr>
-								<?php } ?>
+                                <?php if($auction_data[0]->isSub > 0 || $free_sub_flag == 1){ ?>
+                                    <tr>
+                                        <td>Bank Branch</td>
+                                        <td><?php echo $auction_data[0]->branch_name; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contact Details</td>
+                                        <td><?php echo $auction_data[0]->contact_person_details_1; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Auction Type</td>
+                                        <td>
+                                            <?php if($auction_data[0]->event_type=='sarfaesi')
+                                                {
+                                                    echo 'Sarfaesi Auction';
+                                                }
+                                                else if($auction_data[0]->event_type=='liquidation')
+                                                {
+                                                    echo 'Liquidation Auction';
+                                                }
+                                                else if($auction_data[0]->event_type=='government')
+                                                {
+                                                    echo 'Government Auction';
+                                                }
+                                                else
+                                                {
+                                                    echo 'Other Auction';
+                                                }
+                                             ?>
+                                        </td>
+                                    </tr>
+                                        <tr>
+                                        <td>Borrower Name</td>
+                                        <td><?php echo $auction_data[0]->borrower_name; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Asset Category</td>
+                                        <td><?php echo $auction_data[0]->category_name; ?></td>
+                                    </tr>
+                                <?php } ?>
                                 <tr>
                                     <td>Asset Type</td>
                                     <td><?php echo ($auction_data[0]->sub_category_name)?$auction_data[0]->sub_category_name:'N/A'; ?></td>
@@ -224,30 +226,30 @@
                                         <td>Documents Available</td>
                                         <td>
                                             <?php
-											if(is_array($uploadedDocs) && count($uploadedDocs)>0)
-											{
-												$dSrNo=1;
-												foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id > 0){ ?>
-													<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Sale Notice '; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } 											$dSrNo++;
-													}
+                                            if(is_array($uploadedDocs) && count($uploadedDocs)>0)
+                                            {
+                                                $dSrNo=1;
+                                                foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id > 0){ ?>
+                                                    <a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Sale Notice '; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } 											$dSrNo++;
+                                                    }
 
-												}
-												 ?>
-												<br/>
-												<?php
-												$picSrNo=1;
-												foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id==0 && $doc->status == 1){ ?>
-													<a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Pic '.$picSrNo; ?></a><?php if($key+1 != (count($uploadedDocs)-1)){ ?>,<?php } ?>
-												<?php
-													$picSrNo++;
-												} }
-												
-											}
-											else
-											{
-												echo 'N/A';
-											}
-												?>
+                                                }
+                                                 ?>
+                                                <br/>
+                                                <?php
+                                                $picSrNo=1;
+                                                foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id==0 && $doc->status == 1){ ?>
+                                                    <a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Pic '.$picSrNo; ?></a><?php if($key+1 != (count($uploadedDocs)-1)){ ?>,<?php } ?>
+                                                <?php
+                                                    $picSrNo++;
+                                                } }
+
+                                            }
+                                            else
+                                            {
+                                                echo 'N/A';
+                                            }
+                                                ?>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -268,22 +270,22 @@
                     <?php if(!($auction_data[0]->isSub > 0 || $free_sub_flag == 1)){ ?>
                     <div class="premium_section">
                         <div class="premium_section_inner">
-							<?php $isPremiumMember = $this->home_model->getTotalActivePackage($userid);
-								if($isPremiumMember) {?>
-									<p>Upgrade your subscription to view auction details and documents.</p>
-									<button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url();?>owner/manageSubscription?l=1'">Upgrade Subscription</button>
-								<?php }else{ ?>
-									<p>Become Premium member to view auction details and documents.</p>
-									<button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url();?>home/premiumServices'">Premium Services</button>
-								<?php } ?>
-								<?php if(!$this->session->userdata('id')){ ?>
-									<p class="subscriber_para">If you are already a subscriber</p>
-									<ul class="login_register_section">
-										<li><a href="<?php echo base_url(); ?>home/login"><button class="btn btn-default btn_login" type="button">Login</button></a></li>
-										<li><p>Or</p></li>
-									<li><a href="<?php echo base_url(); ?>registration/signup"><button class="btn btn-default btn_register" type="button">Register</button></a></li>
-									</ul>
-								<?php } ?>
+                            <?php $isPremiumMember = $this->home_model->getTotalActivePackage($userid);
+                                if($isPremiumMember) {?>
+                                    <p>Upgrade your subscription to view auction details and documents.</p>
+                                    <button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url();?>owner/manageSubscription?l=1'">Upgrade Subscription</button>
+                                <?php }else{ ?>
+                                    <p>Become Premium member to view auction details and documents.</p>
+                                    <button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url();?>home/premiumServices'">Premium Services</button>
+                                <?php } ?>
+                                <?php if(!$this->session->userdata('id')){ ?>
+                                    <p class="subscriber_para">If you are already a subscriber</p>
+                                    <ul class="login_register_section">
+                                        <li><a href="<?php echo base_url(); ?>home/login"><button class="btn btn-default btn_login" type="button">Login</button></a></li>
+                                        <li><p>Or</p></li>
+                                    <li><a href="<?php echo base_url(); ?>registration/signup"><button class="btn btn-default btn_register" type="button">Register</button></a></li>
+                                    </ul>
+                                <?php } ?>
                         </div>
                     </div>
                     <?php } ?>
@@ -305,36 +307,36 @@
             </div><!--row-->
         </div><!--container-fluid-->
 <script>
-	function addtoeventfavlist(auctionID)
-	{
+    function addtoeventfavlist(auctionID)
+    {
 
 
-				if (auctionID) {
-						var is_fav = $(".shortlist_list").hasClass('shortlisted_list');
-						if(is_fav)
-						{
-							$(".shortlist_list").removeClass('shortlisted_list');
-							$(".shortlist_list").html('<i class="fa fa-star"></i> Shortlist');
-						}
-						else
-						{
-							$(".shortlist_list").addClass('shortlisted_list');
-							$(".shortlist_list").html('<i class="fa fa-star"></i> Shortlisted');
-						}
-				jQuery.ajax({
-					url: '/home/liveupcomingauciton_event_add',
-					type: 'POST',
-					data: {
-						auctionID: auctionID,
-						message: "Added Successfully"
-					},
-					success: function (data) {
-						//alert(data);
-						//var rand = Math.random() * 10000000000000000;
-						//location.href = "?rand=" + rand;
-					}
-				});
-			}
+                if (auctionID) {
+                        var is_fav = $(".shortlist_list").hasClass('shortlisted_list');
+                        if(is_fav)
+                        {
+                            $(".shortlist_list").removeClass('shortlisted_list');
+                            $(".shortlist_list").html('<i class="fa fa-star"></i> Shortlist');
+                        }
+                        else
+                        {
+                            $(".shortlist_list").addClass('shortlisted_list');
+                            $(".shortlist_list").html('<i class="fa fa-star"></i> Shortlisted');
+                        }
+                jQuery.ajax({
+                    url: '/home/liveupcomingauciton_event_add',
+                    type: 'POST',
+                    data: {
+                        auctionID: auctionID,
+                        message: "Added Successfully"
+                    },
+                    success: function (data) {
+                        //alert(data);
+                        //var rand = Math.random() * 10000000000000000;
+                        //location.href = "?rand=" + rand;
+                    }
+                });
+            }
 
-	}
+    }
 </script>
