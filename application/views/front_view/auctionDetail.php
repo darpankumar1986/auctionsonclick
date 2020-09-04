@@ -87,7 +87,7 @@
                         <div class="row">
                             <div class="col-sm-9">
                                 <div class="desc_wrapper_inner">
-                                    <h3>Residential Plot in <?php echo $auction_data[0]->location_name; ?>, <?php echo ucwords(strtolower($auction_data[0]->city_name)); ?></h3>
+                                    <h3><?php echo ucfirst(strtolower($auction_data[0]->PropertyDescription));?> in <?php echo $auction_data[0]->location_name; ?>, <?php echo ucwords(strtolower($auction_data[0]->city_name)); ?></h3>
                                     <p><!--<img src="<?php echo base_url().$auction_data[0]->bank_img; ?>" style="width:18px;height:18px;">--> <?php echo $auction_data[0]->bank_name; ?></p>
                                 </div>
                             </div>
@@ -170,7 +170,7 @@
                                     </tr>
                                         <tr>
                                         <td>Borrower Name</td>
-                                        <td><?php echo $auction_data[0]->borrower_name; ?></td>
+                                        <td><?php echo ($auction_data[0]->borrower_name !='')?$auction_data[0]->borrower_name:'N/A'; ?></td>
                                     </tr>
                                     <tr>
                                         <td>Asset Category</td>
@@ -222,11 +222,15 @@
                                     </tr>
                                     <tr>
                                         <td>E-Auction Provider</td>
-                                        <td><?php echo $auction_data[0]->service_no; ?></td>
+                                        <td><?php echo ($auction_data[0]->service_no!='')?$auction_data[0]->service_no:'N/A'; ?></td>
                                     </tr>
                                     <tr>
                                         <td>E-Auction Website</td>
-                                        <td><a href="<?php echo 'https://'.$auction_data[0]->far; ?>" target="_blank"><?php echo $auction_data[0]->far; ?></a></td>
+                                        <td>
+											<?php if($auction_data[0]->far != '') { ?>
+											<a href="<?php echo 'https://'.$auction_data[0]->far; ?>" target="_blank"><?php echo $auction_data[0]->far; ?></a>
+											<?php } else {echo 'N/A';}?>
+										</td>
                                     </tr>
                                     <tr>
                                         <td>Documents Available</td>
