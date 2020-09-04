@@ -133,12 +133,12 @@
                     <table width="780" align="center" cellpadding="0" cellspacing="0" style="padding-top: 28px;padding-bottom: 18px;">
                         <tbody>
                             <tr>
-
-                                <td>
-                                    <table width="228" height="40" align="center" cellpadding="0" cellspacing="0">
+                                <td width="30%">&nbsp;</td>
+                                <td width="50%">
+                                    <table height="40" align="left" cellpadding="0" cellspacing="0">
                                         <tbody>
                                             <tr>
-                                                <td align="center" style="border:none;-webkit-border-radius: 5px; -moz-border-radius: 5px;border-radius:4px;cursor:auto;padding:11px 20px;background:#0078db;color:#ffffff;" valign="middle">
+                                                <td align="center" style="border:none;-webkit-border-radius: 5px; -moz-border-radius: 5px;border-radius:4px;cursor:auto;padding:11px 40px;background:#0078db;color:#ffffff;" valign="middle">
                                                     <a href="<?php echo base_url(); ?>propertylisting?search_city=<?php echo $city_name; ?>&parent_id=" style="color:#ffffff;font-family:sans-serif;font-size:13px;line-height:120%;Margin:0;text-decoration:none;text-transform:none;" target="_blank">
                                                         View more Auctions
                                                     </a>

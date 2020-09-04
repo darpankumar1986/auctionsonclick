@@ -2393,9 +2393,13 @@ h3.non_subscribe_profile {
 .subscription_table .plan_desc .renew_btn {
     background-color: #c45500;
     color: #ffffff;
-    padding: 6px 20px;
+    padding: 7px 22px;
     margin-bottom: 12px;
     font-size: 13px;
+    border: 0;
+}
+.subscription_table .plan_desc .renew_btn:focus {
+    outline: 0;
 }
 .subscription_table .plan_desc h4.other_desc_subscribe {
     font-size: 13px;
