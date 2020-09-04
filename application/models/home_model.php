@@ -355,12 +355,12 @@ class Home_model extends CI_Model {
 					
 					if($auction_start_date != '')
 					{
-						$this->db->where('a.auction_start_date >=',$auction_start_date.' 00:00:00');
+						$this->db->where('a.auction_start_date >=',date('Y-m-d',strtotime($auction_start_date)).' 00:00:00');
 					}
 
 					if($auction_end_date != '')
 					{
-						$this->db->where('a.auction_end_date <=',$auction_end_date.' 23:59:59');
+						$this->db->where('a.auction_end_date <=',date('Y-m-d',strtotime($auction_end_date)).' 23:59:59');
 					}
 				}
 
@@ -508,12 +508,12 @@ class Home_model extends CI_Model {
 					
 					if($auction_start_date != '')
 					{
-						$this->db->where('a.auction_start_date >=',$auction_start_date.' 00:00:00');
+						$this->db->where('a.auction_start_date >=',date('Y-m-d',strtotime($auction_start_date)).' 00:00:00');
 					}
 
 					if($auction_end_date != '')
 					{
-						$this->db->where('a.auction_end_date <=',$auction_end_date.' 23:59:59');
+						$this->db->where('a.auction_end_date <=',date('Y-m-d',strtotime($auction_end_date)).' 23:59:59');
 					}
 
 				}
