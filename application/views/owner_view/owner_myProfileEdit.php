@@ -82,6 +82,20 @@ $tilldate = time();
 $diff =  $end_date_str - $tilldate;
 $remaining_day = floor($diff/86400);
 
+$free_sub_flag = 0;
+$free_sub_expire_date = date('Y-m-d H:i:s',strtotime(FREE_SUBSCRIPTION_TIME,strtotime($tmp_data->indate)));
+$free_sub_expire_date_str = strtotime($free_sub_expire_date);
+
+
+$tilldate1 = time();
+$diff1 =  $free_sub_expire_date_str - $tilldate1;
+$free_day = floor($diff1/86400);
+
+
+if(time() < $free_sub_expire_date_str)
+{
+	$free_sub_flag = 1;
+}
 ?>
 
 <div class="container-fluid container_margin">
@@ -89,22 +103,36 @@ $remaining_day = floor($diff/86400);
         <?php
         $userid=$this->session->userdata('id');
          $isPremiumMember = $this->home_model->getTotalActivePackage($userid);
-        if(!$isPremiumMember) {?>
+        if($isPremiumMember) {?>
+        <div class="container">
+              <div class="row advanced_search_row row_padding">
+                  <div class="col-sm-12">
+                      <div class="become_premium_member premium_member">
+                          <p>Your subscription will expire in <?php echo $remaining_day;?> <?php echo ($remaining_day==1)?'day': 'days';?></p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+         <?php }
+		else if($free_sub_flag){
+		?>
+		<div class="container">
+              <div class="row advanced_search_row row_padding">
+                  <div class="col-sm-12">
+                      <div class="become_premium_member premium_member">
+                          <p>Your free subscription will expire in <?php echo $free_day;?> <?php echo ($free_day==1)?'day': 'days';?></p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+		<?php 
+		}
+		else{?>
         <div class="container">
               <div class="row advanced_search_row row_padding">
                   <div class="col-sm-12">
                       <div class="become_premium_member">
                           <p>Become Premium member to view auction details and documents.</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-         <?php }else{?>
-        <div class="container">
-              <div class="row advanced_search_row row_padding">
-                  <div class="col-sm-12">
-                      <div class="become_premium_member premium_member">
-                          <p>Your account will expire in <?php echo $remaining_day;?> <?php echo ($remaining_day==1)?'day': 'days';?></p>
                       </div>
                   </div>
               </div>
@@ -295,7 +323,7 @@ $remaining_day = floor($diff/86400);
                         </label>
                     </div>
                     <div class="email_alerts">
-                        <?php if($isPremiumMember > 0) {?>
+                        <?php if($isPremiumMember > 0 || $free_sub_flag == 1) {?>
                         <label class="container-radio">Daily Email Alerts
                             <input type="radio" <?php echo ($alert_type==1)?'checked="checked"':''; ?> name="alert_type" value="1">
                             <span class="checkmark"></span>

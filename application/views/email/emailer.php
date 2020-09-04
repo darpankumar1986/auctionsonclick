@@ -60,7 +60,7 @@
                     <tbody>
                         <tr>
                             <td style="font-family: sans-serif;color: #333333;font-size: 22px;text-align: center;">
-                                <?php echo (int)count($auctionList); ?> New Auction property in <?php echo $city_name; ?>
+                                <?php echo (int)count($auctionList); ?> New Auction property in <?php echo ucwords(strtolower($city_name)); ?>
                             </td>
                         </tr>
                     </tbody>
@@ -91,7 +91,7 @@
                                         <thead>
                                             <tr>
                                                 <th width="18%" style="font-size: 13px;padding: 18px 22px;background-color: #333333;color: #ffffff;font-family: sans-serif;border: 1px solid #4f4e4e;text-align: left;vertical-align: top;">Bank Name</th>
-                                                <th width="25%" style="font-size: 13px;padding: 18px 22px;background-color: #333333;color: #ffffff;font-family: sans-serif;border: 1px solid #4f4e4e;text-align: left;vertical-align: top;">Asset Details</th>
+                                                <th width="25%" style="font-size: 13px;padding: 18px 22px;background-color: #333333;color: #ffffff;font-family: sans-serif;border: 1px solid #4f4e4e;text-align: left;vertical-align: top;">Description</th>
                                                 <th width="20%" style="font-size: 13px;padding: 18px 22px;background-color: #333333;color: #ffffff;font-family: sans-serif;border: 1px solid #4f4e4e;text-align: left;vertical-align: top;">EMD Submission Last Date</th>
                                                 <th width="20%" style="font-size: 13px;padding: 18px 22px;background-color: #333333;color: #ffffff;font-family: sans-serif;border: 1px solid #4f4e4e;text-align: right;vertical-align: top;">Reserve Price</th>
                                                 <th width="17%" style="font-size: 13px;padding: 18px 22px;background-color: #333333;color: #ffffff;font-family: sans-serif;border: 1px solid #4f4e4e;text-align: left;vertical-align: top;">View Details</th>
@@ -102,8 +102,8 @@
                                             <tr>
                                                 <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: left;"><?php echo $auction->bank_name; ?></td>
                                                 <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: left;"><?php echo $auction->subCategory;?> <?php echo $auction->parentCategory;?> in <?php echo $auction->reference_no; ?></td>
-                                                <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: left;"><?php echo date('Y-m-d',strtotime($auction->bid_last_date)); ?></td>
-                                                <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: right;">&#8377;<?php echo $auction->reserve_price; ?></td>
+                                                <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: left;"><?php echo date('d-m-Y',strtotime($auction->bid_last_date)); ?></td>
+                                                <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: right;">&#8377;<?php echo moneyFormatIndia($auction->reserve_price); ?></td>
                                                 <td style="font-size: 13px;padding: 18px 22px;color: #333333;font-family: sans-serif;border: 1px solid #ccc;text-align: center;"><a href="<?php echo base_url(); ?>home/auctionDetail/<?php echo $auction->listID; ?>" target="_blank"><img src="<?php echo $view_button; ?>"></a></td>
                                             </tr>
                                             <?php } ?>

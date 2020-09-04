@@ -81,7 +81,7 @@ class Cron extends WS_Controller
 					$link = base_url().'home/unsubscribe/'.$id_base64.'/'.$email_md5;
 					$template_final = str_replace('%%Unsubscribe%%',$link,$template[$row->city_id]);
 
-					$subject = (int)$templateAuctionCount[$row->city_id]." New Auction property in ".$row->city_name;
+					$subject = (int)$templateAuctionCount[$row->city_id]." New Auction property in ".ucwords(strtolower($row->city_name));
 					$data = array(
 									"member_id"=>$row->id,
 									"email"=>$row->email_id,
