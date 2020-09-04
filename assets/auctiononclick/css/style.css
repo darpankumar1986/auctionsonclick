@@ -2811,8 +2811,9 @@ h3.subscription_plan {
     background-color: #4ea94f;
     color: #ffffff;
     font-size: 13px;
-    padding: 9px 64px;
+    padding: 10px 65px;
     outline: 0;
+    border: 0;
 }
 .pan_state_tab .active_plan .subscription_box {
     background-color: #0078db;
