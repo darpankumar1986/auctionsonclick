@@ -22,9 +22,9 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <title><?php echo $title; ?></title>
+      <title><?php echo $title; ?></title>
       <meta name="Description" content="<?php echo $description; ?>"/>
-	  <meta name="Keywords" content="auction, foreclosure, sales notice, nilami, foreclosed homes, online auctions, foreclosed properties">
+      <meta name="Keywords" content="auction, foreclosure, sales notice, nilami, foreclosed homes, online auctions, foreclosed properties">
     <link rel="icon" href="<?php echo base_url();?>favicon.ico?rand=<?php echo CACHE_RANDOM; ?>">
     <link href="<?php echo base_url(); ?>assets/auctiononclick/css/jquery-ui-1.12.1.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url();?>assets/front_view/css/flexslider.css?rand=<?php echo CACHE_RANDOM; ?>" rel="stylesheet" type="text/css" />
@@ -127,7 +127,7 @@
                                     <li class="login_register"><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span>Login / Register</a></li>
                                     <?php } ?>
 
-                                    <li class="bar_icon"><a href="#"><span class="cret-1" onclick="openNav()"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/menu_icon.png"></span></a></li>
+                                    <li class="bar_icon"><a href="#" onclick="openNav()"><span class="cret-1"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/menu_icon.png"></span></a></li>
                                 </ul>
                                 <div id="mySidenav" class="sidenav">
                                     <button type="button" class="closebtn" onclick="closeNav()">&times;</button>
@@ -201,7 +201,7 @@
                                     <?php }else{ ?>
                                     <li><a href="<?php echo base_url(); ?>home/login"><span><i class="fa fa-user"></i></span>Login / Register</a></li>
                                     <?php } ?>
-                                    <li class="bar_icon"><a href="#"><span class="cret-1" onclick="openNav()"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/menu_icon.png"></span></a></li>
+                                    <li class="bar_icon"><a href="#" onclick="openNav()"><span class="cret-1"><img src="<?php echo base_url(); ?>assets/auctiononclick/images/menu_icon.png"></span></a></li>
                                 </ul>
                                 <div id="mySidenav" class="sidenav">
                                     <button type="button" class="closebtn" onclick="closeNav()">&times;</button>
