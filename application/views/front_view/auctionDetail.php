@@ -93,7 +93,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="social_platform">
-								 <?php
+                                 <?php
                                     $currentURL = current_url(); //http://myhost/main
                                     $params   = $_SERVER['QUERY_STRING']; //my_id=1,3
                                     $fullURL = $currentURL . '?' . $params;
@@ -227,10 +227,10 @@
                                     <tr>
                                         <td>E-Auction Website</td>
                                         <td>
-											<?php if($auction_data[0]->far != '') { ?>
-											<a href="<?php echo 'https://'.$auction_data[0]->far; ?>" target="_blank"><?php echo $auction_data[0]->far; ?></a>
-											<?php } else {echo 'N/A';}?>
-										</td>
+                                            <?php if($auction_data[0]->far != '') { ?>
+                                            <a href="<?php echo 'https://'.$auction_data[0]->far; ?>" target="_blank"><?php echo $auction_data[0]->far; ?></a>
+                                            <?php } else {echo 'N/A';}?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Documents Available</td>
@@ -308,7 +308,7 @@
             </div><!--row-->
         </div><!--container-->
         <div class="container-fluid">
-            <div class="row">
+            <div class="row ad_row_width">
                 <div class="col-sm-12">
                     <div class="adblock">
                         <img src="<?php echo base_url(); ?>assets/auctiononclick/images/ad_space_insurance_bottom.png">
