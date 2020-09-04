@@ -505,14 +505,14 @@ var oTable = null;
         */
 
           $('#auction_start_date').datepicker({
-            format: 'yyyy-mm-dd',
+            format: 'dd-mm-yyyy',
             autoHide: true
             //startDate: minAuctionDate,
             //endDate: maxAuctionDate
         });
 
         $('#auction_end_date').datepicker({
-            format: 'yyyy-mm-dd',
+            format: 'dd-mm-yyyy',
             autoHide: true
             //startDate: minAuctionDate,
             //endDate: maxAuctionDate
