@@ -271,7 +271,7 @@
                                     </td>
                                 </tr>-->
                                 <tr>
-                                    <td colspan="2" class="residential_btn"><button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url(); ?>propertylisting?search_city=<?php echo $auction_data[0]->city_name; ?>&parent_id=<?php echo $auction_data[0]->category_id; ?>'">View more residential plot in <?php echo $auction_data[0]->city_name; ?> <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button></td>
+                                    <td colspan="2" class="residential_btn"><button class="btn btn-default" type="button" onclick="window.location='<?php echo base_url(); ?>propertylisting?search_city=<?php echo $auction_data[0]->city_name; ?>'">View more auctions in <?php echo $auction_data[0]->city_name; ?> <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button></td>
                                 </tr>
                                 <?php } ?>
                             </tbody>
