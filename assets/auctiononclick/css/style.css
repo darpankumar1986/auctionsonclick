@@ -3260,7 +3260,9 @@ h3.subscription_plan {
 .faq_main ul li p strong {
     font-family: 'Roboto-Bold';
 }
-
+.faq_main ul li p a {
+    color: #005ca8;
+}
 /*----------------------------FAQ_end-----------------------------------------------*/
 
 /*-----------------------------privacy_policy--------------------------------------*/
