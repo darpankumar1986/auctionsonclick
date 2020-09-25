@@ -105,6 +105,22 @@ section{float:none;}
 				{
 					echo 'Government Auction';
 				}
+				else if($auction_detail->event_type=='drt')
+				{
+					echo 'DRT Auction';
+				}
+				else if($auction_detail->event_type=='NPA Asset Sale')
+				{
+					echo 'NPA Asset Sale Auction';
+				}
+				else if($auction_detail->event_type=='Performing Asset Sale')
+				{
+					echo 'Performing Asset Sale Auction';
+				}
+				else if($auction_detail->event_type=='SFC')
+				{
+					echo 'SFC Auction';
+				}
 				else 
 				{
 					echo 'Other Auction';

@@ -166,5 +166,283 @@ class Cron extends WS_Controller
 			}
 		}
 	}
+
+	public function insertBank($row)
+	{
+		$this->db->where('id',$row->id);
+		$query = $this->db->get('tbl_bank');
+		if($query->num_rows() == 0)
+		{
+			$data = array(
+					"id"=>$row->id,
+					"tender_doc"=>$row->tender_doc,
+					"annexure2"=>$row->annexure2,
+					"annexure3"=>$row->annexure3,
+					"name"=>$row->name,
+					"thumb_logopath"=>$row->thumb_logopath,
+					"logopath"=>$row->logopath,
+					"url"=>$row->url,
+					"shortName"=>$row->shortName,
+					"address1"=>$row->address1,
+					"address2"=>$row->address2,
+					"street"=>$row->street,
+					"country"=>$row->country,
+					"state"=>$row->state,
+					"city"=>$row->city,
+					"zip"=>$row->zip,
+					"phone"=>$row->phone,
+					"fax"=>$row->fax,
+					"bank_header_color"=>$row->bank_header_color,
+					"indate"=>$row->indate,
+					"status"=>$row->status,
+					"priority"=>$row->priority,
+			);
+			$this->db->where('id',$row->id);
+			$this->db->insert('tbl_bank',$data);
+		}
+	}
+
+	public function setBank()
+	{
+		$this->db->order_by('id','DESC');
+		$this->db->limit(1);
+		$query = $this->db->get('tbl_bank');
+		$bank = $query->row();
+
+		$curlSession = curl_init();
+		curl_setopt($curlSession, CURLOPT_URL, API_URL.'auctionapi/getBankList/'.$bank->id);
+		curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+		curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+		$jsonData = json_decode(curl_exec($curlSession));
+		curl_close($curlSession);
+
+		//echo '<pre>';
+		//print_r($jsonData);
+
+		foreach($jsonData as $row)
+		{
+			$this->insertBank($row);
+		}
+
+		if($_GET['cron'] == 'no')
+		{
+			$this->session->set_flashdata('message','Updated Successfully!');
+			redirect('superadmin/bank');
+		}
+	}
+
+	public function insertBranch($row)
+	{
+		$this->db->where('id',$row->id);
+		$query = $this->db->get('tbl_branch');
+		if($query->num_rows() == 0)
+		{
+			$data = array(
+					"id"=>$row->id,
+					"name"=>$row->name,
+					"drt_id"=>$row->drt_id,
+					"bank_id"=>$row->bank_id,
+					"zone_id"=>$row->zone_id,
+					"region_id"=>$row->region_id,
+					"address1"=>$row->address1,
+					"address2"=>$row->address2,
+					"street"=>$row->street,
+					"country"=>$row->country,
+					"state"=>$row->state,
+					"street"=>$row->street,
+					"city"=>$row->city,
+					"zip"=>$row->zip,
+					"indate"=>$row->indate,
+					"phone"=>$row->phone,
+					"fax"=>$row->fax,
+					"agreementnodate"=>$row->agreementnodate,
+					"unsuc_revenueamount"=>$row->unsuc_revenueamount,
+					"cancel_amount"=>$row->cancel_amount,
+					"stay_amount"=>$row->stay_amount,
+					"revenueamount"=>$row->revenueamount,
+					"stax"=>$row->stax,
+					"educess"=>$row->educess,
+					"secondaryhighertax"=>$row->secondaryhighertax,
+					"total"=>$row->total,
+					"status"=>$row->status,
+					"validity_from"=>$row->validity_from,
+					"validity_to"=>$row->validity_to,
+					"lho_id"=>$row->lho_id
+			);
+			$this->db->where('id',$row->id);
+			$this->db->insert('tbl_branch',$data);
+		}
+	}
+
+	public function setBranch()
+	{
+		$this->db->order_by('id','DESC');
+		$this->db->limit(1);
+		$query = $this->db->get('tbl_branch');
+		$branch = $query->row();
+
+		$curlSession = curl_init();
+		curl_setopt($curlSession, CURLOPT_URL, API_URL.'auctionapi/getBranchList/'.$branch->id);
+		curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+		curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+		$jsonData = json_decode(curl_exec($curlSession));
+		curl_close($curlSession);
+
+		//echo '<pre>';
+		//print_r($jsonData);
+
+		foreach($jsonData as $row)
+		{
+			$this->insertBranch($row);
+		}
+
+		if($_GET['cron'] == 'no')
+		{
+			$this->session->set_flashdata('message','Updated Successfully!');
+			redirect('superadmin/bank_branch');
+		}
+	}
+
+	public function insertCity($row)
+	{
+		$this->db->where('id',$row->id);
+		$query = $this->db->get('tbl_city');
+		if($query->num_rows() == 0)
+		{
+			$data = array(
+					"id"=>$row->id,
+					"city_name"=>$row->city_name,
+					"stateID"=>$row->stateID,
+					"indate"=>$row->indate,
+					"status"=>$row->status,
+					"CountyCode"=>$row->CountyCode
+			);
+			$this->db->where('id',$row->id);
+			$this->db->insert('tbl_city',$data);
+		}
+	}
+
+	public function setCity()
+	{
+		$this->db->order_by('id','DESC');
+		$this->db->limit(1);
+		$query = $this->db->get('tbl_city');
+		$city = $query->row();
+
+		$curlSession = curl_init();
+		curl_setopt($curlSession, CURLOPT_URL, API_URL.'auctionapi/getCityList/'.$city->id);
+		curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+		curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+		$jsonData = json_decode(curl_exec($curlSession));
+		curl_close($curlSession);
+
+		//echo '<pre>';
+		//print_r($jsonData);
+
+		foreach($jsonData as $row)
+		{
+			$this->insertCity($row);
+		}
+
+		if($_GET['cron'] == 'no')
+		{
+			$this->session->set_flashdata('message','Updated Successfully!');
+			redirect('superadmin/city');
+		}
+	}
+
+	public function insertAuction($row)
+	{
+
+		$this->db->where('id',$row->id);
+		$query = $this->db->get('tbl_auction');
+		if($query->num_rows() == 0)
+		{
+			$data = array(
+					"bankeauctionEventID"=>$row->id,
+					"open_price_bid"=>1,
+					"reference_no"=>'',
+					"event_title"=>0,
+					"dispatch_date"=>date('Y-m-d H:i:s'),
+					"first_opener"=>1,
+					"created_by"=>1,
+					"category_id"=>$row->category_id,
+					"vehicle_type"=>0,
+					"subcategory_id"=>$row->subcategory_id,
+					"reserve_price"=>$row->reserve_price,
+					"borrower_name"=>$row->borrower_name,
+					"emd_amt"=>$row->emd_amt,
+					"event_type"=>$row->event_type, // check
+					"account_type_id"=>0,
+					"bank_id"=>$row->bank_id,
+					"drt_id"=>0,
+					"branch_id"=>$row->branch_id,
+					"countryID"=>$row->countryID,
+					"state"=>$row->state,
+					"city"=>$row->city,
+					"is_corner_property"=>0,
+					"asset_details"=>$row->product_description, // check
+					"service_no"=>'Bankeauction',
+					"far"=>API_URL,					
+					"bid_last_date"=>$row->bid_last_date,
+					"auction_start_date"=>$row->auction_start_date,
+					"auction_end_date"=>$row->auction_end_date,
+					"second_opener"=>1,
+					"opening_price"=>$row->reserve_price,
+					"status"=>0,
+					"indate"=>date('Y-m-d H:i:s'),
+					"updated_date"=>date('Y-m-d H:i:s'),
+					"modified_date"=>date('Y-m-d H:i:s'),
+					"PropertyDescription"=>$row->event_title,// ----------------
+					"show_home"=>1
+			);
+					//echo '<pre>';
+					//print_r($data);die;
+			$this->db->insert('tbl_auction',$data);
+
+			$auction_id = $this->db->insert_id();
+
+			$datadoc = array(
+					"auction_id"=>$auction_id,
+					"upload_document_field_id"=>5,
+					"upload_document_field_name"=>'Upload Sale Notice ',
+					"file_path"=>API_URL.'public/uploads/event_auction/'.$row->related_doc,
+					"date_created"=>date('Y-m-d H:i:s'),
+					"date_modified"=>date('Y-m-d H:i:s'),
+					"status"=>1
+				);
+			$this->db->insert('tbl_auction_document',$datadoc);
+		}
+	}
+
+	public function setAuction()
+	{
+		$this->setBank();
+		$this->setBranch();
+		$this->setCity();
+
+		//echo API_URL.'auctionapi/getAuctionList/0?date='.$_GET['date'];die;
+
+		$curlSession = curl_init();
+		curl_setopt($curlSession, CURLOPT_URL, API_URL.'auctionapi/getAuctionList/'.(int)$_GET['auction_id'].'?date='.$_GET['date']);
+		curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+		curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+		$jsonData = json_decode(curl_exec($curlSession));
+		curl_close($curlSession);
+
+		//echo '<pre>';
+		//print_r($jsonData);die;
+
+		foreach($jsonData as $row)
+		{
+			$this->insertAuction($row);
+		}
+
+		echo '--------------Done--------------';
+	}
 }
 ?>

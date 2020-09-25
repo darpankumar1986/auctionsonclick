@@ -461,3 +461,8 @@ INSERT INTO `tbl_subscription_package` (`package_id`, `package_name`, `package_d
 ----------------Darpan -------------------------------
 ALTER TABLE `tbl_bank`
 ADD `show_on_homepage` int(11) NULL DEFAULT '0';
+
+
+----------------neeraj ----------------------------
+ALTER TABLE `tbl_auction` ADD `bankeauctionEventID` INT NOT NULL DEFAULT '0' AFTER `id`, ADD INDEX (`bankeauctionEventID`);
+ALTER TABLE `tbl_log_auction` ADD `bankeauctionEventID` INT NOT NULL DEFAULT '0' AFTER `auction_id`, ADD INDEX (`bankeauctionEventID`);

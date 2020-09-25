@@ -28,8 +28,11 @@
 <section class="container_12">		
 	<div class="centercontent tables">
 		<div class="pageheader notab">
-			<div class="row">						
+			<!--<div class="row">						
 				<a href="/superadmin/bank/addedit" class="button_grey">Create Bank</a>
+			</div>-->
+			<div class="row">						
+				<a href="<?php echo base_url(); ?>cron/setBank?cron=no" class="button_grey">Get Bank</a>
 			</div>
 			<?php if( $this->session->flashdata('message')) {?>
 				<span class="success_msg"><img src="<?php echo VIEWBASE; ?>images/icon_checkmark_small.png" class="success_tick">

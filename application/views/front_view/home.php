@@ -27,7 +27,7 @@
                                             <?php foreach($parentCat as $key => $parCat){ ?>
                                             <li class="dropdown-header">
                                             <input type="radio" id="test<?php echo $key; ?>" class="s_parent_id" s-data-parent-id="<?php echo $parCat->id;?>" name="parentCat" value="<?php echo $parCat->id;?>">
-                                                <label for="test<?php echo $key; ?>"><?php echo ($parCat->id != 3)?'All ':'';?><?php echo $parCat->name; ?></label></li>
+                                                <label for="test<?php echo $key; ?>"><?php //echo ($parCat->name != 'Others')?'All ':'';?><?php echo $parCat->name; ?></label></li>
                                                 <?php $Cats = $this->home_model->getAllCategory($parCat->id); ?>
                                                 <?php foreach($Cats as $cat){ ?>
                                                     <li><label class="checkbox-inline"><input type="checkbox" s-data-parent="<?php echo $parCat->id;?>" name="s_sub_id" value="<?php echo $cat->id;?>" data-text="<?php echo $cat->name; ?>"><?php echo $cat->name; ?></label></li>

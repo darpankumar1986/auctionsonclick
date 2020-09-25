@@ -148,5 +148,7 @@ define('CACHE_RANDOM',$random);
 //define('FREE_SUBSCRIPTION_TIME','+1 days');
 define('FREE_SUBSCRIPTION_TIME','+1 months');
 
+define('API_URL','http://b.com/');
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

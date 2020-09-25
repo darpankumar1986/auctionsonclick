@@ -74,8 +74,8 @@
 					{ ?>
 						<table class="display" id="dt1" >       
 						<tr>
-							<td><a href="<?php echo base_url('/superadmin/bank/addedit')?>">Create Bank</a></td>
-							<td><a href="<?php echo base_url('/superadmin/bank_branch/branch_addedit');?>">Create Branch</a></td>
+							<td><a href="<?php echo base_url('/superadmin/bank')?>">Bank List</a></td>
+							<td><a href="<?php echo base_url('/superadmin/bank_branch');?>">Branch List</a></td>
 							<!--<td><a href="<?php echo base_url('/superadmin/user/bankeraddedit');?>">Create Branch User</a></td> -->
 							<td><a href="<?php echo base_url('/superadmin/category/addeditmain')?>">Create Category</a></td>
 							<td><a href="<?php echo base_url('/superadmin/category/addedit')?>">Create Sub Category</a></td>
@@ -87,7 +87,7 @@
 						</tr>    
 						<tr>	
 							<td><a href="<?php echo base_url()?>superadmin/state/addedit">Create State</a></td>
-							<td><a href="<?php echo base_url()?>superadmin/city/addedit">Create City</a></td>
+							<td><a href="<?php echo base_url()?>superadmin/city">City List</a></td>
 							<!--<td><a href="<?php echo base_url()?>superadmin/sales_person/addedit">Create Sales Person</a></td>-->
 							<td><a href="<?php echo base_url()?>superadmin/user/bidder_list">User List</a></td>
 							<td><a href="<?php echo base_url()?>superadmin/upload_document/addedit">Create Upload  Document Fields</a></td>

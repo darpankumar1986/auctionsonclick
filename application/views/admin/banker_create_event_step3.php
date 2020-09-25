@@ -145,7 +145,11 @@ $other_city=$auctionData->other_city;
 							<option value="sarfaesi" <?php echo ($auctionData->event_type=='sarfaesi' || $auctionData->event_type=='')?'selected="selected"':''; ?> >Sarfaesi Auction</option>
 							<option value="liquidation" <?php echo ($auctionData->event_type=='liquidation')?'selected="selected"':''; ?> >Liquidation Auction</option>
 							<option value="government" <?php echo ($auctionData->event_type=='government')?'selected="selected"':''; ?> >Government Auction</option>
-							<option value="other" <?php echo ($auctionData->event_type=='other')?'selected="selected"':''; ?> >Other Auction</option>
+							<option value="drt" <?php echo ($auctionData->event_type=='drt')?'selected="selected"':''; ?> >DRT Auction</option>
+							<option value="NPA Asset Sale" <?php echo ($auctionData->event_type=='NPA Asset Sale')?'selected="selected"':''; ?> >NPA Asset Sale Auction</option>
+							<option value="Performing Asset Sale" <?php echo ($auctionData->event_type=='Performing Asset Sale')?'selected="selected"':''; ?> >Performing Asset Sale Auction</option>
+							<option value="SFC" <?php echo ($auctionData->event_type=='SFC')?'selected="selected"':''; ?> >SFC Auction</option>
+							<option value="other" <?php echo ($auctionData->event_type=='other')?'selected="selected"':''; ?> >Other Auction</option>			
 							</select>
 
 						  <div class="tooltips">
@@ -173,7 +177,7 @@ $other_city=$auctionData->other_city;
 						</div>
 					  </div>
 					  
-					  <div class="row" id="subCategoryType" <?php if($auctionData->category_id==1 || $auctionData->category_id==2){ echo 'style="display:block;"';} else{echo 'style="display:none;"';}?>>
+					  <div class="row" id="subCategoryType" <?php //if($auctionData->category_id==1 || $auctionData->category_id==2){ echo 'style="display:block;"';} else{echo 'style="display:none;"';}?>>
 							<div class="lft_heading">Assets Type <span class="red"> *</span></div>
 							<div class="rgt_detail">
 								<select name="sub_category_id" id="sub_category_id" class="select">
@@ -929,13 +933,15 @@ $other_city=$auctionData->other_city;
             $var = false;
         ?>
         <input name="old_<?php echo $fieldName?>"  id="old_<?php echo $fieldName?>"  value="<?php echo $ud->file_path;?>" type="hidden"  class="input">
-        <?php if($udf->upload_document_field_type == 1){ ?>
+        <?php if($udf->upload_document_field_type == 1 && $ud->upload_document_field_name != 'Upload Sale Notice '){ ?>
            <a href="/public/uploads/event_auction/<?php echo $ud->file_path;?>" target="_blank">View</a>	
-           <?php }else {?>
+           <?php }else if($ud->upload_document_field_name != 'Upload Sale Notice '){?>
                 <a href="/public/uploads/event_auction/<?php echo $ud->file_path;?>" target="_blank">View</a>	
-                   <?php }?>
-                <?php } ?>
-            <?php }?>
+            <?php }else{?>
+				<a href="<?php echo $ud->file_path;?>" target="_blank">View</a>
+			<?php } ?>
+        <?php } ?>
+       <?php }?>
 
         <?php if($var){ ?>
         <input name="old_<?php echo $fieldName?>"  id="old_<?php echo $fieldName?>"  value="" type="hidden"  class="input old">
@@ -1292,11 +1298,11 @@ jQuery("#auto_extension, #auto_extension_time").on('blur',function(){
 		controlType: 'select',
 		oneLine: true,
 		changeMonth: true,
-        minDate: 0,
+        //minDate: 0,
 		//stepMinute: 15,
 		changeYear: true,
 		dateFormat: 'dd-mm-yy',
-		yearRange: '1950:<?php echo date('Y')+1; ?>',
+		yearRange: '<?php echo date('Y'); ?>:<?php echo date('Y')+1; ?>',
 		timeFormat: 'HH:mm:00'
 	});
 	  jQuery('#bid_opening_date').datetimepicker({
@@ -1327,10 +1333,10 @@ jQuery("#auto_extension, #auto_extension_time").on('blur',function(){
 		oneLine: true,
 		changeMonth: true,
 		changeYear: true,
-        minDate: 0,
+        //minDate: 0,
 		//stepMinute: 15,
 		dateFormat: 'dd-mm-yy',
-		yearRange: '1950:<?php echo date('Y')+1; ?>',
+		yearRange: '<?php echo date('Y'); ?>:<?php echo date('Y')+1; ?>',
 		timeFormat: 'HH:mm:00'
 	});
 	
@@ -1339,7 +1345,7 @@ jQuery("#auto_extension, #auto_extension_time").on('blur',function(){
 		oneLine: true,
 		changeMonth: true,
 		changeYear: true,
-                minDate: 0,
+                //minDate: 0,
                 
                 //useCurrent: false,
                showClear: true,
@@ -1354,18 +1360,18 @@ jQuery("#auto_extension, #auto_extension_time").on('blur',function(){
                 
                 
 		dateFormat: 'dd-mm-yy',
-		yearRange: '1950:<?php echo date('Y')+1; ?>',
+		yearRange: '<?php echo date('Y'); ?>:<?php echo date('Y')+1; ?>',
 		timeFormat: 'HH:mm:00'
 	});
 	jQuery('#auction_end_date').datetimepicker({
 		controlType: 'select',
 		oneLine: true,
 		changeMonth: true,
-        minDate: 0,
+        //minDate: 0,
 		//stepMinute: 15,
 		changeYear: true,
 		dateFormat: 'dd-mm-yy',
-		yearRange: '1950:<?php echo date('Y')+1; ?>',
+		yearRange: '<?php echo date('Y'); ?>:<?php echo date('Y')+1; ?>',
 		timeFormat: 'HH:mm:00'
 	});
 	jQuery('#nodal_bank_n').change(function(){
@@ -1380,7 +1386,10 @@ jQuery("#auto_extension, #auto_extension_time").on('blur',function(){
 		var category_id = jQuery(this).val();
 		if(category_id)
 		{
-			jQuery('#subcategory_id').load('/buyer/getsubcategory/'+category_id);
+
+			//jQuery('#subCategoryType').css('display','block');
+			jQuery('#sub_category_id').load('/admin/home/showsubcatdata/' + category_id);
+
 		}
 		
 	});	
@@ -1544,7 +1553,7 @@ jQuery(".numericonly_1").keydown(function (e) {
 	
     });
 
-	jQuery('#category_id').change(function(){
+	/*jQuery('#category_id').change(function(){
 		var category_id = jQuery(this).val();
 		if(category_id == 1 || category_id == 2)
 		{
@@ -1558,7 +1567,7 @@ jQuery(".numericonly_1").keydown(function (e) {
 		}
 
 
-	});
+	});*/
 	
 <?php if(is_array($upload_document_field) && count($upload_document_field)>0 )
 { 
@@ -1613,7 +1622,7 @@ jQuery(".numericonly_1").keydown(function (e) {
 					var indexValuee = arr-1;
 					if(typeof ext1[indexValuee] == "undefined")
 					{
-						sweetAlert('Oops!', 'This is not an allowed file type. Only jpg and pdf file are allowed.', 'error');
+						sweetAlert('Oops!', 'This is not an allowed file type. Only jpg, pdf and zip file are allowed.', 'error');
 						this.value = '';
 					}
 					if(getValue !=''){
@@ -1629,11 +1638,11 @@ jQuery(".numericonly_1").keydown(function (e) {
 					//var ext = this.value.match(/\.(.+)$/)[1];
 					switch (ext1[indexValuee]) {
 						//case 'png':case 'jpg':case 'gif':case 'jpeg':case 'pdf':case 'xls':case 'doc':case 'docx':case 'zip':
-                                                case 'jpg':case 'pdf':
+                                                case 'jpg':case 'pdf':case 'zip':
 						jQuery('#<?php echo $fieldName;?>').attr('disabled', false);
 						break;
 						default:
-							sweetAlert('Oops!', 'This is not an allowed file type. Only jpg and pdf file are allowed.', 'error');
+							sweetAlert('Oops!', 'This is not an allowed file type. Only jpg, pdf and zip file are allowed.', 'error');
                             //alert('This is not an allowed file type.Only jpg and pdf file are allowed.');
 							this.value = '';
 					}

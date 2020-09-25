@@ -12,6 +12,10 @@ class Home extends CI_Controller {
 		$this->load->model('admin/bank_model');
 		$this->load->model('helpdesk_executive_model');
 	   	$this->check_isvalidated();
+
+		/*ini_set('display_errors', 1);
+		ini_set('display_startup_errors', 1);
+		error_reporting(E_ALL);*/
 	}	
 	public function index()
 	{
@@ -143,7 +147,7 @@ class Home extends CI_Controller {
         $this->load->view('admin/eventDetailPopup', $data);
     }
     
-    function createEvent($eid) { 
+    function createEvent($eid = 0) { 
        
 
         $action = $this->input->get('action');

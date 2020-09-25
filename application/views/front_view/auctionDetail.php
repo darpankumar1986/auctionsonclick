@@ -31,7 +31,7 @@
                                             <?php foreach($parentCat as $key => $parCat){ ?>
                                             <li class="dropdown-header">
                                             <input type="radio" id="test<?php echo $key; ?>" class="s_parent_id" s-data-parent-id="<?php echo $parCat->id;?>" name="parentCat" value="<?php echo $parCat->id;?>">
-                                                <label for="test<?php echo $key; ?>"><?php echo ($parCat->id != 3)?'All ':'';?><?php echo $parCat->name; ?></label></li>
+                                                <label for="test<?php echo $key; ?>"><?php //echo ($parCat->name != 'Others')?'All ':'';?><?php echo $parCat->name; ?></label></li>
                                                 <?php $Cats = $this->home_model->getAllCategory($parCat->id); ?>
                                                 <?php foreach($Cats as $cat){ ?>
                                                     <li><label class="checkbox-inline"><input type="checkbox" s-data-parent="<?php echo $parCat->id;?>" name="s_sub_id" value="<?php echo $cat->id;?>" data-text="<?php echo $cat->name; ?>"><?php echo $cat->name; ?></label></li>
@@ -161,6 +161,22 @@
                                                 {
                                                     echo 'Government Auction';
                                                 }
+												else if($auction_data[0]->event_type=='drt')
+                                                {
+                                                    echo 'DRT Auction';
+                                                }
+												else if($auction_data[0]->event_type=='NPA Asset Sale')
+                                                {
+                                                    echo 'NPA Asset Sale Auction';
+                                                }
+												else if($auction_data[0]->event_type=='Performing Asset Sale')
+                                                {
+                                                    echo 'Performing Asset Sale Auction';
+                                                }
+												else if($auction_data[0]->event_type=='SFC')
+                                                {
+                                                    echo 'SFC Auction';
+                                                }
                                                 else
                                                 {
                                                     echo 'Other Auction';
@@ -239,9 +255,11 @@
                                             if(is_array($uploadedDocs) && count($uploadedDocs)>0)
                                             {
                                                 $dSrNo=1;
-                                                foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id > 0){ ?>
+                                                foreach($uploadedDocs as $key => $doc){ if($doc->upload_document_field_id > 0 && $doc->upload_document_field_name != 'Upload Sale Notice '){ ?>
                                                     <a href="/public/uploads/event_auction/<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Sale Notice '; ?></a><?php if($key+1 != count($uploadedDocs)){ ?>,<?php } 											$dSrNo++;
-                                                    }
+                                                    }else{ ?>
+														<a href="<?php echo $doc->file_path; ?>" target="_blank"><?php echo 'Sale Notice '; ?></a>
+													<?php }
 
                                                 }
                                                  ?>

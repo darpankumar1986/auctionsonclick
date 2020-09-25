@@ -932,7 +932,7 @@ class Helpdesk_executive_model extends CI_Model
         return false;
     }
 	
-	public function GetCategorylist($category) 
+	public function GetCategorylist($category = 0) 
 	{
 		$this->db->where("status", 1);
 		$this->db->where("parent_id", 0);

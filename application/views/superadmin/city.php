@@ -6,8 +6,11 @@
 
 <div class="centercontent tables">
 	<div class="pageheader notab">
-			<div class="row">						
+			<!--<div class="row">						
 					<a href="/superadmin/city/addedit" class="button_grey">Create City</a>
+				</div>-->
+				<div class="row">						
+					<a href="<?php echo base_url(); ?>cron/setCity?cron=no" class="button_grey">Get City</a>
 				</div>
 				<?php if( $this->session->flashdata('message')) {?>
 								<span class="success_msg"><img src="<?php echo VIEWBASE; ?>images/icon_checkmark_small.png" class="success_tick">
