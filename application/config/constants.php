@@ -142,13 +142,13 @@ define('IS_PAYMENT_GATEWAY_OFF',FALSE);
 
 
 $random = '67894567345';
-$random = rand(1000000000,9999999999);
+//$random = rand(1000000000,9999999999);
 define('CACHE_RANDOM',$random);
 
 //define('FREE_SUBSCRIPTION_TIME','+1 days');
 define('FREE_SUBSCRIPTION_TIME','+1 months');
 
-define('API_URL','http://b.com/');
+define('API_URL','http://itc.procfocus.com/');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
