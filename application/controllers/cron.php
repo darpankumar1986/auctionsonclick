@@ -357,7 +357,7 @@ class Cron extends WS_Controller
 	public function insertAuction($row)
 	{
 
-		$this->db->where('id',$row->id);
+		$this->db->where('bankeauctionEventID',$row->id);
 		$query = $this->db->get('tbl_auction');
 		if($query->num_rows() == 0)
 		{
