@@ -709,37 +709,7 @@ class Admin_model extends CI_Model {
 				foreach($photoFileArr as $k => $photo)				
 				{
 					
-					// Load the stamp and the photo to apply the watermark to
-					$ext = substr($photo,-3);
-					if(strtolower($ext) == 'png')
-					{
-						$im = imagecreatefrompng('public/uploads/event_auction/'.$photo);
-					}
-					else
-					{
-						$im = imagecreatefromjpeg('public/uploads/event_auction/'.$photo);
-					}
-					$stamp = imagecreatefrompng('assets/auctiononclick/images/AuctionOnclickWaterMark.png');
 					
-
-					// Set the margins for the stamp and get the height/width of the stamp image
-					$marge_right = 5;
-					$marge_bottom = 5;
-					$sx = imagesx($stamp);
-					$sy = imagesy($stamp);
-
-					// Copy the stamp image onto our photo using the margin offsets and the photo 
-					// width to calculate positioning of the stamp. 
-					//imagecopy($im, $stamp, imagesx($im) - $sx - $marge_right, imagesy($im) - $sy - $marge_bottom, 0, 0, imagesx($stamp), imagesy($stamp));
-
-					imagecopy($im, $stamp, ((imagesx($im) - $sx)/2) - $marge_right, ((imagesy($im) - $sy)/2) - $marge_bottom, 0, 0, imagesx($stamp), imagesy($stamp));
-
-					// Output and free memory
-					//header('Content-type: image/png');
-
-					$filename = 'public/uploads/event_auction/'.$photo;
-					imagepng($im, $filename);
-					imagedestroy($im);
 					
 					//echo $_FILES['upload_property_photo']['name'][$k];die;
 							
@@ -778,6 +748,41 @@ class Admin_model extends CI_Model {
 							else if($udf->upload_document_field_type ==2)
 							{
 								$uploadFile = $this->uploadeventvideo($key);
+							}
+
+							// Load the stamp and the photo to apply the watermark to
+							$ext = substr($uploadFile,-3);
+							if($ext == 'png' || $ext == 'jpg' || $ext == 'peg')
+							{
+								if(strtolower($ext) == 'png')
+								{
+									$im = imagecreatefrompng($this->event_auction.$uploadFile);
+								}
+								else
+								{
+									$im = imagecreatefromjpeg($this->event_auction.$uploadFile);
+								}
+								$stamp = imagecreatefrompng('assets/auctiononclick/images/AuctionOnclickWaterMark.png');
+								
+
+								// Set the margins for the stamp and get the height/width of the stamp image
+								$marge_right = 5;
+								$marge_bottom = 5;
+								$sx = imagesx($stamp);
+								$sy = imagesy($stamp);
+
+								// Copy the stamp image onto our photo using the margin offsets and the photo 
+								// width to calculate positioning of the stamp. 
+								//imagecopy($im, $stamp, imagesx($im) - $sx - $marge_right, imagesy($im) - $sy - $marge_bottom, 0, 0, imagesx($stamp), imagesy($stamp));
+
+								imagecopy($im, $stamp, ((imagesx($im) - $sx)/2) - $marge_right, ((imagesy($im) - $sy)/2) - $marge_bottom, 0, 0, imagesx($stamp), imagesy($stamp));
+
+								// Output and free memory
+								//header('Content-type: image/png');
+
+								$filename = $this->event_auction.$uploadFile;
+								imagepng($im, $filename);
+								imagedestroy($im);
 							}
 							
 							$this->db->where('auction_id',$insertedid_id);

@@ -1638,7 +1638,7 @@ jQuery(".numericonly_1").keydown(function (e) {
 					//var ext = this.value.match(/\.(.+)$/)[1];
 					switch (ext1[indexValuee]) {
 						//case 'png':case 'jpg':case 'gif':case 'jpeg':case 'pdf':case 'xls':case 'doc':case 'docx':case 'zip':
-                                                case 'jpg':case 'pdf':case 'zip':
+                                                case 'jpg':case 'pdf':case 'zip':case 'jpeg':
 						jQuery('#<?php echo $fieldName;?>').attr('disabled', false);
 						break;
 						default:
