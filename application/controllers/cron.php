@@ -354,6 +354,58 @@ class Cron extends WS_Controller
 		}
 	}
 
+	public function insertCategory($row)
+	{
+		$this->db->where('id',$row->id);
+		$query = $this->db->get('tbl_category');
+		if($query->num_rows() == 0)
+		{
+			$data = array(
+					"id"=>$row->id,
+					"parent_id"=>$row->parent_id,
+					"name"=>$row->name,
+					"slug"=>$row->slug,
+					"priority"=>$row->priority,
+					"status"=>$row->status,
+					"created_by"=>$row->created_by,
+					"date_created"=>$row->date_created,					
+					"date_modified"=>$row->date_modified
+			);
+			$this->db->where('id',$row->id);
+			$this->db->insert('tbl_category',$data);
+		}
+	}
+
+	public function setCategory()
+	{
+		$this->db->order_by('id','DESC');
+		$this->db->limit(1);
+		$query = $this->db->get('tbl_category');
+		$category = $query->row();
+
+		$curlSession = curl_init();
+		curl_setopt($curlSession, CURLOPT_URL, API_URL.'auctionapi/getCategoryList/'.$category->id);
+		curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+		curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+		$jsonData = json_decode(curl_exec($curlSession));
+		curl_close($curlSession);
+
+		//echo '<pre>';
+		//print_r($jsonData);
+
+		foreach($jsonData as $row)
+		{
+			$this->insertCategory($row);
+		}
+
+		if($_GET['cron'] == 'no')
+		{
+			$this->session->set_flashdata('message','Updated Successfully!');
+			redirect('superadmin/Category');
+		}
+	}
+
 	public function insertAuction($row)
 	{
 
@@ -423,6 +475,7 @@ class Cron extends WS_Controller
 		$this->setBank();
 		$this->setBranch();
 		$this->setCity();
+		$this->setCategory();
 
 		//echo API_URL.'auctionapi/getAuctionList/0?date='.$_GET['date'];die;
 
@@ -442,7 +495,7 @@ class Cron extends WS_Controller
 			$this->insertAuction($row);
 		}
 
-		echo '--------------Done--------------';
+		echo '-------------- Done --------------';
 	}
 }
 ?>
