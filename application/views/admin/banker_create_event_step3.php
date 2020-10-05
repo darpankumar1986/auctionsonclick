@@ -114,7 +114,7 @@ $other_city=$auctionData->other_city;
 						  
 									<div class="tooltips">
 									<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-									<span>The <?php echo BRAND_NAME; ?>  platform is made for these events. Please select the option accordingly..</span>
+									<span>The <?php echo BRAND_NAME; ?>  platform is made for these events. Please select the option accordingly.</span>
 								</div>
 						 </div>
 					  </div>
@@ -132,7 +132,7 @@ $other_city=$auctionData->other_city;
 									
 									<div class="tooltips">
 										<img src="<?php base_url();?>/images/help.png" class="tooltip_icon">
-										<span>
+										<span>Please select branch.
 										</span>
 									</div>					
 								</div>
@@ -230,7 +230,7 @@ $other_city=$auctionData->other_city;
 								<input name="borrower_name" id="borrower_name" type="text" value="<?php echo $auctionData->borrower_name;?>"  class="input html_found">
 								<div class="tooltips">
 									<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-									<span></span>
+									<span>Please enter borrower name</span>
 								</div>	
 							</div>
 						</div>
@@ -240,7 +240,7 @@ $other_city=$auctionData->other_city;
 								<input name="reference_no" id="reference_no" type="text" value="<?php echo $auctionData->reference_no; echo isset($_POST['reference_no']) ? $_POST['reference_no'] : ''?>"  class="input alphanumeric html_found">
 								<div class="tooltips">
 									<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-									<span></span>
+									<span>Please enter location</span>
 								</div>	
 							</div>
 						</div>					  
@@ -863,7 +863,7 @@ $other_city=$auctionData->other_city;
                             <input name="latitude"  id="latitude" type="text" value="<?php if($auctionData->latitude!=''){echo $auctionData->latitude; }; ?>"  >
 							<div class="tooltips">
 								<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-									<span>The value by which the bidding will increase at the time of Inter Se Bidding.</span>
+									<span>Property Latitude</span>
 							</div>
 							</div>
 						</div>
@@ -874,7 +874,7 @@ $other_city=$auctionData->other_city;
                             <input name="longitude"  id="longitude" type="text" value="<?php if($auctionData->longitude!=''){echo $auctionData->longitude; }; ?>" >
 								<div class="tooltips">
 									<img src="<?php echo base_url(); ?>/images/help.png" class="tooltip_icon">
-										<span>The value by which the bidding will increase at the time of Inter Se Bidding.</span>
+										<span>Property Longitude</span>
 										<input class="button_grey" id="btnShow" type="button" value="Get Location">
 								</div>
 							</div>							
@@ -1638,7 +1638,7 @@ jQuery(".numericonly_1").keydown(function (e) {
 					//var ext = this.value.match(/\.(.+)$/)[1];
 					switch (ext1[indexValuee]) {
 						//case 'png':case 'jpg':case 'gif':case 'jpeg':case 'pdf':case 'xls':case 'doc':case 'docx':case 'zip':
-                                                case 'jpg':case 'pdf':case 'zip':case 'jpeg':
+                                                case 'jpg':case 'pdf':case 'zip':case 'jpeg':case 'png':
 						jQuery('#<?php echo $fieldName;?>').attr('disabled', false);
 						break;
 						default:
