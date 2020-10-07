@@ -413,6 +413,7 @@ class Cron extends WS_Controller
 		$query = $this->db->get('tbl_auction');
 		if($query->num_rows() == 0)
 		{
+			$row->event_type = str_replace('others','other',$row->event_type);
 			$data = array(
 					"bankeauctionEventID"=>$row->id,
 					"open_price_bid"=>1,
