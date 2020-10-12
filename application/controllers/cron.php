@@ -417,7 +417,7 @@ class Cron extends WS_Controller
 			$data = array(
 					"bankeauctionEventID"=>$row->id,
 					"open_price_bid"=>1,
-					"reference_no"=>'',
+					"reference_no"=>$row->city,
 					"event_title"=>0,
 					"dispatch_date"=>date('Y-m-d H:i:s'),
 					"first_opener"=>1,
@@ -428,7 +428,7 @@ class Cron extends WS_Controller
 					"reserve_price"=>$row->reserve_price,
 					"borrower_name"=>$row->borrower_name,
 					"emd_amt"=>$row->emd_amt,
-					"event_type"=>$row->event_type, // check
+					"event_type"=>$row->event_type,
 					"account_type_id"=>0,
 					"bank_id"=>$row->bank_id,
 					"drt_id"=>0,
@@ -437,7 +437,7 @@ class Cron extends WS_Controller
 					"state"=>$row->state,
 					"city"=>$row->city,
 					"is_corner_property"=>0,
-					"asset_details"=>$row->product_description, // check
+					"asset_details"=>$row->product_description,
 					"service_no"=>'Bankeauction',
 					"far"=>API_URL,					
 					"bid_last_date"=>$row->bid_last_date,
@@ -449,8 +449,9 @@ class Cron extends WS_Controller
 					"indate"=>date('Y-m-d H:i:s'),
 					"updated_date"=>date('Y-m-d H:i:s'),
 					"modified_date"=>date('Y-m-d H:i:s'),
-					"PropertyDescription"=>$row->event_title,// ----------------
-					"show_home"=>1
+					"PropertyDescription"=>$row->event_title,//$row->event_title
+					"show_home"=>1,
+					"contact_person_details_1"=>$row->c_first_name.' '.$row->last_name."\n".$row->c_mobile_no
 			);
 					//echo '<pre>';
 					//print_r($data);die;
