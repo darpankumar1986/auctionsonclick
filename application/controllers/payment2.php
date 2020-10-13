@@ -1,5 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+use Razorpay\Api\Api;
+use Razorpay\Api\Errors\SignatureVerificationError;
+
 class Payment2 extends WS_Controller
 {	
 	public function __Construct()
@@ -43,7 +46,90 @@ class Payment2 extends WS_Controller
 		{
 			$name = $payudata->first_name;
 		}
+		
+		$path = dirname(__FILE__);
+		include_once($path.'/../libraries/icici/config.php');
+		include_once($path.'/../libraries/icici/razorpay-php/Razorpay.php');
+
+		session_start();
+
+		// Create the Razorpay Order		
+
+		$api = new Api($keyId, $keySecret);
+
+		//
+		// We create an razorpay order using orders api
+		// Docs: https://docs.razorpay.com/docs/orders
+		//
+		$orderData = array(
+			'receipt'         => $payudata->id,
+			'amount'          => $payudata->payu_amount * 100, // 2000 rupees in paise
+			'currency'        => 'INR',
+			'payment_capture' => 1 // auto capture
+		);
+
+		$razorpayOrder = $api->order->create($orderData);
+
+		$razorpayOrderId = $razorpayOrder['id'];
+
+		$_SESSION['razorpay_order_id'] = $razorpayOrderId;
+
+		$displayAmount = $amount = $orderData['amount'];
+
+		if ($displayCurrency !== 'INR')
+		{
+			$url = "https://api.fixer.io/latest?symbols=$displayCurrency&base=INR";
+			$exchange = json_decode(file_get_contents($url), true);
+
+			$displayAmount = $exchange['rates'][$displayCurrency] * $amount / 100;
+		}
+
+		$checkout = 'orders';
+
+		if (isset($_GET['checkout']) and in_array($_GET['checkout'], ['automatic', 'manual'], true))
+		{
+			$checkout = $_GET['checkout'];
+		}
+
 		$random = $this->randomString(10);
+		
+		$data = [
+			"key"               => $keyId,
+			"amount"            => $amount,
+			"name"              => ucfirst($name),
+			"description"       => "AuctionOnClick - Subscription Plan",
+			"image"             => "https://auctiononclick.com/assets/auctiononclick/images/Logo.png",
+			"prefill"           => [
+			"name"              => ucfirst($name),
+			"email"             => $payudata->email_id,
+			"contact"           => $payudata->mobile_no,
+			],
+			"notes"             => [
+			"address"           => $payudata->address1.' '.$payudata->city_id.' - '.$payudata->zip.' India',
+			"merchant_order_id" => $payudata->id."_".$random,
+			],
+			"theme"             => [
+			"color"             => "#005ca8"
+			],
+			"order_id"          => $razorpayOrderId,
+		];
+
+		if ($displayCurrency !== 'INR')
+		{
+			$data['display_currency']  = $displayCurrency;
+			$data['display_amount']    = $displayAmount;
+		}
+
+		$data1['json'] = json_encode($data);
+		
+		$this->db->where('id',$payudata->id);
+		$this->db->update('tbl_payment',array("payu_mihpayid"=>$razorpayOrderId));
+
+	
+		$this->load->view('icici', $data1);
+
+		
+		/*$random = $this->randomString(10);
 		$posted = array ('key' => PAYU_MERCHANT_KEY, 'txnid' =>$payudata->id."_".$random, 'amount' => $payudata->payu_amount,
 			'firstname' => ucfirst($name), 'email' => $payudata->email_id, 'phone' => $payudata->mobile_no,
 			'productinfo' => ucfirst($payudata->type), 'surl' => base_url().'payment2/payment_success/'.$payudata->auctionID, 'furl' => base_url().'payment2/payment_failure/'.$payudata->auctionID);
@@ -99,319 +185,410 @@ class Payment2 extends WS_Controller
 		
 		$data['posted'] = $posted;
 		
-		$this->load->view('payu', $data);
+		$this->load->view('payu', $data);*/
 	}
+
 
 	public function payment_success($actionID) 
 	{
-		/* Payment success logic goes here. */
+		$path = dirname(__FILE__);
+		include_once($path.'/../libraries/icici/config.php');
+		include_once($path.'/../libraries/icici/razorpay-php/Razorpay.php');
+		
+		$success = true;
+
+		$error = "Payment Failed";
+		
 	
-		$txnidArr = explode("_",$_REQUEST['txnid']);
-
-		$rtxnid = $txnidArr[0];
-		$remail = $_REQUEST['email'];
-		$ramount = (int)$_REQUEST['amount'];
-		
-		/* Create Hash Key */
-			if (!empty($_REQUEST)) 
-			{
-				foreach ( $_REQUEST as $key => $value )
-				{
-					$_REQUEST[$key] = htmlentities( $value, ENT_QUOTES );
-				}
-			}
-			
-			$hashSequence = "udf10|udf9|udf8|udf7|udf6|udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key";
-			$hashVarsSeq = explode('|', $hashSequence);
-			
-			$hash_string = PAYU_SALT."|".$_REQUEST['status'];
-			foreach($hashVarsSeq as $hash_var) {
-			  $hash_string .= '|';
-			  $hash_string .= isset($_REQUEST[$hash_var]) ? $_REQUEST[$hash_var] : '';				  
-			}
-
-			$hash = strtolower(hash('sha512', $hash_string));	
-
-			
-		/* End Hash Key */
-		
-		
-		if(isset($txnidArr) && $txnidArr[0] > 0) // && $hash == $_REQUEST['hash'] 
+		if (empty($_POST['razorpay_payment_id']) === false)
 		{
-			
-			$data = array(
-						'data' => json_encode($_REQUEST)
-						);
+			@session_start();
+			$api = new Api($keyId, $keySecret);
 
-						$this->db->where('id', $txnidArr[0]);
-						$this->db->update('tbl_payment',$data); 
-		
-			$this->db->where('id', $txnidArr[0]);
-			$query1 = $this->db->get("tbl_payment");
-
-			if ($query1->num_rows() > 0)
+			try
 			{
-				foreach ($query1->result() as $row) 
-				{
-					$txnid = $row->id;
-					$tenderId = $row->tenderfeeID;
-					$payu_amount = $row->payu_amount;
-					$email_id = $row->payu_email;
-				}
+				// Please note that the razorpay order ID must
+				// come from a trusted source (session here, but
+				// could be database or something else)
+				$attributes = array(
+					'razorpay_order_id' => $_SESSION['razorpay_order_id'],
+					'razorpay_payment_id' => $_POST['razorpay_payment_id'],
+					'razorpay_signature' => $_POST['razorpay_signature']
+				);
+
+				$api->utility->verifyPaymentSignature($attributes);
 			}
-				
-			if(($txnid == $rtxnid) && ($remail == $email_id) && ($_REQUEST['status'] == 'success'))  // Payment Success with Database Verification
+			catch(SignatureVerificationError $e)
 			{
+				$success = false;
+				$error = 'Razorpay Error : ' . $e->getMessage();
+			}
+		}
+
+		if ($success === true)
+		{
+			$this->db->where('payu_mihpayid',$_SESSION['razorpay_order_id']);
+			$q = $this->db->get('tbl_payment');
+			$row = $q->row();
+		
+			//echo  $_SESSION['razorpay_order_id'];die;
+			//$html = "<p>Your payment was successful</p>
+			//		 <p>Payment ID: {$_POST['razorpay_payment_id']}</p>";
+		
+
+	
+		
+				$txnidArr[0] = $row->id;
+
+				$rtxnid = $txnidArr[0];
+				$remail = $row->payu_email;
+				$ramount = (int)$row->payu_amount;
 				
-				
-					$data = array(
-						'payu_txnid'=>$_REQUEST['txnid'] ,
-						'payu_mihpayid'=>$_REQUEST['mihpayid'] ,
-						'paymentStatus'=>'success' ,
-						'data' => json_encode($_REQUEST),
-						'returnTime' => date("Y-m-d H:i:s")
-						);
-
-						$this->db->where('id', $txnidArr[0]);
-						$this->db->update('tbl_payment',$data); 
-
-						$this->db->where('id', $txnidArr[0]);
-						$query  =   $this->db->get('tbl_payment');
-						$res = $query->result();
-
-						$payment_res = $res[0];
-						 
-						$bidderID = $payment_res->bidderID;
-						$package_id = $payment_res->auctionID;
-						$state_str = $payment_res->state;
-						$package_type = $payment_res->package_type;
-						$paid_amount = $payment_res->payu_amount;
-						$email_id = $payment_res->payu_email;
-
-						$stateArr = array();
-						if($state_str != '')
-						{
-							$stateArr = explode(',',$state_str);
-						}
-
 					
-						$this->db->where('package_id', $package_id);
-						$query = $this->db->get("tbl_subscription_package");
-						$package = $query->row();
-
-						if($package_type == 1) // Previous Subscrition Expired
-						{
-							$row = $this->home_model->getCurrentPackage($bidderID);
-							
-							$this->db->where('subscription_participate_id', $row->subscription_participate_id);
-							$this->db->update("tbl_subscription_participate",array('package_end_date'=>date('Y-m-d H:i:00')));
-
-							$this->db->where('subscription_participate_id', $row->subscription_participate_id);
-							$this->db->update("tbl_subscription_participate_city",array('sub_end_date'=>date('Y-m-d H:i:00')));
-
-							if($package_id > 3 && count($stateArr) > 2)
-							{
-								$package->package_amount += (count($stateArr) - 2) * $package->city_per_cost;
-							}
-
-							/* credit amount */
-							$log_data = array(
-								'subscription_participate_id'=>$row->subscription_participate_id,
-								'member_id'=>$bidderID,
-								'payment_id'=>0,
-								'amount'=>$package->package_amount-$paid_amount,
-								'remarks' =>'Upgrade - Add Credit',
-								'status' => 1,
-								'indate' => date("Y-m-d H:i:s")
-							);
-							$this->db->insert('tbl_subscription_log',$log_data);
-
-							
-							
-						}
-
-						if($package_type == 3) // add more state
-						{
-							$row = $this->home_model->getCurrentPackage($bidderID);
-							$startDate = $row->package_start_date;
-							$endDate = $row->package_end_date;
-
-							$this->db->where('subscription_participate_id', $row->subscription_participate_id);
-							$this->db->update("tbl_subscription_participate",array('package_amount'=>$row->package_amount+$paid_amount));					
-
-							$subscription_participate_id = $row->subscription_participate_id;
-							$remarks = "State - Add State";
-						}
-						else if($package_type == 2 && strtotime($row->package_end_date) < time()) // renew
-						{
-							$row = $this->home_model->getCurrentPackage($bidderID);
-							$startDate = date('Y-m-d 00:00:00',strtotime($row->package_end_date) + 10);
-
-
-							$endDate = date('Y-m-d 23:59:59',strtotime("+".$package->sub_month." months",strtotime($startDate)-86400));
-							//$endDate = date('Y-m-d 23:59:59',strtotime("+3 days",strtotime($startDate)));							
-							$remarks = "Renew - Add Package";
-							$package->package_amount = $paid_amount;
-						}
-						else
-						{
-							$startDate = date('Y-m-d 00:00:00');
-							$endDate = date('Y-m-d 23:59:59',strtotime("+".$package->sub_month." months")-86400);
-							//$endDate = date('Y-m-d 23:59:59',strtotime("+3 days"));
-
-							
-							$remarks = "New - Add Package";
-						
-							if($package_type == 2 && strtotime($row->package_end_date) > time())
-							{
-								$remarks = "Renew after expired - Add Package";
-								$package->package_amount = $paid_amount;
-							}
-							else if($package_type == 1)
-							{
-								$remarks = "Upgrade - Add Package";
-							}
-							else
-							{
-								$package->package_amount = $paid_amount;
-							}
-
-						}
-
-						if($package_type != 3)
-						{
-							$participated_data = array(
-							'member_id'=>$bidderID,
-							'package_id'=>$package_id,
-							'package_amount'=>$package->package_amount,
-							'package_start_date' => $startDate,
-							'package_end_date' => $endDate,
-							'subscription_status' => 1,
-							'subscription_created_on' => date("Y-m-d H:i:s")
-							);
-
-							$this->db->insert('tbl_subscription_participate',$participated_data);
-							$subscription_participate_id = $this->db->insert_id();
-						}
-
-						$stateLogArr = array();
-						$this->db->where('status', 1);
-						$query = $this->db->get("tbl_state");
-						foreach($query->result() as $state)
-						{
-							if(($package->package_city == "0" && $package_id < 4) || in_array($state->id,$stateArr))
-							{
-								$stateLogArr[] = $state->id;
-								$participated_city_data = array(
-									'subscription_participate_id'=>$subscription_participate_id,
-									'member_id'=>$bidderID,
-									'sub_state_id'=>$state->id,
-									'package_id'=>$package_id,
-									'sub_start_date' => $startDate,
-									'sub_end_date' => $endDate,
-									'sub_status' => 1,
-									'sub_type' => 'package',
-									'sub_created_on' => date("Y-m-d H:i:s")
+				if(isset($txnidArr) && $rtxnid > 0) // && $hash == $_REQUEST['hash'] 
+				{
+					
+					$data = array(
+								'data' => json_encode($_REQUEST)
 								);
 
-								$this->db->insert('tbl_subscription_participate_city',$participated_city_data);
-							}
-						}
+								$this->db->where('id', $txnidArr[0]);
+								$this->db->update('tbl_payment',$data); 
+				
+					$this->db->where('id', $txnidArr[0]);
+					$query1 = $this->db->get("tbl_payment");
 
-						
-						if($package_type == 3) // State - Add state
+					if ($query1->num_rows() > 0)
+					{
+						foreach ($query1->result() as $row) 
 						{
-							$package->package_amount = $paid_amount;
+							$txnid = $row->id;
+							$tenderId = $row->tenderfeeID;
+							$payu_amount = $row->payu_amount;
+							$email_id = $row->payu_email;
 						}
+					}
 						
+					if(($txnid == $rtxnid) && ($remail == $email_id))  // Payment Success with Database Verification
+					{
+						
+						
+							$data = array(
+								'payu_txnid'=>$_POST['razorpay_payment_id'] ,
+								'paymentStatus'=>'success' ,
+								'data' => json_encode($_REQUEST),
+								'returnTime' => date("Y-m-d H:i:s")
+								);
 
-						/* debit amount */
-						$log_data = array(
-							'subscription_participate_id'=>$subscription_participate_id,
-							'member_id'=>$bidderID,
-							'payment_id'=>0,
-							'amount'=>-1*$package->package_amount,
-							'remarks' => $remarks,
-							'status' => 1,
-							'indate' => date("Y-m-d H:i:s")
-						);
-						$this->db->insert('tbl_subscription_log',$log_data);
+								$this->db->where('id', $txnidArr[0]);
+								$this->db->update('tbl_payment',$data); 
 
-						/* credit amount */
-						$log_data = array(
-							'subscription_participate_id'=>$subscription_participate_id,
-							'member_id'=>$bidderID,
-							'payment_id'=>$txnidArr[0],
-							'amount'=>$paid_amount,
-							'remarks' =>'Payment - Paid Successfully',
-							'status' => 1,
-							'indate' => date("Y-m-d H:i:s")
-						);
-						$this->db->insert('tbl_subscription_log',$log_data);
-						$subscription_log_id = $this->db->insert_id();
+								$this->db->where('id', $txnidArr[0]);
+								$query  =   $this->db->get('tbl_payment');
+								$res = $query->result();
+
+								$payment_res = $res[0];
+								 
+								$bidderID = $payment_res->bidderID;
+								$package_id = $payment_res->auctionID;
+								$state_str = $payment_res->state;
+								$package_type = $payment_res->package_type;
+								$paid_amount = $payment_res->payu_amount;
+								$email_id = $payment_res->payu_email;
+
+								$stateArr = array();
+								if($state_str != '')
+								{
+									$stateArr = explode(',',$state_str);
+								}
+
+							
+								$this->db->where('package_id', $package_id);
+								$query = $this->db->get("tbl_subscription_package");
+								$package = $query->row();
+
+								if($package_type == 1) // Previous Subscrition Expired
+								{
+									$row = $this->home_model->getCurrentPackage($bidderID);
+									
+									$this->db->where('subscription_participate_id', $row->subscription_participate_id);
+									$this->db->update("tbl_subscription_participate",array('package_end_date'=>date('Y-m-d H:i:00')));
+
+									$this->db->where('subscription_participate_id', $row->subscription_participate_id);
+									$this->db->update("tbl_subscription_participate_city",array('sub_end_date'=>date('Y-m-d H:i:00')));
+
+									if($package_id > 3 && count($stateArr) > 2)
+									{
+										$package->package_amount += (count($stateArr) - 2) * $package->city_per_cost;
+									}
+
+									/* credit amount */
+									$log_data = array(
+										'subscription_participate_id'=>$row->subscription_participate_id,
+										'member_id'=>$bidderID,
+										'payment_id'=>0,
+										'amount'=>$package->package_amount-$paid_amount,
+										'remarks' =>'Upgrade - Add Credit',
+										'status' => 1,
+										'indate' => date("Y-m-d H:i:s")
+									);
+									$this->db->insert('tbl_subscription_log',$log_data);
+
+									
+									
+								}
+
+								if($package_type == 3) // add more state
+								{
+									$row = $this->home_model->getCurrentPackage($bidderID);
+									$startDate = $row->package_start_date;
+									$endDate = $row->package_end_date;
+
+									$this->db->where('subscription_participate_id', $row->subscription_participate_id);
+									$this->db->update("tbl_subscription_participate",array('package_amount'=>$row->package_amount+$paid_amount));					
+
+									$subscription_participate_id = $row->subscription_participate_id;
+									$remarks = "State - Add State";
+								}
+								else if($package_type == 2 && strtotime($row->package_end_date) < time()) // renew
+								{
+									$row = $this->home_model->getCurrentPackage($bidderID);
+									$startDate = date('Y-m-d 00:00:00',strtotime($row->package_end_date) + 10);
 
 
+									$endDate = date('Y-m-d 23:59:59',strtotime("+".$package->sub_month." months",strtotime($startDate)-86400));
+									//$endDate = date('Y-m-d 23:59:59',strtotime("+3 days",strtotime($startDate)));							
+									$remarks = "Renew - Add Package";
+									$package->package_amount = $paid_amount;
+								}
+								else
+								{
+									$startDate = date('Y-m-d 00:00:00');
+									$endDate = date('Y-m-d 23:59:59',strtotime("+".$package->sub_month." months")-86400);
+									//$endDate = date('Y-m-d 23:59:59',strtotime("+3 days"));
 
-						/* add state log */
-						if(is_array($stateLogArr))
-						{
-							foreach($stateLogArr as $state_id)
-							{
+									
+									$remarks = "New - Add Package";
+								
+									if($package_type == 2 && strtotime($row->package_end_date) > time())
+									{
+										$remarks = "Renew after expired - Add Package";
+										$package->package_amount = $paid_amount;
+									}
+									else if($package_type == 1)
+									{
+										$remarks = "Upgrade - Add Package";
+									}
+									else
+									{
+										$package->package_amount = $paid_amount;
+									}
+
+								}
+
+								if($package_type != 3)
+								{
+									$participated_data = array(
+									'member_id'=>$bidderID,
+									'package_id'=>$package_id,
+									'package_amount'=>$package->package_amount,
+									'package_start_date' => $startDate,
+									'package_end_date' => $endDate,
+									'subscription_status' => 1,
+									'subscription_created_on' => date("Y-m-d H:i:s")
+									);
+
+									$this->db->insert('tbl_subscription_participate',$participated_data);
+									$subscription_participate_id = $this->db->insert_id();
+								}
+
+								$stateLogArr = array();
+								$this->db->where('status', 1);
+								$query = $this->db->get("tbl_state");
+								foreach($query->result() as $state)
+								{
+									if(($package->package_city == "0" && $package_id < 4) || in_array($state->id,$stateArr))
+									{
+										$stateLogArr[] = $state->id;
+										$participated_city_data = array(
+											'subscription_participate_id'=>$subscription_participate_id,
+											'member_id'=>$bidderID,
+											'sub_state_id'=>$state->id,
+											'package_id'=>$package_id,
+											'sub_start_date' => $startDate,
+											'sub_end_date' => $endDate,
+											'sub_status' => 1,
+											'sub_type' => 'package',
+											'sub_created_on' => date("Y-m-d H:i:s")
+										);
+
+										$this->db->insert('tbl_subscription_participate_city',$participated_city_data);
+									}
+								}
+
+								
+								if($package_type == 3) // State - Add state
+								{
+									$package->package_amount = $paid_amount;
+								}
+								
+
+								/* debit amount */
 								$log_data = array(
-									'subscription_log_id'=>$subscription_log_id,
+									'subscription_participate_id'=>$subscription_participate_id,
+									'member_id'=>$bidderID,
+									'payment_id'=>0,
+									'amount'=>-1*$package->package_amount,
+									'remarks' => $remarks,
+									'status' => 1,
+									'indate' => date("Y-m-d H:i:s")
+								);
+								$this->db->insert('tbl_subscription_log',$log_data);
+
+								/* credit amount */
+								$log_data = array(
+									'subscription_participate_id'=>$subscription_participate_id,
 									'member_id'=>$bidderID,
 									'payment_id'=>$txnidArr[0],
-									'subscription_participate_id'=>$subscription_participate_id,
-									'sub_state_id'=>$state_id
+									'amount'=>$paid_amount,
+									'remarks' =>'Payment - Paid Successfully',
+									'status' => 1,
+									'indate' => date("Y-m-d H:i:s")
 								);
-								$this->db->insert('tbl_subscription_state_log',$log_data);
-							}
-						}
+								$this->db->insert('tbl_subscription_log',$log_data);
+								$subscription_log_id = $this->db->insert_id();
 
 
-						$emailData['userid'] = $bidderID;
-						$emailData['paid_amount'] = $paid_amount;
-						$emailData['order_date'] = date("Y-m-d H:i:s");
-						$emailData['ip'] = $payment_res->ip;
-						$emailData['order'] = $txnidArr[0];
-						$emailData['response'] = json_decode($payment_res->data);						
-						/* Email */
 
-						$subject = 'Your order#'.$emailData['order'].' on www.AuctionOnClick.com is successful.';
-						$emailData['Logo'] = $this->load->view('email/Logo', $emailData, true); // render the view into HTML
-						$body = $this->load->view('email/subscription', $emailData, true); // render the view into HTML
+								/* add state log */
+								if(is_array($stateLogArr))
+								{
+									foreach($stateLogArr as $state_id)
+									{
+										$log_data = array(
+											'subscription_log_id'=>$subscription_log_id,
+											'member_id'=>$bidderID,
+											'payment_id'=>$txnidArr[0],
+											'subscription_participate_id'=>$subscription_participate_id,
+											'sub_state_id'=>$state_id
+										);
+										$this->db->insert('tbl_subscription_state_log',$log_data);
+									}
+								}
 
-						$data = array(
-								"member_id"=>$bidderID,
-								"email"=>$email_id,
-								"subject"=>$subject,
-								"message"=>$body,
-								"email_type"=>5,
-								"indate"=>date('Y-m-d H:i:s')
-							);
-						$this->db->insert('tbl_email_log',$data);
-						$email_log_id = $this->db->insert_id();
 
-						$this->load->library('Email_new','email');
-						$email_obj = new email_new();
-						$ret = $email_obj->sendMailToUser(array($email_id),$subject,$body); 
+								$emailData['userid'] = $bidderID;
+								$emailData['paid_amount'] = $paid_amount;
+								$emailData['order_date'] = date("Y-m-d H:i:s");
+								$emailData['ip'] = $payment_res->ip;
+								$emailData['order'] = $txnidArr[0];
+								$emailData['response'] = json_decode($payment_res->data);						
+								/* Email */
 
-						if($ret)
-						{
-							$this->db->where('email_id',$email_log_id);
-							$this->db->update('tbl_email_log',array("is_sent"=>1));
-						}
-                        
+								$subject = 'Your order#'.$emailData['order'].' on www.AuctionOnClick.com is successful.';
+								$emailData['Logo'] = $this->load->view('email/Logo', $emailData, true); // render the view into HTML
+								$body = $this->load->view('email/subscription', $emailData, true); // render the view into HTML
 
+								$data = array(
+										"member_id"=>$bidderID,
+										"email"=>$email_id,
+										"subject"=>$subject,
+										"message"=>$body,
+										"email_type"=>5,
+										"indate"=>date('Y-m-d H:i:s')
+									);
+								$this->db->insert('tbl_email_log',$data);
+								$email_log_id = $this->db->insert_id();
+
+								$this->load->library('Email_new','email');
+								$email_obj = new email_new();
+								$ret = $email_obj->sendMailToUser(array($email_id),$subject,$body); 
+
+								if($ret)
+								{
+									$this->db->where('email_id',$email_log_id);
+									$this->db->update('tbl_email_log',array("is_sent"=>1));
+								}
+								
+
+								
+								
+								/* Email */
+
+
+
+								$this->session->set_flashdata('message','Subscription Payment Paid Successfully !<br>');	
+
+								/* login after payment */
+								$this->db->where('id', $bidderID);
+								$row_query = $this->db->get('tbl_user_registration');
+								$row = $row_query->result();
+
+								$this->session->set_userdata('id', $row[0]->id);
+								$this->session->set_userdata('full_name', $row[0]->first_name);	
+								$this->session->set_userdata('user_type', trim($row[0]->user_type));
+								$rand = rand(10000000000,99999999999);
+								$this->session->set_userdata('session_id_user',$rand);
+								$this->session->set_userdata('table_session', 'registration_tb');
+
+								$setarray=array('user_sess_val'=> $rand);
+								$this->db->where('id',$row[0]->id);
+								$this->db->update('tbl_user_registration',$setarray);
+								/* end login after payment */
+
+								redirect("home/success");
+					}else{
+							
+							$this->session->set_flashdata('message_new','Subscription Payment Failure ! Please try again<br>');	
+							redirect("home/premiumServices");
 						
-						
-						/* Email */
+					}	
+				}
+				else
+				{
+					//redirect("/registration/logout");
+				}
 
+		}
+		else
+		{
+			$this->db->where('payu_mihpayid',$_SESSION['razorpay_order_id']);
+			$q = $this->db->get('tbl_payment');
+			$row = $q->row();
+		
 
+			$txnidArr[0] = $row->id;
 
-						$this->session->set_flashdata('message','Subscription Payment Paid Successfully !<br>');	
+			if(isset($txnidArr) && $txnidArr[0] > 0)
+			{
+				$data = array(
+						'payu_txnid'=>$_POST['razorpay_payment_id'],						
+						'paymentStatus'=>'failure' ,
+						'data' => json_encode($_REQUEST),
+						'returnTime' => date("Y-m-d H:i:s")
+					);
 
-						/* login after payment */
+					$this->db->where('id', $txnidArr[0]);
+					$this->db->update('tbl_payment',$data); 
+
+					$this->db->where('id', $txnidArr[0]);
+					$query1  =   $this->db->get('tbl_payment');
+					$res1 = $query1->result();
+					$bidderID = $res1[0]->bidderID;
+					$auctionID = $res1[0]->auctionID;
+					$tenderfeeID = $res1[0]->tenderfeeID;
+					
+					
+					
+
+					$this->db->where('id', $txnidArr[0]);
+					$query  =   $this->db->get('tbl_payment');
+					$res = $query->result();
+
+					$payment_res = $res[0];
+					
+				
+					/* login after payment */
 						$this->db->where('id', $bidderID);
 						$row_query = $this->db->get('tbl_user_registration');
 						$row = $row_query->result();
@@ -424,26 +601,41 @@ class Payment2 extends WS_Controller
 						$this->session->set_userdata('table_session', 'registration_tb');
 
 						$setarray=array('user_sess_val'=> $rand);
-				        $this->db->where('id',$row[0]->id);
-		                $this->db->update('tbl_user_registration',$setarray);
-						/* end login after payment */
-
-						redirect("home/success");
-			}else{
-					
-					$this->session->set_flashdata('message_new','Subscription Payment Failure ! Please try again<br>');	
-					redirect("home/premiumServices");
+						$this->db->where('id',$row[0]->id);
+						$this->db->update('tbl_user_registration',$setarray);
+					/* end login after payment */
 				
-			}	
+						
+				
+			
+					if($res1[0]->package_type > 0)
+					{
+						$this->session->set_flashdata('message_new','Subcription Payment Failure ! Please try again<br>');	
+						redirect("/owner/manageSubscription");
+					}
+					else
+					{
+						$this->session->set_flashdata('message_new','Subcription Payment Failure ! Please try again<br>');	
+						redirect("/home/premiumServices/");
+					}
+			}
+			else
+			{
+				//$this->session->set_flashdata('message_new','Tender Fee Payment Failure ! Please try again<br>');	
+				//redirect("/owner/auction_participate/".$actionID);
+				//redirect("/registration/logout");
+			}
+				
+				
+			//$html = "<p>Your payment failed</p>
+				//	 <p>{$error}</p>";
 		}
-		else
-		{
-			//redirect("/registration/logout");
-		}	
 	}
 
 	public function payment_failure($actionID = 0) 
 	{
+	
+		
 		/* Payment failure logic goes here. */
 		//echo "We are sorry. The Payment has failed";
 		

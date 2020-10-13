@@ -1067,7 +1067,7 @@ class Home_model extends CI_Model {
 	public function get_subcription_payment($paymentId) 
     {
 		$resArr = array();
-		$this->db->select("p.id,p.auctionID,p.payu_amount,p.type,r.user_type,r.authorized_person,r.first_name,r.email_id,r.mobile_no");
+		$this->db->select("p.id,p.auctionID,p.payu_amount,p.type,r.user_type,r.authorized_person,r.first_name,r.email_id,r.mobile_no,r.address1,r.city_id,r.zip");
 		$this->db->where('p.id', $paymentId);
 		$this->db->join('tbl_user_registration as r','r.id = p.bidderID');
 		$query = $this->db->get("tbl_payment as p");
