@@ -322,7 +322,7 @@ var oTable = null;
                                 //set table id in table open tag
                                     $tmpl = array('table_open' => '<table id="big_table" border="1" width="100%" cellpadding="2" cellspacing="1" class="myTable auction_table_box">');
                                     $this->table->set_template($tmpl);
-                                    $this->table->set_heading('Bank Name', 'Description','City','EMD Submission Last Date','Reserve Price','View Details');
+                                    $this->table->set_heading('Bank Name', 'Event Title','City','EMD Submission Last Date','Reserve Price','View Details');
                                     echo $this->table->generate();
                                 ?>
 

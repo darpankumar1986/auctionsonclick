@@ -408,6 +408,9 @@ class Cron extends WS_Controller
 
 	public function insertAuction($row)
 	{
+		$this->db->where('id',$row->city);
+		$query_city = $this->db->get('tbl_city');
+		$row_city = $query_city->row();
 
 		$this->db->where('bankeauctionEventID',$row->id);
 		$query = $this->db->get('tbl_auction');
@@ -417,7 +420,7 @@ class Cron extends WS_Controller
 			$data = array(
 					"bankeauctionEventID"=>$row->id,
 					"open_price_bid"=>1,
-					"reference_no"=>$row->city,
+					"reference_no"=>$row_city->city_name,
 					"event_title"=>0,
 					"dispatch_date"=>date('Y-m-d H:i:s'),
 					"first_opener"=>1,
@@ -451,7 +454,7 @@ class Cron extends WS_Controller
 					"modified_date"=>date('Y-m-d H:i:s'),
 					"PropertyDescription"=>$row->event_title,//$row->event_title
 					"show_home"=>1,
-					"contact_person_details_1"=>$row->c_first_name.' '.$row->last_name."\n".$row->c_mobile_no
+					"contact_person_details_1"=>$row->c_first_name.' '.$row->c_last_name."\n".$row->c_mobile_no
 			);
 					//echo '<pre>';
 					//print_r($data);die;

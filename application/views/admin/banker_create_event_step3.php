@@ -204,7 +204,7 @@ $other_city=$auctionData->other_city;
 							</div>
 						</div>	
 					  <div class="row">
-						<div class="lft_heading">Description <span class="red"> *</span></div>
+						<div class="lft_heading">Event Title <span class="red"> *</span></div>
 						<div class="rgt_detail">
 							 <textarea maxlength="100" name="description" id="description" type="text"  class="input html_found"><?php echo $auctionData->PropertyDescription;?></textarea>
 						  <!-- <input maxlength="8000" name="description" id="description" value="<?php //echo @$prows->product_description; ?>" type="text" class="input">-->

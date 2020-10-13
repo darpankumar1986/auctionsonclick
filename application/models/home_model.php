@@ -316,8 +316,8 @@ class Home_model extends CI_Model {
 			}
 		
 		}
-			$_POST['sColumns'] = "bank.name,a.asset_details,c.name,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y')as emd_date,a.reserve_price,a.id";
-               $this->datatables->select("bank.name,a.asset_details,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y')as emd_date,a.reserve_price,a.id as listID",false)
+			$_POST['sColumns'] = "bank.name,a.PropertyDescription,c.name,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y')as emd_date,a.reserve_price,a.id";
+               $this->datatables->select("bank.name,a.PropertyDescription,city.city_name,DATE_FORMAT(a.bid_last_date,'%d-%m-%Y')as emd_date,a.reserve_price,a.id as listID",false)
                 ->from('tbl_auction as a')				
 				->join('tbl_category as c','c.id=a.subcategory_id','left')
 				->join('tbl_city as city','city.id=a.city','left')
