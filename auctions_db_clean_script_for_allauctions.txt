@@ -1,0 +1,9 @@
+TRUNCATE `tbl_auction`;
+TRUNCATE `tbl_auction_alert`;
+TRUNCATE `tbl_auction_bidder_fav`;
+TRUNCATE `tbl_auction_corrigendum`;
+TRUNCATE `tbl_auction_document`;
+TRUNCATE `tbl_log_all_report_track`;
+TRUNCATE `tbl_log_auction`;
+TRUNCATE `tbl_log_auction_corrigendum`;
+TRUNCATE `tbl_product`;

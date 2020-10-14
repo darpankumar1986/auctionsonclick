@@ -256,28 +256,54 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <td width="90" style="font-family: sans-serif;color: #333333;font-size: 12px;">: <?php
-                                                                            if ($response != '' && $response->mode != 'null') {
-                                                                                if($response->mode=='CC')
-                                                                                {
-                                                                                    echo 'Credit Card';
-                                                                                }
-                                                                                else if($response->mode=='DC')
-                                                                                {
-                                                                                    echo 'Debit Card';
-                                                                                }
-                                                                                else if($response->mode=='NB')
-                                                                                {
-                                                                                    echo 'Net Banking';
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    echo $response->bankcode;
-                                                                                }
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                echo '--' ;
-                                                                            }
+                                                                            if(isset($response->id))
+																			{
+																				if($response->card_id != '')
+																				{
+																					echo 'Credit/Debit Card';
+																				}
+																				else if($response->bank != '')
+																				{
+																					echo 'Net Banking';
+																				}
+																				else if($response->wallet != '')
+																				{
+																					echo 'Wallet';
+																				}
+																				else if($response->vpa != '')
+																				{
+																					echo 'VPA';
+																				}
+																				else
+																				{
+																					echo 'Online Payment';
+																				}
+																			}
+																			else
+																			{                                                                            
+																				if ($response != '' && $response->mode != 'null') {
+																					if($response->mode=='CC')
+																					{
+																						echo 'Credit Card';
+																					}
+																					else if($response->mode=='DC')
+																					{
+																						echo 'Debit Card';
+																					}
+																					else if($response->mode=='NB')
+																					{
+																						echo 'Net Banking';
+																					}
+																					else
+																					{
+																						echo $response->bankcode;
+																					}
+																				}
+																				else
+																				{
+																					echo '--' ;
+																				}
+																			}
                                                                     ?></td>
                                                                 </tr>
                                                             </tbody>
@@ -285,7 +311,7 @@
                                                         <table height="20" width="100%" cellpadding="0" cellspacing="0">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td width="90" style="font-family: sans-serif;color: #333333;font-size: 12px;">: <?php echo $response->bank_ref_num; ?></td>
+                                                                    <td width="90" style="font-family: sans-serif;color: #333333;font-size: 12px;">: <?php if(isset($response->id)){echo $response->id;}else{ echo $response->bank_ref_num; } ?></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>

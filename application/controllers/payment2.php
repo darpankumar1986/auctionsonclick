@@ -129,63 +129,6 @@ class Payment2 extends WS_Controller
 		$this->load->view('icici', $data1);
 
 		
-		/*$random = $this->randomString(10);
-		$posted = array ('key' => PAYU_MERCHANT_KEY, 'txnid' =>$payudata->id."_".$random, 'amount' => $payudata->payu_amount,
-			'firstname' => ucfirst($name), 'email' => $payudata->email_id, 'phone' => $payudata->mobile_no,
-			'productinfo' => ucfirst($payudata->type), 'surl' => base_url().'payment2/payment_success/'.$payudata->auctionID, 'furl' => base_url().'payment2/payment_failure/'.$payudata->auctionID);
-		
-		//pay_page($data ,'eCwWELxi' );
-		
-		// Merchant key here as provided by Payu
-			$data['MERCHANT_KEY'] = PAYU_MERCHANT_KEY;
-
-
-			// Merchant Salt as provided by Payu
-			$data['SALT'] = PAYU_SALT;
-
-
-
-			// End point - change to https://secure.payu.in for LIVE mode
-			$PAYU_BASE_URL = PAYU_BASE_URL;
-
-			$action = '';
-
-			$hash = '';
-		// Hash Sequence
-		$hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10";
-		if(empty($posted['hash']) && sizeof($posted) > 0) {
-		  if(
-				  empty($posted['key'])
-				  || empty($posted['txnid'])
-				  || empty($posted['amount'])
-				  || empty($posted['firstname'])
-				  || empty($posted['email'])
-				  || empty($posted['phone'])
-				  || empty($posted['productinfo'])
-				  || empty($posted['surl'])
-				  || empty($posted['furl'])
-		  ) {
-			$formError = 1;
-		  } else {
-			$hashVarsSeq = explode('|', $hashSequence);
-			$hash_string = '';
-			foreach($hashVarsSeq as $hash_var) {
-			  $hash_string .= isset($posted[$hash_var]) ? $posted[$hash_var] : '';
-			  $hash_string .= '|';
-			}
-			$hash_string .= $data['SALT'];
-			//echo $hash_string;die;
-			$data['hash'] = strtolower(hash('sha512', $hash_string));
-			$data['action'] = $PAYU_BASE_URL . '/_payment';
-		  }
-		} elseif(!empty($posted['hash'])) {
-		  $hash = $posted['hash'];
-		  $action = $PAYU_BASE_URL . '/_payment';
-		}
-		
-		$data['posted'] = $posted;
-		
-		$this->load->view('payu', $data);*/
 	}
 
 
@@ -217,6 +160,50 @@ class Payment2 extends WS_Controller
 				);
 
 				$api->utility->verifyPaymentSignature($attributes);
+
+				$payment = $api->payment->fetch($_POST['razorpay_payment_id']);
+
+ 				$paymentdata['id'] = $payment->id;
+				$paymentdata['entity'] = $payment->entity;
+				$paymentdata['amount'] = $payment->amount;
+				$paymentdata['currency'] = $payment->currency;
+				$paymentdata['status'] = $payment->status;
+				$paymentdata['order_id'] = $payment->order_id;
+				$paymentdata['invoice_id'] = $payment->invoice_id;
+				$paymentdata['international'] = $payment->international;
+				$paymentdata['method'] = $payment->method;
+				$paymentdata['refund_status'] = $payment->refund_status;
+				$paymentdata['captured'] = $payment->captured;
+				$paymentdata['description'] = $payment->description;
+				$paymentdata['card_id'] = $payment->card_id;
+				$paymentdata['bank'] = $payment->bank;
+				$paymentdata['wallet'] = $payment->wallet;
+				$paymentdata['vpa'] = $payment->vpa;
+				$paymentdata['email'] = $payment->email;
+				$paymentdata['contact'] = $payment->contact;
+
+				$paymentdata['address'] = $payment->notes->address;
+				$paymentdata['merchant_order_id'] = $payment->notes->merchant_order_id;
+
+				$paymentdata['fee'] = $payment->fee;
+				$paymentdata['tax'] = $payment->tax;
+				$paymentdata['error_code'] = $payment->error_code;
+				$paymentdata['error_description'] = $payment->error_description;
+				$paymentdata['error_source'] = $payment->error_source;
+				$paymentdata['error_step'] = $payment->error_step;
+				$paymentdata['auth_code'] = $payment->acquirer_data->auth_code;
+				$paymentdata['created_at'] = $payment->created_at;
+
+				$paymentdata = (object)$paymentdata;
+
+
+
+				$data = array(
+								'data' => json_encode($paymentdata)
+								);
+
+				$this->db->where('payu_mihpayid',$paymentdata->order_id);
+				$this->db->update('tbl_payment',$data);
 			}
 			catch(SignatureVerificationError $e)
 			{
@@ -227,7 +214,7 @@ class Payment2 extends WS_Controller
 
 		if ($success === true)
 		{
-			$this->db->where('payu_mihpayid',$_SESSION['razorpay_order_id']);
+			$this->db->where('payu_mihpayid',$paymentdata->order_id);
 			$q = $this->db->get('tbl_payment');
 			$row = $q->row();
 		
@@ -248,12 +235,7 @@ class Payment2 extends WS_Controller
 				if(isset($txnidArr) && $rtxnid > 0) // && $hash == $_REQUEST['hash'] 
 				{
 					
-					$data = array(
-								'data' => json_encode($_REQUEST)
-								);
-
-								$this->db->where('id', $txnidArr[0]);
-								$this->db->update('tbl_payment',$data); 
+					
 				
 					$this->db->where('id', $txnidArr[0]);
 					$query1 = $this->db->get("tbl_payment");
@@ -274,9 +256,8 @@ class Payment2 extends WS_Controller
 						
 						
 							$data = array(
-								'payu_txnid'=>$_POST['razorpay_payment_id'] ,
+								'payu_txnid'=>$_POST['razorpay_payment_id'],
 								'paymentStatus'=>'success' ,
-								'data' => json_encode($_REQUEST),
 								'returnTime' => date("Y-m-d H:i:s")
 								);
 
@@ -482,6 +463,7 @@ class Payment2 extends WS_Controller
 								$emailData['order_date'] = date("Y-m-d H:i:s");
 								$emailData['ip'] = $payment_res->ip;
 								$emailData['order'] = $txnidArr[0];
+								$emailData['bank_ref_num'] = $_POST['razorpay_payment_id'];
 								$emailData['response'] = json_decode($payment_res->data);						
 								/* Email */
 
