@@ -614,7 +614,7 @@ class Payment2 extends WS_Controller
 		}
 	}
 
-	public function payment_failure($actionID = 0) 
+	public function payment_failure($order_id = 0) 
 	{
 	
 		
@@ -623,34 +623,15 @@ class Payment2 extends WS_Controller
 		
 		
 		
-		/* Create Hash Key */
-			if (!empty($_REQUEST)) 
-			{
-				foreach ( $_REQUEST as $key => $value )
-				{
-					$_REQUEST[$key] = htmlentities( $value, ENT_QUOTES );
-				}
-			}
-			
-			$hashSequence = "udf10|udf9|udf8|udf7|udf6|udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key";
-			$hashVarsSeq = explode('|', $hashSequence);
-			
-			$hash_string = PAYU_SALT."|".$_REQUEST['status'];
-			foreach($hashVarsSeq as $hash_var) {
-			  $hash_string .= '|';
-			  $hash_string .= isset($_REQUEST[$hash_var]) ? $_REQUEST[$hash_var] : '';				  
-			}
-
-			$hash = strtolower(hash('sha512', $hash_string));				
-		/* End Hash Key */
+		$this->db->where('payu_mihpayid',$order_id);
+		$q = $this->db->get('tbl_payment');
+		$row = $q->row();
 		
-		$txnidArr = explode("_",$_REQUEST['txnid']);
+		$txnidArr[0] = $row->id;
 		
 		if(isset($txnidArr) && $txnidArr[0] > 0)
 		{
 			$data = array(
-					'payu_txnid'=>$_REQUEST['txnid'] ,
-					'payu_mihpayid'=>$_REQUEST['mihpayid'],
 					'paymentStatus'=>'failure' ,
 					'data' => json_encode($_REQUEST),
 					'returnTime' => date("Y-m-d H:i:s")

@@ -23,7 +23,8 @@ options.theme.image_padding = false;
 
 options.modal = {
     ondismiss: function() {
-        console.log("This code runs when the popup is closed");
+        //console.log("This code runs when the popup is closed");
+		window.location = "<?php echo base_url(); ?>payment2/payment_failure/"+options.order_id;
     },
     // Boolean indicating whether pressing escape key 
     // should close the checkout form. (default: true)
