@@ -10,8 +10,11 @@
 		<section class="container_12">
 				<div class="centercontent tables">
 					<div class="pageheader notab">
-						<div class="row">						
+						<!--<div class="row">						
 							<a href="/superadmin/category/<?php if($type != 'main'){echo 'addedit';}else{echo 'addeditmain';}?>" class=" button_grey">Create Category</a>
+						</div>-->
+						<div class="row">						
+							<a href="<?php echo base_url(); ?>cron/setCategory?cron=no" class="button_grey">Get Category</a>
 						</div>
 						<?php if( $this->session->flashdata('message')) {?>
 								<span class="success_msg"><img src="<?php echo VIEWBASE; ?>images/icon_checkmark_small.png" class="success_tick">

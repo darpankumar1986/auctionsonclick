@@ -77,8 +77,8 @@
 							<td><a href="<?php echo base_url('/superadmin/bank')?>">Bank List</a></td>
 							<td><a href="<?php echo base_url('/superadmin/bank_branch');?>">Branch List</a></td>
 							<!--<td><a href="<?php echo base_url('/superadmin/user/bankeraddedit');?>">Create Branch User</a></td> -->
-							<td><a href="<?php echo base_url('/superadmin/category/addeditmain')?>">Create Category</a></td>
-							<td><a href="<?php echo base_url('/superadmin/category/addedit')?>">Create Sub Category</a></td>
+							<td><a href="<?php echo base_url('/superadmin/category/main')?>">List Category</a></td>
+							<td><a href="<?php echo base_url('/superadmin/category/index')?>">List Sub Category</a></td>
 							<td><a href="<?php echo base_url()?>superadmin/country/addedit">Create Country</a></td> 
 							
 
