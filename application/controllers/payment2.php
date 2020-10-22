@@ -72,7 +72,7 @@ class Payment2 extends WS_Controller
 
 		$razorpayOrderId = $razorpayOrder['id'];
 
-		$_SESSION['razorpay_order_id'] = $razorpayOrderId;
+		$_POST['razorpay_order_id'] = $razorpayOrderId;
 
 		$displayAmount = $amount = $orderData['amount'];
 
@@ -154,7 +154,7 @@ class Payment2 extends WS_Controller
 				// come from a trusted source (session here, but
 				// could be database or something else)
 				$attributes = array(
-					'razorpay_order_id' => $_SESSION['razorpay_order_id'],
+					'razorpay_order_id' => $_POST['razorpay_order_id'],
 					'razorpay_payment_id' => $_POST['razorpay_payment_id'],
 					'razorpay_signature' => $_POST['razorpay_signature']
 				);
@@ -218,7 +218,7 @@ class Payment2 extends WS_Controller
 			$q = $this->db->get('tbl_payment');
 			$row = $q->row();
 		
-			//echo  $_SESSION['razorpay_order_id'];die;
+			//echo  $_POST['razorpay_order_id'];die;
 			//$html = "<p>Your payment was successful</p>
 			//		 <p>Payment ID: {$_POST['razorpay_payment_id']}</p>";
 		
@@ -534,7 +534,7 @@ class Payment2 extends WS_Controller
 		}
 		else
 		{
-			$this->db->where('payu_mihpayid',$_SESSION['razorpay_order_id']);
+			$this->db->where('payu_mihpayid',$_POST['razorpay_order_id']);
 			$q = $this->db->get('tbl_payment');
 			$row = $q->row();
 		
