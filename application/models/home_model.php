@@ -367,7 +367,7 @@ class Home_model extends CI_Model {
 
 				if($_GET['search_city'] != '')
 				{
-					$this->db->where("city.city_name like '%".$_GET['search_city']."%'");
+					$this->db->where("city.city_name like '".$_GET['search_city']."'");
 				}
 				
 
